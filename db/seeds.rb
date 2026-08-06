@@ -17,19 +17,19 @@ new_user = User.new(
   username: "Player 1",
   email: "p1@example.com",
   password: "password123",
-  password_confirmation: "password123" # Devise standard check
+  password_confirmation: "password123"
 )
 
 new_user.save!
 
 campaign = Campaign.create!(user:new_user, title: "Epic Quest")
-first_participation = Participation.create!(user:new_user, campaign:campaign)
+participation = Participation.create!(user:new_user, campaign:campaign)
 Character.create!(
   [
     {
     name: "Squilliam Fancyson",
     stats_summary: "Squilliam Fancyson is Squidward Tentacles' high school arch-rival. Squilliam attended Squidward's band class, and always puts him down. He is a very wealthy, snooty rival of Squidward who looks down at Squidward, for being just a lowly cashier in a greasy spoon.",
-    participation: first_participation
+    participation: participation
     }
   ]
 )
