@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "characters/show"
+  get "characters/new"
+  get "characters/create"
+  get "characters/edit"
+  get "characters/update"
+  get "characters/destroy"
   devise_for :users
   root "campaigns#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,4 +20,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "campaigns", to: "campaigns#index"
+  resources :characters
 end
