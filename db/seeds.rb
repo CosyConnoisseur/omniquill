@@ -12,7 +12,8 @@ Character.destroy_all
 Participation.destroy_all
 Campaign.destroy_all
 User.destroy_all
-
+Chapter.destroy_all
+Note.destroy_all
 
 
 puts "Populating users..."
@@ -68,8 +69,9 @@ labyrinth = Campaign.create!(
   and warring subterranean civilizations to reach the maze's heart, where a forgotten engine of primordial light slumbers.
   Yet in a realm that feeds on secrets and actively warps reality, the greatest threat isn't the horrors lurking in the dark,
   but the horrifying truth of why the world above was cursed in the first place.",
-  user_id: 1
+  user: player1
 )
+puts "Populating campaigns 1 done"
 
 diamond_lake = Campaign.create!(
   title: "Death and Determination at Camp Diamond Lake",
@@ -81,7 +83,7 @@ diamond_lake = Campaign.create!(
   Armed with rusty canoe paddles, improvised spell-casting through cafeteria snacks, and a whole lot of bad decisions,
   you'll have to outsmart suburban cryptids to survive.
   Just remember to roll for initiative whenever you hear rustling in the snack shack!",
-  user_id: 3
+  user: ani
 )
 
 puts "...finished populating campaigns"
@@ -89,7 +91,7 @@ puts "...finished populating campaigns"
 
 puts "Populating chapters..."
 
-Chapter.create!(
+depths = Chapter.create!(
   title: "Into the depths...",
   summary: "Driven beneath the ruined kingdoms of Aethelgard to escape the consuming shadow plague, the unlikely
   trio plunged into the lightless abyss of the Undercrypt. Guarded by the fierce blade of the disgraced fighter
@@ -100,10 +102,10 @@ Chapter.create!(
   subterranean maze, the ominous whispers of the deep made one thing terrifyingly clear: the secrets buried in these
   depths were far darker than the curse they had left behind.",
   highlights: "Hagen Kellsmush remembered he knew about primordial light, Vairna's light discovered a suspicious rock",
-  campaign_id: 1
+  campaign: labyrinth
 )
 
-Chapter.create!(
+traps = Chapter.create!(
   title: "Paranoid over traps",
   summary: "Still reeling from their initial descent into the Undercrypt, the fragile alliance was tested as the
   labyrinth's volatile magic began actively warping the stone around them into a gauntlet of hair-trigger arcana.
@@ -114,10 +116,10 @@ Chapter.create!(
   corridor without triggering a fatal collapse, the creeping suspicion took root that the dungeon was actively
   watching—and tailoring its cruelty just for them.",
   highlights: "Sefia triggered a trap volentarily 'just to see what it would do', Hagen couldn't stop chanting to keep his nerves.",
-  campaign_id: 1
+  campaign: labyrinth
 )
 
-Chapter.create!(
+feelers = Chapter.create!(
   title: "The Depth Feelers fight",
   summary: "The oppressive paranoia of the trap-laden halls gave way to raw terror when writhing, blind monstrosities
   erupted from the slick cavern walls to stalk the weary party. Sefia Rhynberg threw herself into the breach,
@@ -128,10 +130,10 @@ Chapter.create!(
   the bloody stench left behind served as a grim reminder that every struggle in the Undercrypt only invites greater
   shadows to gather.",
   highlights: "Three critical misses for Vairna in a row!, Hagen got knocked out, Sefia delt the finishing blow!",
-  campaign_id: 1
+  campaign: labyrinth
 )
 
-Chapter.create!(
+hunt = Chapter.create!(
   title: "Readying to hunt",
   summary: "The peaceful evening at Camp Echo Lake shattered when a rogue gang of gnomes staged a midnight heist,
   making off with both the camp director's prized golf cart and the apocalyptic-level emergency s'mores supply.
@@ -142,7 +144,7 @@ Chapter.create!(
   on, but as whispers rustled from the direction of the snack shack, the counselors quickly realized the forest's
   suburban cryptids were already waiting for them.",
   highlights: "Blug got many hugs!, The gnomes were very skishy for Blug, Squilliam hoped if he might be related to Blug",
-  campaign_id: 2
+  campaign: diamond_lake
 )
 
 puts "...finished populating chapters"
@@ -267,16 +269,18 @@ puts "...finished populating characters"
 puts "Populating notes..."
 
 Note.create!(
-  user_id: 2,
+  user: johno,
   entry: "Watch out for Vairna, she seems sus. Never trust a fairy.",
-  campaign_id: 1
+  campaign: labyrinth
 )
 
+puts "Populating notes 1 done"
+
 Note.create!(
-  user_id: 4,
+  user: ra_stein,
   entry: "Maybe if I study Blug, I might know a bit more about my own
   condition. He's monstrous, so that counts.",
-  campaign_id: 2
+  campaign: diamond_lake
 )
 
 puts "...finished populating notes"
@@ -286,32 +290,32 @@ puts "Populating stickies..."
 
 Sticky.create!(
   text: "Definite party wipe",
-  user_id: 2,
-  chapter_id: 1
+  user: johno,
+  chapter: depths
 )
 
 Sticky.create!(
   text: "Scary!",
-  user_id: 3,
-  chapter_id: 1
+  user: waifulover,
+  chapter: depths
 )
 
 Sticky.create!(
   text: "Big bonks...",
-  user_id: 5,
-  chapter_id: 3
+  user: player1,
+  chapter: feelers
 )
 
 Sticky.create!(
   text: "Cryptids assemble!",
-  user_id: 3,
-  chapter_id: 4
+  user: waifulover,
+  chapter: hunt
 )
 
 Sticky.create!(
   text: "Murder time 😈",
-  user_id: 2,
-  chapter_id: 4
+  user: johno,
+  chapter: hunt
 )
 
 puts "...finished populating stickies"
