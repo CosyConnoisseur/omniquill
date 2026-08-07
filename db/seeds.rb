@@ -8,12 +8,31 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+<<<<<<< HEAD
+Character.destroy_all
+Participation.destroy_all
+Campaign.destroy_all
+User.destroy_all
+
+campaign = Campaign.create!(user:new_user, title: "Epic Quest")
+participation = Participation.create!(user:new_user, campaign:campaign)
+Character.create!(
+  [
+    {
+    name: "Squilliam Fancyson",
+    stats_summary: "Squilliam Fancyson is Squidward Tentacles' high school arch-rival. Squilliam attended Squidward's band class, and always puts him down. He is a very wealthy, snooty rival of Squidward who looks down at Squidward, for being just a lowly cashier in a greasy spoon.",
+    participation: participation
+    }
+  ]
+)
+
 puts "Populating users..."
 
 User.create!(
   [
     email: "aniwhistler@gmail.com",
     password: "123456",
+    password_confirmation: "123456",
     username: "ani"
   ]
 )
@@ -22,6 +41,7 @@ User.create!(
   [
     email: "jhony36@gmail.com",
     password: "123456",
+    password_confirmation: "123456",
     username: "johno37"
   ]
 )
@@ -30,6 +50,7 @@ User.create!(
   [
     email: "bill-flozner@hotmail.com",
     password: "123456",
+    password_confirmation: "123456",
     username: "waifulover420"
   ]
 )
@@ -38,8 +59,16 @@ User.create!(
   [
     email: "ra_stein@yahoo.jp",
     password: "123456",
+    password_confirmation: "123456",
     username: "goblinpounder44"
   ]
+)
+
+User.create!(
+  username: "Player 1",
+  email: "p1@example.com",
+  password: "password123",
+  password_confirmation: "password123"
 )
 
 puts "...finished populating users..."

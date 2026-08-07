@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-  has_many :participations, :stickies, :campaigns, :notes
+  has_many :participations
+  has_many :stickies
+  has_many :campaigns
+  has_many :notes
   has_many :chapters, through: :campaigns
   has_many :characters, through: :participations
 end
