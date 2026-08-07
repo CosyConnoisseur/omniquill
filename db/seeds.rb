@@ -83,10 +83,43 @@ puts "...finished populating campaigns..."
 
 puts "Populating chapters..."
 
+Chapter.create!(
+  [
+    title: "Into the depths...",
+    summary: "",
+    highlights: "",
+    campaign_id: 1
+  ]
+)
+
+Chapter.create!(
+  [
+    title: "Paranoid over traps",
+    summary: "",
+    highlights: "",
+    campaign_id: 1
+  ]
+)
+
+Chapter.create!(
+  [
+    title: "The Depth Feelers fight",
+    summary: "",
+    highlights: "",
+    campaign_id: 1
+  ]
+)
+
 puts "...finished populating chapters..."
 
 
 puts "Populating characters..."
+
+Character.create!(
+  [
+    name: "Squilliam Fancyson"
+  ]
+)
 
 puts "...finished populating characters..."
 
