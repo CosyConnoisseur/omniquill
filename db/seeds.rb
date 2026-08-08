@@ -143,7 +143,7 @@ hunt = Chapter.create!(
   the eerie judgment of a nearby Mothman as they prepared to march into the weird, dark woods. The hunt was officially
   on, but as whispers rustled from the direction of the snack shack, the counselors quickly realized the forest's
   suburban cryptids were already waiting for them.",
-  highlights: "Blug got many hugs!, The gnomes were very skishy for Blug, Squilliam hoped if he might be related to Blug",
+  highlights: "Blug got many hugs!, The gnomes were very squishy for Blug, Squilliam hoped he might be related to Blug",
   campaign: diamond_lake
 )
 
@@ -226,13 +226,19 @@ Character.create!(
   participation: invite3
 )
 
-Character.create!(
+squilliam = Character.create!(
   name: "Squilliam Fancyson",
   stats_summary: "Squilliam Fancyson is Squidward Tentacles' high school arch-rival.
   Squilliam attended Squidward's band class, and always puts him down.
   He is a very wealthy, snooty rival of Squidward who looks down at Squidward,
   for being just a lowly cashier in a greasy spoon.",
   participation: invite4
+)
+
+squilliam.portrait.attach(
+  io: File.open(Rails.root.join("app/assets/images/squilliam.png")),
+  filename: "squilliam.png",
+  content_type: "image/png"
 )
 
 Character.create!(

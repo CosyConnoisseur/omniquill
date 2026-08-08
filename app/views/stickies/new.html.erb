@@ -1,0 +1,12 @@
+<div class="d-flex flex-column align-items-center">
+  <h1>Put in a Sticky!</h1>
+
+  <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
+    <%= f.input :text, label: "Whatch'a wanna say?" %>
+    <%= f.button :submit, "Stick em'!", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to campaign_chapter_path(@campaign, @chapter) do %>
+    <button class="btn btn-warning mt-2">nvm...</button>
+  <% end %>
+</div>
