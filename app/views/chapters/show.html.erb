@@ -1,0 +1,29 @@
+<div class="text-center">
+  <h1><%= @chapter.title %></h1>
+</div>
+
+<div class="d-flex flex-column align-items-center mx-5">
+  <p><%= @chapter.summary %></p>
+  <ul>
+    <% @chapter.highlights.split(", ").each do |highlight| %>
+    <li><%= highlight %></li>
+    <% end %>
+  </ul>
+  <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
+    <button class="btn btn-primary">Edit</button>
+  <% end %>
+  <%= link_to campaign_chapters_path do %>
+    <button class="btn btn-warning mt-2">Back to chapters</button>
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-between mx-5">
+  <%= link_to new_campaign_chapter_sticky_path(@campaign, @chapter) do %>
+    <button class="btn btn-info">Sticky!</button>
+  <% end %>
+  <ul>
+    <% @chapter.stickies.each do |sticky| %>
+      <li><%= sticky.text %></li>
+    <% end %>
+  </ul>
+</div>
