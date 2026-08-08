@@ -8,12 +8,16 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+ActiveJob::Base.queue_adapter = :inline
+ActiveStorage.track_variants = false
+
 Character.destroy_all
 Participation.destroy_all
 Campaign.destroy_all
 User.destroy_all
 Chapter.destroy_all
 Note.destroy_all
+Sticky.destroy_all
 
 
 puts "Populating users..."
