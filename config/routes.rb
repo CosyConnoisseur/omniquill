@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "campaigns", to: "campaigns#index"
+  get "campaigns/new", to: "campaigns#new", as: :new_campaign
+  post "campaigns", to: "campaigns#create"
+  get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
+  post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   resources :characters
 end
