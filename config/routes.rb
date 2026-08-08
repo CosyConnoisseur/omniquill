@@ -23,5 +23,4 @@ Rails.application.routes.draw do
   resources :characters
 
   get "campaigns/:id", to: "campaigns#show"
-  resources :title, only: [:show]
 end
