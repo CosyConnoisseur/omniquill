@@ -1,5 +1,8 @@
 class CampaignsController < ApplicationController
-  def show
-    # @campaign = Campaign.find(params[:id])
+  def index
+    @campaigns = Campaign.all
+
+    #just for testing
+    @characters = Character.all
   end
 end
