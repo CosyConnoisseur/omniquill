@@ -1,7 +1,7 @@
 class ChaptersController < ApplicationController
   before_action :set_chapter, only: %i[show edit update]
+  before_action :set_campaign, only: %i[index show edit update]
   def index
-    @campaign = Campaign.find(params[:id])
     @chapters = @campaign.chapters
   end
 
@@ -13,13 +13,17 @@ class ChaptersController < ApplicationController
 
   def update
     @chapter.update(chapter_params)
-    redirect_to chapter_path(@chapter)
+    redirect_to campaign_chapter_path(@campaign, @chapter)
   end
 
   private
 
   def set_chapter
     @chapter = Chapter.find(params[:id])
+  end
+
+  def set_campaign
+    @campaign = Campaign.find(params[:campaign_id])
   end
 
   def chapter_params
