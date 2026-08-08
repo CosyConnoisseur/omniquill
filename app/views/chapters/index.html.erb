@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1>Here are all the adventures for "<%= @chapters[0].campaign.title %>"...</h1>
+</div>
+
+<div class="d-flex flex-column align-items-center mx-5">
+  <% @chapters.each do |chapter| %>
+    <p class="fs-3"><%= chapter.title %></p>
+    <p><%= chapter.summary %></p>
+    <ul>
+      <% chapter.highlights.split(", ").each do |highlight| %>
+      <li><%= highlight %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
