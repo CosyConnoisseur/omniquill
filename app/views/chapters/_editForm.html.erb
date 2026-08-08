@@ -1,0 +1,6 @@
+<%= simple_form_for([chapter]) do |f| %>
+  <%= f.input :title, placeholder: chapter.title %>
+  <%= f.input :summary, placeholder: chapter.summary, input_html: {style: "height: 300px;"} %>
+  <%= f.input :highlights, placeholder: chapter.highlights %>
+  <%= f.button :submit, "Update chapter", class: "btn btn-primary" %>
+<% end %>
