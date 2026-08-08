@@ -1,0 +1,11 @@
+.summary-toggle[open] summary {
+  display: none !important;
+}
+
+.summary-toggle summary {
+  list-style: none;
+  cursor: pointer;
+}
+.summary-toggle summary::-webkit-details-marker {
+  display: none;
+}
