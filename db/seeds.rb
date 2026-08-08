@@ -230,6 +230,7 @@ Character.create!(
   participation: invite3
 )
 
+puts "Populating characters 3 done"
 squilliam = Character.create!(
   name: "Squilliam Fancyson",
   stats_summary: "Squilliam Fancyson is Squidward Tentacles' high school arch-rival.
@@ -238,13 +239,13 @@ squilliam = Character.create!(
   for being just a lowly cashier in a greasy spoon.",
   participation: invite4
 )
-
+puts "Populating characters 4 nearly done"
 squilliam.portrait.attach(
   io: File.open(Rails.root.join("app/assets/images/squilliam.png")),
   filename: "squilliam.png",
   content_type: "image/png"
 )
-
+puts "Populating characters 4 done"
 Character.create!(
   name: "Howard Lavender",
   stats_summary: "Howard was born a stupid child, he mistook every one as his mother and got
@@ -260,7 +261,7 @@ Character.create!(
   hating the curse that came with it.",
   participation: invite5
 )
-
+puts "Populating characters 5 done"
 Character.create!(
   name: "Blug",
   stats_summary: "Born a cryptid himself, he's a 7 foot tall crab monstrosity that has two giant
