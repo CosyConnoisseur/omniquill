@@ -7,7 +7,9 @@ class CharacterPolicy < ApplicationPolicy
 
   def show?
     true
+    # add ownership later
   end
+
   def create?
     true
   end
@@ -21,15 +23,15 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.user
+    user == record.participation.user #figure out character ownership
   end
 
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
-    end
-    # scope.where(user: user)
+    #   scope.all
     # end
+    scope.where(user: user)
+    end
   end
 end

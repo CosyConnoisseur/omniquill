@@ -6,5 +6,7 @@ class Campaign < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :characters, through: :participations
 
+  has_one_attached :card_image
+  has_one_attached :banner
   # user_id is DM, players are participations
 end

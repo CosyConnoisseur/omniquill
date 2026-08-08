@@ -29,6 +29,7 @@ class CharactersController < ApplicationController
 
   def update
     @character = Character.find(params[:id])
+    authorize @character
     @character.update!(character_params)
     redirect_to character_path(@character)
   end
