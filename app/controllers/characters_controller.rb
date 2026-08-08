@@ -4,9 +4,20 @@ class CharactersController < ApplicationController
   end
 
   def new
+    @character = Character.new
   end
 
   def create
+  end
+
+  def parse_sheet
+    uploaded_file = params[:character][:document_upload]
+    # ai magic uploaded_file
+    @character = Character.new(
+      name: "blah", #ai magic
+      stats_summary: "blah" #ai magic
+    )
+    render :new
   end
 
   def edit

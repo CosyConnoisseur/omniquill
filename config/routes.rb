@@ -27,5 +27,9 @@ Rails.application.routes.draw do
   end
 
   # Defines the character routes
-  resources :characters
+  resources :characters do
+    collection do
+      post :parse_sheet
+    end
+  end
 end

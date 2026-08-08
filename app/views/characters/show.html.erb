@@ -10,11 +10,14 @@
       </div>
           <%= render "characters/form_portrait" %>
     </div>
+    <div class="d-flex row">
     <div class="character-text-page-container ms-4 mt-0 bg-white p-5 shadow" style="max-width: 650px; width: 100%;">
       <h1 class="character-title text-center mb-4"><%= @character.name %></h1>
       <div class="summary-container text-center">
       <h2><%= @character.stats_summary  %></h2>
       </div>
+    </div>
+      <%= render "characters/form_sheet" %>
     </div>
   </div>
 </div>
