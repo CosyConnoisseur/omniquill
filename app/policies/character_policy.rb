@@ -11,8 +11,10 @@ class CharacterPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
+    def resolve
     #   scope.all
     # end
+    scope.where(user: user)
+    end
   end
 end
