@@ -1,9 +1,47 @@
-<h1>wow look at all your campaigns!</h1>
-<ul>
-  <% @campaigns.each do |campaign| %>
-<li><%= link_to campaign.title, campaigns_path(campaign)  %></li>
-<% end %>
-</ul>
+<h1>Campaigns</h1>
+
+<div class="container mt-4">
+  <div class="row">
+
+    <% @campaigns.each do |campaign| %>
+      <div class="col-md-4 mb-4">
+
+        <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="Campaign image">
+
+          <div class="card-body">
+            <h5 class="card-title"><%= campaign.title %></h5>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Players:</strong>
+
+              <ul>
+                <% campaign.participations.each do |participation| %>
+                  <li><%= participation.user.email %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="card-body">
+            <%= link_to "Invite Player", join_campaign_url(campaign), class: "card-link" %>
+
+          </div>
+
+        </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%= link_to "New Campaign", new_campaign_path, class: "btn btn-primary" %>
+
+
+
 
 <h2>And characters!</h2>
 <ul>
@@ -11,3 +49,4 @@
 <li><%= link_to character.name, character_path(character)  %></li>
 <% end %>
 </ul>
+<%= link_to "Create New Character", new_character_path, class: "btn btn-primary ms-3" %>

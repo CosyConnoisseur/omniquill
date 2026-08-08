@@ -90,6 +90,7 @@ production:
     database: omniquill_production
     username: omniquill
     password: <%= ENV["OMNIQUILL_DATABASE_PASSWORD"] %>
+    url: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *primary_production
     database: omniquill_production_cache

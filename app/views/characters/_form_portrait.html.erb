@@ -1,0 +1,8 @@
+<%= form_with(model: @character) do |form| %>
+  <div>
+    <%= form.label :portrait, "Upload Portrait" %>
+    <%= form.file_field :portrait, accept: 'image/png, image/jpeg, image/jpg, image/webp' %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
