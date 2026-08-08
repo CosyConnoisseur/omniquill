@@ -1,5 +1,4 @@
 class CampaignsController < ApplicationController
-  skip_after_action :verify_policy_scoped, only: :index
   def index
     # @campaigns = Campaign.all
     @campaigns = policy_scope(Campaign)
