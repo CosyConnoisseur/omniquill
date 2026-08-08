@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get "characters/update"
   get "characters/destroy"
   devise_for :users
-  root "campaigns#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -18,7 +17,15 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
-  get "campaigns", to: "campaigns#index"
+  root "campaigns#index"
+
+  # Defines the campaign routes
+  resources :campaigns do
+    member do
+      resources :chapters, except: [ :destroy ]
+    end
+  end
+
+  # Defines the character routes
   resources :characters
 end
