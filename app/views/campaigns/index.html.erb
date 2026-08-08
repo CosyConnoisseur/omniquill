@@ -1,7 +1,7 @@
 <h1>wow look at all your campaigns!</h1>
 <ul>
   <% @campaigns.each do |campaign| %>
-<li><%= link_to campaign.title, chapters_path(campaign)  %></li>
+<li><%= link_to campaign.title, campaign_path(campaign)  %></li>
 <% end %>
 </ul>
 
