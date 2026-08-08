@@ -13,6 +13,9 @@ class CharactersController < ApplicationController
   end
 
   def update
+    @character = Character.find(params[:id])
+    @character.update!(character_params)
+    redirect_to character_path(@character)
   end
 
   def destroy
@@ -22,8 +25,7 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    # Append :portrait to your permitted attributes
-    params.require(:character).permit(:name, :class, :bio, :portrait)
+    params.require(:character).permit(:name, :stats_summary, :portrait)
   end
 
 end

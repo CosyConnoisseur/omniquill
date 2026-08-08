@@ -9,7 +9,7 @@
   font-size: 18px;
   line-height: 32px;
 
-  min-height: 400px;
+  min-height: 1000px;
   width: 100%;
   max-width: 700px;
   padding: 40px;
@@ -22,7 +22,6 @@
     radial-gradient(ellipse at 72% 75%, rgba(0,0,0,0.1) 0%, transparent 40%),
     radial-gradient(ellipse at 15% 85%, rgba(0,0,0,0.07) 0%, transparent 35%),
 
-    /* Layer D: Base Paper Color Gradient */
     linear-gradient(145deg, #f5e3af 0%, #e6d5b8 55%, #fcdc7f 80%, #d4c1a1 100%);
 }
 
@@ -36,7 +35,7 @@
   font-family: "Cinzel";
 }
 
-.character-portrait-container{
+.character-portrait{
   position: relative;
   display: inline-block;
   background-color: #f4ebd0; /* Solid fallback base */
@@ -54,7 +53,7 @@
 }
 
 /* The magic layer that forces the paper texture onto the artwork */
-.character-portrait-container img {
+.character-portrait img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -63,5 +62,5 @@
   mix-blend-mode: multiply;
 
   /* Optional: slightly lowers contrast/saturation to make it look like faded old ink */
-  filter: sepia(0.3) contrast(1.1) brightness(0.95);
+  filter: sepia(0.6) contrast(1.3) brightness(0.90);
 }
