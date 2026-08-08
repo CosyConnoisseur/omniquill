@@ -4,6 +4,13 @@ class CampaignsController < ApplicationController
     @campaigns = policy_scope(Campaign)
     @characters = Character.all
   end
+  
+  def show
+    @campaign = Campaign.find(params[:id])
+    @characters = @campaign.characters
+    @chapters = @campaign.chapters
+    @notes = @campaign.notes
+  end
 
   def new
   @campaign = Campaign.new
@@ -45,5 +52,4 @@ end
   def campaign_params
     params.expect(campaign: [:title])
   end
-
 end
