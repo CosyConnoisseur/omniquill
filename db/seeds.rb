@@ -8,8 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-ActiveJob::Base.queue_adapter = :inline
-ActiveStorage.track_variants = false
+# ActiveJob::Base.queue_adapter = :inline
+# ActiveStorage.track_variants = false
 
 Character.destroy_all
 Participation.destroy_all
