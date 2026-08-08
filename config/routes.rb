@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "stickies/new"
+  get "stickies/create"
   get "characters/show"
   get "characters/new"
   get "characters/create"
@@ -20,9 +22,10 @@ Rails.application.routes.draw do
   root "campaigns#index"
 
   # Defines the campaign routes
+  # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
   resources :campaigns do
-    member do
-      resources :chapters, except: [ :destroy ]
+    resources :chapters, except: [ :destroy ] do
+      resources :stickies, only: [ :new, :create ]
     end
   end
 

@@ -1,8 +1,8 @@
 
 <div class="d-flex justify-content-center">
   <div style="width: 70%; height: 500px;">
-    <%= render "editForm", chapter: @chapter %>
-    <%= link_to chapter_path(@chapter) do %>
+    <%= render "editForm", campaign: @campaign, chapter: @chapter %>
+    <%= link_to campaign_chapter_path(@campaign, @chapter) do %>
       <button class="btn btn-warning mt-2">Go back</button>
     <% end %>
   </div>
