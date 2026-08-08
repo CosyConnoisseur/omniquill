@@ -5,12 +5,31 @@ class CharacterPolicy < ApplicationPolicy
   # code, beware of possible changes to the ancestors:
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
 
+  def show?
+    true
+  end
+  def create?
+    true
+  end
+
+  def new
+    true
+  end
+
+  def destroy?
+    user == record.user
+  end
+
+  def update?
+    user == record.user
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-    #   scope.all
-    # end
-    scope.where(user: user)
+      scope.all
     end
+    # scope.where(user: user)
+    # end
   end
 end

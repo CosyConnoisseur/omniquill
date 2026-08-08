@@ -1,13 +1,17 @@
 class CharactersController < ApplicationController
   def show
     @character = Character.find(params[:id])
+    authorize @character
   end
 
   def new
     @character = Character.new
+    authorize @character
   end
 
   def create
+    @character = Character.new(character_params)
+    authorize @character
   end
 
   def parse_sheet
