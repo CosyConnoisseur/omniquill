@@ -226,13 +226,19 @@ Character.create!(
   participation: invite3
 )
 
-Character.create!(
+squilliam = Character.create!(
   name: "Squilliam Fancyson",
   stats_summary: "Squilliam Fancyson is Squidward Tentacles' high school arch-rival.
   Squilliam attended Squidward's band class, and always puts him down.
   He is a very wealthy, snooty rival of Squidward who looks down at Squidward,
   for being just a lowly cashier in a greasy spoon.",
   participation: invite4
+)
+
+squilliam.portrait.attach(
+  io: File.open(Rails.root.join("app/assets/images/squilliam.png")),
+  filename: "squilliam.png",
+  content_type: "image/png"
 )
 
 Character.create!(

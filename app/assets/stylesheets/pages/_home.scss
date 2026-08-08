@@ -1,1 +1,67 @@
 // Specific CSS for your home-page
+.character-portrait {
+  height: 100%;
+}
+
+.character-text-page-container {
+
+  font-family: "Cinzel";
+  font-size: 18px;
+  line-height: 32px;
+
+  min-height: 400px;
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+
+  background-color: #f4ebd0;
+  background-image:
+    radial-gradient(ellipse at 28% 18%, rgba(255,255,255,0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 72% 75%, rgba(0,0,0,0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 15% 85%, rgba(0,0,0,0.07) 0%, transparent 35%),
+
+    /* Layer D: Base Paper Color Gradient */
+    linear-gradient(145deg, #f5e3af 0%, #e6d5b8 55%, #fcdc7f 80%, #d4c1a1 100%);
+}
+
+.character-text-page-container,
+.character-text-page-container h2,
+.character-text-page-container p {
+  font-family: 'IM fell English', cursive;
+}
+
+.character-text-page-container h1 {
+  font-family: "Cinzel";
+}
+
+.character-portrait-container{
+  position: relative;
+  display: inline-block;
+  background-color: #f4ebd0; /* Solid fallback base */
+
+  /* Applying your exact dynamic lighting and parchment base gradient */
+  background-image:
+    radial-gradient(circle 300px at 25% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+    radial-gradient(circle 400px at 80% 85%, rgba(139, 94, 60, 0.25) 0%, transparent 100%),
+    radial-gradient(circle 250px at 10% 90%, rgba(0, 0, 0, 0.15) 0%, transparent 100%),
+    linear-gradient(145deg, #fbf5e6 0%, #e6d3b3 50%, #d9bf96 100%);
+
+  padding: 15px; /* Creates a vintage frame border around the picture */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+/* The magic layer that forces the paper texture onto the artwork */
+.character-portrait-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  /* ⚠️ This merges the image into the background canvas behind it! */
+  mix-blend-mode: multiply;
+
+  /* Optional: slightly lowers contrast/saturation to make it look like faded old ink */
+  filter: sepia(0.3) contrast(1.1) brightness(0.95);
+}

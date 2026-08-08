@@ -17,4 +17,13 @@ class CharactersController < ApplicationController
 
   def destroy
   end
+
+
+  private
+
+  def character_params
+    # Append :portrait to your permitted attributes
+    params.require(:character).permit(:name, :class, :bio, :portrait)
+  end
+
 end

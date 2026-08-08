@@ -1,4 +1,18 @@
-<h1><%= @character.name %></h1>
-
-<h2><%= @character.stats_summary  %></h2>
-<p>Find me in app/views/characters/show.html.erb</p>
+<div class="page-container m-5 d-flex justify-content-center">
+  <div class="character-info-container d-flex justify-content-center align-items-start mt-3">
+    <div class="character-portrait-container flex-md-row torn-edges">
+      <% if @character.portrait.attached? %>
+        <%= image_tag @character.portrait, style: "max-height: 750px; border-radius: 8px;" %>
+      <% else %>
+        <%= image_tag "default.jpg", style: "max-height: 750px; border-radius: 8px;" %>
+      <% end %>
+    </div>
+    <div class="character-text-page-container ms-3 mt-0 d-flex row bg-white p-5 shadow" style="max-width: 650px; width: 100%;">
+      <h1 class="character-title text-center"><%= @character.name %></h1>
+      <div class="summary-container">
+      <h2><%= @character.stats_summary  %></h2>
+      </div>
+    </div>
+  </div>
+</div>
+  <p>Find me in app/views/characters/show.html.erb</p>
