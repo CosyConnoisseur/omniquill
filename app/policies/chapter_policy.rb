@@ -14,8 +14,9 @@ class ChapterPolicy < ApplicationPolicy
 
   def show?
     # This is a failsafe in case a user decides to manipulate the url itself to access campaigns/chapters they aren't supposed to.
-    # Though admitedly, this is probably overkill...
-    user.participations.where(campaign_id: record.campaign.id).present? || user.campaigns.exists?(id: record.campaign.id)
+    # Kept the code below for future reference, but don't need it anymore.
+    # user.participations.where(campaign_id: record.campaign.id).present? || user.campaigns.exists?(id: record.campaign.id)
+    true
   end
 
   def edit?
