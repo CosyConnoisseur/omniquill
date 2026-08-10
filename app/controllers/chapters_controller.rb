@@ -2,16 +2,19 @@ class ChaptersController < ApplicationController
   before_action :set_chapter, only: %i[show edit update]
   before_action :set_campaign, only: %i[index show edit update]
   def index
-    @chapters = @campaign.chapters
+    @chapters = policy_scope(@campaign.chapters)
   end
 
   def show
+    authorize @chapter
   end
 
   def edit
+    authorize @chapter
   end
 
   def update
+    authorize @chapter
     @chapter.update(chapter_params)
     redirect_to campaign_chapter_path(@campaign, @chapter)
   end

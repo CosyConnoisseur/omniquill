@@ -7,12 +7,13 @@
       <div class="col-md-4 mb-4">
 
         <div class="card" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="Campaign image">
+        <%= link_to campaign_path(campaign) do %>
+          <img src="" class="card-img-top" alt="Campaign image">
 
           <div class="card-body">
             <h5 class="card-title"><%= campaign.title %></h5>
           </div>
-
+        <% end %>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <strong>Players:</strong>
