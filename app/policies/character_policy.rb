@@ -23,7 +23,8 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.participation.user #figure out character ownership
+    true
+    # user == record.participation.user #figure out character ownership
   end
 
   class Scope < ApplicationPolicy::Scope
