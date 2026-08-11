@@ -48,6 +48,13 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "cloudinary", "~> 2.0"
 gem "pundit"
+gem "ruby_llm", "~> 1.4.0"
+gem 'faraday'
+gem "ruby_llm-schema"
+gem "httplog"
+gem "pry-byebug"
+gem "pry-rails"
+gem "solid_cable"
 
 group :development, :test do
   gem "dotenv-rails"

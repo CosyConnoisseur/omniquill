@@ -27,6 +27,10 @@ class CharacterPolicy < ApplicationPolicy
     # user == record.participation.user #figure out character ownership
   end
 
+  def parse_sheet?
+    true
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
