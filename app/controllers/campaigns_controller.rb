@@ -25,7 +25,6 @@ class CampaignsController < ApplicationController
 
     if @campaign.save
       redirect_to campaigns_path
-      # redirect_to @campaign
     else
       render :new, status: :unprocessable_entity
     end
