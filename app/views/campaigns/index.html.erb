@@ -7,21 +7,20 @@
       <div class="col-md-4 mb-4">
 
         <div class="card" style="width: 18rem;">
-        <%= link_to campaign_path(campaign) do %>
-          <img src="" class="card-img-top" alt="Campaign image">
+        <%= link_to campaign_path(campaign), class: "d-block" do %>
 
           <% if campaign.card_image.attached? %>
-            <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
+            <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
           <% else %>
-            <%= image_tag "default-card-image.jpg", style: "max-height: 550px;" %>
+            <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
           <% end %>
-          <%= render "form_card_image", campaign:campaign %>
           <%# <img src="" class="card-img-top" alt="Campaign image"> %>
 
           <div class="card-body">
-            <h5 class="card-title"><%= link_to campaign.title, campaign_path(campaign) %></h5>
+            <h5 class="card-title"><%= campaign.title %></h5>
           </div>
         <% end %>
+          <%= render "form_card_image", campaign:campaign %>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <strong>Players:</strong>
