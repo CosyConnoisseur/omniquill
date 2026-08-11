@@ -1,9 +1,55 @@
-<h1>wow look at all your campaigns!</h1>
-<ul>
-  <% @campaigns.each do |campaign| %>
-<li><%= link_to campaign.title, campaign_path(campaign)  %></li>
-<% end %>
-</ul>
+<h1>Campaigns</h1>
+
+<div class="container mt-4">
+  <div class="row">
+
+    <% @campaigns.each do |campaign| %>
+      <div class="col-md-4 mb-4">
+
+        <div class="card" style="width: 18rem;">
+        <%= link_to campaign_path(campaign), class: "d-block" do %>
+
+          <% if campaign.card_image.attached? %>
+            <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
+          <% else %>
+            <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
+          <% end %>
+          <%# <img src="" class="card-img-top" alt="Campaign image"> %>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= campaign.title %></h5>
+          </div>
+        <% end %>
+          <%= render "form_card_image", campaign:campaign %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Players:</strong>
+
+              <ul>
+                <% campaign.participations.each do |participation| %>
+                  <li><%= participation.user.email %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="card-body">
+            <%= link_to "Invite Player", join_campaign_url(campaign), class: "card-link" %>
+
+          </div>
+
+        </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%= link_to "New Campaign", new_campaign_path, class: "btn btn-primary" %>
+
+
+
 
 <h2>And characters!</h2>
 <ul>

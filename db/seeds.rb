@@ -73,7 +73,7 @@ labyrinth = Campaign.create!(
   and warring subterranean civilizations to reach the maze's heart, where a forgotten engine of primordial light slumbers.
   Yet in a realm that feeds on secrets and actively warps reality, the greatest threat isn't the horrors lurking in the dark,
   but the horrifying truth of why the world above was cursed in the first place.",
-  user: player1
+  user: ani
 )
 puts "Populating campaigns 1 done"
 
@@ -87,7 +87,7 @@ diamond_lake = Campaign.create!(
   Armed with rusty canoe paddles, improvised spell-casting through cafeteria snacks, and a whole lot of bad decisions,
   you'll have to outsmart suburban cryptids to survive.
   Just remember to roll for initiative whenever you hear rustling in the snack shack!",
-  user: ani
+  user: waifulover
 )
 
 puts "...finished populating campaigns"
