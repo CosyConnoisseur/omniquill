@@ -7,7 +7,7 @@
 
     <div class="form-group" style="width: 100%; margin-bottom: 15px;">
       <div style="margin-bottom: 8px;"><h5><strong><%= f.label :title %></strong></h5></div>
-      <div><%= f.text_field :title, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter campaign name" %></div>
+      <div><%= f.text_field :title, minlength: 6, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter campaign name" %></div>
       <small class="form-text text-muted">At least 6 characters</small>
     </div>
 
