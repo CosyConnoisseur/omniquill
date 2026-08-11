@@ -14,14 +14,14 @@ class CampaignsController < ApplicationController
   end
 
   def new
-  @campaign = Campaign.new
+    @campaign = Campaign.new
     authorize @campaign
   end
 
   def create
     @campaign = Campaign.new(campaign_params)
-    @campaign.user = current_user # assigning the current logged in user to the campaign
     authorize @campaign
+    @campaign.user = current_user # assigning the current logged in user to the campaign
 
     if @campaign.save
       redirect_to campaigns_path
@@ -31,28 +31,44 @@ class CampaignsController < ApplicationController
     end
   end
 
-def join
-  @campaign = Campaign.find(params[:id])
-  authorize @campaign, :join?
-  @already_joined = @campaign.participations.exists?(user: current_user)
-end
-
-def add_player
-  @campaign = Campaign.find(params[:id])
-  authorize @campaign, :join?
-
-  unless @campaign.participations.exists?(user: current_user)
-    @campaign.participations.create!(
-      user: current_user
-    )
+  def edit
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
   end
 
-  redirect_to campaigns_path
-end
+  def update
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
+
+    if @campaign.update(campaign_params)
+      redirect_back fallback_location: root_path, notice: "Image updated successfully!", status: :see_other
+    else
+      redirect_back fallback_location: root_path, alert: "Failed to update image.", status: :unprocessable_entity
+    end
+    # @campaign.update!(campaign_params)
+  end
+
+  def join
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign, :join?
+    @already_joined = @campaign.participations.exists?(user: current_user)
+  end
+
+  def add_player
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign, :join?
+
+    unless @campaign.participations.exists?(user: current_user)
+      @campaign.participations.create!(
+        user: current_user
+      )
+    end
+
+    redirect_to campaigns_path
+  end
 
     private
   def campaign_params
-    # params.expect(campaign: [:title])
-    params.expect(campaign: [:title, :setting, :synopsis])
+    params.require(:campaign).permit(:title, :card_image, :banner)
   end
 end

@@ -3,12 +3,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   include Pundit::Authorization
+
   # checking the authorize method has been called, and then whether the user is meant to do anything on this page
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   # scoping to ensure users are only seeing the records that they are supposed to.
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
-    private
+  private
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[username])
