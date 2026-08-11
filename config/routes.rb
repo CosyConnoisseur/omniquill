@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
   post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
-  resources :campaigns, only: [ :create ] do
+  resources :campaigns, only: [ :create, :show ] do
     resources :chapters, except: [ :destroy ] do
       resources :stickies, only: [ :new, :create ]
     end
