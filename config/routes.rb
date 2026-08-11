@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   root "campaigns#index"
 
   # Defines the campaign routes
-  get "campaigns/new", to: "campaigns#new", as: :new_campaign
+
+  # get "campaigns/:id", to: "campaigns#show", as: :campaign
+  # get "campaigns/show"
+  resources :campaigns # added for easy access to editing and updating. Reduce if needed
+
+  # get "campaigns/new", to: "campaigns#new", as: :new_campaign
   get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
   post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.

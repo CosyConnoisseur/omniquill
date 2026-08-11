@@ -20,14 +20,31 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    @campaign.user = current_user # assigning the current logged in user to the campaign
     authorize @campaign
+    @campaign.user = current_user # assigning the current logged in user to the campaign
 
     if @campaign.save
       redirect_to campaigns_path
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
+  end
+
+  def update
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
+
+    if @campaign.update(campaign_params)
+      redirect_back fallback_location: root_path, notice: "Image updated successfully!", status: :see_other
+    else
+      redirect_back fallback_location: root_path, alert: "Failed to update image.", status: :unprocessable_entity
+    end
+    # @campaign.update!(campaign_params)
   end
 
   def join
@@ -51,6 +68,6 @@ class CampaignsController < ApplicationController
 
     private
   def campaign_params
-    params.expect(campaign: [:title])
+    params.require(:campaign).permit(:title, :card_image, :banner)
   end
 end

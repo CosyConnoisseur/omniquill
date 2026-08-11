@@ -5,6 +5,27 @@ class CharacterPolicy < ApplicationPolicy
   # code, beware of possible changes to the ancestors:
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
 
+  def show?
+    true
+    # add ownership later
+  end
+
+  def create?
+    true
+  end
+
+  def new
+    true
+  end
+
+  def destroy?
+    user == record.user
+  end
+
+  def update?
+    user == record.participation.user #figure out character ownership
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
