@@ -25,17 +25,20 @@ Rails.application.routes.draw do
 
   # get "campaigns/:id", to: "campaigns#show", as: :campaign
   # get "campaigns/show"
-  resources :campaigns # added for easy access to editing and updating. Reduce if needed
+  resources :campaigns do # added for easy access to editing and updating. Reduce if needed
+    get "record", on: :member
+    # on member means, "each record action belongs to a specific chapter"
 
-  # get "campaigns/new", to: "campaigns#new", as: :new_campaign
-  get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
-  post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
-  # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
-  resources :campaigns, only: [ :create, :show ] do
     resources :chapters, except: [ :destroy ] do
+
       resources :stickies, only: [ :new, :create ]
     end
   end
+
+  get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
+  post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
+  # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
+
 
   # Defines the character routes
   resources :characters do

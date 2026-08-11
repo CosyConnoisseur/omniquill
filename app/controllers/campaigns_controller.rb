@@ -66,7 +66,13 @@ class CampaignsController < ApplicationController
     redirect_to campaigns_path
   end
 
-    private
+  def record
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
+  end
+
+  private
+
   def campaign_params
     params.require(:campaign).permit(:title, :card_image, :banner)
   end

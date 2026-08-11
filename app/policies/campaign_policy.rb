@@ -25,7 +25,7 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def add_player?
-  user == record.user
+    user == record.user
   end
 
   def join?
@@ -36,11 +36,15 @@ class CampaignPolicy < ApplicationPolicy
   #   true
   # end
 
+  def record?
+    show?
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-    scope.where(user: user)
-    # participations user?
+      scope.where(user: user)
+      # participations user?
     end
   end
 end
