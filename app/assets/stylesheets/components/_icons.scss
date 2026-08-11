@@ -1,0 +1,9 @@
+.clickable-icon {
+  display: inline-block;
+
+  transition: transform 0.2s, color 0.2;
+}
+
+.clickable-icon:hover {
+  transform: scale(1.15);
+}
