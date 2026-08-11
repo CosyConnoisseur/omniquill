@@ -1,4 +1,4 @@
-<div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.4)), url('<%= asset_path("wp2820152-mtg-wallpaper.jpg") %>'); min-height: 200px; background-size: cover; background-position: center">
+<div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.4)), url('<%= @campaign.banner.attached? ? url_for(@campaign.banner)  : asset_path("wp2820152-mtg-wallpaper.jpg") %>'); min-height: 200px; background-size: cover; background-position: center">
   <div class="container d-flex flex-row justify-content-between text-white" style="height: 150px;">
     <h1 class="mt-auto"><%= @campaign.title %></h1>
     <div class="mt-auto">
@@ -11,6 +11,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="row w-100 align-items-stretch g-0">
   <div class="col-3">
@@ -90,7 +91,7 @@
 </div>
 
 
-
+<%= render "form_banner" %>
 
 
 
