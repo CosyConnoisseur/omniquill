@@ -4,7 +4,7 @@ body {
   background-size: 20%;
 }
 
-.chap-title {
+.campaign-title {
   text-align: center;
   align-content: center;
   width: 60%;
@@ -23,6 +23,23 @@ body {
     font-weight: 600;
     font-size: 5rem;
     color: #200033;
+  }
+}
+
+.chap-card {
+  text-align: center;
+  align-items: center;
+  border: 0.5rem dotted rgb(46, 29, 19);
+  margin: 1rem;
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    font-family: $quill-font;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 }
 

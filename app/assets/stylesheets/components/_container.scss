@@ -1,13 +1,11 @@
 .parchment-container {
   height: auto;
   width: 80%;
-  padding: 1.5rem 1rem 1.5rem 1rem;
-  text-align: center;
-  align-items: center;
+  padding: 1.5rem;
   border-image: asset_url("parchment-leather-border.png");
   border-image-slice: 115 115 115 115 fill;
   border-image-width: 30px 30px 30px 30px;
-  border-image-outset: 0px 5px 5px 0px;
+  border-image-outset: 5px 5px 5px 5px;
   border-image-repeat: round round;
   box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
 }

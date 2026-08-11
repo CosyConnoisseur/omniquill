@@ -1,5 +1,5 @@
 <div class="centering">
-  <div class="chap-title">
+  <div class="campaign-title">
     <h1><%= @campaign.title %></h1>
   </div>
 </div>
@@ -7,10 +7,12 @@
 <div class="centering">
   <div class="parchment-container">
     <% @chapters.each do |chapter| %>
-      <%= link_to campaign_chapter_path(@campaign, chapter) do %>
-        <p class="fs-3"><%= chapter.title %></p>
-      <% end %>
-      <p><%= chapter.summary.split(". ")[0] %>...</p>
+      <div class="chap-card">
+        <%= link_to campaign_chapter_path(@campaign, chapter) do %>
+          <p class="fs-3"><%= chapter.title %></p>
+        <% end %>
+        <p><%= chapter.summary.split(". ")[0] %>...</p>
+      </div>
     <% end %>
   </div>
 </div>
