@@ -1,4 +1,4 @@
-require "ruby_llm"
+# require "ruby_llm"
 
 class CharactersController < ApplicationController
   include ActionController::Live

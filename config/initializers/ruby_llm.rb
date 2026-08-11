@@ -1,4 +1,4 @@
-require 'ruby_llm/schema'
+require 'schematist'
 
 RubyLLM.configure do |config|
   # config.openrouter_api_key = ENV['OPENROUTER_API_KEY']&.strip

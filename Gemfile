@@ -50,7 +50,7 @@ gem "cloudinary", "~> 2.0"
 gem "pundit"
 gem "ruby_llm", "~> 1.4.0"
 gem 'faraday'
-gem "ruby_llm-schema"
+gem "schematist"
 gem "httplog"
 gem "pry-byebug"
 gem "pry-rails"
