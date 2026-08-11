@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   # Defines the character routes
   resources :characters do
-    collection do
+    member do
       post :parse_sheet
     end
   end
