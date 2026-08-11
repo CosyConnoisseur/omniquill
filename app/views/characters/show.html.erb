@@ -5,20 +5,20 @@
         <% if @character.portrait.attached? %>
           <%= image_tag @character.portrait, style: "max-height: 550px; border-radius: 8px;" %>
         <% else %>
-          <%= image_tag "default.jpg", style: "max-height: 550px; border-radius: 8px;" %>
+          <%= image_tag "default-portrait.jpg", style: "max-height: 550px; border-radius: 8px;" %>
         <% end %>
       </div>
-          <%= render "characters/form_portrait" %>
+      <%= render "characters/form_portrait" %>
     </div>
     <div class="d-flex row">
-    <div class="character-text-page-container ms-4 mt-0 bg-white p-5 shadow" style="max-width: 650px; width: 100%;">
-      <h1 class="character-title text-center mb-4"><%= @character.name %></h1>
-      <div class="summary-container text-center">
-      <h2><%= @character.stats_summary  %></h2>
+      <div class="character-text-page-container ms-4 mt-0 bg-white p-5 shadow" style="max-width: 650px; width: 100%;">
+        <h1 class="character-title text-center mb-4"><%= @character.name %></h1>
+        <div class="summary-container text-center">
+          <h2><%= @character.stats_summary  %></h2>
+        </div>
       </div>
-    </div>
       <%= render "characters/form_sheet" %>
     </div>
   </div>
 </div>
-  <p>Find me in app/views/characters/show.html.erb</p>
+<p>Find me in app/views/characters/show.html.erb</p>
