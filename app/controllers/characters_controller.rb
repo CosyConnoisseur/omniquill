@@ -55,15 +55,22 @@ class CharactersController < ApplicationController
       with: uploaded_file
       ) do |chunk|
 
-        cleaned_chunk = chunk.to_s.strip
-        unless cleaned_chunk.empty? || cleaned_chunk.match?(/\A#+\z/)
 
-      Turbo::StreamsChannel.broadcast_append_to(
-        "character_generation_#{@stream_id}",
-        target: "live_typewriter_output",
-        html: chunk
-      )
-        end
+      text_fragment = chunk.content
+
+      if text_fragment.present?
+        Turbo::StreamsChannel.broadcast_append_to(
+          "character_generation_#{@stream_id}",
+          target: "live_typewriter_output",
+          html: text_fragment
+        )
+      end
+
+      # Turbo::StreamsChannel.broadcast_append_to(
+      #   "character_generation_#{@stream_id}",
+      #   target: "live_typewriter_output",
+      #   html: chunk
+      # )
     end
 
     response_text = full_response.content
