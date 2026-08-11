@@ -53,6 +53,7 @@ gem "ruby_llm-schema"
 gem "httplog"
 gem "pry-byebug"
 gem "pry-rails"
+gem "solid_cable"
 
 group :development, :test do
   gem "dotenv-rails"

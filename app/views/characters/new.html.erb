@@ -1,3 +1,46 @@
 <h1>Characters#new</h1>
-<%= render "form_sheet" %>
+<%# <%= turbo_stream_from "character_generation_#{@stream_id}" %> %>
+<%# <%= render "form_sheet" %> %>
+
+
+<!-- 1. Establish the real-time listening channel using the token from the controller -->
+<%= turbo_stream_from "character_generation_#{@stream_id}" %>
+
+<div class="row">
+  <!-- Left Side: The Form -->
+  <div class="col-md-6">
+    <!-- data: { turbo: true } ensures the form uploads asynchronously -->
+    <%= form_with model: @character, url: parse_sheet_characters_path, method: :post, local: true, data: { turbo: true } do |f| %>
+
+      <div class="mb-3">
+        <%= f.label :document_upload, "Upload Character Sheet (PDF/Image)" %>
+        <%= f.file_field :document_upload, class: "form-control", required: true %>
+      </div>
+
+      <!-- Visible Form Inputs that will be auto-filled after AI finishes -->
+      <div class="mb-3">
+        <%= f.label :name, "Character Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :stats_summary, "Character Description" %>
+        <%= f.text_area :stats_summary, class: "form-control", rows: 6 %>
+      </div>
+        <%= hidden_field_tag :stream_id, @stream_id %>
+      <%= f.submit "Upload & Analyze with AI", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <!-- Right Side: The Real-time AI Stream Box -->
+  <div class="col-md-6">
+    <h5>AI Analysis Stream</h5>
+    <!-- The controller targets this exact ID to stream text into -->
+    <div id="live_typewriter_output" class="border p-3 bg-dark text-light font-monospace rounded" style="min-height: 200px; white-space: pre-wrap;">
+      <span class="text-muted">Upload a sheet to begin AI generation...</span>
+    </div>
+  </div>
+</div>
+
+
 <p>Find me in app/views/characters/new.html.erb</p>
