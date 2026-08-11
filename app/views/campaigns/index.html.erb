@@ -7,6 +7,8 @@
       <div class="col-md-4 mb-4">
 
         <div class="card" style="width: 18rem;">
+        <%= link_to campaign_path(campaign) do %>
+          <img src="" class="card-img-top" alt="Campaign image">
 
           <% if campaign.card_image.attached? %>
             <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
@@ -19,7 +21,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= link_to campaign.title, campaign_path(campaign) %></h5>
           </div>
-
+        <% end %>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <strong>Players:</strong>
