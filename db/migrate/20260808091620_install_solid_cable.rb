@@ -8,6 +8,7 @@ class InstallSolidCable < ActiveRecord::Migration[8.1]
     t.index ["channel"], name: "index_solid_cable_messages_on_channel"
     t.index ["channel_hash"], name: "index_solid_cable_messages_on_channel_hash"
     t.index ["created_at"], name: "index_solid_cable_messages_on_created_at"
+    t.index ["id"], name: "index_solid_cable_messages_on_id", unique: true
   end
   end
 end
