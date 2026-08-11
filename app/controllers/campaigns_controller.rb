@@ -4,12 +4,13 @@ class CampaignsController < ApplicationController
     @campaigns = policy_scope(Campaign)
     @characters = Character.all
   end
-  
+
   def show
     @campaign = Campaign.find(params[:id])
     @characters = @campaign.characters
     @chapters = @campaign.chapters
     @notes = @campaign.notes
+    authorize @campaign
   end
 
   def new
@@ -24,6 +25,7 @@ class CampaignsController < ApplicationController
 
     if @campaign.save
       redirect_to campaigns_path
+      # redirect_to @campaign
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,6 +52,7 @@ end
 
     private
   def campaign_params
-    params.expect(campaign: [:title])
+    # params.expect(campaign: [:title])
+    params.expect(campaign: [:title, :setting, :synopsis])
   end
 end

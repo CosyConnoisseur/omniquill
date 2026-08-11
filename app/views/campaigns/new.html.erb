@@ -1,6 +1,24 @@
-<h1>New Campaign</h1>
-<%= simple_form_for @campaign do |f| %>
-  <%= f.input :title %>
+<div class="form-container" style="max-width: 500px; margin: 40px auto; padding: 30px; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+  <div style="text-align: center;">
+    <h1>New Campaign</h1>
+  </div>
 
-  <%= f.button :submit, "Create Campaign" %>
-<% end %>
+  <%= form_with model: @campaign, local: true, style: "width: 100%" do |f| %>
+
+    <div class="form-group" style="width: 100%; margin-bottom: 15px;">
+      <div style="margin-bottom: 8px;"><h5><strong><%= f.label :title %></strong></h5></div>
+      <div><%= f.text_field :title, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter campaign name" %></div>
+      <small class="form-text text-muted">At least 6 characters</small>
+    </div>
+
+    <div class="form-group" style="width: 100%; margin-bottom: 15px;">
+      <div style="margin-bottom: 8px;"><h5><strong><%= f.label :synopsis %></strong></h5></div>
+      <div><%= f.text_field :synopsis, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter a brief summary (optional)" %></div>
+    </div>
+
+    <div class="form-actions" style="width: 100%; margin-top: 15px;">
+      <%= f.submit "Submit", class: "btn btn-secondary rounded-3" %>
+    </div>
+
+  <% end %>
+</div>
