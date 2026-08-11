@@ -1,5 +1,3 @@
-# require "ruby_llm"
-
 class CharactersController < ApplicationController
   include ActionController::Live
 
