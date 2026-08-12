@@ -90,7 +90,7 @@ class CharactersController < ApplicationController
     #   name: @generated_name, #ai magic
     #   stats_summary: @generated_description #ai magic
     # )
-    render :new
+    head :ok
   end
 
   def edit
