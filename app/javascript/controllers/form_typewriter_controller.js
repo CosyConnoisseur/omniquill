@@ -12,14 +12,16 @@ export default class extends Controller {
 
   parseAndFill() {
     const rawText = this.bufferTarget.innerText
-    console.log("Buffer changed! Current text:", rawText)
-    // Execute your exact regex rules in JavaScript
-    const nameMatch = rawText.match(/NAME:\s*(.*?)(?=DESCRIPTION:|$)/i)
+    console.log("Buffer updated! Text contents:", rawText)
+
+    // Regex matches the string sequence
+    const nameMatch = rawText.match(/NAME:\s*([^\n\r]*)/i)
     const descMatch = rawText.match(/DESCRIPTION:\s*([\s\S]*)/i)
 
-    // Smoothly update the input values character-by-character
+    // FIX: Read from index 1 (the captured group) and run replace/trim directly on it
     if (nameMatch && nameMatch[1]) {
-      this.nameInputTarget.value = nameMatch[1].trim()
+      const cleanName = nameMatch[1].replace(/[\*\#_\[\]]/g, "").trim()
+      this.nameInputTarget.value = cleanName
     }
 
     if (descMatch && descMatch[1]) {

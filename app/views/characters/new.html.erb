@@ -4,8 +4,11 @@
 
 <p>Add character Portrait</p>
 
+
+<div data-controller="form-typewriter">
 <!-- 1. Establish the real-time listening channel using the token from the controller -->
 <%= turbo_stream_from "character_generation_#{@stream_id}" %>
+
 
 <div class="row">
   <!-- Left Side: The Form -->
@@ -39,12 +42,13 @@
       <%= f.submit "Upload & Analyze with AI", class: "btn btn-primary" %>
     <% end %>
   </div>
+</div>
 
   <!-- Right Side: The Real-time AI Stream Box -->
   <div class="col-md-6">
     <h5>AI Analysis Stream</h5>
     <!-- The controller targets this exact ID to stream text into -->
-    <div id="live_typewriter_output" class="border p-3 bg-dark text-light font-monospace rounded" style="min-height: 200px; white-space: pre-wrap;">
+    <div id="live_typewriter_output" data-form-typewriter-target="buffer" class="border p-3 bg-dark text-light font-monospace rounded" style="min-height: 200px; white-space: pre-wrap;">
       <span class="text-muted">Upload a sheet to begin AI generation...</span>
     </div>
   </div>
@@ -52,38 +56,3 @@
 
 
 <p>Find me in app/views/characters/new.html.erb</p>
-
-
-
-<script>
-  document.addEventListener("turbo:load", () => {
-    const buffer = document.getElementById("live_typewriter_output");
-    const nameInput = document.getElementById("character_name_input");
-    const descInput = document.getElementById("character_stats_summary_input");
-
-    if (!buffer || !nameInput || !descInput) return;
-
-    console.log("Fallback typewriter listener safely connected!");
-
-    const observer = new MutationObserver(() => {
-      const rawText = buffer.innerText;
-
-      // 1. Fixed Regex: Added [1] to pull just the captured group text
-      // Added (\*|_)* to cleanly bypass any bolding like **NAME:** from the AI
-      const nameMatch = rawText.match(/NAME:\s*([^\n\r]*)/i);
-      const descMatch = rawText.match(/DESCRIPTION:\s*([\s\S]*)/i);
-
-      // 2. Safely extract index 1 (the text inside the capture parentheses)
-      if (nameMatch && nameMatch[1]) {
-        // Strip out trailing markdown asterisks if the AI wrapped the row
-        nameInput.value = nameMatch[1].replace(/[\*\#_\[\]]/g, "").trim();
-      }
-
-      if (descMatch && descMatch[1]) {
-        descInput.value = descMatch[1].trim();
-      }
-    });
-
-    observer.observe(buffer, { textContent: true, childList: true, subtree: true });
-  });
-</script>
