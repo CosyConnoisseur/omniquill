@@ -1,9 +1,11 @@
-
-<div class="d-flex justify-content-center">
-  <div style="width: 70%; height: 500px;">
-    <%= render "editForm", campaign: @campaign, chapter: @chapter %>
-    <%= link_to campaign_chapter_path(@campaign, @chapter) do %>
-      <button class="btn btn-warning mt-2">Go back</button>
-    <% end %>
+<div class="bricks-background">
+  <div class="d-flex justify-content-center">
+    <div style="width: 70%; height: 500px;">
+      <%= render "editForm", campaign: @campaign, chapter: @chapter %>
+      <%= link_to campaign_chapter_path(@campaign, @chapter), class: "home-button" do %>
+        <%= image_tag "Home-icon.png", class: "home-icon" %>
+        <%= image_tag "Home-icon.gif",  class: "home-move-icon" %>
+      <% end %>
+    </div>
   </div>
 </div>
