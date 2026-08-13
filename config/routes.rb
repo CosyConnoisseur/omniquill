@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :campaigns do # added for easy access to editing and updating. Reduce if needed
     get "record", on: :member
     # on member means, "each record action belongs to a specific chapter"
-
+    resources :notes, only: [:create, :destroy]
     resources :chapters, except: [ :destroy ] do
 
       resources :stickies, only: [ :new, :create ]
