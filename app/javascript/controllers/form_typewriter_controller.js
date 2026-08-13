@@ -4,7 +4,9 @@ export default class extends Controller {
   static targets = [
     "buffer", "nameInput", "descriptionInput",
     "submitButton", "aiButton", "loadingButton",
-    "fileField", "clearFileButton", "clearTextButton"
+    "fileField", "clearFileButton", "clearTextButton",
+    "previewContainer", "imagePreview", "pdfPreview",
+    "portraitPreview", "portraitField", "clearPortraitButton", "portraitPreviewContainer"
   ]
 
   connect() {
@@ -93,11 +95,71 @@ export default class extends Controller {
     }, 1500)
   }
 
+  previewSheetFile(){
+    console.log("preview run")
+    const fileInput = this.fileFieldTarget
+
+    const file = fileInput.files[0]
+
+    const fileURL = URL.createObjectURL(file)
+
+    this.imagePreviewTarget.classList.add("d-none")
+    this.pdfPreviewTarget.classList.add("d-none")
+    this.previewContainerTarget.classList.remove("d-none")
+
+    //A
+    if (file.type.startsWith("image/")){
+      this.imagePreviewTarget.src=fileURL
+      this.imagePreviewTarget.classList.remove("d-none")
+    }
+    //B
+    else if (file.type.startsWith("application/pdf")){
+      this.pdfPreviewTarget.src=fileURL
+      this.pdfPreviewTarget.classList.remove("d-none")
+    }
+  }
+
+  previewPortraitFile(){
+    console.log("portrait preview run")
+    const fileInput = this.portraitFieldTarget
+
+    const file = fileInput.files[0]
+
+    const fileURL = URL.createObjectURL(file)
+
+    this.portraitPreviewContainerTarget.classList.remove("d-none")
+
+    this.portraitPreviewTarget.src=fileURL
+    this.portraitPreviewTarget.classList.remove("d-none")
+    this.clearPortraitButtonTarget.classList.remove("d-none")
+    }
+
   clearFile(){
     console.log("clear file run")
     this.fileFieldTarget.value = ""
     this.clearFileButtonTarget.classList.add("d-none")
+
+    this.previewContainerTarget.classList.add("d-none")
+
+    if (this.imagePreviewTarget.src) URL.revokeObjectURL(this.imagePreviewTarget.src)
+    if (this.pdfPreviewTarget.src) URL.revokeObjectURL(this.pdfPreviewTarget.src)
+
+    this.imagePreviewTarget.src = ""
+    this.pdfPreviewTarget.src = ""
+
     this.updateButton()
+  }
+
+    clearPortraitFile(){
+    console.log("clear portrait run")
+    this.portraitFieldTarget.value = ""
+    this.clearPortraitButtonTarget.classList.add("d-none")
+
+    this.portraitPreviewContainerTarget.classList.add("d-none")
+
+    if (this.portraitPreviewTarget.src) URL.revokeObjectURL(this.portraitPreviewTarget.src)
+
+    this.portraitPreviewTarget.src = ""
   }
 
   clearText(){

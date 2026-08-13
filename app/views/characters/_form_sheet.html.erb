@@ -1,4 +1,4 @@
-  <div class="col-md-6">
+  <div class="col-md-6 position-relative">
     <%= form_with model: @character, url: characters_path, method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
       <%= hidden_field_tag :stream_id, @stream_id %>
 
@@ -7,7 +7,7 @@
         <div class="input-group">
         <%= f.file_field :document_upload,
                           class: "form-control",
-                          data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton"},
+                          data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton change->form-typewriter#previewSheetFile"},
                           required: false %>
 
         <button class="btn btn-outline-danger d-none"
@@ -36,9 +36,17 @@
 
       <div class="mb-3">
         <%= f.label :portrait, "Upload Character Portrait (Optional)" %>
+      <div class="input-group">
         <%= f.file_field :portrait,
                           accept: "image/png, image/jpeg, image/jpg, image/webp",
-                          class: " form-control"%>
+                          class: " form-control",
+                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
+
+        <button class="btn btn-outline-danger d-none"
+                type="button"
+                data-form-typewriter-target="clearPortraitButton"
+                data-action="click->form-typewriter#clearPortraitFile">&times;</button>
+      </div>
       </div>
 
       <!-- Submit -->
@@ -62,6 +70,7 @@
       Generating...
       </button>
 
+      <!-- Clear Text -->
       <button type="button"
               class="btn btn-warning flex-shrink-0 d-none"
               title="Clear text"
@@ -70,4 +79,12 @@
       Clear Text
       </button>
     <% end %>
+<div data-form-typewriter-target="previewContainer" class="d-none position-absolute top-0 preview-left-margin" style="height: 350px; overflow: hidden;">
+  <img data-form-typewriter-target="imagePreview" src="" class="" style="height: 100%; width: 100%; object-fit: contain;">
+  <iframe data-form-typewriter-target="pdfPreview" src="" class=""></iframe>
+</div>
+
+<div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute top-0 preview-right-margin" style="height: 350px; overflow: hidden;">
+  <img data-form-typewriter-target="portraitPreview" src="" class="" style="height: 100%; width: 100%; object-fit: contain;">
+</div>
   </div>
