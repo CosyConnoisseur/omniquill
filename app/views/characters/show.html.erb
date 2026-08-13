@@ -10,7 +10,7 @@
       </div>
       <%= render "characters/form_portrait" %>
     </div>
-    <div class="d-flex row">
+    <div class="d-flex flex-column ms-4">
       <div class="character-text-page-container ms-4 mt-0 bg-white p-5 shadow" style="max-width: 650px; width: 100%;">
         <h1 class="character-title text-center mb-4"><%= @character.name %></h1>
         <div class="summary-container text-center">
@@ -25,7 +25,7 @@
           Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
         <% end %>
         <% else %>
-          <%= image_tag @character.document_upload, style: "max-height: 550px; border-radius: 8px;" %>
+          <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
         <% end %>
       <% end %>
     </div>
