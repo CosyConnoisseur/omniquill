@@ -9,11 +9,20 @@ class CharactersController < ApplicationController
   def new
     @character = Character.new
     authorize @character
+    @stream_id = SecureRandom.hex(10)
   end
 
   def create
-    @character = Character.new(character_params)
+    temp_participation = Participation.first || Participation.create!
+    @character = Character.new(character_params.merge(participation_id: temp_participation.id))
     authorize @character
+
+    if @character.save
+      redirect_to @character, notice: "Character created successfully!"
+    else
+      # render :new, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert:  "Character must have a name and description!"
+    end
   end
 
   def parse_sheet
@@ -32,7 +41,7 @@ class CharactersController < ApplicationController
     begin
 
       prompt = <<~TEXT
-      You are an expert character sheet analyzer. Read the attached file and extract a name and statistical description for the character.
+      You are an expert character sheet analyzer. Read the attached file and extract a name and a detailed statistical description for the character.
 
       You MUST format your output exactly like this:
       NAME: [Your Name Here]
@@ -53,7 +62,6 @@ class CharactersController < ApplicationController
       with: uploaded_file
       ) do |chunk|
 
-
       text_fragment = chunk.content
 
       if text_fragment.present?
@@ -72,24 +80,28 @@ class CharactersController < ApplicationController
     end
 
     response_text = full_response.content
+    puts "----- AI RESPONSE -----"
     puts response_text
+    puts "-----------------------"
     extracted_name = response_text.match(/NAME:\s*(.*)/)&.captures&.first
     extracted_description = response_text.match(/DESCRIPTION:\s*([\s\S]*)/)&.captures&.first
 
     @generated_name = extracted_name&.strip
     @generated_description = extracted_description&.strip
 
-    ensure
-      response.stream.close
-    end
-
-    @character.name = @generated_name
-    @character.stats_summary = @generated_description
+    # @character.name = @generated_name
+    # @character.stats_summary = @generated_description
 
     # @character = Character.new(
     #   name: @generated_name, #ai magic
     #   stats_summary: @generated_description #ai magic
     # )
+
+
+    ensure
+      response.stream.close
+    end
+
     head :ok
   end
 
@@ -110,7 +122,7 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :stats_summary, :portrait)
+    params.require(:character).permit(:name, :stats_summary, :portrait, :document_upload)
   end
 
 end

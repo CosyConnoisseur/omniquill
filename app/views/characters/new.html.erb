@@ -1,58 +1,15 @@
-<h1>Characters#new</h1>
-<%# <%= turbo_stream_from "character_generation_#{@stream_id}" %> %>
-<%= render "form_sheet" %> %>
+<h1>Create a New Character</h1>
 
-<p>Add character Portrait</p>
-
-
-<div data-controller="form-typewriter">
+<div data-controller="form-typewriter" class="container pt-5 pb-5">
 <!-- 1. Establish the real-time listening channel using the token from the controller -->
 <%= turbo_stream_from "character_generation_#{@stream_id}" %>
+  <div class="row justify-content-center">
+<%= render "form_sheet", character: @character, stream_id: @stream_id %>
 
-
-<div class="row">
-  <!-- Left Side: The Form -->
-  <div class="col-md-6">
-    <!-- data: { turbo: true } ensures the form uploads asynchronously -->
-    <%= form_with model: @character, url: parse_sheet_characters_path, method: :post, local: true, data: { turbo: true } do |f| %>
-
-      <div class="mb-3">
-        <%= f.label :document_upload, "Upload Character Sheet (PDF/Image)" %>
-        <%= f.file_field :document_upload, class: "form-control", required: true %>
-      </div>
-
-      <!-- Visible Form Inputs that will be auto-filled after AI finishes -->
-      <div class="mb-3">
-        <%= f.label :name, "Character Name" %>
-        <%= f.text_field :name,
-                          id: "character_name_input",
-                          class: "form-control",
-                          data: { form_typewriter_target: "nameInput" }%>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :stats_summary, "Character Description" %>
-        <%= f.text_area :stats_summary,
-                        id: "character_stats_summary_input",
-                        class: "form-control",
-                        rows: 6,
-                        data: { form_typewriter_target: "descriptionInput" } %>
-      </div>
-        <%= hidden_field_tag :stream_id, @stream_id %>
-      <%= f.submit "Upload & Analyze with AI", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
-
-  <!-- Right Side: The Real-time AI Stream Box -->
-  <div class="col-md-6">
-    <h5>AI Analysis Stream</h5>
-    <!-- The controller targets this exact ID to stream text into -->
-    <div id="live_typewriter_output" data-form-typewriter-target="buffer" class="border p-3 bg-dark text-light font-monospace rounded" style="min-height: 200px; white-space: pre-wrap;">
-      <span class="text-muted">Upload a sheet to begin AI generation...</span>
+    <!-- The controller targets this to stream text -->
+    <div id="live_typewriter_output" data-form-typewriter-target="buffer" class="bg-dark text-light d-none">
     </div>
   </div>
 </div>
 
-
-<p>Find me in app/views/characters/new.html.erb</p>
+<p>(to do) Add character Portrait</p>

@@ -1,8 +1,66 @@
-<%= form_with(model: @character) do |form| %>
-  <div>
-    <%= form.label :document_upload, "Upload Character sheet" %>
-    <%= form.file_field :document_upload, accept: 'image/png, image/jpeg, image/jpg, application/pdf' %>
-  </div>
+  <div class="col-md-6">
+    <%= form_with model: @character, url: characters_path, method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
+      <%= hidden_field_tag :stream_id, @stream_id %>
 
-  <%= form.submit %>
-<% end %>
+      <div class="mb-3">
+        <%= f.label :document_upload, "Upload Character Sheet(PDF/Image) or Enter Character Details" %>
+        <div class="input-group">
+        <%= f.file_field :document_upload,
+                          class: "form-control",
+                          data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton"},
+                          required: false %>
+
+        <button class="btn btn-outline-danger d-none"
+                type="button"
+                data-form-typewriter-target="clearFileButton"
+                data-action="click->form-typewriter#clearFile">&times;</button>
+      </div>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :name, "Character Name" %>
+        <%= f.text_field :name,
+                          id: "character_name_input",
+                          class: "form-control",
+                          data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" }%>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :stats_summary, "Character Description" %>
+        <%= f.text_area :stats_summary,
+                        id: "character_stats_summary_input",
+                        class: "form-control",
+                        rows: 6,
+                        data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" }%>
+      </div>
+
+      <!-- Submit -->
+      <%= f.submit "Create Character",
+                    class: "btn btn-primary w-75",
+                    data: { form_typewriter_target: "submitButton"} %>
+
+      <!-- AI button -->
+      <button type="submit"
+              class="btn btn-info w-75 d-none"
+              data-form-typewriter-target="aiButton">
+              Generate From Character Sheet
+      </button>
+
+      <!-- Loading -->
+      <button type="button"
+          class="btn btn-secondary w-75 d-none"
+          disabled
+          data-form-typewriter-target="loadingButton">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Generating...
+      </button>
+
+      <button type="button"
+              class="btn btn-warning flex-shrink-0 d-none"
+              title="Clear text"
+              data-form-typewriter-target="clearTextButton"
+              data-action="click->form-typewriter#clearText">
+      Clear Text
+      </button>
+    <% end %>
+  </div>
