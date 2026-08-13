@@ -1,5 +1,5 @@
   <div class="col-md-6 position-relative">
-    <%= form_with model: @character, url: campaign_characters_path(Campaign.last), method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
+    <%= form_with model: @character, url: campaign_characters_path(@campaign.id), method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
       <%= hidden_field_tag :stream_id, @stream_id %>
 
       <div class="mb-3">

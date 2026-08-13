@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
   include ActionController::Live
+  before_action :set_campaign, only: [:new, :create]
 
   def show
     @character = Character.find(params[:id])
@@ -13,15 +14,16 @@ class CharactersController < ApplicationController
   end
 
   def create
-    temp_participation = Participation.first || Participation.create!
-    @character = Character.new(character_params.merge(participation_id: temp_participation.id))
+    # temp_participation = Participation.first || Participation.create!
+    participation = Participation.find_or_create_by!(campaign_id: params[:campaign_id], user_id: current_user.id)
+    @character = Character.new(character_params.merge(participation_id: participation.id))
     authorize @character
 
     if @character.save
       redirect_to @character, notice: "Character created successfully!"
     else
-      # render :new, status: :unprocessable_entity
-      redirect_back fallback_location: root_path, alert:  "Character must have a name and description!"
+      render :new, status: :unprocessable_entity
+      # redirect_back fallback_location: root_path, alert:  "Character must have a name and description!"
     end
   end
 
@@ -120,6 +122,10 @@ class CharactersController < ApplicationController
 
 
   private
+
+  def set_campaign
+    @campaign = Campaign.find(params[:campaign_id])
+  end
 
   def character_params
     params.require(:character).permit(:name, :stats_summary, :portrait, :document_upload)
