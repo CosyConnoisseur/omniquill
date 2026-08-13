@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   resources :campaigns do # added for easy access to editing and updating. Reduce if needed
     get "record", on: :member
     # on member means, "each record action belongs to a specific chapter"
+    #   # Defines the character routes
+    resources :characters, shallow: true do
+      collection do
+        post :parse_sheet
+      end
+    end
 
     resources :chapters, except: [ :destroy ] do
 
@@ -40,10 +46,5 @@ Rails.application.routes.draw do
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
 
 
-  # Defines the character routes
-  resources :characters do
-    collection do
-      post :parse_sheet
-    end
-  end
+
 end
