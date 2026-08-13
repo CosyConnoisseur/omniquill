@@ -100,7 +100,18 @@
       <div>
         <p class="mt-auto">
           <%= @campaign.synopsis %>
-          <%= link_to "Edit", "#synopsis-edit", %>
+          <%= link_to "Edit", "#synopsis-edit", class: "ms-2" %>
+        </p>
+      </div>
+      <div>
+        <%= form_with model: @campaign do |form| %>
+          <%= form.text_area :synopsis %>
+          <%= form.submit "Save" %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="mt-auto"><%= @campaign.synopsis %></p>
+    <% end %>
   </div>
 </div>
 
