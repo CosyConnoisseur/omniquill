@@ -34,6 +34,13 @@
                         data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" }%>
       </div>
 
+      <div class="mb-3">
+        <%= f.label :portrait, "Upload Character Portrait (Optional)" %>
+        <%= f.file_field :portrait,
+                          accept: "image/png, image/jpeg, image/jpg, image/webp",
+                          class: " form-control"%>
+      </div>
+
       <!-- Submit -->
       <%= f.submit "Create Character",
                     class: "btn btn-primary w-75",

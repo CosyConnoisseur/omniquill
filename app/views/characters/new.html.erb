@@ -1,4 +1,8 @@
-<h1>Create a New Character</h1>
+<div class="headings text-center">
+  <h1>Create a New Character</h1>
+  <h2>Or</h2>
+  <h2>Generate one from a Character Sheet</h2>
+</div>
 
 <div data-controller="form-typewriter" class="container pt-5 pb-5">
 <%= turbo_stream_from "character_generation_#{@stream_id}" %>
@@ -10,5 +14,3 @@
     </div>
   </div>
 </div>
-
-<p>(to do) Add character Portrait</p>

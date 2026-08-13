@@ -18,6 +18,9 @@
         </div>
       </div>
       <%#= render "characters/form_sheet" %>
+      <% if @character.document_upload.attached? %>
+          <%= image_tag @character.document_upload, style: "max-height: 550px; border-radius: 8px;" %>
+        <% end %>
     </div>
   </div>
 </div>
