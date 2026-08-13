@@ -1,7 +1,6 @@
 <h1>Create a New Character</h1>
 
 <div data-controller="form-typewriter" class="container pt-5 pb-5">
-<!-- 1. Establish the real-time listening channel using the token from the controller -->
 <%= turbo_stream_from "character_generation_#{@stream_id}" %>
   <div class="row justify-content-center">
 <%= render "form_sheet", character: @character, stream_id: @stream_id %>
