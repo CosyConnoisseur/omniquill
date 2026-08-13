@@ -1,12 +1,20 @@
-<div class="text-center">
-  <h1>Here are all the adventures for "<%= @campaign.title %>"...</h1>
-</div>
+<div class="bricks-background">
+  <div class="centering">
+    <div class="medieval-title">
+      <h1><%= @campaign.title %></h1>
+    </div>
+  </div>
 
-<div class="d-flex flex-column align-items-center mx-5">
-  <% @chapters.each do |chapter| %>
-    <%= link_to campaign_chapter_path(@campaign, chapter) do %>
-      <p class="fs-3"><%= chapter.title %></p>
-    <% end %>
-    <p><%= chapter.summary.split(". ")[0] %>...</p>
-  <% end %>
+  <div class="centering">
+    <div class="parchment-container">
+      <% @chapters.each do |chapter| %>
+        <div class="chap-card">
+          <%= link_to campaign_chapter_path(@campaign, chapter) do %>
+            <p class="fs-3"><%= chapter.title %></p>
+          <% end %>
+          <p><%= chapter.summary.split(". ")[0] %>...</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

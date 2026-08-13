@@ -1,5 +1,6 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+12&family=Marck+Script&display=swap');
 
 // Define fonts for body and headers
 $body-font: "Work Sans", "Helvetica", "sans-serif";
@@ -14,3 +15,7 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+// Other fonts
+$pixel-font: "Jacquard 12", "Helvetica", "sans-serif";
+$quill-font: "Marck Script", "Helvetica", "sans-serif";

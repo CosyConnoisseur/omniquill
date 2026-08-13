@@ -10,5 +10,13 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "chapters/index";
 @import "components/collapsible_text";
-@import "components/icons"
+@import "components/icons";
+
+// Global CSS to be used
+
+.centering {
+  display: flex;
+  justify-content: center;
+}
