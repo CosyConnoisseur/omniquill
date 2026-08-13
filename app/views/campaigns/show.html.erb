@@ -27,6 +27,14 @@
           dialog.showModal(); // Opens the dialog natively HTML text, open a modal, etc.
         }
       </script>
+      <script>
+        document.addEventListener("turbo:before-cache", () => {
+          const dialog = document.getElementById("charListPopup");
+          if (dialog && dialog.open) {
+            dialog.close();
+          }
+        });
+      </script>
       <h1><%= @campaign.participations.count %></h1>
       <p class="m-0 lh-1"> Players </p>
     </div>
@@ -87,6 +95,12 @@
 <div class="">
   <div class="justify-content-center h-100 py-4 px-4 text-black">
     <p class="mt-auto"><%= @campaign.synopsis %></p>
+
+    <% if current_user.id == @campaign.user_id%>
+      <div>
+        <p class="mt-auto">
+          <%= @campaign.synopsis %>
+          <%= link_to "Edit", "#synopsis-edit", %>
   </div>
 </div>
 
@@ -107,7 +121,7 @@
         </svg>
         <li>
           <h2>
-          <%= link_to "#", class: "text-reset", style: "outline: none; box-shadow: none;" do %>
+          <%= link_to character_path(character), class: "text-reset", style: "outline: none; box-shadow: none;" do %>
             <%= character.name %>
           <% end %>
           </h2>
