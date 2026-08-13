@@ -6,6 +6,7 @@
         <%= f.label :document_upload, "Upload Character Sheet(PDF/Image) or Enter Character Details" %>
         <div class="input-group">
         <%= f.file_field :document_upload,
+                          accept: 'image/png, image/jpeg, image/jpg, image/webp, image/gif, application/pdf',
                           class: "form-control",
                           data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton change->form-typewriter#previewSheetFile"},
                           required: false %>
@@ -38,7 +39,7 @@
         <%= f.label :portrait, "Upload Character Portrait (Optional)" %>
       <div class="input-group">
         <%= f.file_field :portrait,
-                          accept: "image/png, image/jpeg, image/jpg, image/webp",
+                          accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                           class: " form-control",
                           data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
 
