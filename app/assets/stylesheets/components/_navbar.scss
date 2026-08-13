@@ -1,6 +1,9 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background-image: asset_url("parchment-leather-border.png");
+  background-size: 105%;
+  background-position: center;
+  border-bottom: 3px solid black;
 }
 
 .navbar-lewagon .navbar-collapse {
