@@ -63,3 +63,13 @@
 
   filter: sepia(0.6) contrast(1.3) brightness(0.90);
 }
+
+.preview-left-margin {
+  right: 105%; /* Pushes the element outside the left edge of the form */
+  width: 350px; /* Set a fixed width for your preview image container */
+}
+
+.preview-right-margin {
+  left: 105%; /* Pushes the element outside the left edge of the form */
+  width: 350px; /* Set a fixed width for your preview image container */
+}

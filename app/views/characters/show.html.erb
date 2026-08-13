@@ -17,7 +17,17 @@
           <h2><%= @character.stats_summary  %></h2>
         </div>
       </div>
-      <%= render "characters/form_sheet" %>
+      <%#= render "characters/form_sheet" %>
+      <% if @character.document_upload.attached? %>
+        <% if @character.document_upload.content_type == "application/pdf" %>
+          <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+          <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+          Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
+        <% end %>
+        <% else %>
+          <%= image_tag @character.document_upload, style: "max-height: 550px; border-radius: 8px;" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
