@@ -91,15 +91,30 @@ production:
     username: omniquill
     password: <%= ENV["OMNIQUILL_DATABASE_PASSWORD"] %>
     url: <%= ENV['DATABASE_URL'] %>
+  # cache:
+  #   <<: *primary_production
+  #   database: omniquill_production_cache
+  #   migrations_paths: db/cache_migrate
+  #   url: <%= ENV['DATABASE_URL'] %>
+  # queue:
+  #   <<: *primary_production
+  #   database: omniquill_production_queue
+  #   migrations_paths: db/queue_migrate
+  #   url: <%= ENV['DATABASE_URL'] %>
+  # cable:
+  #   <<: *primary_production
+  #   database: omniquill_production_cable
+  #   migrations_paths: db/cable_migrate
+  #   url: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *primary_production
-    database: omniquill_production_cache
-    migrations_paths: db/cache_migrate
+    migrations_paths: db/migrate
+    url: <%= ENV["DATABASE_URL"] %>
   queue:
     <<: *primary_production
-    database: omniquill_production_queue
-    migrations_paths: db/queue_migrate
+    migrations_paths: db/migrate
+    url: <%= ENV["DATABASE_URL"] %>
   cable:
     <<: *primary_production
-    database: omniquill_production_cable
-    migrations_paths: db/cable_migrate
+    migrations_paths: db/migrate
+    url: <%= ENV["DATABASE_URL"] %>
