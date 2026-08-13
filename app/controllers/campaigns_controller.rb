@@ -68,6 +68,7 @@ class CampaignsController < ApplicationController
 
   def record
     @campaign = Campaign.find(params[:id])
+    @test_chapter = @campaign.chapters.last
     authorize @campaign
   end
 
