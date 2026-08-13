@@ -72,13 +72,12 @@ export default class extends Controller {
   parseAndFill() {
     console.log("parse and fill ran")
     const rawText = this.bufferTarget.innerText
-    //console.log("Buffer updated! Text contents:", rawText)
 
-    // Regex matches the string sequence
+    // Regex to grab name and description
     const nameMatch = rawText.match(/NAME:\s*([^\n\r]*)/i)
     const descMatch = rawText.match(/DESCRIPTION:\s*([\s\S]*)/i)
 
-    // FIX: Read from index 1 (the captured group) and run replace/trim directly on it
+    // Read from index 1, the captured group, instead of the whole thing
     if (nameMatch && nameMatch[1]) {
       const cleanName = nameMatch[1].replace(/[\*\#_\[\]]/g, "").trim()
       this.nameInputTarget.value = cleanName
