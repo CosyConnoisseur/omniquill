@@ -1,0 +1,59 @@
+.character-description-input {
+  width: 100%;
+  min-height: 300px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  font-family: $quill-font;
+  font-size: 1.25rem;
+  color: $omni-ink;
+  resize: vertical;
+}
+.character-edit-form {
+  width: 60%;
+    margin: 0 auto;
+
+}
+
+.character-edit-form .edit-parchment {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem;
+}
+
+.character-edit-form .character-description-input {
+  display: block;
+  width: 100%;
+  min-height: 300px;
+  box-sizing: border-box;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  font-family: $quill-font;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: $omni-ink;
+
+  resize: vertical;
+}
+
+
+@media (max-width: 1000px) {
+  .character-edit-form {
+    width: 70%;
+  }
+}
+
+@media (max-width: 600px) {
+  .character-edit-form {
+    width: 85%;
+  }
+}
