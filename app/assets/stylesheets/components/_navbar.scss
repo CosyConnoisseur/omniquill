@@ -3,7 +3,7 @@
   background-image: asset_url("parchment-leather-border.png");
   background-size: 105%;
   background-position: center;
-  border-bottom: 3px solid black;
+  border-bottom: 5px solid black;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -11,5 +11,15 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 3rem;
+  transition: 0.3s ease;
+}
+
+.navbar-lewagon .navbar-brand img:hover {
+  transform: scale(1.3);
+  rotate: -10deg;
+}
+
+.navbar-lewagon .navbar-logo {
+  height: 3rem;
 }

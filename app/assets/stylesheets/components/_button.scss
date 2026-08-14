@@ -48,6 +48,31 @@
   }
 }
 
+.home-button-navbar {
+
+  width: 3rem;
+  height: 3rem;
+
+  img {
+    width: 3rem;
+  }
+
+  .home-move-icon-navbar {
+    display: none;
+  }
+
+  &:hover {
+
+    .home-icon-navbar {
+      display: none;
+    }
+
+    .home-move-icon-navbar {
+      display: inline;
+    }
+  }
+}
+
 .edit-submit-button {
   width: 6rem;
   height: 6rem;
