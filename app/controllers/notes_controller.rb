@@ -2,6 +2,7 @@ class NotesController < ApplicationController
   def create
     @campaign = Campaign.find(params[:campaign_id])
     @note = @campaign.notes.build(note_params)
+    @note.user = current_user
 
     authorize @note
 
