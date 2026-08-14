@@ -34,9 +34,12 @@
 <p>Find me in app/views/characters/show.html.erb</p>
 <div class="bricks-background">
   <div class="centering mt-5">
-    <div class="medieval-title">
-      <!-- Char name banner -->
+    <div class="medieval-title position-relative">
       <h1><%= @character.name %></h1>
+      <%= link_to edit_character_path(@character),
+        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
+        <i class="fa-solid fa-pen"></i>
+      <% end %>
     </div>
   </div>
   <div class="d-flex flex-column align-items-center">
@@ -70,6 +73,5 @@
       <% end %>
     <% end %>
   </div>
-</div>
 </div>
 </div>
