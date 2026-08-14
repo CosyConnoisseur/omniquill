@@ -1,14 +1,19 @@
-<h1>Characters#edit</h1>
-<p>Find me in app/views/characters/edit.html.erb</p>
 <div class="bricks-background">
-  <div class="centering mt-5">
-    <div class="medieval-title position-relative">
-      <h1><%= @character.name %></h1>
+  <%= form_with model: @character, class: "character-edit-form" do |f| %>
+    <!-- char name banner -->
+    <div class="centering mt-5">
+      <div class="medieval-title position-relative">
+        <h1><%= @character.name %></h1>
+        <!-- Save button -->
+        <%= f.button type: "submit",
+        class: "position-absolute top-0 end-0 m-3 text-reset character-save-button",
+            title: "Save changes" do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="d-flex flex-column align-items-center">
-    <%= form_with model: @character, class: "character-edit-form" do |f| %>
-      <!-- Portrait -->
+    <!-- Portrait -->
+    <div class="d-flex flex-column align-items-center">
       <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
         <div class="character-portrait torn-edges mb-3">
           <%= f.label :portrait, class: "clickable-portrait" do %>
@@ -32,7 +37,6 @@
             rows: 20 %>
       </div>
     </div>
-    <%= f.submit "Save", class: "btn btn-primary mb-5" %>
   <% end %>
   <% if @character.document_upload.attached? %>
     <% if @character.document_upload.content_type == "application/pdf" %>
@@ -44,5 +48,4 @@
       <%= image_tag @character.document_upload, style: "max-height: 550px; border-radius: 8px;" %>
     <% end %>
   <% end %>
-</div>
 </div>
