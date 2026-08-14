@@ -73,3 +73,15 @@
   left: 105%; /* Pushes the element outside the left edge of the form */
   width: 350px; /* Set a fixed width for your preview image container */
 }
+
+.fade-effect{
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.fade-effect.active{
+  opacity: 1;
+  visibility: visible;
+}

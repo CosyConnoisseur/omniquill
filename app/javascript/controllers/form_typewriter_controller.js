@@ -100,17 +100,22 @@ export default class extends Controller {
     const fileInput = this.fileFieldTarget
 
     const file = fileInput.files[0]
+    if (!file) return
 
     const fileURL = URL.createObjectURL(file)
 
-    this.imagePreviewTarget.classList.add("d-none")
+    this.imagePreviewTarget.classList.remove("active")
     this.pdfPreviewTarget.classList.add("d-none")
     this.previewContainerTarget.classList.remove("d-none")
 
     //A
     if (file.type.startsWith("image/")){
+      this.imagePreviewTarget.offsetHeight
+      this.imagePreviewTarget.onload = () => {
+      this.imagePreviewTarget.classList.add("active");
+    };
       this.imagePreviewTarget.src=fileURL
-      this.imagePreviewTarget.classList.remove("d-none")
+      //this.imagePreviewTarget.classList.add("active")
     }
     //B
     else if (file.type.startsWith("application/pdf")){
@@ -130,7 +135,7 @@ export default class extends Controller {
     this.portraitPreviewContainerTarget.classList.remove("d-none")
 
     this.portraitPreviewTarget.src=fileURL
-    this.portraitPreviewTarget.classList.remove("d-none")
+    this.portraitPreviewTarget.classList.toggle("active")
     this.clearPortraitButtonTarget.classList.remove("d-none")
     }
 
