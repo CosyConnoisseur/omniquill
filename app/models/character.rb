@@ -10,7 +10,7 @@ class Character < ApplicationRecord
   # has_one :user, through: :participation
   # has_one :campaign, through: :participation
 
-  delegate :campaign, to: :participation, allow_nil: true
+  delegate :user, :campaign, to: :participation, allow_nil: true
 
   validates :name, presence: true
   validates :stats_summary, presence: true

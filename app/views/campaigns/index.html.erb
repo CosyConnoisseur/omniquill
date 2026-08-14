@@ -57,4 +57,4 @@
 <li><%= link_to character.name, character_path(character)  %></li>
 <% end %>
 </ul>
-<%= link_to "Create New Character", new_campaign_character_path(Campaign.last), class: "btn btn-primary ms-3" %>
+<%= link_to "Create New Character", new_campaign_character_path(current_user.campaigns.last), class: "btn btn-primary ms-3" %>

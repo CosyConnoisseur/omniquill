@@ -8,15 +8,23 @@ class CharactersController < ApplicationController
   end
 
   def new
+    @campaign = Campaign.find(params[:campaign_id])
     @character = Character.new
+
+    @character.build_participation(campaign: @campaign, user: current_user)
     authorize @character
     @stream_id = SecureRandom.hex(10)
   end
 
   def create
+    @campaign = Campaign.find(params[:campaign_id])
+    @character = Character.new(character_params)
+    @character.build_participation(campaign: @campaign, user: current_user)
+
     # temp_participation = Participation.first || Participation.create!
-    participation = Participation.find_or_create_by!(campaign_id: params[:campaign_id], user_id: current_user.id)
-    @character = Character.new(character_params.merge(participation_id: participation.id))
+    # participation = Participation.find_or_create_by!(campaign_id: params[:campaign_id], user_id: current_user.id)
+    # @character = Character.new(character_params.merge(participation_id: participation.id))
+
     authorize @character
 
     if @character.save

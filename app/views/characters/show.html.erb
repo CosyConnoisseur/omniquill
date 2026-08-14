@@ -23,7 +23,9 @@
         <% end %>
       </div>
       <%= render "characters/form_portrait" %>
-      <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
+      <% if policy(@character).show_campaign_link? %>
+        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
+      <% end %>
     </div>
     <div class="d-flex flex-column ms-4">
       <div class="character-text-page-container ms-4 mt-0 bg-white p-5 shadow" style="max-width: 650px; width: 100%;">

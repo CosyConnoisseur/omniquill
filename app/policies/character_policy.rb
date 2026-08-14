@@ -7,23 +7,29 @@ class CharacterPolicy < ApplicationPolicy
 
   def show?
     true
-    # add ownership later
+    # add campaign ownership later
+  end
+
+  def show_campaign_link?
+    user == record.participation&.campaign.user
   end
 
   def create?
-    true
+    user == record.participation&.campaign.user
+    # add campaign ownership
   end
 
-  def new
-    true
+  def new?
+    # true
+    user == record.participation&.campaign.user
   end
 
   def destroy?
-    user == record.user
+    user == record.participation.user
   end
 
   def update?
-    true
+    user == record.participation.user
     # user == record.participation.user #figure out character ownership
   end
 
@@ -35,8 +41,18 @@ class CharacterPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
     #   scope.all
-    # end
+
     scope.where(user: user)
+
+    # for later when we want to be stricter about showing characters
+      # Characters -> Participation -> Campaign -> Filter by GM
+        # scope.joins(participation: :campaign)
+        #      .where(campaigns: { user_id: user.id })
+
+      # Characters -> Participation -> Filter by Player
+        # scope.joins(participation)
+        #      .where(participations: { user_id: user.id })
+
     end
   end
 end
