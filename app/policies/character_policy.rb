@@ -11,17 +11,22 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def show_campaign_link?
-    user == record.participation&.campaign&.user
+    create?
+    # user == record.participation&.campaign&.user
   end
 
   def create?
-    user == record.participation&.campaign&.user
+    campaign_record = record.campaign
+    return false unless campaign_record
+
+    user == campaign_record.user || campaign_record.participations.exists?(user: user)
     # add campaign ownership
   end
 
   def new?
     # true
-    user == record.participation&.campaign&.user
+    create?
+    # user == record.participation&.campaign.user
   end
 
   def destroy?

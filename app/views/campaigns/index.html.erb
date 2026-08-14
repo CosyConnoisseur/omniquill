@@ -52,8 +52,8 @@
 
 
 <h2>And characters!</h2>
-<% if current_user.campaigns.exists? %>
-  <%= link_to "Create New Character", new_campaign_character_path(current_user.campaigns.last), class: "btn btn-primary ms-3" %>
+<% if current_user.participations.exists? %>
+  <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "btn btn-primary ms-3" %>
 <% else %>
   <p>Go create a campaign!</p>
 <% end %>
