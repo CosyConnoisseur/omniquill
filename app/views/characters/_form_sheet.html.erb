@@ -1,5 +1,5 @@
   <div class="col-md-6 position-relative">
-    <%= form_with model: @character, url: campaign_characters_path(@campaign.id), method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
+    <%= form_with model: @character, url: campaign_characters_path(@campaign.id), id: "character-form", method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
       <%= hidden_field_tag :stream_id, @stream_id %>
 
       <div class="mb-3">
@@ -82,7 +82,7 @@
     <% end %>
 <div data-form-typewriter-target="previewContainer" class="d-none position-absolute top-0 preview-left-margin" style="height: 450px; width: 450px;  overflow: hidden;">
   <img data-form-typewriter-target="imagePreview" src="" class="fade-effect" style="height: 100%; width: 100%; object-fit: contain;">
-  <iframe data-form-typewriter-target="pdfPreview" src="" class="" style="height: 100%; width: 100%;"></iframe>
+  <iframe data-form-typewriter-target="pdfPreview" src="" class="fade-effect" style="height: 100%; width: 100%;"></iframe>
 </div>
 
 <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute top-0 preview-right-margin" style="height: 450px; width: 450px; overflow: hidden;">

@@ -20,6 +20,7 @@ class CharactersController < ApplicationController
     authorize @character
 
     if @character.save
+      flash[:white_fade_in] = true
       redirect_to @character, notice: "Character created successfully!"
     else
       render :new, status: :unprocessable_entity

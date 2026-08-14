@@ -85,3 +85,24 @@
   opacity: 1;
   visibility: visible;
 }
+
+.page-fade-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9999; /* forces on top of everything */
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.page-fade-container.hidden{
+  opacity: 0;
+}
+
+.page-fade-container.fade-out-active {
+  opacity: 1;
+  pointer-events: auto;
+}
