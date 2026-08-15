@@ -167,6 +167,18 @@
     color: white;
   }
 
+.btn-ai-custom{
+  min-width: 300px;
+  background: linear-gradient(45deg, #ff007f,#7f00ff, #00f0ff, #ff007f);
+  background-size: 300% 300%;
+  background-color: transparent;
+  border: none;
+  animation:
+    colorCycle 2.5s ease infinite,
+}
+
+
+
   // campaign-book section (will be using the same border as parchment-container for now)
 .campaign-book {
   height: auto;
