@@ -3,6 +3,10 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = policy_scope(Campaign)
     @characters = Character.all
+
+    @campaign_characters = Character.joins(participation: :campaign)
+                                .where(campaigns: { id: current_user.campaigns.select(:id) })
+                                .distinct
   end
 
   def show
