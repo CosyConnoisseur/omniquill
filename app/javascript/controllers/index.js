@@ -9,3 +9,7 @@ application.register("form-typewriter", FormTypewriterController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import SheetToggleController from "./sheet_toggle_controller"
+
+application.register("sheet-toggle", SheetToggleController)
