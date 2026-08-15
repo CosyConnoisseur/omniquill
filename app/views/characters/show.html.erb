@@ -64,12 +64,11 @@
       <% end %>
     <% end %>
   </div>
-</div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-    </div>
-  </div>
-</div>
+
+<%= button_to character_path,
+      method: :delete,
+      params: { character_id: @character.id },
+      class: "character-button",
+      data: { turbo_confirm: "Are you sure?" } do %>
+    Delete Character
+  <% end %>
