@@ -1,16 +1,3 @@
-<div class="bricks-background">
-  <div class="centering mt-5">
-    <div class="medieval-title position-relative">
-      <h1><%= @character.name %></h1>
-      <%= link_to edit_character_path(@character),
-        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
-        <i class="fa-solid fa-pen"></i>
-      <% end %>
-    </div>
-  </div>
-  <div class="d-flex flex-column align-items-center">
-    <!-- Portrait -->
-    <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
 <% if flash[:white_fade_in] %>
   <div class="page-fade-container"></div>
 <% end %>
@@ -24,6 +11,20 @@
         }, 50);
       }
   </script>
+
+<div class="bricks-background">
+  <div class="centering mt-5">
+    <div class="medieval-title position-relative">
+      <h1><%= @character.name %></h1>
+      <%= link_to edit_character_path(@character),
+        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
+        <i class="fa-solid fa-pen"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex flex-column align-items-center">
+    <!-- Portrait -->
+    <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
 
 <div class="page-container m-5 d-flex justify-content-center">
   <div class="character-info-container d-flex align-items-start mt-3">
