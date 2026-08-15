@@ -1,4 +1,4 @@
-<%= form_with(model: campaign) do |form| %>
+<%= form_with(model: campaign, html: {style: "font-family: 'Marck Script'; font-size: 1.5rem; color: #00a2ff;"}) do |form| %>
   <div>
     <%= form.label :card_image, "Upload Campaign image" %>
     <%= form.file_field :card_image, accept: 'image/png, image/jpeg, image/jpg, image/webp' %>
