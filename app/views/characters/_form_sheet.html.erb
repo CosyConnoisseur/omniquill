@@ -22,6 +22,7 @@
         <%= f.label :name, "Character Name", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
         <%= f.text_field :name,
                           id: "character_name_input",
+                          maxlength: 20,
                           class: "form-control custom-file-input",
                           style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
                           data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" }%>
