@@ -1,16 +1,21 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["description", "sheet"]
+  static targets = ["modal"]
 
-  connect() {
-    console.log("🔥 SHEET TOGGLE CONNECTED")
+  open() {
+    console.log("OPEN FIRED")
+    this.modalTarget.classList.remove("d-none")
   }
 
-  toggle() {
-    console.log("🔥 TOGGLE CLICKED")
+  close() {
+    console.log("CLOSE FIRED")
+    this.modalTarget.classList.add("d-none")
+  }
 
-    this.descriptionTarget.classList.toggle("d-none")
-    this.sheetTarget.classList.toggle("d-none")
+  closeOutside(event) {
+    if (event.target === this.modalTarget) {
+      this.close()
+    }
   }
 }
