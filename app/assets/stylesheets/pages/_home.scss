@@ -106,3 +106,69 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+// campaign-book section (will be using the same border as parchment-container for now)
+
+.campaign-book {
+  height: auto;
+  width: 25%;
+  padding: 2rem;
+  border-image: asset_url("parchment-leather-border.png");
+  border-image-slice: 115 115 115 115 fill;
+  border-image-width: 30px 30px 30px 30px;
+  border-image-outset: 5px 5px 5px 5px;
+  border-image-repeat: round round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+
+  img {
+    border-radius: 3rem;
+    width: 100%;
+  }
+
+  a {
+      text-decoration: none;
+  }
+
+  .book-title {
+    text-align: center;
+    font-family: $pixel-font;
+    font-size: 2.5rem;
+    color: $omni-ink;
+  }
+}
+
+.invite-button {
+  font-family: $pixel-font;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 0 1.5rem;
+  color: black;
+  border: 3px solid rgb(97, 23, 97);
+  border-radius: 2rem;
+  background-color: #5e5648;
+  text-decoration: none;
+}
+
+@media (max-width: 1500px) {
+
+  .campaign-book {
+    width: 40%;
+  }
+
+  .book-title {
+    font-size: 2rem;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .campaign-book{
+    width: 90%;
+  }
+
+  .book-title {
+    font-size: 1.5rem;
+  }
+
+}
