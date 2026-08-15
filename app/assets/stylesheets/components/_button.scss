@@ -1,0 +1,96 @@
+.edit-button {
+
+  width: 6rem;
+  height: 6rem;
+
+  img {
+    width: 6rem;
+  }
+
+  .edit-move-icon {
+    display: none;
+  }
+
+  &:hover {
+
+    .edit-icon {
+      display: none;
+    }
+
+    .edit-move-icon {
+      display: inline;
+    }
+  }
+}
+
+.home-button {
+
+  width: 6rem;
+  height: 6rem;
+
+  img {
+    width: 6rem;
+  }
+
+  .home-move-icon {
+    display: none;
+  }
+
+  &:hover {
+
+    .home-icon {
+      display: none;
+    }
+
+    .home-move-icon {
+      display: inline;
+    }
+  }
+}
+
+.home-button-navbar {
+
+  width: 3rem;
+  height: 3rem;
+
+  img {
+    width: 3rem;
+  }
+
+  .home-move-icon-navbar {
+    display: none;
+  }
+
+  &:hover {
+
+    .home-icon-navbar {
+      display: none;
+    }
+
+    .home-move-icon-navbar {
+      display: inline;
+    }
+  }
+}
+
+.edit-submit-button {
+  width: 6rem;
+  height: 6rem;
+  background-image: asset_url("Edit-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("Edit-icon.gif");
+  }
+}
+
+.edit-back-button {
+  width: 6rem;
+  height: 6rem;
+  background-image: asset_url("Home-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("Home-icon.gif");
+  }
+}
