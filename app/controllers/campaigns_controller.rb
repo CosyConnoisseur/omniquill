@@ -40,9 +40,9 @@ class CampaignsController < ApplicationController
     authorize @campaign
 
     if @campaign.update(campaign_params)
-      redirect_back fallback_location: root_path, notice: "Image updated successfully!", status: :see_other
+      redirect_back fallback_location: root_path, notice: "Campaign updated successfully!", status: :see_other
     else
-      redirect_back fallback_location: root_path, alert: "Failed to update image.", status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: "Failed to update campaign.", status: :unprocessable_entity
     end
     # @campaign.update!(campaign_params)
   end
@@ -72,9 +72,18 @@ class CampaignsController < ApplicationController
     authorize @campaign
   end
 
+  def destroy
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign
+
+    @campaign.destroy
+
+    redirect_to campaigns_path, notice: "Campaign was successfully deleted.", status: :see_other
+  end
+
   private
 
   def campaign_params
-    params.require(:campaign).permit(:title, :card_image, :banner)
+    params.require(:campaign).permit(:title, :card_image, :banner, :synopsis)
   end
 end

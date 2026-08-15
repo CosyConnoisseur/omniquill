@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resources :campaigns do # added for easy access to editing and updating. Reduce if needed
     get "record", on: :member
     # on member means, "each record action belongs to a specific chapter"
+    # Defines notes for campaigns
+    resources :notes, only: [:create, :destroy]
     #   # Defines the character routes
     resources :characters, shallow: true do
       collection do
