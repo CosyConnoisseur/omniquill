@@ -52,9 +52,35 @@
 
 
 <h2>And characters!</h2>
+<% if current_user.participations.exists? %>
+  <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "btn btn-primary ms-3" %>
+<% else %>
+  <p>Go create a campaign!</p>
+<% end %>
 <ul>
   <% @characters.each do |character| %>
-<li><%= link_to character.name, character_path(character)  %></li>
+    <li class="list-unstyled">
+      <div class="col-md-4 mb-3">
+        <%= link_to character_path(character), class: "text-decoration-none" do %>
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h5 class="card-title">
+                  <%= character.name %>
+                </h5>
+                <% if character.portrait.attached? %>
+                  <%= image_tag character.portrait, style: "width: 70px; height: 70px; object-fit: cover; border-radius: 8px;" %>
+                <% else %>
+                  <%= image_tag "default-portrait.jpg", style: "max-height: 70px; border-radius: 8px;" %>
+                <% end %>
+              </div>
+              <p class="card-text text-muted">
+                Played by: <%= character.participation.user.email %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  </li>
 <% end %>
 </ul>
-<%= link_to "Create New Character", new_character_path, class: "btn btn-primary ms-3" %>

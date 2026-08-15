@@ -22,12 +22,16 @@
         00:00:00
       </div>
       <div class="recording-controls d-flex justify-content-center align-items-center gap-4 mt-4">
-        <button type="button" class="btn control-button">
-          <i class="fa-solid fa-rotate-left"></i>
-        </button>
-        <button type="button" class="btn control-button">
-          <i class="fa-solid fa-circle-stop"></i>
-        </button>
+        <%= link_to campaign_path(@campaign) do %>
+          <button type="button" class="btn control-button">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+        <% end %>
+        <%= link_to campaign_chapter_path(@campaign, @test_chapter) do %>
+          <button type="button" class="btn control-button">
+            <i class="fa-solid fa-circle-stop"></i>
+          </button>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,16 +1,17 @@
-<div class="headings text-center">
-  <h1>Create a New Character</h1>
-  <h2>Or</h2>
-  <h2>Generate one from a Character Sheet</h2>
-</div>
+<div class="page-fade-container hidden"></div>
+  <div class="headings text-center">
+    <h1>Create a New Character</h1>
+    <h2>Or</h2>
+    <h2>Generate one from a Character Sheet</h2>
+  </div>
 
-<div data-controller="form-typewriter" class="container pt-5 pb-5">
-<%= turbo_stream_from "character_generation_#{@stream_id}" %>
-  <div class="row justify-content-center">
-<%= render "form_sheet", character: @character, stream_id: @stream_id %>
+  <div data-controller="form-typewriter" class="container pt-5 pb-5">
+  <%= turbo_stream_from "character_generation_#{@stream_id}" %>
+    <div class="row justify-content-center">
+  <%= render "form_sheet", character: @character, stream_id: @stream_id %>
 
-    <!-- The controller targets this to stream text -->
-    <div id="live_typewriter_output" data-form-typewriter-target="buffer" class="bg-dark text-light d-none">
+      <!-- The controller targets this to stream text -->
+      <div id="live_typewriter_output" data-form-typewriter-target="buffer" class="bg-dark text-light d-none">
+      </div>
     </div>
   </div>
-</div>
