@@ -107,6 +107,64 @@
   pointer-events: auto;
 }
 
+
+
+.magic-text {
+
+  background: linear-gradient(45deg, #ff007f, orange , #7f00ff, green, #00f0ff, #ff007f);
+  background-size: 300% 300%;
+
+  background-clip: text;
+
+  color: transparent;
+
+
+  display: inline-block;
+  transform-origin: center;
+
+
+
+  animation:
+    colorCycle 2.5s ease infinite,
+    textPulse 1.5s ease-in-out infinite;
+}
+
+
+@keyframes colorCycle {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes textPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.custom-file-input {
+  background-color: #f5e7c9 !important; /* Soft cream background for the text slot */
+  color: #5c2c16 !important;             /* Dark brown color for the "No file selected" text */
+  border: 2px solid rgb(168, 151, 102) !important;    /* Clean brown border around the whole element */
+}
+
+.custom-file-input::file-selector-button {
+  background-color: rgb(143, 138, 96) !important; /* Changes button background */
+  color: white !important;             /* Changes text inside button */
+  border-color: rgb(155, 94, 54) !important;      /* Cleans up the button outline */
+}
+
+
+.btn-custom {
+    background-color: rgb(143, 138, 96);
+    border-color: rgb(143, 138, 96);
+    color: white;
+}
+.btn-custom:hover {
+    background-color: rgb(143, 138, 96);
+    border-color: rgb(143, 138, 96);
+    color: white;
 // campaign-book section (will be using the same border as parchment-container for now)
 
 .campaign-book {

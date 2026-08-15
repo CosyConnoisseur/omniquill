@@ -3,11 +3,11 @@
       <%= hidden_field_tag :stream_id, @stream_id %>
 
       <div class="mb-3">
-        <%= f.label :document_upload, "Upload Character Sheet(PDF/Image) or Enter Character Details" %>
+        <%= f.label :document_upload, "Upload Character Sheet(PDF/Image) or Enter Character Details", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
         <div class="input-group">
         <%= f.file_field :document_upload,
                           accept: 'image/png, image/jpeg, image/jpg, image/webp, image/gif, application/pdf',
-                          class: "form-control",
+                          class: "form-control custom-file-input",
                           data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton change->form-typewriter#previewSheetFile"},
                           required: false %>
 
@@ -19,28 +19,30 @@
       </div>
 
       <div class="mb-3">
-        <%= f.label :name, "Character Name" %>
+        <%= f.label :name, "Character Name", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
         <%= f.text_field :name,
                           id: "character_name_input",
-                          class: "form-control",
+                          class: "form-control custom-file-input",
+                          style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
                           data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" }%>
       </div>
 
       <div class="mb-3">
-        <%= f.label :stats_summary, "Character Description" %>
+        <%= f.label :stats_summary, "Character Description", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
         <%= f.text_area :stats_summary,
                         id: "character_stats_summary_input",
-                        class: "form-control",
+                        class: "form-control custom-file-input",
+                        style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
                         rows: 6,
                         data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" }%>
       </div>
 
       <div class="mb-3">
-        <%= f.label :portrait, "Upload Character Portrait (Optional)" %>
+        <%= f.label :portrait, "Upload Character Portrait (Optional)", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
       <div class="input-group">
         <%= f.file_field :portrait,
                           accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
-                          class: " form-control",
+                          class: " form-control custom-file-input",
                           data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
 
         <button class="btn btn-outline-danger d-none"
@@ -52,7 +54,7 @@
 
       <!-- Submit -->
       <%= f.submit "Create Character",
-                    class: "btn btn-primary w-75",
+                    class: "btn btn-custom w-75",
                     data: { form_typewriter_target: "submitButton"} %>
 
       <!-- AI button -->
