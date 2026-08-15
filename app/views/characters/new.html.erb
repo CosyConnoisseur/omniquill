@@ -15,41 +15,7 @@
     text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">
     <span class="magic-text", style="font-family: 'Jersey 15';font-size: 4.3rem;">Generate</span> one from a Character Sheet</h2>
 
-  <style>
-.magic-text {
-  /* 1. Color Gradient Setup */
-  background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
 
-  /* Required for scale transformations to work smoothly */
-  display: inline-block;
-  transform-origin: center;
-
-  /* 2. Run Both Animations Simultaneously */
-  /* colorCycle runs over 4s, textPulse grows/shrinks over 2s */
-  animation:
-    colorCycle 4s ease infinite,
-    textPulse 1.5s ease-in-out infinite;
-}
-
-/* Animation to shift the background gradient colors */
-@keyframes colorCycle {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Animation to gently grow and shrink the word */
-@keyframes textPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); } /* Adjust 1.08 higher or lower to change pulse size */
-  100% { transform: scale(1); }
-}
-</style>
 
 
   </div>
