@@ -64,10 +64,24 @@ export default class extends Controller {
 
   }
 
-  showLoading(){
+  showLoading(event){
     if (!this.aiButtonTarget.classList.contains("d-none")){
       this.aiButtonTarget.classList.add("d-none")
       this.loadingButtonTarget.classList.remove("d-none")
+    } else if (!this.submitButtonTarget.classList.contains("d-none")){
+
+      event.preventDefault()
+
+      this.submitButtonTarget.classList.add("d-none")
+      this.loadingButtonTarget.classList.remove("d-none")
+      const characterForm = document.querySelector("#character-form")
+      const fadeOutContainer = document.querySelector(".page-fade-container")
+      fadeOutContainer.classList.remove("hidden")
+      fadeOutContainer.classList.add("fade-out-active")
+
+      setTimeout(() => {
+        characterForm.requestSubmit()
+      }, 1000)
     }
   }
 
@@ -103,19 +117,36 @@ export default class extends Controller {
 
     const fileURL = URL.createObjectURL(file)
 
+    this.imagePreviewTarget.offsetHeight
+    this.pdfPreviewTarget.offsetHeight
     this.imagePreviewTarget.classList.add("d-none")
+    this.imagePreviewTarget.classList.remove("active")
     this.pdfPreviewTarget.classList.add("d-none")
+
+    this.pdfPreviewTarget.classList.remove("active")
+
     this.previewContainerTarget.classList.remove("d-none")
 
     //A
     if (file.type.startsWith("image/")){
-      this.imagePreviewTarget.src=fileURL
       this.imagePreviewTarget.classList.remove("d-none")
+      this.imagePreviewTarget.onload = () => {
+      this.imagePreviewTarget.offsetHeight
+      this.imagePreviewTarget.classList.add("active");
+    };
+      this.imagePreviewTarget.src=fileURL
+      //this.imagePreviewTarget.classList.add("active")
     }
     //B
     else if (file.type.startsWith("application/pdf")){
-      this.pdfPreviewTarget.src=fileURL
+
       this.pdfPreviewTarget.classList.remove("d-none")
+      this.pdfPreviewTarget.onload = () => {
+        this.pdfPreviewTarget.classList.add("active");
+      };
+
+      this.pdfPreviewTarget.src=fileURL
+      // this.pdfPreviewTarget.classList.remove("d-none")
     }
   }
 
@@ -129,37 +160,52 @@ export default class extends Controller {
 
     this.portraitPreviewContainerTarget.classList.remove("d-none")
 
+    this.portraitPreviewTarget.onload = () =>{
+      this.portraitPreviewTarget.offsetHeight
+      this.portraitPreviewTarget.classList.add("active")
+
+    }
+
     this.portraitPreviewTarget.src=fileURL
-    this.portraitPreviewTarget.classList.remove("d-none")
     this.clearPortraitButtonTarget.classList.remove("d-none")
     }
 
   clearFile(){
     console.log("clear file run")
-    this.fileFieldTarget.value = ""
-    this.clearFileButtonTarget.classList.add("d-none")
 
-    this.previewContainerTarget.classList.add("d-none")
+    this.imagePreviewTarget.classList.remove("active")
+    this.pdfPreviewTarget.classList.remove("active")
 
-    if (this.imagePreviewTarget.src) URL.revokeObjectURL(this.imagePreviewTarget.src)
-    if (this.pdfPreviewTarget.src) URL.revokeObjectURL(this.pdfPreviewTarget.src)
+    setTimeout(() => {
+      this.fileFieldTarget.value = ""
+      this.clearFileButtonTarget.classList.add("d-none")
 
-    this.imagePreviewTarget.src = ""
-    this.pdfPreviewTarget.src = ""
+      this.previewContainerTarget.classList.add("d-none")
 
-    this.updateButton()
+      if (this.imagePreviewTarget.src) URL.revokeObjectURL(this.imagePreviewTarget.src)
+      if (this.pdfPreviewTarget.src) URL.revokeObjectURL(this.pdfPreviewTarget.src)
+
+      this.imagePreviewTarget.src = ""
+      this.pdfPreviewTarget.src = ""
+
+      this.updateButton()
+
+    }, 1000)
   }
 
     clearPortraitFile(){
     console.log("clear portrait run")
-    this.portraitFieldTarget.value = ""
     this.clearPortraitButtonTarget.classList.add("d-none")
 
-    this.portraitPreviewContainerTarget.classList.add("d-none")
+    this.portraitPreviewTarget.classList.remove("active")
+    setTimeout(() => {
+      if (this.portraitPreviewTarget.src) URL.revokeObjectURL(this.portraitPreviewTarget.src)
+      this.portraitFieldTarget.value = ""
+      this.portraitPreviewContainerTarget.classList.add("d-none")
+      this.portraitPreviewTarget.src = ""
+    }, 1000)
 
-    if (this.portraitPreviewTarget.src) URL.revokeObjectURL(this.portraitPreviewTarget.src)
 
-    this.portraitPreviewTarget.src = ""
   }
 
   clearText(){
