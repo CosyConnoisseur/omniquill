@@ -5,12 +5,56 @@
 
   <div class="parchment-container mx-auto headings text-center">
 
-    <h1>Create a New Character</h1>
-    <h2>Or</h2>
-    <h2>Generate one from a Character Sheet</h2>
+    <h1 style="font-family: 'Jacquarda Bastarda 9'; font-size: 3.3rem; -webkit-text-stroke: 1px black; text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">Create a New Character</h1>
+    <h2 style="font-family: 'Jacquarda Bastarda 9'; font-size: 3.3rem; -webkit-text-stroke: 1px black; text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">Or</h2>
+
+    <h2
+    style="font-family: 'Jacquarda Bastarda 9';
+    font-size: 3.3rem;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">
+    <span class="magic-text", style="font-family: 'Jersey 15';font-size: 4.3rem;">Generate</span> one from a Character Sheet</h2>
+
+  <style>
+.magic-text {
+  /* 1. Color Gradient Setup */
+  background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* Required for scale transformations to work smoothly */
+  display: inline-block;
+  transform-origin: center;
+
+  /* 2. Run Both Animations Simultaneously */
+  /* colorCycle runs over 4s, textPulse grows/shrinks over 2s */
+  animation:
+    colorCycle 4s ease infinite,
+    textPulse 1.5s ease-in-out infinite;
+}
+
+/* Animation to shift the background gradient colors */
+@keyframes colorCycle {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animation to gently grow and shrink the word */
+@keyframes textPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); } /* Adjust 1.08 higher or lower to change pulse size */
+  100% { transform: scale(1); }
+}
+</style>
+
+
   </div>
 
-  <div class="parchment-container mx-auto mt-3">
+  <div class="parchment-container mx-auto w-75 mt-3">
 
   <div data-controller="form-typewriter" class="container pt-5 pb-5">
   <%= turbo_stream_from "character_generation_#{@stream_id}" %>
