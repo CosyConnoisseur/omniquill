@@ -2,9 +2,9 @@
   <div class="d-flex justify-content-center">
     <div style="width: 70%; height: 500px;">
       <%= render "editForm", campaign: @campaign, chapter: @chapter %>
-      <%= link_to campaign_chapter_path(@campaign, @chapter), class: "home-button" do %>
-        <%= image_tag "Home-icon.png", class: "home-icon" %>
-        <%= image_tag "Home-icon.gif",  class: "home-move-icon" %>
+      <%= link_to campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
+        <%= image_tag "back-icon.png", class: "animate-icon" %>
+        <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
       <% end %>
     </div>
   </div>

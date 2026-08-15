@@ -1,48 +1,23 @@
-.edit-button {
+.animate-button {
 
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
 
   img {
-    width: 6rem;
+    width: 5rem;
   }
 
-  .edit-move-icon {
+  .animate-move-icon {
     display: none;
   }
 
   &:hover {
 
-    .edit-icon {
+    .animate-icon {
       display: none;
     }
 
-    .edit-move-icon {
-      display: inline;
-    }
-  }
-}
-
-.home-button {
-
-  width: 6rem;
-  height: 6rem;
-
-  img {
-    width: 6rem;
-  }
-
-  .home-move-icon {
-    display: none;
-  }
-
-  &:hover {
-
-    .home-icon {
-      display: none;
-    }
-
-    .home-move-icon {
+    .animate-move-icon {
       display: inline;
     }
   }
