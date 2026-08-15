@@ -1,61 +1,58 @@
-<h1>Campaigns</h1>
+<div class="centering">
+  <div class="medieval-title">
+    <h1>Campaigns</h1>
+  </div>
+</div>
 
-<div class="container mt-4">
-  <div class="row">
+<div class="centering">
+  <div class="bookshelf-container">
 
     <% @campaigns.each do |campaign| %>
-      <div class="col-md-4 mb-4">
 
-        <div class="card" style="width: 18rem;">
-        <%= link_to campaign_path(campaign), class: "d-block" do %>
+        <div class="campaign-book">
+        <%= link_to campaign_path(campaign) do %>
 
           <% if campaign.card_image.attached? %>
             <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
           <% else %>
             <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
           <% end %>
-          <%# <img src="" class="card-img-top" alt="Campaign image"> %>
 
-          <div class="card-body">
-            <h5 class="card-title"><%= campaign.title %></h5>
-          </div>
+          <h5 class="book-title"><%= campaign.title %></h5>
+
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush my-3">
             <li class="list-group-item">
               <strong>Players:</strong>
 
               <ul>
                 <% campaign.participations.each do |participation| %>
-                  <li><%= participation.user.email %></li>
+                  <li><%= participation.user.username %></li>
                 <% end %>
               </ul>
             </li>
           </ul>
 
-          <div class="card-body">
-            <%= link_to "Invite Player", join_campaign_url(campaign), class: "card-link" %>
-
+          <div class="text-center my-2">
+            <%= link_to "Invite Player", join_campaign_url(campaign), class: "invite-button" %>
           </div>
 
         </div>
 
-      </div>
     <% end %>
 
   </div>
 </div>
-
-<%= link_to "New Campaign", new_campaign_path, class: "btn btn-primary" %>
-
+<%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
 
 
 
-<h2>And characters!</h2>
+<div class="medieval-title">
+  <h2>And characters!</h2>
+</div>
 <% if current_user.participations.exists? %>
-  <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "btn btn-primary ms-3" %>
-<% else %>
-  <p>Go create a campaign!</p>
+  <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
 <% end %>
 
 <div class="list-div d-flex flex-column flex-md-row gap-4">

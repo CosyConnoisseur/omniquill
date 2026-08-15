@@ -43,10 +43,9 @@ class CampaignPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.joins(:participations)
-            .where(participations: {user_id: user.id})
-            .or(
-              scope.where(user: user)
+      scope.left_joins(:participations)
+            .where(user_id: user.id)
+            .or(scope.left_joins(:participations).where(participations: { user_id: user.id })
             )
             .distinct
       # participations user?
