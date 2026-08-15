@@ -44,20 +44,27 @@
 
   </div>
 </div>
-<%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
-
-
-
-<div class="medieval-title">
-  <h2>And characters!</h2>
+<div class="centering my-3">
+  <%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
 </div>
-<% if current_user.participations.exists? %>
-  <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
-<% end %>
-<ul>
+
+
+<div class="centering">
+  <div class="medieval-title">
+    <h2>And characters!</h2>
+  </div>
+</div>
+
+<div class="centering my-3">
+  <% if current_user.participations.exists? %>
+    <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
+  <% end %>
+</div>
+
+<ul class="d-flex flex-column align-items-center">
   <% @characters.each do |character| %>
-    <li class="list-unstyled">
-      <div class="col-md-4 mb-3">
+    <li class="list-unstyled" style="width: 90%;">
+      <div class="mb-3">
         <%= link_to character_path(character), class: "text-decoration-none" do %>
           <div class="card shadow-sm">
             <div class="card-body">
@@ -72,7 +79,7 @@
                 <% end %>
               </div>
               <p class="card-text text-muted">
-                Played by: <%= character.participation.user.email %>
+                Played by: <%= character.participation.user.username %>
               </p>
             </div>
           </div>
