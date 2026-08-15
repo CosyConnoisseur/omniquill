@@ -1,7 +1,7 @@
 // This is so that it doesn't mess with the background for the other pages.
 .bricks-background {
   width: 100%;
-  height: 60rem;
+  min-height: 100vh;
   background-image: asset_url("Back-wall-bricks.png");
   background-repeat: repeat;
   background-size: 20%;
@@ -63,29 +63,20 @@
 }
 
 @media (max-width: 1000px) {
-
-  .medieval-title{
-
+  .medieval-title {
     width: 70%;
-
     h1{
       font-size: 4rem;
     }
-
   }
 
 }
 
 @media (max-width: 600px) {
-
   .medieval-title{
-
     width: 85%;
-
     h1{
       font-size: 2.5rem;
     }
-
   }
-
 }
