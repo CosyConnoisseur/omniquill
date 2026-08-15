@@ -65,13 +65,20 @@ class CharactersController < ApplicationController
 
     begin
       prompt = <<~TEXT
-        You are an expert character sheet analyzer. Read the attached file and extract a name and a detailed statistical description for the character.
+        You are an expert D&D game master. Read the attached character sheet and do the following:
+               1. Extract the character's name
+               2. Look for a bio, personality, backround or any sort of character flavor text to generate a description.
 
-        You MUST format your output exactly like this:
-        NAME: [Your Name Here]
-        DESCRIPTION: [Your Description Here]
+               - If there is none, generate one heavily based on any "race", "background" "species", "class" and "subclass" data given.
+               - You may draw inspiration from the statistical data from the stats section, focussing on those with a relatively high statistical value.
 
-        Do not include any conversational filler outside of this structural layout.
+
+             You MUST format your output exactly like this:
+             NAME: [Your Name Here]
+             DESCRIPTION: [Your Description Here]
+
+           Do not include any conversational filler outside of this structural layout. Do not leave any fields blank.
+           The summary must not exceed 120 words.
       TEXT
 
       # model.ask(
