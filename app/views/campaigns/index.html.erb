@@ -44,12 +44,21 @@
 
   </div>
 </div>
-<%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
+<div class="centering my-3">
+  <%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
+</div>
 
 
+<div class="centering">
+  <div class="medieval-title">
+    <h2>And characters!</h2>
+  </div>
+</div>
 
-<div class="medieval-title">
-  <h2>And characters!</h2>
+<div class="centering my-3">
+  <% if current_user.participations.exists? %>
+    <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
+  <% end %>
 </div>
 <% if current_user.participations.exists? %>
   <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
