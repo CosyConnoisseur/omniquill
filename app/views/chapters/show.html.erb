@@ -16,14 +16,14 @@
         </ul>
         <div class="d-flex justify-content-center">
           <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-            <%= link_to edit_campaign_chapter_path(@campaign, @chapter), class: "edit-button" do %>
-              <%= image_tag "Edit-icon.png", class: "edit-icon" %>
-              <%= image_tag "Edit-icon.gif",  class: "edit-move-icon" %>
+            <%= link_to edit_campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
+              <%= image_tag "Edit-icon.png", class: "animate-icon" %>
+              <%= image_tag "Edit-icon.gif",  class: "animate-move-icon" %>
             <% end %>
           <% end %>
-          <%= link_to campaign_chapters_path, class: "home-button" do %>
-            <%= image_tag "Home-icon.png", class: "home-icon" %>
-            <%= image_tag "Home-icon.gif",  class: "home-move-icon" %>
+          <%= link_to campaign_chapters_path, class: "animate-button" do %>
+            <%= image_tag "back-icon.png", class: "animate-icon" %>
+            <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
           <% end %>
         </div>
       </div>
