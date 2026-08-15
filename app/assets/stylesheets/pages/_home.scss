@@ -110,35 +110,59 @@
 
 
 .magic-text {
-  /* 1. Color Gradient Setup */
-  background: linear-gradient(45deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+
+  background: linear-gradient(45deg, #ff007f, orange , #7f00ff, green, #00f0ff, #ff007f);
   background-size: 300% 300%;
-  -webkit-background-clip: text;
+
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+
   color: transparent;
 
-  /* Required for scale transformations to work smoothly */
+
   display: inline-block;
   transform-origin: center;
 
-  /* 2. Run Both Animations Simultaneously */
-  /* colorCycle runs over 4s, textPulse grows/shrinks over 2s */
+
+
   animation:
-    colorCycle 4s ease infinite,
+    colorCycle 2.5s ease infinite,
     textPulse 1.5s ease-in-out infinite;
 }
 
-/* Animation to shift the background gradient colors */
+
 @keyframes colorCycle {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Animation to gently grow and shrink the word */
+
 @keyframes textPulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.1); } /* Adjust 1.08 higher or lower to change pulse size */
+  50% { transform: scale(1.1); }
   100% { transform: scale(1); }
+}
+
+.custom-file-input {
+  background-color: #f5e7c9 !important; /* Soft cream background for the text slot */
+  color: #5c2c16 !important;             /* Dark brown color for the "No file selected" text */
+  border: 2px solid rgb(168, 151, 102) !important;    /* Clean brown border around the whole element */
+}
+
+.custom-file-input::file-selector-button {
+  background-color: rgb(143, 138, 96) !important; /* Changes button background */
+  color: white !important;             /* Changes text inside button */
+  border-color: rgb(155, 94, 54) !important;      /* Cleans up the button outline */
+}
+
+
+.btn-custom {
+    background-color: rgb(143, 138, 96);
+    border-color: rgb(143, 138, 96);
+    color: white;
+}
+.btn-custom:hover {
+    background-color: rgb(143, 138, 96);
+    border-color: rgb(143, 138, 96);
+    color: white;
 }
