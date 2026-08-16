@@ -20,59 +20,58 @@
         }, 50);
       }
   </script>
-  <div class="page-container">
-    <div class="character-info-container d-flex flex-column flex-md-row align-items-start justify-content-center gap-5 mt-3">
-      <div class="character-portrait-container character-show-portrait d-flex flex-column align-items-center">
-        <div class="character-portrait torn-edges mb-3">
-          <% if @character.portrait.attached? %>
-            <%= image_tag @character.portrait,
+  <div class="d-flex flex-column align-items-center mx-3">
+    <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
+      <div class="character-portrait torn-edges mb-3">
+        <% if @character.portrait.attached? %>
+          <%= image_tag @character.portrait,
               style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
-          <% else %>
-            <%= image_tag "default-portrait.jpg",
+        <% else %>
+          <%= image_tag "default-portrait.jpg",
               style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
-          <% end %>
-        </div>
-        <%= render "characters/form_portrait" %>
-        <% if policy(@character).show_campaign_link? %>
-          <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
         <% end %>
       </div>
-      <div data-controller="sheet-toggle" class="character-show-description">
-        <!-- Character description -->
-        <div
-  class="parchment-container mt-3 character-description-clickable"
+      <%= render "characters/form_portrait" %>
+      <% if policy(@character).show_campaign_link? %>
+        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
+      <% end %>
+    </div>
+    <div data-controller="sheet-toggle" class="character-show-description">
+      <!-- Character description -->
+      <div
+  class="parchment-container mb-5 character-description-clickable"
   data-action="click->sheet-toggle#open">
-          <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
-            <p><%= @character.stats_summary %></p>
-          </div>
+        <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
+          <p><%= @character.stats_summary %></p>
         </div>
-        <!-- CHARACTER SHEET MODAL -->
-        <div
+      </div>
+      <!-- CHARACTER SHEET MODAL -->
+      <div
   data-sheet-toggle-target="modal"
   data-action="click->sheet-toggle#closeOutside"
-          class="character-sheet-modal d-none">
-          <div class="character-sheet-modal-content">
-            <!-- Close bottuton -->
-            <button
+        class="character-sheet-modal d-none">
+        <div class="character-sheet-modal-content">
+          <!-- Close bottuton -->
+          <button
       type="button"
       class="character-sheet-close"
       data-action="click->sheet-toggle#close">
-              &times;
-            </button>
-            <!-- Char sheet -->
-            <% if @character.document_upload.attached? %>
-              <% if @character.document_upload.content_type == "application/pdf" %>
-                <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
-                <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
-                  Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
-                <% end %>
-              <% else %>
-                <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
+            &times;
+          </button>
+          <!-- Char sheet -->
+          <% if @character.document_upload.attached? %>
+            <% if @character.document_upload.content_type == "application/pdf" %>
+              <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+              <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+                Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
               <% end %>
+            <% else %>
+              <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

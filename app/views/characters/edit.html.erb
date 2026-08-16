@@ -14,7 +14,7 @@
     </div>
     <!-- Portrait -->
     <div class="d-flex flex-column align-items-center">
-      <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
+      <div class="character-portrait-container d-flex flex-column align-items-center mt-3">
         <div class="character-portrait torn-edges mb-3">
           <%= f.label :portrait, class: "clickable-portrait" do %>
             <% if @character.portrait.attached? %>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <!-- Character description -->
-      <div class="parchment-container edit-parchment my-5">
+      <div class="parchment-container edit-parchment my-4">
         <%= f.text_area :stats_summary,
             class: "character-description-input",
             rows: 20 %>
