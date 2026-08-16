@@ -48,14 +48,16 @@
     <% else %>
       <h1 class="mt-auto"><%= @campaign.title %></h1>
     <% end %>
-    <div class="mt-auto">
-      <%= link_to record_campaign_path(@campaign), class: "text-reset clickable-icon" do %>
-        <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
-          <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
-          <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
-        </svg>
-      <% end %>
-    </div>
+    <% if owner %>
+      <div class="mt-auto">
+        <%= link_to record_campaign_path(@campaign), class: "text-reset clickable-icon" do %>
+          <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
+            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+          </svg>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -165,62 +167,71 @@
   </div>
 </div>
 
-<%= render "form_banner" %>
-
 <!-- char-list-dialog -->
 <%# Testing if characters attached to campaigns correctly %>
-<% @campaign.characters.each do |character| %>
-  <div class="col-md-4 mb-3">
-    <%= link_to character_path(character), class: "text-decoration-none" do %>
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title">
-              <%= character.name %>
-            </h5>
-            <% if character.portrait.attached? %>
-              <%= image_tag character.portrait, style: "width: 70px; height: 70px; object-fit: cover; border-radius: 8px;" %>
-            <% else %>
-              <%= image_tag "default-portrait.jpg", style: "max-height: 70px; border-radius: 8px;" %>
-            <% end %>
+<% if false %>
+  <% @campaign.characters.each do |character| %>
+    <div class="col-md-4 mb-3">
+      <%= link_to character_path(character), class: "text-decoration-none" do %>
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="card-title">
+                <%= character.name %>
+              </h5>
+              <% if character.portrait.attached? %>
+                <%= image_tag character.portrait, style: "width: 70px; height: 70px; object-fit: cover; border-radius: 8px;" %>
+              <% else %>
+                <%= image_tag "default-portrait.jpg", style: "max-height: 70px; border-radius: 8px;" %>
+              <% end %>
+            </div>
+            <p class="card-text text-muted">
+              Played by: <%= character.participation.user.email %>
+            </p>
           </div>
-          <p class="card-text text-muted">
-            Played by: <%= character.participation.user.email %>
-          </p>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "Create New Character", new_campaign_character_path(@campaign.id), class: "btn btn-primary ms-3" %>
 <% end %>
-<%= link_to "Create New Character", new_campaign_character_path(@campaign.id), class: "btn btn-primary ms-3" %>
-
 
 <dialog id="charListPopup">
   <ul style="list-style-type: none; padding-left: 0;">
     <div class="container d-flex flex-column">
       <% @characters.each do |character| %>
       <div class="container d-flex flex-row gap-4 align-items-center" style="padding: 10px 0;">
-        <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
-        </svg>
+        <% if character.portrait.attached? %>
+          <%= image_tag character.portrait, style: "width: 70px; height: 70px; object-fit: cover; border-radius: 8px;" %>
+        <% else %>
+          <%= image_tag "default-portrait.jpg", style: "max-height: 70px; border-radius: 8px;" %>
+        <% end %>
         <li>
-          <h2>
+          <h5>
           <%= link_to character_path(character), class: "text-reset", style: "outline: none; box-shadow: none;" do %>
             <%= character.name %>
           <% end %>
-          </h2>
+          </h5>
+          <p class="card-text text-muted">
+            Played by: <%= character.participation.user.email %>
+          </p>
         </li>
       </div>
       <% end %>
     </div>
   </ul>
-  <div style="display: flex; justify-content: center; width: 100%;">
-    <button
-    onclick="document.getElementById('charListPopup').close()"
-    style="background: none; border: none; outline: none; color: #ef4444; padding: 0; margin: 0; cursor: pointer; font-size: 40px;">
-      &#x2715;
-    </button>
+  <div class="container d-flex flex-row justify-content-between">
+    <%= link_to new_campaign_character_path(@campaign.id), class: "text-reset clickable-icon" do %>
+      <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+      </svg>
+    <% end %>
+      <button
+      onclick="document.getElementById('charListPopup').close()"
+      style="background: none; border: none; outline: none; color: #ef4444; padding: 0; margin: 0; cursor: pointer; font-size: 40px;">
+        &#x2715;
+      </button>
   </div>
 </dialog>
 
