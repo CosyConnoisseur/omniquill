@@ -12,11 +12,6 @@
    margin:auto;
 }
 
-// .character-show-description .parchment-container {
-//   width: 100%;
-// }
-
-
 .character-description-input {
   width: 100%;
   min-height: 300px;
@@ -52,7 +47,7 @@
   width: 100%;
   min-height: 300px;
   box-sizing: border-box;
-// total size (width + padding)
+// box sizing = total size (width + padding)
 
   background: transparent;
   border: none;
@@ -65,6 +60,25 @@
   color: $omni-ink;
 
   resize: vertical;
+}
+
+// zoom on character sheet modal css
+.character-sheet-image {
+  max-height: 550px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: zoom-in;
+  // shows magnifying glass cursor with + /- on hover
+  transition: transform 0.3s ease;
+}
+
+.character-sheet-image.zoomed {
+  transform: scale(2.0);
+  cursor: zoom-out;
+}
+
+.character-sheet-modal-content {
+  overflow-y: auto
 }
 
 

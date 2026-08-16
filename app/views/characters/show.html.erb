@@ -49,8 +49,8 @@
       <div
   data-sheet-toggle-target="modal"
   data-action="click->sheet-toggle#closeOutside"
-        class="character-sheet-modal d-none">
-        <div class="character-sheet-modal-content">
+        class="character-sheet-modal d-none position-fixed top-0 start-0 w-100 h-100">
+        <div class="character-sheet-modal-content w-100 h-100 overflow-auto">
           <!-- Close bottuton -->
           <button
       type="button"
@@ -66,7 +66,10 @@
                 Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
               <% end %>
             <% else %>
-              <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
+              <%= image_tag @character.document_upload,
+              class: "character-sheet-image",
+              data: {action: "click->sheet-toggle#zoom"},
+              style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
             <% end %>
           <% end %>
         </div>

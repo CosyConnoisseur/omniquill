@@ -4,12 +4,10 @@ export default class extends Controller {
   static targets = ["modal"]
 
   open() {
-    console.log("OPEN FIRED")
     this.modalTarget.classList.remove("d-none")
   }
 
   close() {
-    console.log("CLOSE FIRED")
     this.modalTarget.classList.add("d-none")
   }
 
@@ -18,4 +16,8 @@ export default class extends Controller {
       this.close()
     }
   }
+  zoom(event) {
+    event.currentTarget.classList.toggle("zoomed")
+  }
+
 }
