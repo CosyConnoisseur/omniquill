@@ -141,6 +141,11 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    @character = Character.find(params[:id])
+    authorize @character
+    @character.destroy
+
+    redirect_to campaigns_path, notice: "Character was successfully deleted.", status: :see_other
   end
 
   private
