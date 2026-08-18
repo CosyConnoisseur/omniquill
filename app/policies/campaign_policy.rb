@@ -17,11 +17,11 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def edit?
-    user == record.user
+    user == record.user || record.participations.exists?(user: user)
   end
 
   def update?
-    user == record.user
+    edit?
   end
 
   def invite?
