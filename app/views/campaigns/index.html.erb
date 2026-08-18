@@ -6,7 +6,6 @@
 <div class="centering">
   <div class="bookshelf-container">
     <% @campaigns.each do |campaign| %>
-<<<<<<< HEAD
 
         <div class="campaign-book">
           <nav class="navbar navbar-expand-sm navbar-book">
@@ -21,9 +20,6 @@
               </div>
             </div>
           </nav>
-=======
-      <div class="campaign-book">
->>>>>>> fcab2be231aa2f95602569df024b3d2a06c93540
         <%= link_to campaign_path(campaign) do %>
           <% if campaign.card_image.attached? %>
             <div class="campaign-image">
@@ -38,13 +34,11 @@
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
 
-<<<<<<< HEAD
           <div class="d-flex justify-content-center my-2">
             <%= link_to join_campaign_url(campaign), class: "animate-button" do %>
               <%= image_tag "invite-player-icon.png", class: "animate-icon" %>
               <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon" %>
             <% end %>
-=======
               <ul>
                 <% campaign.participations.each do |participation| %>
                   <li>
@@ -62,7 +56,6 @@
 
           <div class="text-center my-2">
             <%= link_to "Invite Player", join_campaign_url(campaign), class: "invite-button" %>
->>>>>>> fcab2be231aa2f95602569df024b3d2a06c93540
           </div>
 
         </div>
