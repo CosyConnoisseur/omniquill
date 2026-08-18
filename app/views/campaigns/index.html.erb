@@ -3,11 +3,10 @@
     <h1>Campaigns</h1>
   </div>
 </div>
-
 <div class="centering">
   <div class="bookshelf-container">
-
     <% @campaigns.each do |campaign| %>
+<<<<<<< HEAD
 
         <div class="campaign-book">
           <nav class="navbar navbar-expand-sm navbar-book">
@@ -22,8 +21,10 @@
               </div>
             </div>
           </nav>
+=======
+      <div class="campaign-book">
+>>>>>>> fcab2be231aa2f95602569df024b3d2a06c93540
         <%= link_to campaign_path(campaign) do %>
-
           <% if campaign.card_image.attached? %>
             <div class="campaign-image">
               <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
@@ -33,36 +34,50 @@
             <%= image_tag "default-card-image.jpg", style: "max-height: 550px;" %>
           </div>
           <% end %>
-
           <h5 class="book-title"><%= campaign.title %></h5>
-
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
 
+<<<<<<< HEAD
           <div class="d-flex justify-content-center my-2">
             <%= link_to join_campaign_url(campaign), class: "animate-button" do %>
               <%= image_tag "invite-player-icon.png", class: "animate-icon" %>
               <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon" %>
             <% end %>
+=======
+              <ul>
+                <% campaign.participations.each do |participation| %>
+                  <li>
+                    <% if current_user.profile_picture.attached? %>
+                      <%= image_tag current_user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                    <% else %>
+                      <%= image_tag "default-avatar.png", class: "avatar"%>
+                    <% end %>
+                    <%= participation.user.username %>
+                    </li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="text-center my-2">
+            <%= link_to "Invite Player", join_campaign_url(campaign), class: "invite-button" %>
+>>>>>>> fcab2be231aa2f95602569df024b3d2a06c93540
           </div>
 
         </div>
-
+      </div>
     <% end %>
-
   </div>
 </div>
 <div class="centering my-3">
   <%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
 </div>
-
-
 <div class="centering">
   <div class="medieval-title">
     <h2>And characters!</h2>
   </div>
 </div>
-
 <div class="centering my-3">
   <% if current_user.participations.exists? %>
     <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
@@ -94,7 +109,12 @@
                     Campaign: <%= character.participation.campaign.title %>
                   </p>
                   <p class="card-text text-muted">
-                    Played by: <%= character.participation.user.email %>
+                    Played by: <%= current_user.username ? current_user.username : current_user.email  %>
+                      <% if character.participation.user.profile_picture.attached? %>
+                        <%= image_tag current_user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                      <% else %>
+                        <%= image_tag "default-avatar.png", class: "avatar"%>
+                      <% end %>
                   </p>
                 </div>
               </div>
@@ -104,8 +124,6 @@
       <% end %>
     </ul>
   </div>
-
-
 
   <div class="flex-grow-1" style="max-width: 400px; min-width: 280px;">
     <h2 class="mb-3" style="color: white">Every Character in the DB!</h2>
@@ -127,7 +145,12 @@
                       <% end %>
                     </div>
                     <p class="card-text text-muted">
-                      Played by: <%= character.participation.user.email %>
+                      Played by: <%= character.participation.user.username ? character.participation.user.username : character.participation.user.email  %>
+                      <% if character.participation.user.profile_picture.attached? %>
+                        <%= image_tag current_user.profile_picture, class: "avatar" , style: "height: 50px; width: 50px; object-fit: cover" %>
+                      <% else %>
+                        <%= image_tag "default-avatar.png", class: "avatar"%>
+                      <% end %>
                     </p>
                   </div>
                 </div>
