@@ -22,6 +22,7 @@
         <%= f.label :name, "Character Name", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
         <%= f.text_field :name,
                           id: "character_name_input",
+                          maxlength: 20,
                           class: "form-control custom-file-input",
                           style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
                           data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" }%>
@@ -54,19 +55,19 @@
 
       <!-- Submit -->
       <%= f.submit "Create Character",
-                    class: "btn btn-custom w-75",
+                    class: "btn btn-custom w-50",
                     data: { form_typewriter_target: "submitButton"} %>
 
       <!-- AI button -->
       <button type="submit"
-              class="btn btn-ai-custom w-75 d-none"
+              class="btn btn-ai-custom w-75 d-none" style="min-width: 300px; max-width: 650px;"
               data-form-typewriter-target="aiButton">
               Generate From Character Sheet
       </button>
 
       <!-- Loading -->
       <button type="button"
-          class="btn btn-secondary w-75 d-none"
+          class="btn btn-secondary w-75 d-none" style="min-width: 300px;"
           disabled
           data-form-typewriter-target="loadingButton">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

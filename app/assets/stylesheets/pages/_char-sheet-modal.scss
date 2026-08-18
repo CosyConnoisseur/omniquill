@@ -1,0 +1,31 @@
+.character-sheet-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.character-sheet-modal-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  background: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}

@@ -1,3 +1,17 @@
+// For the char show page and char edit page
+
+// show page
+.character-show-portrait,
+.character-show-description {
+  margin:auto;
+}
+
+.character-show-description {
+  display: flex;
+  justify-content: center;
+   margin:auto;
+}
+
 .character-description-input {
   width: 100%;
   min-height: 300px;
@@ -20,6 +34,8 @@
 
 }
 
+// edit page
+
 .character-edit-form .edit-parchment {
   width: 100%;
   box-sizing: border-box;
@@ -31,6 +47,7 @@
   width: 100%;
   min-height: 300px;
   box-sizing: border-box;
+// box sizing = total size (width + padding)
 
   background: transparent;
   border: none;
@@ -45,6 +62,36 @@
   resize: vertical;
 }
 
+// zoom on character sheet modal css
+.character-sheet-image {
+  max-height: 550px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: zoom-in;
+  // shows magnifying glass cursor with + /- on hover
+  transition: transform 0.3s ease;
+}
+
+.character-sheet-image.zoomed {
+  transform: scale(2.0);
+  cursor: zoom-out;
+}
+
+.character-sheet-modal-content {
+  overflow-y: auto
+}
+
+
+@media (max-width: 1000px) {
+  .character-show-portrait,
+  .character-show-description {
+    width: 85%;
+  }
+
+  .character-show-description .parchment-container {
+    width: 100%;
+  }
+}
 
 @media (max-width: 1000px) {
   .character-edit-form {
