@@ -3,23 +3,17 @@
     <h1>Campaigns</h1>
   </div>
 </div>
-
 <div class="centering">
   <div class="bookshelf-container">
-
     <% @campaigns.each do |campaign| %>
-
-        <div class="campaign-book">
+      <div class="campaign-book">
         <%= link_to campaign_path(campaign) do %>
-
           <% if campaign.card_image.attached? %>
             <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
           <% else %>
             <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
           <% end %>
-
           <h5 class="book-title"><%= campaign.title %></h5>
-
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
           <ul class="list-group-brown list-group-flush my-3">
@@ -39,22 +33,18 @@
           </div>
 
         </div>
-
+      </div>
     <% end %>
-
   </div>
 </div>
 <div class="centering my-3">
   <%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
 </div>
-
-
 <div class="centering">
   <div class="medieval-title">
     <h2>And characters!</h2>
   </div>
 </div>
-
 <div class="centering my-3">
   <% if current_user.participations.exists? %>
     <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
@@ -96,8 +86,6 @@
       <% end %>
     </ul>
   </div>
-
-
 
   <div class="flex-grow-1" style="max-width: 400px; min-width: 280px;">
     <h2 class="mb-3" style="color: white">Every Character in the DB!</h2>
