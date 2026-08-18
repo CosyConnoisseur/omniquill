@@ -1,3 +1,4 @@
+<div class="parchment-container mt-5 mx-auto headings">
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -8,6 +9,10 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    <%= f.input :username,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "username" }%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -15,6 +20,11 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
+    <%= f.file_field :profile_picture,
+                          accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
+                          class: " form-control",
+                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
   </div>
 
   <div class="form-actions">
@@ -23,3 +33,7 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+<div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
+  <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
+</div>
