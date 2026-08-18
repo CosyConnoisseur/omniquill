@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username, profile_picture])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username, profile_picture])
   end
-  
+
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end

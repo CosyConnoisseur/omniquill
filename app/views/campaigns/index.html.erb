@@ -28,7 +28,7 @@
 
               <ul>
                 <% campaign.participations.each do |participation| %>
-                  <li><%= participation.user.email %></li>
+                  <li><%= participation.user.username %></li>
                 <% end %>
               </ul>
             </li>
@@ -86,7 +86,7 @@
                     Campaign: <%= character.participation.campaign.title %>
                   </p>
                   <p class="card-text text-muted">
-                    Played by: <%= character.participation.user.email %>
+                    Played by: <%=  character.participation.user.username ? character.participation.user.username : character.participation.user.email  %>
                   </p>
                 </div>
               </div>
@@ -119,7 +119,12 @@
                       <% end %>
                     </div>
                     <p class="card-text text-muted">
-                      Played by: <%= character.participation.user.email %>
+                      Played by: <%= character.participation.user.username ? character.participation.user.username : character.participation.user.email  %>
+                      <% if current_user.profile_picture.attached? %>
+                        <%= image_tag current_user.profile_picture, class: "avatar" %>
+                      <% else %>
+                        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar"%>
+                      <% end %>
                     </p>
                   </div>
                 </div>
