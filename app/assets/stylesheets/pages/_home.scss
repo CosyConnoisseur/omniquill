@@ -240,6 +240,17 @@
   width: 5rem;
 }
 
+#navbarDropdown {
+
+  #bookmark-dropdown {
+    transition: 0.2s ease;
+
+    &:hover {
+      filter: brightness(1.3);
+    }
+  }
+}
+
 @media (max-width: 1500px) {
 
   .campaign-book {
