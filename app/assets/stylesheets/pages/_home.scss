@@ -106,3 +106,146 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+
+
+.magic-text {
+
+  background: linear-gradient(45deg, #ff007f, orange , #7f00ff, green, #00f0ff, #ff007f);
+  background-size: 300% 300%;
+
+  background-clip: text;
+
+  color: transparent;
+
+
+  display: inline-block;
+  transform-origin: center;
+
+
+
+  animation:
+    colorCycle 2.5s ease infinite,
+    textPulse 1.5s ease-in-out infinite;
+}
+
+
+@keyframes colorCycle {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes textPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.custom-file-input {
+  background-color: #f5e7c9 !important; /* Soft cream background for the text slot */
+  color: #5c2c16 !important;             /* Dark brown color for the "No file selected" text */
+  border: 2px solid rgb(168, 151, 102) !important;    /* Clean brown border around the whole element */
+}
+
+.custom-file-input::file-selector-button {
+  background-color: rgb(143, 138, 96) !important; /* Changes button background */
+  color: white !important;             /* Changes text inside button */
+  border-color: rgb(155, 94, 54) !important;      /* Cleans up the button outline */
+}
+
+
+.btn-custom {
+    background-color: rgb(143, 138, 96);
+    border-color: rgb(143, 138, 96);
+    color: white;
+}
+.btn-custom:hover {
+    background-color: rgb(143, 138, 96);
+    border-color: rgb(143, 138, 96);
+    color: white;
+  }
+
+.btn-ai-custom{
+  min-width: 300px;
+  background: linear-gradient(45deg, #ff007f,#7f00ff, #00f0ff, #ff007f);
+  background-size: 300% 300%;
+  background-color: transparent;
+  border: none;
+  animation:
+    colorCycle 2.5s ease infinite,
+}
+
+
+
+  // campaign-book section (will be using the same border as parchment-container for now)
+.campaign-book {
+  height: auto;
+  width: 25%;
+  padding: 2rem;
+  margin: 1rem 1rem ;
+  border-image: asset_url("parchment-leather-border.png");
+  border-image-slice: 115 115 115 115 fill;
+  border-image-width: 30px 30px 30px 30px;
+  border-image-outset: 5px 5px 5px 5px;
+  border-image-repeat: round round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+
+  img {
+    border-radius: 3rem;
+    width: 100%;
+  }
+
+  a {
+      text-decoration: none;
+  }
+
+  .book-title {
+    text-align: center;
+    font-family: $pixel-font;
+    font-size: 2.5rem;
+    color: $omni-ink;
+  }
+}
+
+.invite-button {
+  font-family: $pixel-font;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 0 1.5rem;
+  color: black;
+  border: 3px solid rgb(97, 23, 97);
+  border-radius: 2rem;
+  background-color: #5e5648;
+  text-decoration: none;
+}
+
+@media (max-width: 1500px) {
+
+  .campaign-book {
+    width: 40%;
+  }
+
+  .book-title {
+    font-size: 2rem;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .campaign-book{
+    width: 90%;
+  }
+
+  .book-title {
+    font-size: 1.5rem;
+  }
+
+}
+
+.list-group-brown {
+  background-color: #d4c1a1;
+  border-radius: 6px;
+}

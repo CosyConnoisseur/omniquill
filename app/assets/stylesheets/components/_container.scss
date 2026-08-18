@@ -1,3 +1,15 @@
+// Bookshelf container section
+
+.bookshelf-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: 0 1rem;
+}
+
+// Parchment-container section
+
 .parchment-container {
   height: auto;
   width: 60%;
@@ -15,14 +27,24 @@
   padding: 0;
 }
 
-@media (max-width: 1000px) {
+// Media queries (responsive webpage) section
+
+@media (max-width: 1500px) {
+
+  .bookshelf-container {
+    width: 90%;
+  }
+
   .parchment-container {
     width: 70%;
   }
+
 }
 
 @media (max-width: 600px) {
+
   .parchment-container {
     width: 85%;
   }
+
 }

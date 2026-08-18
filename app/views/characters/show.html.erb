@@ -1,16 +1,7 @@
-<div class="bricks-background">
-  <div class="centering mt-5">
-    <div class="medieval-title position-relative">
-      <h1><%= @character.name %></h1>
-      <%= link_to edit_character_path(@character),
-        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
-        <i class="fa-solid fa-pen"></i>
-      <% end %>
-    </div>
-  </div>
-  <% if flash[:white_fade_in] %>
-    <div class="page-fade-container"></div>
-  <% end %>
+<% if flash[:white_fade_in] %>
+  <div class="page-fade-container"></div>
+<% end %>
+
   <script>
     const fadeOutContainer = document.querySelector(".page-fade-container");
       if (fadeOutContainer && !fadeOutContainer.classList.contains("hidden")){
@@ -20,8 +11,36 @@
         }, 50);
       }
   </script>
-  <div class="d-flex flex-column align-items-center mx-3">
+  
+<div class="centering mt-5">
+   <div class="medieval-title position-relative">
+     <h1><%= @character.name %></h1>
+     <%= link_to edit_character_path(@character),
+       class: "position-absolute top-0 end-0 m-3 text-reset" do %>
+       <i class="fa-solid fa-pen"></i>
+     <% end %>
+   </div>
+
+  <%# Keep flash and script on top %>
+
+
+<div class="bricks-background">
+  <div class="centering">
+    <div class="medieval-title position-relative">
+      <h1><%= @character.name %></h1>
+      <%= link_to edit_character_path(@character),
+        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
+        <i class="fa-solid fa-pen"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex flex-column align-items-center">
+    <!-- Portrait -->
     <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
+
+<div class="page-container m-5 d-flex justify-content-center">
+  <div class="character-info-container d-flex align-items-start mt-3">
+    <div class="character-portrait-container d-flex flex-column align-items-center">
       <div class="character-portrait torn-edges mb-3">
         <% if @character.portrait.attached? %>
           <%= image_tag @character.portrait,
@@ -75,6 +94,26 @@
         </div>
       </div>
     </div>
+   </div>
   </div>
+ </div>
 </div>
-</div>
+<% if @character.document_upload.attached? %>
+      <% if @character.document_upload.content_type == "application/pdf" %>
+        <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+        <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+          Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
+        <% end %>
+      <% else %>
+        <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
+      <% end %>
+    <% end %>
+  </div>
+
+<%= button_to character_path,
+      method: :delete,
+      params: { character_id: @character.id },
+      class: "character-button",
+      data: { turbo_confirm: "Are you sure?" } do %>
+    Delete Character
+  <% end %>

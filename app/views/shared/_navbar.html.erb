@@ -4,7 +4,9 @@
       <%= image_tag "Omniquill-logo.png" %>
     <% end %>
 
-    <%= image_tag "Full-logo.png", class: "navbar-logo" %>
+    <%= link_to root_path do %>
+      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "width: 100%" %>
+    <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
