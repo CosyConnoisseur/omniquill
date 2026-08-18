@@ -17,6 +17,9 @@
           <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
+          <p class="last-played">
+            Last Played: <%= campaign.last_played_at || "Never" %>
+          </p>
           <ul class="list-group-brown list-group-flush my-3">
             <li class="list-group-item">
               <strong>Players:</strong>
