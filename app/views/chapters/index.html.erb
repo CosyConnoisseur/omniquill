@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="d-flex justify-content-center my-4">
-    <%= link_to campaign_path(@campaign), class: "animate-button" do %>
+    <%= link_to campaign_path(@campaign), class: "animate-button",  data: { direction: "back" } do %>
       <%= image_tag "back-icon.png", class: "animate-icon" %>
       <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
     <% end %>
