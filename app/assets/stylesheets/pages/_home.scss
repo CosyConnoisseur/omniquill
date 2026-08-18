@@ -183,17 +183,28 @@
 .campaign-book {
   height: auto;
   width: 25%;
-  padding: 2rem;
+  padding: 1.5rem;
   margin: 1rem 1rem ;
-  border-image: asset_url("parchment-leather-border.png");
-  border-image-slice: 115 115 115 115 fill;
-  border-image-width: 30px 30px 30px 30px;
-  border-image-outset: 5px 5px 5px 5px;
-  border-image-repeat: round round;
-  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+  border-image: asset_url("book-border.png");
+  border-image-slice: 85 60 85 60 fill;
+  border-image-width: 20px 20px 20px 20px;
+  border-image-outset: 5px;
+  border-image-repeat: stretch stretch;
+  border-radius: 1.5rem;
+  box-shadow: 15px 15px 8px rgba(0, 0, 0, 0.75);
+  position: relative;
+
+  .campaign-image {
+    width: 100%;
+    border-image: asset_url("image-border.png");
+    border-image-slice: 70 70 70 70 fill;
+    border-image-width: 1.5rem;
+    border-image-outset: 1.5rem;
+    border-image-repeat: stretch stretch;
+  }
 
   img {
-    border-radius: 3rem;
+    border-radius: 1rem;
     width: 100%;
   }
 
@@ -202,6 +213,14 @@
   }
 
   .book-title {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.5rem;
+    border-image: asset_url("text-border.png");
+    border-image-slice: 70 70 70 70 fill;
+    border-image-width: 1.5rem;
+    border-image-outset: 0.5rem;
+    border-image-repeat: stretch stretch;
     text-align: center;
     font-family: $pixel-font;
     font-size: 2.5rem;
@@ -209,27 +228,28 @@
   }
 }
 
-.invite-button {
-  font-family: $pixel-font;
-  font-size: 1.5rem;
-  padding: 1rem;
-  margin: 0 1.5rem;
-  color: black;
-  border: 3px solid rgb(97, 23, 97);
-  border-radius: 2rem;
-  background-color: #5e5648;
-  text-decoration: none;
+.list-group-brown {
+  background-color: #d4c1a1;
+  border-radius: 6px;
+}
+
+.navbar-book {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 5rem;
 }
 
 @media (max-width: 1500px) {
 
   .campaign-book {
     width: 40%;
+
+    .book-title {
+      font-size: 2rem;
+    }
   }
 
-  .book-title {
-    font-size: 2rem;
-  }
 
 }
 
@@ -237,15 +257,11 @@
 
   .campaign-book{
     width: 90%;
+
+    .book-title {
+      font-size: 1.75rem;
+    }
   }
 
-  .book-title {
-    font-size: 1.5rem;
-  }
 
-}
-
-.list-group-brown {
-  background-color: #d4c1a1;
-  border-radius: 6px;
 }
