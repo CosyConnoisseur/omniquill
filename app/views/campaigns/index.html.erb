@@ -27,7 +27,7 @@
                     <% if current_user.profile_picture.attached? %>
                       <%= image_tag current_user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                     <% else %>
-                      <%= image_tag "default-avatar.png", class: "avatar"%>
+                      <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
                     <% end %>
                     <%= participation.user.username %>
                     </li>
@@ -124,7 +124,7 @@
                       <% if character.participation.user.profile_picture.attached? %>
                         <%= image_tag current_user.profile_picture, class: "avatar" , style: "height: 50px; width: 50px; object-fit: cover" %>
                       <% else %>
-                        <%= image_tag "default-avatar.png", class: "avatar"%>
+                        <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
                       <% end %>
                     </p>
                   </div>
