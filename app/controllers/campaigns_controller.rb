@@ -5,8 +5,8 @@ class CampaignsController < ApplicationController
     @characters = Character.all
 
     @campaign_characters = Character.joins(participation: :campaign)
-                                .where(campaigns: { id: current_user.campaigns.select(:id) })
-                                .distinct
+                                    .where(campaigns: { id: current_user.campaigns.select(:id) })
+                                    .distinct
   end
 
   def show
@@ -55,6 +55,12 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     authorize @campaign, :join?
     @already_joined = @campaign.participations.exists?(user: current_user)
+  end
+
+  def invite
+    @campaign = Campaign.find(params[:id])
+    authorize @campaign, :invite?
+    @qr_svg = RQRCode::QRCode.new(join_campaign_url(@campaign)).as_svg
   end
 
   def add_player

@@ -17,10 +17,14 @@ class CampaignPolicy < ApplicationPolicy
   end
 
   def edit?
-    user == record.user
+    user == record.user || record.participations.exists?(user: user)
   end
 
   def update?
+    edit?
+  end
+
+  def invite?
     user == record.user
   end
 
@@ -44,10 +48,9 @@ class CampaignPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.left_joins(:participations)
-            .where(user_id: user.id)
-            .or(scope.left_joins(:participations).where(participations: { user_id: user.id })
-            )
-            .distinct
+           .where(user_id: user.id)
+           .or(scope.left_joins(:participations).where(participations: { user_id: user.id }))
+           .distinct
       # participations user?
     end
   end
