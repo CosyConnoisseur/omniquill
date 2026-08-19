@@ -1,9 +1,13 @@
-console.log("recording_controller.js loaded")
-
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["icon", "heading", "output" ]
+  static targets = [
+    "recordIcon",
+    "pauseIcon",
+    "heading",
+    "output",
+    "timer"
+  ]
 
   connect() {
     console.log("Recording controller connected")
@@ -12,28 +16,34 @@ export default class extends Controller {
     this.mediaRecorder = null
     this.mediaStream = null
     this.audioChunks = []
+
+    this.timerInterval = null
+    this.elapsedSeconds = 0
   }
 
   async toggle() {
-    if (this.isRecording) {
-      this.stopRecording()
-    } else {
+    if (!this.mediaRecorder) {
       await this.startRecording()
+    } else if (this.mediaRecorder.state === "paused") {
+      this.mediaRecorder.resume()
+
+      this.isRecording = true
+
+      this.recordIconTarget.style.display = "none"
+      this.pauseIconTarget.style.display = "block"
+
+      this.headingTarget.innerText = "Recording"
+
+      this.startTimer()
     }
   }
 
   async startRecording() {
-    console.log("startRecording called")
-
     try {
       this.mediaStream = await navigator.mediaDevices.getUserMedia({
         audio: true
       })
 
-      // this.mediaRecorder = new MediaRecorder(this.mediaStream)
-      //const mimeType = MediaRecorder.isTypeSupported("audio/mp4")
-      //  ? "audio/mp4"
-      //  : "audio/webm"
       const mimeType = "audio/mp4"
 
       this.mediaRecorder = new MediaRecorder(
@@ -41,46 +51,40 @@ export default class extends Controller {
         { mimeType }
       )
 
-      console.log("Recording MIME type:", this.mediaRecorder.mimeType)
-
       this.audioChunks = []
 
       this.mediaRecorder.ondataavailable = (event) => {
         this.audioChunks.push(event.data)
       }
 
-      this.mediaRecorder.onstop = () => {
-        // const audioBlob = new Blob(this.audioChunks, {
-        //  type: 'audio/webm'
-        // })
-        const audioBlob = new Blob(this.audioChunks, {
-          type: this.mediaRecorder.mimeType
-        })
-
-        console.log("Blob:", audioBlob.type, audioBlob.size)
-
-        this.uploadAudio(audioBlob)
-        this.mediaStream.getTracks().forEach(track => track.stop())
-      }
-
       this.mediaRecorder.start()
+
       this.isRecording = true
 
-      this.iconTarget.classList.remove("text-danger")
-      this.iconTarget.classList.add("text-dark")
+      this.recordIconTarget.style.display = "none"
+      this.pauseIconTarget.style.display = "block"
+
+      this.headingTarget.innerText = "Recording"
     } catch (error) {
       console.error("Microphone access denied:", error)
     }
+
+    this.startTimer()
   }
 
-  stopRecording() {
+  pause() {
     if (!this.mediaRecorder || !this.isRecording) return
 
-    this.mediaRecorder.stop()
+    this.mediaRecorder.pause()
+
     this.isRecording = false
 
-    this.iconTarget.classList.remove("text-dark")
-    this.iconTarget.classList.add("text-danger")
+    this.pauseIconTarget.style.display = "none"
+    this.recordIconTarget.style.display = "block"
+
+    this.headingTarget.innerText = "Ready when you are!"
+
+    this.stopTimer()
   }
 
   async uploadAudio(blob, filename = "recording.mp4") {
@@ -89,7 +93,7 @@ export default class extends Controller {
 
     const formData = new FormData()
     console.log(MediaRecorder.isTypeSupported("audio/webm"))
-    
+
     formData.append("audio_file", blob, filename)
 
     const csrfToken = document.querySelector(
@@ -113,6 +117,9 @@ export default class extends Controller {
       //this.outputTarget.innerText = data.text || `Error: ${data.error}`
       if (response.ok) {
         this.outputTarget.innerText = data.text
+        this.headingTarget.innerText = "Ready when you are!"
+
+        this.resetRecording()
       } else {
         console.error(data.error)
         this.outputTarget.innerText = `Error: ${data.error}`
@@ -134,14 +141,63 @@ export default class extends Controller {
 
     this.uploadAudio(file, file.name)
   }
-}
 
-  // toggle() {
-  //  this.iconTarget.classList.toggle("fa-circle")
-  //  this.iconTarget.classList.toggle("fa-pause")
-  //
-  //  if (this.iconTarget.classList.contains("fa-pause")) {
-  //    this.headingTarget.textContent = "Quilliam is scribing..."
-  //  } else {
-  //    this.headingTarget.textContent = "Quilliam is resting..."
-  //  }
+  generateTranscript() {
+    if (!this.mediaRecorder) return
+
+    this.headingTarget.innerText = "Generating transcript..."
+
+    this.mediaRecorder.onstop = () => {
+      const audioBlob = new Blob(this.audioChunks, {
+        type: this.mediaRecorder.mimeType
+      })
+
+      this.uploadAudio(audioBlob)
+
+      this.mediaStream.getTracks().forEach(track => track.stop())
+    }
+
+    this.mediaRecorder.stop()
+    this.isRecording = false
+  }
+
+  resetRecording() {
+    this.isRecording = false
+    this.mediaRecorder = null
+    this.mediaStream = null
+    this.audioChunks = []
+
+    this.recordIconTarget.style.display = "block"
+    this.pauseIconTarget.style.display = "none"
+
+    this.headingTarget.innerText = "Ready when you are!"
+
+    this.resetTimer()
+  }
+
+  startTimer() {
+    this.stopTimer()
+
+    this.timerInterval = setInterval(() => {
+      this.elapsedSeconds++
+
+      const hours = Math.floor(this.elapsedSeconds / 3600)
+      const minutes = Math.floor((this.elapsedSeconds % 3600)/60)
+      const seconds = this.elapsedSeconds % 60
+
+      this.timerTarget.innerText =
+        `${hours.toString().padStart(2, "0")}:` + `${minutes.toString().padStart(2, "0")}:` + `${seconds.toString().padStart(2, "0")}`
+    }, 1000)
+  }
+
+  stopTimer() {
+    clearInterval(this.timerInterval)
+    this.timerInterval = null
+  }
+
+  resetTimer() {
+    this.stopTimer()
+    this.elapsedSeconds = 0
+    this.timerTarget.innerText = "00:00:00"
+  }
+}
