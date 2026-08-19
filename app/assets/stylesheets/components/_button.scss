@@ -1,9 +1,17 @@
 .animate-button {
   width: 5rem;
   height: 5rem;
+  position: relative;
 
   img {
     width: 5rem;
+  }
+
+  #invite-text {
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    font-size: 1.25rem;
   }
 
   .animate-move-icon {

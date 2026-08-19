@@ -14,9 +14,12 @@
                 <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
               </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Action", "#", class: "dropdown-item" %>
-                <%= link_to "Another action", "#", class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+                <%= link_to join_campaign_url(campaign), class: "animate-button dropdown-item" do %>
+                  <%= image_tag "invite-player-icon.png", class: "animate-icon" %>
+                  <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon" %>
+                  <p id="invite-text">Invite Players</p>
+                <% end %>
+                <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
               </div>
             </div>
           </nav>
@@ -32,20 +35,15 @@
           <% end %>
           <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
-          <%= render "form_card_image", campaign:campaign %>
 
           <div class="d-flex justify-content-center my-2">
-            <%= link_to join_campaign_url(campaign), class: "animate-button" do %>
-              <%= image_tag "invite-player-icon.png", class: "animate-icon" %>
-              <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon" %>
-            <% end %>
               <ul>
                 <% campaign.participations.each do |participation| %>
                   <li>
                     <% if current_user.profile_picture.attached? %>
                       <%= image_tag current_user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                     <% else %>
-                      <%= image_tag "default-avatar.png", class: "avatar"%>
+                      <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                     <% end %>
                     <%= participation.user.username %>
                     </li>
@@ -53,11 +51,6 @@
               </ul>
             </li>
           </ul>
-
-          <div class="text-center my-2">
-            <%= link_to "Invite Player", join_campaign_url(campaign), class: "invite-button" %>
-          </div>
-
         </div>
       </div>
     <% end %>
