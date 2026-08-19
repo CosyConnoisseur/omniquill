@@ -48,7 +48,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "cloudinary", "~> 2.0"
 gem "pundit"
-gem "ruby_llm", "~> 1.4.0"
+gem "ruby_llm", "~> 1.16.0"
 gem 'faraday'
 gem "schematist"
 gem "httplog"

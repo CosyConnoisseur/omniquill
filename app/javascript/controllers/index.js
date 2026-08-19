@@ -9,3 +9,6 @@ application.register("form-typewriter", FormTypewriterController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import RecordingController from "./recording_controller"
+application.register("recording", RecordingController)

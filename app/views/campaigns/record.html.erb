@@ -1,38 +1,49 @@
 <div class="container py-5 text-center">
-  <h1 class="mb-4">Omniquill</h1>
-  <div class="mb-5">
-    <%= link_to "Character Sheets", root_path, class: "btn btn-outline-secondary" %>
+  <div class="centering">
+  <div class="campaign-book">
+    <h1 class="mb-4">Omniquill</h1>
+    <div class="mb-5">
+      <%= link_to "Character Sheets", root_path, class: "btn btn-outline-secondary" %>
+    </div>
   </div>
-  <div data-controller="recording">
+  </div>
+  <div class="centering">
+  <div class="campaign-book" data-controller="recording">
     <div class="recording-page">
       <h1 class="mb-4" data-recording-target="heading">
         Ready when you are!
       </h1>
-      <button
-        type="button"
-        class="btn recording-button"
-        data-action="click->recording#toggle"
-        >
-        <i
-          class="fa-solid fa-circle"
-          data-recording-target="icon"
-        ></i>
-      </button>
+      <div id="record-button" class="mt-auto text-reset clickable-icon" style="cursor: pointer;" data-recording-target="icon" data-action="click->recording#toggle">
+        <svg width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-record-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+        </svg>
+      </div>
+      <div id="transcription-output" data-recording-target="output" class="mt-3 p-3 border rounded bg-light d-none">
+        Waiting for speech...
+      </div>
       <div class="timer mt-4">
-        00:00:00
+        <h2>00:00:00</h2>
+      </div>
+      <div>
+        <input type="file" id="audio-file" accept="audio/*">
+        <button type="button" data-action="click->recording#uploadAudioFile">
+          Upload audio
+        </button>
       </div>
       <div class="recording-controls d-flex justify-content-center align-items-center gap-4 mt-4">
         <%= link_to campaign_path(@campaign) do %>
-          <button type="button" class="btn control-button">
+          <button type="button" class="btn btn-lg control-button">
             <i class="fa-solid fa-rotate-left"></i>
           </button>
         <% end %>
         <%= link_to campaign_chapter_path(@campaign, @test_chapter) do %>
-          <button type="button" class="btn control-button">
+          <button type="button" class="btn btn-lg control-button">
             <i class="fa-solid fa-circle-stop"></i>
           </button>
         <% end %>
       </div>
     </div>
+  </div>
   </div>
 </div>
