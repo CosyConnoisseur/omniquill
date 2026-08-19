@@ -7,16 +7,25 @@
   <div class="bookshelf-container">
     <% @campaigns.each do |campaign| %>
 
-        <div class="campaign-book" style="overflow: hidden;"> <%# something about this div was breaking the width of the page. %>
+        <div class="campaign-book" style="overflow: hidden;"> <%# something about this div was breaking the width of the page on mobile. overflow:hidden fixes it %>
         <%= link_to campaign_path(campaign) do %>
           <% if campaign.card_image.attached? %>
-            <%= image_tag campaign.card_image, class: "card-img-top img-fluid", style: "max-height: 550px;" %>
+            <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
           <% else %>
             <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
           <% end %>
           <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
+          <p class="last-played">
+            Last Played:
+            <% if campaign.last_played_at.present? %>
+                <%= campaign.last_played_at&.strftime("%B %d, %Y")%> or
+              <%= time_ago_in_words(campaign.last_played_at) %> ago
+            <% else %>
+              Never
+            <% end %>
+          </p>
           <ul class="list-group-brown list-group-flush my-3">
             <li class="list-group-item">
               <strong>Players:</strong>
