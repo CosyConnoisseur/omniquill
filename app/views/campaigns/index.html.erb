@@ -21,13 +21,6 @@
                 <p id="invite-text">Invite Players</p>
               <% end %>
               <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
-              <% if campaign.user == current_user %>
-                <%= link_to edit_campaign_path(campaign), class: "animate-button-dropdown dropdown-item" do %>
-                  <%= image_tag "campaign-creation-icon.png", class: "animate-icon-dropdown" %>
-                  <%= image_tag "campaign-creation-icon.gif",  class: "animate-move-icon-dropdown" %>
-                  <p id="invite-text">Edit Campaign</p>
-                <% end %>
-              <% end %>
             </div>
           </div>
         </nav>
