@@ -3,11 +3,12 @@
     <h1>Campaigns</h1>
   </div>
 </div>
+
 <div class="centering">
   <div class="bookshelf-container">
-    <% @campaigns.each do |campaign| %>
+      <% @campaigns.each do |campaign| %>
 
-        <div class="campaign-book", style="overflow: hidden;">
+        <div class="campaign-book">
           <nav class="navbar navbar-expand-sm navbar-book">
             <div class="container-fluid">
               <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,25 +44,20 @@
                     <% if participation.user.profile_picture.attached? %>
                       <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                     <% else %>
-<<<<<<< HEAD
                       <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
-=======
-                      <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
->>>>>>> 946882e915e2808a857d40af02a32a6197ebb7b5
                     <% end %>
                     <%= participation.user.username ? participation.user.username : participation.user.email  %>
-                    </li>
+                  </li>
                 <% end %>
               </ul>
             </li>
           </ul>
         </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class="centering my-3">
-  <%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
-</div>
+
 <div class="centering">
   <div class="medieval-title">
     <h2>And characters!</h2>

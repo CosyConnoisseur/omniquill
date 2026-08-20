@@ -25,6 +25,12 @@
   transform: scale(1.5);
 }
 
+.horizontal-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 @media (max-width: 600px) {
 
   .navbar-logo {
