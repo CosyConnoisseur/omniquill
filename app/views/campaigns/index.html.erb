@@ -15,7 +15,7 @@
               <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to join_campaign_url(campaign), class: "animate-button-dropdown dropdown-item" do %>
+              <%= link_to invite_campaign_path(campaign), class: "animate-button-dropdown dropdown-item" do %>
                 <%= image_tag "invite-player-icon.png", class: "animate-icon-dropdown" %>
                 <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon-dropdown" %>
                 <p id="invite-text">Invite Players</p>
