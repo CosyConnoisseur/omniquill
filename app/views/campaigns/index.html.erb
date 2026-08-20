@@ -3,16 +3,36 @@
     <h1>Campaigns</h1>
   </div>
 </div>
+
 <div class="centering">
   <div class="bookshelf-container">
-    <% @campaigns.each do |campaign| %>
+      <% @campaigns.each do |campaign| %>
 
-        <div class="campaign-book" style="overflow: hidden;"> <%# something about this div was breaking the width of the page on mobile. overflow:hidden fixes it %>
+        <div class="campaign-book">
+          <nav class="navbar navbar-expand-sm navbar-book">
+            <div class="container-fluid">
+              <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to join_campaign_url(campaign), class: "animate-button dropdown-item" do %>
+                  <%= image_tag "invite-player-icon.png", class: "animate-icon" %>
+                  <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon" %>
+                  <p id="invite-text">Invite Players</p>
+                <% end %>
+                <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
+              </div>
+            </div>
+          </nav>
         <%= link_to campaign_path(campaign) do %>
           <% if campaign.card_image.attached? %>
-            <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
+            <div class="campaign-image">
+              <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
+            </div>
           <% else %>
-            <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
+          <div class="campaign-image">
+            <%= image_tag "default-card-image.jpg", style: "max-height: 550px;" %>
+          </div>
           <% end %>
           <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
@@ -30,32 +50,23 @@
             <li class="list-group-item">
               <strong>Players:</strong>
 
-              <ul>
-                <% campaign.participations.each do |participation| %>
-                  <li>
-                    <% if participation.user.profile_picture.attached? %>
-                      <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
-                    <% else %>
-                      <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
-                    <% end %>
-                    <%= participation.user.username ? participation.user.username : participation.user.email  %>
-                    </li>
+          <div class="participants-block">
+            <% campaign.participations.each do |participation| %>
+              <div class="single-participant">
+                <% if participation.user.profile_picture.attached? %>
+                  <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                <% else %>
+                  <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                 <% end %>
-              </ul>
-            </li>
-          </ul>
-
-          <div class="text-center my-2">
-            <%= link_to "Invite Player", join_campaign_url(campaign), class: "invite-button" %>
+                <p><%= participation.user.username ? participation.user.username : participation.user.email  %></p>
+              </div>
+            <% end %>
           </div>
-
-        </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class="centering my-3">
-  <%= link_to "New Campaign", new_campaign_path, class: "invite-button" %>
-</div>
+
 <div class="centering">
   <div class="medieval-title">
     <h2>And characters!</h2>
