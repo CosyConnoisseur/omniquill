@@ -50,9 +50,9 @@
             <% campaign.participations.each do |participation| %>
               <div class="single-participant">
                 <% if participation.user.profile_picture.attached? %>
-                  <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                  <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover; border-radius: 50%;" %>
                 <% else %>
-                  <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                  <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover; border-radius: 50%;" %>
                 <% end %>
                 <p><%= participation.user.username ? participation.user.username : participation.user.email  %></p>
               </div>
@@ -65,7 +65,7 @@
 
 <div class="centering">
   <div class="medieval-title">
-    <h2>And characters!</h2>
+    <h2>My characters</h2>
   </div>
 </div>
 <div class="centering my-3">
@@ -77,22 +77,21 @@
 <div class="list-div d-flex flex-column flex-md-row gap-4 justify-content-md-evenly align-items-center align-items-md-start m-3">
 
   <div class="flex-grow-1" style="max-width: 320px; min-width: 280px;">
-    <h2 class="mb-3 text-center" style="color: white">Only My Characters!</h2>
     <ul class="list-unstyled d-flex flex-column gap-3">
       <% current_user.characters.each do |character| %>
         <li>
           <div>
             <%= link_to character_path(character), class: "text-decoration-none" do %>
-              <div class="card shadow-sm" style="border-radius: 5px">
+              <div class="card shadow-sm" style="border-radius: 5px; background-color: transparent;">
                 <div class="card-body">
                   <div class="d-flex align-items-center justify-content-between">
-                    <h5 class="card-title">
+                    <h5 class="card-title" style="font-family: Luxurious Roman;">
                       <%= character.name %>
                     </h5>
                     <% if character.portrait.attached? %>
-                      <%= image_tag character.portrait, style: "width: 70px; height: 70px; object-fit: cover; border-radius: 8px;" %>
+                      <%= image_tag character.portrait, class: "character-preview-pic" %>
                     <% else %>
-                      <%= image_tag "default-portrait.jpg", style: "max-height: 70px; border-radius: 8px;" %>
+                      <%= image_tag "default-portrait.jpg", class: "character-preview-pic" %>
                     <% end %>
                   </div>
                     <p class="card-text text-muted">
@@ -115,6 +114,8 @@
     </ul>
   </div>
 
+  <%# Remove the bottom of this code near the end of this project deadline. %>
+
   <div class="flex-grow-1" style="max-width: 400px; min-width: 280px;">
     <h2 class="mb-3" style="color: white">Every Character in the DB!</h2>
       <ul class="list-unstyled d-flex flex-column gap-3" style="max-width: 320px;">
@@ -122,16 +123,16 @@
           <li>
             <div>
               <%= link_to character_path(character), class: "text-decoration-none" do %>
-                <div class="card shadow-sm" style="border-radius: 5px">
+                <div class="card shadow-sm" style="border-radius: 5px; background-color: transparent;">
                   <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h5 class="card-title">
+                      <h5 class="card-title" style="font-family: Luxurious Roman;">
                         <%= character.name %>
                       </h5>
                       <% if character.portrait.attached? %>
-                        <%= image_tag character.portrait, style: "width: 70px; height: 70px; object-fit: cover; border-radius: 8px;" %>
+                        <%= image_tag character.portrait, class: "character-preview-pic" %>
                       <% else %>
-                        <%= image_tag "default-portrait.jpg", style: "max-height: 70px; border-radius: 8px;" %>
+                        <%= image_tag "default-portrait.jpg", class: "character-preview-pic" %>
                       <% end %>
                     </div>
                     <p class="card-text text-muted">

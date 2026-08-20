@@ -81,6 +81,15 @@
   overflow-y: auto
 }
 
+.card-body {
+  margin: 1rem 0;
+  border-image: asset_url("image-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 1.5rem;
+  border-image-repeat: stretch stretch;
+}
+
 
 @media (max-width: 1000px) {
   .character-show-portrait,

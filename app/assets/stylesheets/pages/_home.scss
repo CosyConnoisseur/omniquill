@@ -269,11 +269,6 @@
   }
 }
 
-.list-group-brown {
-  background-color: #d4c1a1;
-  border-radius: 6px;
-}
-
 .navbar-book {
   position: absolute;
   top: -1rem;
@@ -343,6 +338,14 @@
       }
     }
   }
+}
+
+.character-preview-pic {
+  max-height: 4.5rem;
+  max-width: 4rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  box-shadow: 3px 3px 8px black;
 }
 
 @keyframes showup {
