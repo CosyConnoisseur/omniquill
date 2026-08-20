@@ -17,6 +17,15 @@
           <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
           <%= render "form_card_image", campaign:campaign %>
+          <p class="last-played">
+            Last Played:
+            <% if campaign.last_played_at.present? %>
+                <%= campaign.last_played_at&.strftime("%B %d, %Y")%> or <%# We can choose one or both of these or maybe add some conditional%>
+              <%= time_ago_in_words(campaign.last_played_at) %> ago
+            <% else %>
+              Never
+            <% end %>
+          </p>
           <ul class="list-group-brown list-group-flush my-3">
             <li class="list-group-item">
               <strong>Players:</strong>

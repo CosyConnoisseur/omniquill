@@ -60,9 +60,11 @@
 
       <!-- AI button -->
       <button type="submit"
-              class="btn btn-ai-custom w-75 d-none" style="min-width: 300px; max-width: 650px;"
+              class="btn btn-ai-custom w-md-70 d-none position-relative" style="min-width: 280px; max-width: 600px;"
               data-form-typewriter-target="aiButton">
               Generate From Character Sheet
+              <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:-25px; left:255px;" %>
+              <%= image_tag "sparkle2.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top: 10px ; left:-25px; transform: rotate(-25deg);" %>
       </button>
 
       <!-- Loading -->
