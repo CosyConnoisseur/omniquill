@@ -20,7 +20,7 @@
 // Global CSS to be used
 
 body {
-  margin-top: 79px; //navbar height
+  // margin-top: 79px; //navbar height or nevermind - futureproofing
   width: 100%;
   min-height: 100vh;
   background-image: asset_url("Back-wall-bricks.png");
@@ -68,14 +68,14 @@ body {
 }
 
 
-.navbar {
-  view-transition-name: navbar;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100
-}
+// .navbar {
+//   view-transition-name: navbar;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 100
+// } don't need this anymore
 
 
 /* Mobile Slide-In Effect */
