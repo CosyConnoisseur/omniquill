@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
   skip_after_action :verify_policy_scoped, only: :index
   def index
-    @campaigns = policy_scope(Campaign)
+    @campaigns = policy_scope(Campaign).includes(:chapters)
     @characters = Character.all
 
     @campaign_characters = Character.joins(participation: :campaign)
