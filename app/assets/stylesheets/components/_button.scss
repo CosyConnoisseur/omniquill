@@ -30,6 +30,37 @@
   }
 }
 
+.animate-button-dropdown {
+  width: 5rem;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  #invite-text {
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    font-size: 1.25rem;
+  }
+
+  .animate-move-icon-dropdown {
+    display: none;
+  }
+
+  &:hover {
+
+    .animate-icon-dropdown {
+      display: none;
+    }
+
+    .animate-move-icon-dropdown {
+      display: inline;
+    }
+  }
+}
+
 .button-navbar {
 
   width: 3rem;

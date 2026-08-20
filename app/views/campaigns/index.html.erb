@@ -6,60 +6,60 @@
 
 <div class="centering">
   <div class="bookshelf-container">
-      <% @campaigns.each do |campaign| %>
+    <% @campaigns.each do |campaign| %>
 
-        <div class="campaign-book">
-          <nav class="navbar navbar-expand-sm navbar-book">
-            <div class="container-fluid">
-              <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to join_campaign_url(campaign), class: "animate-button dropdown-item" do %>
-                  <%= image_tag "invite-player-icon.png", class: "animate-icon" %>
-                  <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon" %>
-                  <p id="invite-text">Invite Players</p>
-                <% end %>
-                <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
-              </div>
+      <div class="campaign-book">
+        <nav class="navbar navbar-expand-sm navbar-book">
+          <div class="container-fluid">
+            <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to invite_campaign_path(campaign), class: "animate-button-dropdown dropdown-item" do %>
+                <%= image_tag "invite-player-icon.png", class: "animate-icon-dropdown" %>
+                <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon-dropdown" %>
+                <p id="invite-text">Invite Players</p>
+              <% end %>
+              <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
             </div>
-          </nav>
-        <%= link_to campaign_path(campaign) do %>
-          <% if campaign.card_image.attached? %>
-            <div class="campaign-image">
-              <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
-            </div>
-          <% else %>
+          </div>
+        </nav>
+      <%= link_to campaign_path(campaign) do %>
+        <% if campaign.card_image.attached? %>
+          <div class="campaign-image">
+            <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
+          </div>
+        <% else %>
           <div class="campaign-image">
             <%= image_tag "default-card-image.jpg", style: "max-height: 550px;" %>
           </div>
-          <% end %>
-          <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
-          <p style="font-size: 0.75rem; margin: 0;" class="text-center">
-            Last Played:
-            <% if campaign.last_played_at.present? %>
-                <%= campaign.last_played_at&.strftime("%B %d, %Y")%> | <%# We can choose one or both of these or maybe add some conditional%>
-              <%= time_ago_in_words(campaign.last_played_at) %> ago
-            <% else %>
-              Never
-            <% end %>
-          </p>
-
-          <div class="participants-block">
-            <% campaign.participations.each do |participation| %>
-              <div class="single-participant">
-                <% if participation.user.profile_picture.attached? %>
-                  <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover; border-radius: 50%;" %>
-                <% else %>
-                  <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover; border-radius: 50%;" %>
-                <% end %>
-                <p><%= participation.user.username ? participation.user.username : participation.user.email  %></p>
-              </div>
-            <% end %>
-          </div>
+        <h5 class="book-title"><%= campaign.title %></h5>
       <% end %>
-    </div>
+        <p style="font-size: 0.75rem; margin: 0;" class="text-center">
+          Last Played:
+          <% if campaign.last_played_at.present? %>
+              <%= campaign.last_played_at&.strftime("%B %d, %Y")%> | <%# We can choose one or both of these or maybe add some conditional%>
+            <%= time_ago_in_words(campaign.last_played_at) %> ago
+          <% else %>
+            Never
+          <% end %>
+        </p>
+
+        <div class="participants-block">
+          <% campaign.participations.each do |participation| %>
+            <div class="single-participant">
+              <% if participation.user.profile_picture.attached? %>
+                <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover; border-radius: 50%;" %>
+              <% else %>
+                <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover; border-radius: 50%;" %>
+              <% end %>
+              <p><%= participation.user.username ? participation.user.username : participation.user.email  %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -68,14 +68,8 @@
     <h2>My characters</h2>
   </div>
 </div>
-<div class="centering my-3">
-  <% if current_user.participations.exists? %>
-    <%= link_to "Create New Character", new_campaign_character_path(current_user.participations.last.campaign), class: "invite-button" %>
-  <% end %>
-</div>
 
 <div class="list-div d-flex flex-column flex-md-row gap-4 justify-content-md-evenly align-items-center align-items-md-start m-3">
-
   <div class="flex-grow-1" style="max-width: 320px; min-width: 280px;">
     <ul class="list-unstyled d-flex flex-column gap-3">
       <% current_user.characters.each do |character| %>
@@ -115,7 +109,6 @@
   </div>
 
   <%# Remove the bottom of this code near the end of this project deadline. %>
-
   <div class="flex-grow-1" style="max-width: 400px; min-width: 280px;">
     <h2 class="mb-3" style="color: white">Every Character in the DB!</h2>
       <ul class="list-unstyled d-flex flex-column gap-3" style="max-width: 320px;">
@@ -126,7 +119,7 @@
                 <div class="card shadow-sm" style="border-radius: 5px; background-color: transparent;">
                   <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h5 class="card-title" style="font-family: Luxurious Roman;">
+                      <h5 class="card-title">
                         <%= character.name %>
                       </h5>
                       <% if character.portrait.attached? %>
