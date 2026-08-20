@@ -172,7 +172,7 @@
 <% @campaign.characters.each do |character| %>
   <div class="col-md-4 mb-3">
     <%= link_to character_path(character), class: "text-decoration-none" do %>
-      <div class="card shadow-sm">
+      <div class="card shadow-sm" style="border-radius: 5px; background-color: transparent;">
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title">
