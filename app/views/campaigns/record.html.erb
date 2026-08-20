@@ -34,7 +34,7 @@
       <div class="recording-controls d-flex justify-content-center align-items-center gap-5 mt-4">
         <!-- return to campaign's page -->
         <%= link_to campaign_path(@campaign), class: "text-reset clickable-icon", style: "background: none; border: none; padding: 0;" do %>
-          <svg width="48" height="=48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
             <title>Back to the campaign's page</title>
             <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
           </svg>
@@ -50,7 +50,7 @@
                 title="Upload audio file"
                 style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;"
                 class="text-reset">
-            <svg width="48" height="=48" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+            <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
               <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
               <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
             </svg>
@@ -58,22 +58,30 @@
         </div>
         <!-- Generate Transcription -->
         <div class="text-reset clickable-icon" style="cursor: point;" data-action="click->recording#generateTranscript">
-          <svg width="48" height="=48" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+          <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
             <title>Generate Transcript</title>
             <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1"/>
           </svg>
         </div>
         <!-- finish recording and generate summary -->
         <%= link_to campaign_chapter_path(@campaign, @test_chapter), class: "text-reset clickable-icon", style: "background: none; border: none; padding: 0;" do %>
-          <svg width="48" height="=48" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-stars" viewBox="0 0 16 16">
+          <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list-stars" viewBox="0 0 16 16">
             <title>Generate highlights</title>
             <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5"/>
             <path d="M2.242 2.194a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.28.28 0 0 0-.094.3l.173.569c.078.256-.213.462-.423.3l-.417-.324a.27.27 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.28.28 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.27.27 0 0 0 .259-.194zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.28.28 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.27.27 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.28.28 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.27.27 0 0 0 .259-.194zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.28.28 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.27.27 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.28.28 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.27.27 0 0 0 .259-.194z"/>
           </svg>
         <% end %>
       </div>
-      <div id="transcription-output" data-recording-target="output" class="mt-3 p-3 border rounded bg-light d-none">
-        Waiting for speech...
+      <div id="transcription-output" data-recording-target="output" class="mt-3 p-3 border rounded bg-light d-none position-relative" style="position: absolute; top: 0; right: 0; cursor: pointer;">
+        <div class="d-flex justify-content-center mb-2 clickable-icon" style="cursor: pointer;" data-action="click->recording#downloadTranscript" title="Download transcript">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+          </svg>
+        </div>
+        <div data-recording-target="transcript">
+          Waiting for speech...
+        </div>
       </div>
     </div>
   </div>

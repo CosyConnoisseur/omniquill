@@ -48,5 +48,6 @@ Rails.application.routes.draw do
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
 
   resources :transcriptions, only: [:create]
+  post "transcriptions/download", to: "transcriptions#download"
 
 end

@@ -6,6 +6,7 @@ export default class extends Controller {
     "pauseIcon",
     "heading",
     "output",
+    "transcript",
     "timer"
   ]
 
@@ -89,10 +90,9 @@ export default class extends Controller {
 
   async uploadAudio(blob, filename = "recording.mp4") {
     this.outputTarget.classList.remove("d-none")
-    this.outputTarget.innerText = "Transcribing audio..."
+    this.transcriptTarget.innerText = "Transcribing audio..."
 
     const formData = new FormData()
-    console.log(MediaRecorder.isTypeSupported("audio/webm"))
 
     formData.append("audio_file", blob, filename)
 
@@ -114,20 +114,19 @@ export default class extends Controller {
 
       const data = JSON.parse(text)
 
-      //this.outputTarget.innerText = data.text || `Error: ${data.error}`
       if (response.ok) {
-        this.outputTarget.innerText = data.text
+        this.transcriptTarget.innerText = data.text
         this.headingTarget.innerText = "Ready when you are!"
 
         this.resetRecording()
       } else {
         console.error(data.error)
-        this.outputTarget.innerText = `Error: ${data.error}`
+        this.transcriptTarget.innerText = `Error: ${data.error}`
       }
     } catch (error) {
       // this.outputTarget.innerText = "Failed to upload audio"
       console.error(error)
-      this.outputTarget.innerText = "Failed to upload audio"
+      this.transcriptTarget.innerText = "Failed to upload audio"
     }
   }
 
@@ -199,5 +198,43 @@ export default class extends Controller {
     this.stopTimer()
     this.elapsedSeconds = 0
     this.timerTarget.innerText = "00:00:00"
+  }
+
+  async downloadTranscript() {
+    const text = this.transcriptTarget.innerText
+
+    if (!text || text === "Waiting for speech...") {
+      return
+    }
+
+    const csrfToken = document.querySelector(
+      'meta[name="csrf-token"]'
+    ).content
+
+    const formData = new FormData()
+    formData.append("text", text)
+
+    const response = await fetch("/transcriptions/download", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": csrfToken
+      },
+      body: formData
+    })
+
+    if (!response.ok) {
+      console.error("Failed to download transcript")
+      return
+    }
+
+    const blob = await response.blob()
+    const url = URL.createObjectURL(blob)
+
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "transcript.txt"
+    link.click()
+
+    URL.revokeObjectURL(url)
   }
 }

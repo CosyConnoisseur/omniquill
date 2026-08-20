@@ -36,4 +36,15 @@ class TranscriptionsController < ApplicationController
   ensure
     File.delete(wav_path) if defined?(wav_path) && File.exist?(wav_path)
   end
+
+  def download
+    authorize :transcription, :download?
+
+    send_data(
+      params[:text],
+      filename: "transcript.txt",
+      type: "text/plain",
+      disposition: "attachment"
+    )
+  end
 end
