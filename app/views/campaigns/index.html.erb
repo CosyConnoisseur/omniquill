@@ -21,7 +21,7 @@
                 <p id="invite-text">Invite Players</p>
               <% end %>
               <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
-              <% if campaign.user.present? %>
+              <% if campaign.user == current_user %>
                 <%= link_to edit_campaign_path(campaign), class: "animate-button-dropdown dropdown-item" do %>
                   <%= image_tag "campaign-creation-icon.png", class: "animate-icon-dropdown" %>
                   <%= image_tag "campaign-creation-icon.gif",  class: "animate-move-icon-dropdown" %>
@@ -114,6 +114,41 @@
       <% end %>
     </ul>
   </div>
-</div>
 
   <%# Remove the bottom of this code near the end of this project deadline. %>
+  <div class="flex-grow-1" style="max-width: 400px; min-width: 280px;">
+    <h2 class="mb-3" style="color: white">Every Character in the DB!</h2>
+      <ul class="list-unstyled d-flex flex-column gap-3" style="max-width: 320px;">
+        <% @characters.each do |character| %>
+          <li>
+            <div>
+              <%= link_to character_path(character), class: "text-decoration-none" do %>
+                <div class="card shadow-sm" style="border-radius: 5px; background-color: transparent;">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h5 class="card-title">
+                        <%= character.name %>
+                      </h5>
+                      <% if character.portrait.attached? %>
+                        <%= image_tag character.portrait, class: "character-preview-pic" %>
+                      <% else %>
+                        <%= image_tag "default-portrait.jpg", class: "character-preview-pic" %>
+                      <% end %>
+                    </div>
+                    <p class="card-text text-muted">
+                      Played by: <%= character.participation.user.username ? character.participation.user.username : character.participation.user.email  %>
+                      <% if character&.participation&.user&.profile_picture&.attached? %>
+                        <%= image_tag character.participation.user.profile_picture, class: "avatar" , style: "height: 50px; width: 50px; object-fit: cover" %>
+                      <% else %>
+                        <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+</div>
