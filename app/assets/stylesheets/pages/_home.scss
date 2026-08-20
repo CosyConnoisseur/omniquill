@@ -226,6 +226,46 @@
     font-size: 2.5rem;
     color: $omni-ink;
   }
+
+  .participants-block {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+
+    .single-participant {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 4rem;
+      margin: 4px 0 4px 0;
+      position: relative;
+      transition: 0.4s ease;
+
+      p {
+        display: none;
+        position: absolute;
+        top: 60%;
+        text-align: center;
+        margin: 0;
+        background-color: rgba(216, 205, 154, 0.5);
+        border-radius: 10px;
+        padding: 2px 5px;
+      }
+
+      &:hover {
+        p {
+          display: block;
+          animation: 0.4s detailplayer;
+        }
+
+        img {
+          animation: 0.4s blurback;
+          filter: blur(1px);
+        }
+      }
+    }
+  }
 }
 
 .list-group-brown {
@@ -312,6 +352,26 @@
   to {
     transform: translateY(0%);
     opacity: 1;
+  }
+}
+
+@keyframes detailplayer {
+  from {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes blurback {
+  from {
+    filter: blur(0px);
+  }
+  to {
+    filter: blur(1px);
   }
 }
 

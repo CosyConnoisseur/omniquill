@@ -37,22 +37,18 @@
           <h5 class="book-title"><%= campaign.title %></h5>
         <% end %>
 
-          <div class="d-flex justify-content-center my-2">
-              <ul>
-                <% campaign.participations.each do |participation| %>
-                  <li>
-                    <% if participation.user.profile_picture.attached? %>
-                      <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
-                    <% else %>
-                      <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
-                    <% end %>
-                    <%= participation.user.username ? participation.user.username : participation.user.email  %>
-                  </li>
+          <div class="participants-block">
+            <% campaign.participations.each do |participation| %>
+              <div class="single-participant">
+                <% if participation.user.profile_picture.attached? %>
+                  <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                <% else %>
+                  <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                 <% end %>
-              </ul>
-            </li>
-          </ul>
-        </div>
+                <p><%= participation.user.username ? participation.user.username : participation.user.email  %></p>
+              </div>
+            <% end %>
+          </div>
       <% end %>
     </div>
   </div>
