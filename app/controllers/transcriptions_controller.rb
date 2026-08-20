@@ -6,9 +6,12 @@ class TranscriptionsController < ApplicationController
 
     return render json: { error: "No audio file received" }, status: :bad_request unless uploaded_file.present?
 
-    wav_path = Rails.root.join("tmp", "recording.wav")
+    # Convert the uploaded audio to WAV format
+    # wav_path = Rails.root.join("tmp", "recording.wav")
+    wav_path = Rails.root.join("tmp", "recording-#{SecureRandom.uuid}.wav")
 
-    system(
+    # Run FFmpeg to convert into a WAV file suitable for transcription.
+    success = system(
       "ffmpeg",
       "-y",
       "-i", uploaded_file.tempfile.path,
@@ -18,6 +21,9 @@ class TranscriptionsController < ApplicationController
       wav_path.to_s
     )
 
+    # Stop if FFmepg failed to convert the audio
+    raise "Audio conversion failed" unless success
+
     chat = RubyLLM.chat(model: "gemini-3.1-flash-lite")
 
     response = chat.ask(
@@ -25,11 +31,13 @@ class TranscriptionsController < ApplicationController
       with: wav_path.to_s
     )
 
+    # Print the generated transcript on the terminal.
     puts "===== TRANSCRIPTION ====="
     puts response.content
     puts "========================="
 
     render json: { text: response.content }
+  # Rescue errors and clean up the temporary WAV file.
   rescue => e
     Rails.logger.error e.full_message
     render json: { error: e.message }, status: :internal_server_error
@@ -37,6 +45,7 @@ class TranscriptionsController < ApplicationController
     File.delete(wav_path) if defined?(wav_path) && File.exist?(wav_path)
   end
 
+  # Allows the user to download the full transcript.
   def download
     authorize :transcription, :download?
 

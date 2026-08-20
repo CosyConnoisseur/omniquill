@@ -16,6 +16,7 @@ export default class extends Controller {
     this.isRecording = false
     this.mediaRecorder = null
     this.mediaStream = null
+    // Store the audio data produced by MediaRecorder
     this.audioChunks = []
 
     this.timerInterval = null
@@ -52,6 +53,7 @@ export default class extends Controller {
         { mimeType }
       )
 
+      // Store the audio data produced by MediaRecorder
       this.audioChunks = []
 
       this.mediaRecorder.ondataavailable = (event) => {
@@ -66,11 +68,11 @@ export default class extends Controller {
       this.pauseIconTarget.style.display = "block"
 
       this.headingTarget.innerText = "Recording"
+
+      this.startTimer()
     } catch (error) {
       console.error("Microphone access denied:", error)
     }
-
-    this.startTimer()
   }
 
   pause() {
@@ -109,10 +111,10 @@ export default class extends Controller {
         body: formData
       })
 
-      const text = await response.text()
-      console.log("Server response:", text)
-
-      const data = JSON.parse(text)
+      // const text = await response.text()
+      // console.log("Server response:", text)
+      // const data = JSON.parse(text)
+      const data = await response.json()
 
       if (response.ok) {
         this.transcriptTarget.innerText = data.text
@@ -147,10 +149,13 @@ export default class extends Controller {
     this.headingTarget.innerText = "Generating transcript..."
 
     this.mediaRecorder.onstop = () => {
+      // Convert the recorded audio chunks into a single audio file
+      // Since we have record/pause button
       const audioBlob = new Blob(this.audioChunks, {
         type: this.mediaRecorder.mimeType
       })
 
+      // send the audio file to Rails for transcription
       this.uploadAudio(audioBlob)
 
       this.mediaStream.getTracks().forEach(track => track.stop())
@@ -164,6 +169,7 @@ export default class extends Controller {
     this.isRecording = false
     this.mediaRecorder = null
     this.mediaStream = null
+    // Store the audio data produced by MediaRecorder
     this.audioChunks = []
 
     this.recordIconTarget.style.display = "block"
