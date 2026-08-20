@@ -9,7 +9,7 @@
 .character-show-description {
   display: flex;
   justify-content: center;
-   margin:auto;
+  margin:auto;
 }
 
 .character-description-input {
@@ -79,6 +79,15 @@
 
 .character-sheet-modal-content {
   overflow-y: auto
+}
+
+.card-body {
+  margin: 1rem 0;
+  border-image: asset_url("image-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 1.5rem;
+  border-image-repeat: stretch stretch;
 }
 
 
