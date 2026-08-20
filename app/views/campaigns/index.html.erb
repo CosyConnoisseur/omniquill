@@ -7,7 +7,7 @@
   <div class="bookshelf-container">
     <% @campaigns.each do |campaign| %>
 
-        <div class="campaign-book">
+        <div class="campaign-book", style="overflow: hidden;">
           <nav class="navbar navbar-expand-sm navbar-book">
             <div class="container-fluid">
               <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,19 +40,22 @@
               <ul>
                 <% campaign.participations.each do |participation| %>
                   <li>
-                    <% if current_user.profile_picture.attached? %>
-                      <%= image_tag current_user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+                    <% if participation.user.profile_picture.attached? %>
+                      <%= image_tag participation.user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                     <% else %>
+<<<<<<< HEAD
                       <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
+=======
+                      <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
+>>>>>>> 946882e915e2808a857d40af02a32a6197ebb7b5
                     <% end %>
-                    <%= participation.user.username %>
+                    <%= participation.user.username ? participation.user.username : participation.user.email  %>
                     </li>
                 <% end %>
               </ul>
             </li>
           </ul>
         </div>
-      </div>
     <% end %>
   </div>
 </div>
@@ -96,7 +99,7 @@
                   </p>
                   <p class="card-text text-muted">
                     Played by: <%= current_user.username ? current_user.username : current_user.email  %>
-                      <% if character.participation.user.profile_picture.attached? %>
+                      <% if character&.participation&.user&.profile_picture&.attached? %>
                         <%= image_tag current_user.profile_picture, class: "avatar", style: "height: 50px; width: 50px; object-fit: cover" %>
                       <% else %>
                         <%= image_tag "default-avatar.png", class: "avatar"%>
@@ -132,10 +135,10 @@
                     </div>
                     <p class="card-text text-muted">
                       Played by: <%= character.participation.user.username ? character.participation.user.username : character.participation.user.email  %>
-                      <% if character.participation.user.profile_picture.attached? %>
-                        <%= image_tag current_user.profile_picture, class: "avatar" , style: "height: 50px; width: 50px; object-fit: cover" %>
+                      <% if character&.participation&.user&.profile_picture&.attached? %>
+                        <%= image_tag character.participation.user.profile_picture, class: "avatar" , style: "height: 50px; width: 50px; object-fit: cover" %>
                       <% else %>
-                        <%= image_tag "default-avatar.png", class: "avatar"%>
+                        <%= image_tag "default-avatar.png", class: "avatar", style: "height: 50px; width: 50px; object-fit: cover"%>
                       <% end %>
                     </p>
                   </div>
