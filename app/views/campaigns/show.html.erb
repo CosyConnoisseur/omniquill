@@ -63,8 +63,9 @@
 
 <!-- Row Bar -->
 
-<div class="row w-100 align-items-stretch g-0">
+<div class="row w-100 align-items-stretch gx-4 mb-2">
   <div class="col-3">
+    <div class="card-body">
     <div class="p-3 d-flex flex-column justify-content-center align-items-center border rounded shadow-sm h-100">
       <button onclick="handleCharListClick()" class="btn clickable-icon" >
         <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -88,8 +89,10 @@
       <h1><%= @campaign.participations.count %></h1>
       <p class="m-0 lh-1"> Players </p>
     </div>
+    </div>
   </div>
   <div class="col-3">
+    <div class="card-body">
     <div class="p-3 d-flex flex-column justify-content-center align-items-center border rounded shadow-sm h-100">
       <%= link_to campaign_chapters_path(@campaign) do %>
       <button onclick="handleChapterListClick()" class="btn clickable-icon" >
@@ -102,8 +105,10 @@
       <h1><%= @campaign.chapters.count %></h1>
       <p class="m-0 lh-1"> Chapters </p>
     </div>
+    </div>
   </div>
   <div class="col-3">
+    <div class="card-body">
     <div class="p-3 d-flex flex-column justify-content-center align-items-center border rounded shadow-sm h-100">
       <button onclick="handleNoteListClick()" class="btn clickable-icon" >
         <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
@@ -119,8 +124,10 @@
       <h1><%= @campaign.notes.count %></h1>
       <p class="m-0 lh-1"> Notes </p>
     </div>
+    </div>
   </div>
   <div class="col-3">
+    <div class="card-body">
     <div class="p-3 d-flex flex-column justify-content-center align-items-center border rounded shadow-sm h-100">
       <%= link_to "#", class: "text-reset clickable-icon" do %>
         <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -128,12 +135,14 @@
           <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
         </svg>
       <% end %>
-      <h3 style="margin-top: 15px; margin-bottom: 10px;"><%= @campaign.user&.username %></h3>
+      <h4 style="margin-top: 15px; margin-bottom: 10px;"><%= @campaign.user&.username %></h4>
       <p class="m-0 lh-1"> DM </p>
+    </div>
     </div>
   </div>
 </div>
-<div>
+<div class="centering">
+  <div class="parchment-container">
   <div class="justify-content-center h-100 py-4 px-4 text-black">
     <% if owner %>
 
@@ -165,7 +174,10 @@
       <p class="mt-auto"><%= @campaign.synopsis %></p>
     <% end %>
   </div>
+  </div>
 </div>
+
+<%= render "form_banner" %>
 
 <!-- char-list-dialog -->
 <%# Testing if characters attached to campaigns correctly %>
@@ -193,11 +205,12 @@
                       <% end %>
           </p>
         </div>
-      <% end %>
-    </div>
-  <% end %>
-  <%= link_to "Create New Character", new_campaign_character_path(@campaign.id), class: "btn btn-primary ms-3" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
+<%= link_to "Create New Character", new_campaign_character_path(@campaign.id), class: "btn btn-primary ms-3" %>
+
 
 <dialog id="charListPopup">
   <ul style="list-style-type: none; padding-left: 0;">
