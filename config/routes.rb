@@ -28,22 +28,26 @@ Rails.application.routes.draw do
   resources :campaigns do # added for easy access to editing and updating. Reduce if needed
     get "record", on: :member
     # on member means, "each record action belongs to a specific chapter"
+    # Defines notes for campaigns
+    resources :notes, only: [:create, :destroy]
+    #   # Defines the character routes
+    resources :characters, shallow: true do
+      collection do
+        post :parse_sheet
+      end
+    end
 
     resources :chapters, except: [ :destroy ] do
 
       resources :stickies, only: [ :new, :create ]
     end
   end
-
+  get "campaigns/:id/invite", to: "campaigns#invite", as: :invite_campaign
   get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
   post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
 
+  resources :transcriptions, only: [:create]
+  post "transcriptions/download", to: "transcriptions#download"
 
-  # Defines the character routes
-  resources :characters do
-    collection do
-      post :parse_sheet
-    end
-  end
 end

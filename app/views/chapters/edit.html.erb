@@ -1,9 +1,11 @@
-
-<div class="d-flex justify-content-center">
-  <div style="width: 70%; height: 500px;">
-    <%= render "editForm", campaign: @campaign, chapter: @chapter %>
-    <%= link_to campaign_chapter_path(@campaign, @chapter) do %>
-      <button class="btn btn-warning mt-2">Go back</button>
-    <% end %>
+<div class="bricks-background">
+  <div class="d-flex justify-content-center">
+    <div style="width: 70%; height: 500px;">
+      <%= render "editForm", campaign: @campaign, chapter: @chapter %>
+      <%= link_to campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
+        <%= image_tag "back-icon.png", class: "animate-icon" %>
+        <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+      <% end %>
+    </div>
   </div>
 </div>

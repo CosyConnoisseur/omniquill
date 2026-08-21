@@ -1,8 +1,7 @@
-<%= form_with(model: campaign) do |form| %>
-  <div>
-    <%= form.label :card_image, "Upload Campaign image" %>
-    <%= form.file_field :card_image, accept: 'image/png, image/jpeg, image/jpg, image/webp' %>
-  </div>
-
-  <%= form.submit %>
+<%= form_with(model: campaign, html: {style: "font-size: 1rem;", class: "image-form"}) do |form| %>
+  <label class="file_field">
+    <%= image_tag "Omniquill-logo.png" %>
+    <span id="upload-text">Upload a campaign image</span>
+    <%= form.file_field :card_image, accept: 'image/png, image/jpeg, image/jpg, image/webp', onchange: "this.form.requestSubmit()", class: "hidden" %>
+  </label>
 <% end %>

@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :notes
   has_many :chapters, through: :campaigns
   has_many :characters, through: :participations
+
+  has_one_attached :profile_picture
 end

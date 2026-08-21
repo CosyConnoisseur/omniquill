@@ -1,6 +1,18 @@
+// Bookshelf container section
+
+.bookshelf-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: 0 1rem;
+}
+
+// Parchment-container section
+
 .parchment-container {
   height: auto;
-  width: 80%;
+  width: 60%;
   padding: 1.5rem;
   border-image: asset_url("parchment-leather-border.png");
   border-image-slice: 115 115 115 115 fill;
@@ -8,4 +20,31 @@
   border-image-outset: 5px 5px 5px 5px;
   border-image-repeat: round round;
   box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+}
+
+.parchment-container.edit-parchment {
+  width: 100%;
+  padding: 0;
+}
+
+// Media queries (responsive webpage) section
+
+@media (max-width: 1500px) {
+
+  .bookshelf-container {
+    width: 90%;
+  }
+
+  .parchment-container {
+    width: 70%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .parchment-container {
+    width: 85%;
+  }
+
 }

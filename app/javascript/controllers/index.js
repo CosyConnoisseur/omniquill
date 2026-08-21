@@ -9,3 +9,12 @@ application.register("form-typewriter", FormTypewriterController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import RecordingController from "./recording_controller"
+application.register("recording", RecordingController)
+
+import InviteLinkController from "./invite_link_controller"
+application.register("invite-link", InviteLinkController)
+
+import SheetToggleController from "./sheet_toggle_controller"
+application.register("sheet-toggle", SheetToggleController)

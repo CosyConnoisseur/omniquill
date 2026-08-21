@@ -1,0 +1,51 @@
+.chap-card {
+  text-align: center;
+  align-items: center;
+  border: 0.5rem dotted rgb(46, 29, 19);
+  margin: 1rem;
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    font-family: $quill-font;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+// This is just for now to make a text be this font. Can delete once everything is set-up better.
+.font-insert {
+
+  p {
+    font-family: $quill-font;
+    font-size: 1.25rem;
+    color: $omni-ink;
+  }
+
+  li {
+    font-family: $quill-font;
+    font-size: 1.25rem;
+    color: $omni-ink;
+  }
+}
+
+@media (max-width: 1000px) {
+  .medieval-title {
+    width: 70%;
+    h1{
+      font-size: 4rem;
+    }
+  }
+
+}
+
+@media (max-width: 600px) {
+  .medieval-title{
+    width: 85%;
+    h1{
+      font-size: 2.5rem;
+    }
+  }
+}
