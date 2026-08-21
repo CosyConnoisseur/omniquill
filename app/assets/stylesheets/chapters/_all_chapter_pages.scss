@@ -8,10 +8,16 @@
     text-decoration: none;
   }
 
+  .chap-title {
+    color: rgb(3, 153, 212);
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgb(164, 214, 255);
+  }
+
   p {
-    font-family: $quill-font;
     font-size: 1.25rem;
     font-weight: 600;
+    color: $omni-ink;
   }
 }
 
@@ -19,33 +25,12 @@
 .font-insert {
 
   p {
-    font-family: $quill-font;
     font-size: 1.25rem;
     color: $omni-ink;
   }
 
   li {
-    font-family: $quill-font;
     font-size: 1.25rem;
     color: $omni-ink;
-  }
-}
-
-@media (max-width: 1000px) {
-  .medieval-title {
-    width: 70%;
-    h1{
-      font-size: 4rem;
-    }
-  }
-
-}
-
-@media (max-width: 600px) {
-  .medieval-title{
-    width: 85%;
-    h1{
-      font-size: 2.5rem;
-    }
   }
 }
