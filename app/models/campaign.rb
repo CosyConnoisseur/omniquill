@@ -11,4 +11,22 @@ class Campaign < ApplicationRecord
   # user_id is DM, players are participations
 
   validates :title, length: { minimum: 6 }
+
+  def last_played_at
+    chapters.map do |chapter|
+      chapter.updated_at
+    end.max
+  end
+
+  # just to know there are other ways to write this
+  #
+  #   def last_played_at
+  #     chapters.map { |chapter| chapter.updated_at }.max
+  #   end
+  #
+  #   or
+  #
+  #   def last_played_at
+  #     chapters.map(&:updated_at).max
+  #   end
 end

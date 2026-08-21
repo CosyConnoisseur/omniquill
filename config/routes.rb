@@ -42,11 +42,12 @@ Rails.application.routes.draw do
       resources :stickies, only: [ :new, :create ]
     end
   end
-
+  get "campaigns/:id/invite", to: "campaigns#invite", as: :invite_campaign
   get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
   post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
 
-
+  resources :transcriptions, only: [:create]
+  post "transcriptions/download", to: "transcriptions#download"
 
 end

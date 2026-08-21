@@ -73,7 +73,7 @@ class CharactersController < ApplicationController
                - You may draw inspiration from the statistical data from the stats section, focussing on those with a relatively high statistical value.
 
 
-             You MUST format your output exactly like this:
+             You MUST format your output exactly like this with a line break between:
              NAME: [Your Name Here]
              DESCRIPTION: [Your Description Here]
 
@@ -141,6 +141,11 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    @character = Character.find(params[:id])
+    authorize @character
+    @character.destroy
+
+    redirect_to campaigns_path, notice: "Character was successfully deleted.", status: :see_other
   end
 
   private

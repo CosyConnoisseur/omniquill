@@ -13,20 +13,32 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto horizontal-items">
         <% if user_signed_in? %>
-          <li class="nav-item active mx-3">
-            <%= link_to root_path, class: "home-button-navbar" do %>
-              <%= image_tag "Home-icon.png", class: "home-icon-navbar" %>
-              <%= image_tag "Home-icon.gif",  class: "home-move-icon-navbar" %>
+          <li class="nav-item active mx-2">
+            <%= link_to root_path, class: "button-navbar" do %>
+              <%= image_tag "Home-icon.png", class: "icon-navbar" %>
+              <%= image_tag "Home-icon.gif",  class: "move-icon-navbar" %>
             <% end %>
           </li>
-          <li class="nav-item dropdown">
+          <% if current_page?("") %>
+            <li class="nav-item active mx-2">
+              <%= link_to new_campaign_path, class: "button-navbar" do %>
+                <%= image_tag "campaign-creation-icon.png", class: "icon-navbar" %>
+                <%= image_tag "campaign-creation-icon.gif",  class: "move-icon-navbar" %>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="nav-item dropdown mx-2">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <% if current_user.profile_picture.attached? %>
+              <%= image_tag current_user.profile_picture, class: "avatar", alt: "dropdown menu", style: "height: 50px; width: 50px; object-fit: cover" %>
+            <% else %>
+              <%= image_tag "default-avatar.png", class: "avatar", alt: "dropdown menu" %>
+            <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Edit User", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>

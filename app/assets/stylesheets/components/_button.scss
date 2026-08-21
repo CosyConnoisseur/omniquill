@@ -1,10 +1,17 @@
 .animate-button {
-
   width: 5rem;
   height: 5rem;
+  position: relative;
 
   img {
     width: 5rem;
+  }
+
+  #invite-text {
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    font-size: 1.25rem;
   }
 
   .animate-move-icon {
@@ -23,7 +30,38 @@
   }
 }
 
-.home-button-navbar {
+.animate-button-dropdown {
+  width: 5rem;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  #invite-text {
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    font-size: 1.25rem;
+  }
+
+  .animate-move-icon-dropdown {
+    display: none;
+  }
+
+  &:hover {
+
+    .animate-icon-dropdown {
+      display: none;
+    }
+
+    .animate-move-icon-dropdown {
+      display: inline;
+    }
+  }
+}
+
+.button-navbar {
 
   width: 3rem;
   height: 3rem;
@@ -32,17 +70,17 @@
     width: 3rem;
   }
 
-  .home-move-icon-navbar {
+  .move-icon-navbar {
     display: none;
   }
 
   &:hover {
 
-    .home-icon-navbar {
+    .icon-navbar {
       display: none;
     }
 
-    .home-move-icon-navbar {
+    .move-icon-navbar {
       display: inline;
     }
   }
