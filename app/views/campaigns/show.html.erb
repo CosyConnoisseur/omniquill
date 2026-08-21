@@ -15,19 +15,19 @@
           accept: "image/*",
           onchange: "document.getElementById('banner-upload-form').requestSubmit();" %>
 
-      <!-- 🛑 ADDED pointer-events: none -> Clicks will pass right through the empty space of this label -->
+      <!-- no pointer events -->
       <label for="banner-upload" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center m-0" style="cursor: default; pointer-events: none;">
 
-        <!-- 🟢 ADDED pointer-events: auto -> Only this small button area accepts mouse clicks! -->
+        <!--  this button area accepts mouse clicks -->
         <span class="btn btn-dark opacity-0 banner-upload-btn shadow position-absolute" style="top: 4px; left: 10px; transition: all 0.2s ease-in-out; pointer-events: auto; cursor: pointer; background-color: rgba(0,0,0,0.8); border-color: rgba(255,255,255,0.5);">
-          📷 Change Banner
+          Change Banner
         </span>
 
       </label>
     <% end %>
   <% end %>
 
-  <!-- Your existing title content container remains safely here -->
+  <!-- title content container here -->
   <div class="container d-flex flex-row justify-content-between text-white position-relative">
 <div class="container d-flex flex-row justify-content-center text-white" style="height: 150px;">
     <% if owner %>
@@ -53,7 +53,6 @@
         </div>
     </div>
     <% end %>
-    <!-- Any underlying buttons or text links here are now fully clickable again! -->
   </div>
 </div>
 </div>
@@ -68,23 +67,26 @@
 <!-- navigation tabs -->
 
 <div class="parchment-container" style="min-height: 1000px; width:100%;">
-<!-- 1. The Interactive Tab Navigation -->
+<!-- Tab Navigation -->
 <nav class="nav nav-tabs justify-content-center nav-justified" id="myTab" role="tablist">
   <button class="nav-link active text-dark" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-pane" type="button" role="tab" aria-controls="active-pane" aria-selected="true">
     Synopsis <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-text-fill d-block mx-auto" viewBox="0 0 16 16">
               <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1"/>
             </svg>
     </button>
+
   <button class="nav-link text-dark" id="link1-tab" data-bs-toggle="tab" data-bs-target="#link1-pane" type="button" role="tab" aria-controls="link1-pane" aria-selected="false">
     Players <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill d-block mx-auto" viewBox="0 0 16 16">
               <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
             </svg>
   </button>
+
   <button class="nav-link text-dark" id="link2-tab" data-bs-toggle="tab" data-bs-target="#link2-pane" type="button" role="tab" aria-controls="link2-pane" aria-selected="false">
     Notes <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil-fill d-block mx-auto" viewBox="0 0 16 16">
               <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
             </svg>
     </button>
+
   <%= link_to invite_campaign_path(@campaign), class: "nav-link text-dark" do %>
     Invite Players
     <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-circle d-block mx-auto" viewBox="0 0 16 16">
@@ -92,6 +94,7 @@
           <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
         </svg>
   <% end %>
+
   <%= link_to campaign_chapters_path(@campaign), class: "nav-link text-dark", id: "link3-tab" do %>
   Chapters
   <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list-ol d-block mx-auto" viewBox="0 0 16 16">
@@ -101,7 +104,7 @@
 <% end %>
 </nav>
 
-<!-- 2. The Content Panes that show/hide -->
+<!-- Content Panes -->
 <div class="tab-content mt-3" id="myTabContent">
   <div class="tab-pane fade show active" id="active-pane" role="tabpanel" aria-labelledby="active-tab">
 
@@ -130,7 +133,7 @@
         <% end %>
       </div>
 
-    <p>This is the content for the Active tab.</p>
+    <p></p>
   </div>
   <div class="tab-pane fade" id="link1-pane" role="tabpanel" aria-labelledby="link1-tab">
     <h2 class="text-center" style="font-family: 'Jersey 10'; font-size: 2.1rem;">Master of Ceremonies</h2>
@@ -180,7 +183,7 @@
   </div>
 
 
-    <p>This is the content for the first Link tab.</p>
+    <p></p>
   </div>
   <div class="tab-pane fade" id="link2-pane" role="tabpanel" aria-labelledby="link2-tab">
 
@@ -238,18 +241,16 @@
   <% end %>
 
 
-    <p>This is the content for the second Link tab.</p>
+    <p></p>
   </div>
   <div class="tab-pane fade" id="disabled-pane" role="tabpanel" aria-labelledby="disabled-tab">
-    <p>This content is hidden because the tab is disabled.</p>
+    <p></p>
   </div>
 </div>
 </div>`
 
 
-<!-- char-list-dialog no it isn't, this is my list with cards-->
-<%# Testing if characters attached to campaigns correctly %>
-
+<!-- char-list-dialog -->
 
 <dialog id="charListPopup">
   <ul style="list-style-type: none; padding-left: 0;">

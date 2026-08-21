@@ -77,9 +77,9 @@ body {
   width: 100px;
 }
 
-//banner hover
+//campaign banner hover
 
 .banner-hover-container:hover .banner-upload-btn {
-  opacity: 1 !important; /* Make it visible */
-  transform: scale(1.05); /* Give it a slight, elegant pop zoom animation */
+  opacity: 1 !important;
+  transform: scale(1.05);
 }
