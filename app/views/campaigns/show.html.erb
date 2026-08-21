@@ -135,7 +135,7 @@
     <p>This is the content for the Active tab.</p>
   </div>
   <div class="tab-pane fade" id="link1-pane" role="tabpanel" aria-labelledby="link1-tab">
-    <h2 class="text-center">Master of Ceremonies:</h2>
+    <h2 class="text-center" style="font-family: 'Jersey 10'; font-size: 2.1rem;">Master of Ceremonies</h2>
     <div class="text-center">
       <% if @campaign.user.profile_picture&.attached? %>
         <%= image_tag @campaign.user.profile_picture, class: "align-center", style: "max-height: 100px; width: 100px; object-fit: cover; border-radius: 8px;" %>
@@ -146,7 +146,7 @@
       <%= @campaign.user.username ? @campaign.user.username : @campaign.user.email  %>
     </div>
     <br>
-    <h2 class="text-center border-top pt-2 mx-3">Players:</h2>
+    <h2 class="text-center border-top pt-2 mx-3" style="font-family: 'Jersey 10'; font-size: 2rem;">Players</h2>
 
     <% @campaign.characters.each do |character| %>
   <div class="col-md-4 mb-3">
@@ -213,7 +213,7 @@
   </div>
 
   <div id="add-note-form" style="display: none;">
-    <%= form_with model: [@campaign, @campaign.notes.build] do |form| %>
+    <%=  form_with scope: :note, url: campaign_notes_path(@campaign) do |form| %>
       <%= form.text_area :entry,
           class: "form-control",
           rows: 4,
