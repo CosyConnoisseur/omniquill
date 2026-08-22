@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_20_120642) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_22_060300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -244,13 +244,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_20_120642) do
   end
 
   create_table "transcriptions", force: :cascade do |t|
-    t.bigint "campaign_id", null: false
+    t.bigint "chapter_id", null: false
     t.datetime "created_at", null: false
     t.string "status"
-    t.text "summary"
     t.text "text"
     t.datetime "updated_at", null: false
-    t.index ["campaign_id"], name: "index_transcriptions_on_campaign_id"
+    t.index ["chapter_id"], name: "index_transcriptions_on_chapter_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -283,5 +282,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_20_120642) do
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "stickies", "chapters"
   add_foreign_key "stickies", "users"
-  add_foreign_key "transcriptions", "campaigns"
+  add_foreign_key "transcriptions", "chapters"
 end

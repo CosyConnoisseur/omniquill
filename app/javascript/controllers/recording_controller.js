@@ -10,6 +10,10 @@ export default class extends Controller {
     "timer"
   ]
 
+  static values = {
+    chapterId: Number
+  }
+
   connect() {
     console.log("Recording controller connected")
 
@@ -97,6 +101,10 @@ export default class extends Controller {
     const formData = new FormData()
 
     formData.append("audio_file", blob, filename)
+    formData.append("chapter_id", this.chapterIdValue)
+
+
+    console.log("Chapter ID:", this.chapterIdValue)
 
     const csrfToken = document.querySelector(
       'meta[name="csrf-token"]'
@@ -117,8 +125,12 @@ export default class extends Controller {
       const data = await response.json()
 
       if (response.ok) {
-        this.transcriptTarget.innerText = data.text
-        this.headingTarget.innerText = "Ready when you are!"
+        // this.transcriptTarget.innerText = data.text
+        // this.headingTarget.innerText = "Ready when you are!"
+        this.transcriptTarget.innerText = "Transcription is being processed..."
+        this.headingTarget.innerText = "Processing..."
+
+        this.pollTranscription(data.id)
 
         this.resetRecording()
       } else {
@@ -130,6 +142,26 @@ export default class extends Controller {
       console.error(error)
       this.transcriptTarget.innerText = "Failed to upload audio"
     }
+  }
+
+  async pollTranscription(id) {
+    const response = await fetch(`/transcriptions/${id}`)
+    const data = await response.json()
+
+    console.log("Polling:", id, data)
+
+    if (data.status == "completed") {
+      this.transcriptTarget.innerText = data.text
+      this.headingTarget.innerText = "Ready when you are!"
+      return
+    }
+
+    if (data.status == "failed") {
+      this.transcriptTarget.innerText = "Transcription failed."
+      return
+    }
+
+    setTimeout(() => this.pollTranscription(id), 2000)
   }
 
   uploadAudioFile() {

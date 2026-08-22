@@ -6,43 +6,38 @@ class TranscriptionsController < ApplicationController
 
     return render json: { error: "No audio file received" }, status: :bad_request unless uploaded_file.present?
 
-    # Convert the uploaded audio to WAV format
-    # wav_path = Rails.root.join("tmp", "recording.wav")
-    wav_path = Rails.root.join("tmp", "recording-#{SecureRandom.uuid}.wav")
-
-    # Run FFmpeg to convert into a WAV file suitable for transcription.
-    success = system(
-      "ffmpeg",
-      "-y",
-      "-i", uploaded_file.tempfile.path,
-      "-ar", "16000",
-      "-ac", "1",
-      "-c:a", "pcm_s16le",
-      wav_path.to_s
+    chapter = Chapter.find(params[:chapter_id])
+    transcription = chapter.transcription || chapter.create_transcription!(
+      status: "processing"
     )
 
-    # Stop if FFmepg failed to convert the audio
-    raise "Audio conversion failed" unless success
+    transcription.audio.purge
+    transcription.audio.attach(uploaded_file)
 
-    chat = RubyLLM.chat(model: "gemini-3.1-flash-lite")
+    TranscriptionJob.perform_later(transcription.id)
 
-    response = chat.ask(
-      "Transcribe this audio exactly.",
-      with: wav_path.to_s
-    )
-
-    # Print the generated transcript on the terminal.
-    puts "===== TRANSCRIPTION ====="
-    puts response.content
-    puts "========================="
-
-    render json: { text: response.content }
+    render json: {
+      status: "processing",
+      id: transcription.id
+    }
   # Rescue errors and clean up the temporary WAV file.
   rescue => e
+    transcription&.update(status: "failed")
     Rails.logger.error e.full_message
     render json: { error: e.message }, status: :internal_server_error
   ensure
     File.delete(wav_path) if defined?(wav_path) && File.exist?(wav_path)
+  end
+
+  def show
+    authorize :transcription
+
+    transcription = Transcription.find(params[:id])
+
+    render json: {
+      status: transcription.status,
+      text: transcription.text
+    }
   end
 
   # Allows the user to download the full transcript.
