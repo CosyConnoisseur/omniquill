@@ -5,15 +5,20 @@
 </div>
 
 <div class="centering">
-  <div class="parchment-container">
+  <div class="book-page-container">
     <% if @chapters.empty? %>
       <p id="no-chapters">No adventures...yet</p>
     <% else %>
-      <% @chapters.each do |chapter| %>
+      <% @chapters.reverse.each do |chapter| %>
         <div class="chap-card">
+          <div class="d-flex justify-content-end">
+            <p class="chap-date">
+              <%= chapter.created_at.strftime("%B %d, %Y") %> |
+              <%= time_ago_in_words(chapter.created_at) %> ago
+            </p>
+          </div>
           <%= link_to campaign_chapter_path(@campaign, chapter) do %>
             <p class="chap-title"><%= chapter.title %></p>
-          <% end %>
           <% preview = [] %>
           <% chapter.summary.split(" ").each_with_index do |word, index| %>
             <% if index == 16 %>
@@ -23,6 +28,7 @@
             <% end %>
           <% end %>
           <p><%= preview.join(" ") %>...</p>
+          <% end %>
         </div>
       <% end %>
     <% end %>
