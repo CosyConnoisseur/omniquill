@@ -28,6 +28,13 @@
                 <%= image_tag "campaign-creation-icon.gif",  class: "move-icon-navbar" %>
               <% end %>
             </li>
+          <% elsif @campaign.present? && current_page?(campaign_path(@campaign)) %>
+            <li class="nav-item active mx-2">
+              <%= link_to record_campaign_path(@campaign), class: "button-navbar" do %>
+                <%= image_tag "Edit-icon.png", class: "icon-navbar" %>
+                <%= image_tag "Edit-icon.gif",  class: "move-icon-navbar" %>
+              <% end %>
+            </li>
           <% end %>
           <li class="nav-item dropdown mx-2">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
