@@ -184,6 +184,9 @@
   </div>
  <div class="text-center mt-5">
     <%= link_to "Create New Character", new_campaign_character_path(@campaign.id), class: "btn btn-dark px-4 py-2" %>
+    <%= link_to new_campaign_character_path(@campaign.id), class: "" do %>
+    <%= image_tag "create-character-icon.gif", class: "mb-2", style: "height: 50px; width: 50px; object-fit: cover"%>
+    <% end %>
   </div>
 
 
