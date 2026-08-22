@@ -1,26 +1,32 @@
-<div class="bricks-background">
-  <div class="centering">
-    <div class="medieval-title">
-      <h1><%= @campaign.title %></h1>
-    </div>
+<div class="centering">
+  <div class="medieval-title">
+    <h1><%= @campaign.title %></h1>
   </div>
+</div>
 
-  <div class="centering">
-    <div class="parchment-container">
-      <% @chapters.each do |chapter| %>
-        <div class="chap-card">
-          <%= link_to campaign_chapter_path(@campaign, chapter) do %>
-            <p class="fs-3"><%= chapter.title %></p>
+<div class="centering">
+  <div class="parchment-container">
+    <% @chapters.each do |chapter| %>
+      <div class="chap-card">
+        <%= link_to campaign_chapter_path(@campaign, chapter) do %>
+          <p class="chap-title"><%= chapter.title %></p>
+        <% end %>
+        <% preview = [] %>
+        <% chapter.summary.split(" ").each_with_index do |word, index| %>
+          <% if index == 16 %>
+            <% break %>
+          <% else %>
+            <% preview << word %>
           <% end %>
-          <p><%= chapter.summary.split(". ")[0] %>...</p>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="d-flex justify-content-center my-4">
-    <%= link_to campaign_path(@campaign), class: "animate-button" do %>
-      <%= image_tag "back-icon.png", class: "animate-icon" %>
-      <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+        <% end %>
+        <p><%= preview.join(" ") %>...</p>
+      </div>
     <% end %>
   </div>
+</div>
+<div class="d-flex justify-content-center my-4">
+  <%= link_to campaign_path(@campaign), class: "animate-button" do %>
+    <%= image_tag "back-icon.png", class: "animate-icon" %>
+    <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+  <% end %>
 </div>

@@ -33,8 +33,9 @@
 
 @media (max-width: 600px) {
 
-  .navbar-logo {
-    transform: none;
+  .navbar-lewagon .navbar-logo {
+    transform: scale(1);
+    height: 3.5rem;
   }
 
 }

@@ -194,18 +194,14 @@
   box-shadow: 15px 15px 8px rgba(0, 0, 0, 0.75);
   position: relative;
 
-  .campaign-image {
+  .campaign-image img {
     width: 100%;
+    border-radius: 1rem;
     border-image: asset_url("image-border.png");
     border-image-slice: 70 70 70 70 fill;
     border-image-width: 1.5rem;
     border-image-outset: 1.5rem;
     border-image-repeat: stretch stretch;
-  }
-
-  img {
-    border-radius: 1rem;
-    width: 100%;
   }
 
   a {
@@ -252,6 +248,7 @@
         border-radius: 10px;
         padding: 2px 5px;
         text-wrap: nowrap;
+        z-index: 100;
       }
 
       &:hover {
@@ -269,11 +266,6 @@
   }
 }
 
-.list-group-brown {
-  background-color: #d4c1a1;
-  border-radius: 6px;
-}
-
 .navbar-book {
   position: absolute;
   top: -1rem;
@@ -284,6 +276,7 @@
 #navbarDropdown {
 
   #bookmark-dropdown {
+    width: 100%;
     transition: 0.2s ease;
 
     &:hover {
@@ -321,21 +314,23 @@
 
     .file_field {
       width: 2rem;
+      height: 2.5rem;
       padding: 0.75rem 1rem;
       position: relative;
 
       img {
         position: absolute;
-        top: -1.5rem;
+        top: -0.5rem;
         left: -6rem;
         width: 4rem;
         object-fit: cover;
         cursor: pointer;
+        transform: scale(0.85);
       }
 
       #upload-text {
         position: absolute;
-        top: 0;
+        top: 0.75rem;
         left: -4rem;
         width: 15rem;
         font-size: 0.9rem;
@@ -343,6 +338,14 @@
       }
     }
   }
+}
+
+.character-preview-pic {
+  max-height: 4.5rem;
+  max-width: 4rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  box-shadow: 3px 3px 8px black;
 }
 
 @keyframes showup {
