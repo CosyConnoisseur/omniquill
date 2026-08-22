@@ -46,11 +46,8 @@
               style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
         <% end %>
       </div>
-      <%= render "characters/form_portrait" %>
-      <% if policy(@character).show_campaign_link? %>
-        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2", data: { direction: "back" } %>
-      <% end %>
-    </div>
+
+  <div class="character-info-container d-flex mt-3">
     <div data-controller="sheet-toggle" class="character-show-description">
       <!-- Character description -->
       <div
