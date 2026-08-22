@@ -1,7 +1,9 @@
 <% owner = current_user.id == @campaign.user_id %>
 
 
-
+  <%= link_to new_campaign_path, class: "position-fixed", style: "bottom: 20px; right: 20px; z-index: 1050;" do %>
+  <%= image_tag "campaign-creation-icon.png", class: "", style: "max-height: 100px; width: 100%; "%>
+  <% end %>
 
 <!-- testing -->
 
