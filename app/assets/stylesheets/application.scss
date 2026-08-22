@@ -65,3 +65,21 @@ body {
   }
 
 }
+
+//quick fix for bookmark dropdown menu
+.same-hover2{
+  margin: 0;
+}
+
+.same-hover:hover > .same-hover2{
+  background-color: white;
+  z-index: -1000;
+  width: 100px;
+}
+
+//campaign banner hover
+
+.banner-hover-container:hover .banner-upload-btn {
+  opacity: 1 !important;
+  transform: scale(1.05);
+}
