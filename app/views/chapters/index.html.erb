@@ -6,21 +6,25 @@
 
 <div class="centering">
   <div class="parchment-container">
-    <% @chapters.each do |chapter| %>
-      <div class="chap-card">
-        <%= link_to campaign_chapter_path(@campaign, chapter) do %>
-          <p class="chap-title"><%= chapter.title %></p>
-        <% end %>
-        <% preview = [] %>
-        <% chapter.summary.split(" ").each_with_index do |word, index| %>
-          <% if index == 16 %>
-            <% break %>
-          <% else %>
-            <% preview << word %>
+    <% if @chapters.empty? %>
+      <p id="no-chapters">No adventures...yet</p>
+    <% else %>
+      <% @chapters.each do |chapter| %>
+        <div class="chap-card">
+          <%= link_to campaign_chapter_path(@campaign, chapter) do %>
+            <p class="chap-title"><%= chapter.title %></p>
           <% end %>
-        <% end %>
-        <p><%= preview.join(" ") %>...</p>
-      </div>
+          <% preview = [] %>
+          <% chapter.summary.split(" ").each_with_index do |word, index| %>
+            <% if index == 16 %>
+              <% break %>
+            <% else %>
+              <% preview << word %>
+            <% end %>
+          <% end %>
+          <p><%= preview.join(" ") %>...</p>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
