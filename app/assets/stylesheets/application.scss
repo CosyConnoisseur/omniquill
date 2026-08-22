@@ -113,3 +113,14 @@ body {
   border-color: #f2d215 #f2d215 transparent !important;
   color: #000000 !important;
 }
+
+
+#character_name_input::placeholder {
+  color: #8c7662;
+  opacity: 0.7;
+}
+
+#character_stats_summary_input::placeholder {
+  color: #8c7662;
+  opacity: 0.7;
+}
