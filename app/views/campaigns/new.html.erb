@@ -1,4 +1,4 @@
-<div class="form-container" style="max-width: 500px; margin: 40px auto; padding: 30px; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+<div class="parchment-container mt-2 mx-auto text-center" style="margin: 40px auto; padding: 30px;">
   <div style="text-align: center;">
     <h1>New Campaign</h1>
   </div>
@@ -13,7 +13,7 @@
 
     <div class="form-group" style="width: 100%; margin-bottom: 15px;">
       <div style="margin-bottom: 8px;"><h5><strong><%= f.label :synopsis %></strong></h5></div>
-      <div><%= f.text_field :synopsis, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter a brief summary (optional)" %></div>
+      <div><%= f.text_area :synopsis, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter a brief summary (optional)" %></div>
     </div>
 
     <div class="form-actions" style="width: 100%; margin-top: 15px;">

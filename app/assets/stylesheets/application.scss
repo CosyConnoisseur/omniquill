@@ -56,16 +56,29 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
 
   .medieval-title {
 
-    h1, h2, h3 {
-      font-size: 3rem;
+    width: 70%;
+
+    h1, h2, h3{
+      font-size: 4rem;
     }
-
   }
+}
 
+@media (max-width: 600px) {
+
+  .medieval-title{
+
+    width: 85%;
+    height: 6rem;
+
+    h1, h2, h3{
+      font-size: 1.75rem;
+    }
+  }
 }
 
 
@@ -127,4 +140,11 @@ body {
   background-color: white;
   z-index: -1000;
   width: 100px;
+}
+
+//campaign banner hover
+
+.banner-hover-container:hover .banner-upload-btn {
+  opacity: 1 !important;
+  transform: scale(1.05);
 }

@@ -10,9 +10,17 @@
       <% @chapters.each do |chapter| %>
         <div class="chap-card">
           <%= link_to campaign_chapter_path(@campaign, chapter) do %>
-            <p class="fs-3"><%= chapter.title %></p>
+            <p class="chap-title"><%= chapter.title %></p>
           <% end %>
-          <p><%= chapter.summary.split(". ")[0] %>...</p>
+          <% preview = [] %>
+          <% chapter.summary.split(" ").each_with_index do |word, index| %>
+            <% if index == 16 %>
+              <% break %>
+            <% else %>
+              <% preview << word %>
+            <% end %>
+          <% end %>
+          <p><%= preview.join(" ") %>...</p>
         </div>
       <% end %>
     </div>
