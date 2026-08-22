@@ -1,17 +1,22 @@
 <nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
+
+    <!-- 1. Left Logo -->
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "Omniquill-logo.png" %>
     <% end %>
 
-    <%= link_to root_path do %>
-      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "width: 100%" %>
+    <!-- 2. Middle Logo (Using d-inline-block to keep it in the row flow) -->
+    <%= link_to root_path, class: "d-inline-block alignment-fix" do %>
+      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
     <% end %>
 
-    <div class="btn border-0 bg-transparent navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class=""><%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown", style: "width: 50px;"%></span>
+    <!-- 3. Right Dropdown Toggler Button (Added d-inline-block) -->
+    <div class="btn border-0 bg-transparent navbar-toggler d-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class=""><%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown", style: "width: 50px; vertical-align: middle;"%></span>
     </div>
 
+    <!-- 4. The Dropdown Collapse (This stays completely untouched so it drops down in the center) -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto horizontal-items">
         <% if user_signed_in? %>
