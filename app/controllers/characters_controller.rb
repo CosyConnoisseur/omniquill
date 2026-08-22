@@ -78,8 +78,8 @@ class CharactersController < ApplicationController
             NAME: [Your Name Here]
             DESCRIPTION: [Your Description Here]
 
-          Do not include any conversational filler outside of this structural layout. Do not leave any fields blank.
-          The summary must not exceed 120 words.
+           It is crucial that they are separated like that in that order. Do not include any conversational filler outside of this structural layout. Do not leave any fields blank.
+           The summary must not exceed 120 words.
       TEXT
 
       # model.ask(
