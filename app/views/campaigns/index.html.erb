@@ -6,8 +6,7 @@
 
 <div class="centering">
   <div class="bookshelf-container">
-    <% @campaigns.each do |campaign| %>
-
+    <% @campaigns.sort_by { |camp| [camp.created_at, camp.updated_at].max }.reverse!.each do |campaign| %>
       <div class="campaign-book">
         <nav class="navbar navbar-expand-sm navbar-book">
           <div class="container-fluid">
