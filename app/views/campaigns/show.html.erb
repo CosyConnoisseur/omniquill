@@ -1,8 +1,8 @@
 <% owner = current_user.id == @campaign.user_id %>
 
 
-  <%= link_to record_campaign_path(@campaign), class: "position-fixed", style: "bottom: 20px; right: 20px; z-index: 1050;" do %>
-  <%= image_tag "Edit-icon.png", class: "", style: "max-height: 100px; width: 100%; "%>
+  <%= link_to record_campaign_path(@campaign), class: "position-fixed", style: "bottom: 20px; right: 20px; z-index: 1050; width: 100px; height: 100px;" do %>
+    <%= image_tag "Edit-icon.png", class: "", style: "width: 100%; height: 100%; object-fit: contain;"%>
   <% end %>
 
 <!-- testing -->
