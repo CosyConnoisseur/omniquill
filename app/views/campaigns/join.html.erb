@@ -1,3 +1,4 @@
+<div class="parchment-container mx-auto mt-2">
 <h1 class="text-center"><%= @campaign.title %></h1>
 <% if @already_joined %>
   <p>Thou hast already assumed thy place amongst our bretheren.</p>
@@ -10,3 +11,4 @@
   </p>
   <%= button_to "Join Campaign", add_player_path(@campaign), method: :post %>
 <% end %>
+</div>
