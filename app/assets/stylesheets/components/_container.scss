@@ -20,6 +20,15 @@
   border-image-outset: 5px 5px 5px 5px;
   border-image-repeat: round round;
   box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+
+  #no-chapters {
+    margin: 0;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $omni-ink;
+  }
 }
 
 .parchment-container.edit-parchment {
