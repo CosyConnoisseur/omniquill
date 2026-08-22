@@ -26,8 +26,7 @@
                           maxlength: 20,
                           class: "form-control custom-file-input",
                           style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
-                          data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" },
-                          required: true %>
+                          data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" } %>
       </div>
 
       <div class="mb-3">
@@ -37,8 +36,7 @@
                         class: "form-control custom-file-input",
                         style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
                         rows: 6,
-                        data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" },
-                        required: true %>
+                        data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" } %>
       </div>
 
       <div class="mb-3">
@@ -65,18 +63,18 @@
       <button type="submit"
               class="btn btn-ai-custom w-md-70 d-none position-relative" style="min-width: 240px; max-width: 300px;"
               data-form-typewriter-target="aiButton">
-              Generate From Character Sheet
-              <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:-25px; left:235px;" %>
+              Conjure From Character Sheet
+              <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:-25px; left:225px;" %>
               <%= image_tag "sparkle2.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top: 10px ; left:-25px; transform: rotate(-25deg);" %>
       </button>
 
       <!-- Loading -->
       <button type="button"
-          class="btn btn-secondary w-75 d-none" style="min-width: 300px;"
+          class="btn btn-secondary w-75 d-none" style="min-width: 240px; max-width: 300px;"
           disabled
           data-form-typewriter-target="loadingButton">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      Generating...
+      Summoning...
       </button>
 
       <!-- Clear Text -->
