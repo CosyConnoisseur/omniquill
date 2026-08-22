@@ -3,7 +3,7 @@
       <%= hidden_field_tag :stream_id, @stream_id %>
 
       <div class="mb-3">
-        <%= f.label :document_upload, "Upload Character Sheet(PDF/Image)", style: "font-family: 'Jersey 15'; font-size: 1.1rem;" %>
+        <%= f.label :document_upload, "Upload Character Sheet(PDF/Image)", class:"d-block text-center", style: "font-family: 'Jersey 15'; font-size: 1.1rem;" %>
         <div class="input-group">
         <%= f.file_field :document_upload,
                           accept: 'image/png, image/jpeg, image/jpg, image/webp, image/gif, application/pdf',
@@ -16,10 +16,10 @@
                 data-form-typewriter-target="clearFileButton"
                 data-action="click->form-typewriter#clearFile">&times;</button>
       </div>
+        <h2 class="text-center" style="font-family: 'Jersey 15'; font-size: 1.2rem;">or Enter Character Details</h2>
       </div>
 
       <div class="mb-3">
-        <h2 style="font-family: 'Jersey 15'; font-size: 1.2rem;">or Enter Character Details</h2>
         <%= f.label :name, "Character Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem;"  %>
         <%= f.text_field :name,
                           id: "character_name_input",
