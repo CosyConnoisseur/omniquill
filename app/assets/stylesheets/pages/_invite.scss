@@ -1,8 +1,7 @@
 .qr-code {
   position: relative;
-  width: 90vw;
   max-width: 750px;
-  aspect-ratio: 1 / 1;
+
 }
 .rune-image {
   width: 100%;
@@ -12,11 +11,9 @@
 }
 
 .qr-svg {
-  position: absolute;
-  top: 38%;
-  left: 40%;
 
-  transform: translate(-27%, -25%);
+
+
 }
 
 @media (max-width: 600px) {
@@ -25,8 +22,10 @@
     height: auto;
   }
 
-  .qr-svg {
-    width: 50%;
-    height: 50%;
-  }
+
+}
+
+svg, img {
+  width: 90%;
+  height: auto;
 }

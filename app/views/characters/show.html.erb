@@ -14,7 +14,8 @@
 
   <%# Keep flash and script on top %>
 
-
+<%
+=begin %>
 <div class="bricks-background">
   <div class="centering">
     <div class="medieval-title position-relative">
@@ -101,6 +102,9 @@
     <% end %>
   </div>
 
+
+
+
 <%= button_to character_path,
       method: :delete,
       params: { character_id: @character.id },
@@ -108,3 +112,75 @@
       data: { turbo_confirm: "Are you sure?" } do %>
     Delete Character
   <% end %>
+
+<%
+=end %>
+
+
+<div class="character-book">
+
+  <!-- TAB 1: CHARACTER -->
+  <div class="character-tab tab-one">
+
+
+     <div class="medieval-title char-sheet position-relative">
+      <h1><%= @character.name %></h1>
+      <%= link_to edit_character_path(@character),
+        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
+        <i class="fa-solid fa-pen"></i>
+      <% end %>
+    </div>
+
+    <div class="character-portrait">
+      <% if @character.portrait.attached? %>
+        <%= image_tag @character.portrait %>
+      <% else %>
+        <%= image_tag "default-portrait.jpg" %>
+      <% end %>
+    </div>
+
+  </div>
+
+
+  <!-- TAB 2: DESCRIPTION -->
+  <div class="character-tab tab-two">
+
+    <%= image_tag "char-sheet.png", class: "tab-background" %>
+
+    <div class="character-description">
+      <%= @character.stats_summary %>
+    </div>
+
+  </div>
+
+
+  <!-- TAB 3: CHARACTER SHEET -->
+  <div class="character-tab tab-three">
+
+    <%= image_tag "char-sheet.png", class: "tab-background" %>
+
+    <div class="character-sheet">
+
+      <% if @character.document_upload.attached? %>
+
+        <% if @character.document_upload.content_type == "application/pdf" %>
+
+          <iframe
+            src="<%= url_for(@character.document_upload) %>"
+            class="character-sheet-pdf">
+          </iframe>
+
+        <% else %>
+
+          <%= image_tag @character.document_upload,
+              class: "character-sheet-image" %>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
