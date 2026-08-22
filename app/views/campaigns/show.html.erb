@@ -79,7 +79,7 @@
     </button>
 
   <button class="nav-link text-dark" id="link1-tab" data-bs-toggle="tab" data-bs-target="#link1-pane" type="button" role="tab" aria-controls="link1-pane" aria-selected="false">
-    Players <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill d-block mx-auto" viewBox="0 0 16 16">
+    Characters <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill d-block mx-auto" viewBox="0 0 16 16">
               <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
             </svg>
   </button>
@@ -90,13 +90,13 @@
             </svg>
     </button>
   <% if owner %>
-  <%= link_to invite_campaign_path(@campaign), class: "nav-link text-dark" do %>
-    Invite Players
-    <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-circle d-block mx-auto" viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+    <%= link_to invite_campaign_path(@campaign), class: "nav-link text-dark" do %>
+        Invite Player
+        <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-plus-fill d-block mx-auto" viewBox="0 0 16 16">
+          <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+          <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
         </svg>
-  <% end %>
+    <% end %>
   <% end %>
 
   <%= link_to campaign_chapters_path(@campaign), class: "nav-link text-dark", id: "link3-tab" do %>
@@ -151,7 +151,7 @@
       <%= @campaign.user.username ? @campaign.user.username : @campaign.user.email  %>
     </div>
     <br>
-    <h2 class="text-center border-top pt-2 mx-3" style="font-family: 'Jersey 10'; font-size: 2rem; border-top-color: #c1b77a !important;">Players</h2>
+    <h2 class="text-center border-top pt-2 mx-3" style="font-family: 'Jersey 10'; font-size: 2rem; border-top-color: #c1b77a !important;">Characters</h2>
   <div class="row row-cols-1 row-cols-md-3 flex-wrap gap-3 justify-content-center mx-md-auto" style="max-width: 1000px;">
     <% @campaign.characters.each do |character| %>
   <div class="mx-auto" style="flex: 1 1 280px; max-width: 320px; min-width: 250px;">
