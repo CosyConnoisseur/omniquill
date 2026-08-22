@@ -95,28 +95,21 @@ body {
   transform: scale(1.05);
 }
 
-
+//nav-tab colors
 .nav-tabs {
-  border-bottom: 1px solid #c1b77a !important; /* Change this to your favorite color */
-  /* OR use 'border-bottom: none !important;' if you want no line at all */
+  border-bottom: 1px solid #c1b77a !important;
 }
 
-/* 2. Fix the hover background and border color for unselected tabs */
+
 .nav-tabs .nav-link:hover:not(.active) {
-  background-color: #c2ba8581 !important; /* The background color when hovering an unselected tab */
-  border-color: #f2d215 #f2d215 transparent !important;    /* The border outline color when hovering an unselected tab */
-  color: #000000 !important;            /* The text/icon color when hovering an unselected tab */
+  background-color: #c2ba8581 !important;
+  border-color: #f2d215 #f2d215 transparent !important;
+  color: #000000 !important;
 }
 
-/* 3. Keep your selected (active) tab looking sharp and matching */
+
 .nav-tabs .nav-link.active {
   background-color: #c1b77a!important;
   border-color: #f2d215 #f2d215 transparent !important; /* Makes the active tab sit neatly on top of the bottom line */
   color: #000000 !important;
 }
-
-// .nav-tabs .nav-link.active {
-//   background-color: #ffeeba !important; /* Change this hex code to any color you want */
-//   color: #000000 !important;            /* This changes the text/icon color inside the active tab */
-//   border-color: #ffc107 #ffc107 #0c0909;  /* Keeps the matching top and side borders */
-// }
