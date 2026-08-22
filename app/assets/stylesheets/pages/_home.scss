@@ -65,13 +65,13 @@
 }
 
 .preview-left-margin {
-  right: 105%; /* Pushes the element outside the left edge of the form */
-  width: 350px; /* Set a fixed width for your preview image container */
+  right: 105%;
+  width: 350px;
 }
 
 .preview-right-margin {
-  left: 105%; /* Pushes the element outside the left edge of the form */
-  width: 350px; /* Set a fixed width for your preview image container */
+  left: 105%;
+  width: 350px;
 }
 
 .fade-effect{
@@ -144,15 +144,15 @@
 }
 
 .custom-file-input {
-  background-color: #f5e7c9 !important; /* Soft cream background for the text slot */
-  color: #5c2c16 !important;             /* Dark brown color for the "No file selected" text */
-  border: 2px solid rgb(168, 151, 102) !important;    /* Clean brown border around the whole element */
+  background-color: #f5e7c9 !important;
+  color: #5c2c16 !important;
+  border: 2px solid rgb(168, 151, 102) !important;
 }
 
 .custom-file-input::file-selector-button {
-  background-color: rgb(143, 138, 96) !important; /* Changes button background */
-  color: white !important;             /* Changes text inside button */
-  border-color: rgb(155, 94, 54) !important;      /* Cleans up the button outline */
+  background-color: rgb(143, 138, 96) !important;
+  color: white !important;
+  border-color: rgb(155, 94, 54) !important;
 }
 
 
