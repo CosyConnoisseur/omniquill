@@ -20,7 +20,7 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
     <%= f.file_field :profile_picture,
                           accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                           class: " form-control",
@@ -28,10 +28,10 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class:"btn btn-dark my-1" %>
   </div>
 <% end %>
-
+Or
 <%= render "devise/shared/links" %>
 </div>
 <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
