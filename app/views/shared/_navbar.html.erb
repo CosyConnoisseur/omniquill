@@ -44,7 +44,7 @@
             <% if current_user.profile_picture.attached? %>
               <%= image_tag current_user.profile_picture, class: "avatar", alt: "dropdown menu", style: "height: 50px; width: 50px; object-fit: cover" %>
             <% else %>
-              <%= image_tag "default-avatar.png", class: "avatar", alt: "dropdown menu" %>
+              <%= image_tag "default-avatar.png", class: "avatar", alt: "dropdown menu", style: "height: 50px; width: 50px; object-fit: cover" %>
             <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
