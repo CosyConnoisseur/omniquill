@@ -7,8 +7,15 @@
 <% end %>
 
 <!-- testing -->
+<% if @campaign.banner.attached? %>
+  <% image_url = url_for(@campaign.banner)  %>
+<% elsif @campaign.card_image.attached? %>
+  <% image_url = url_for(@campaign.card_image)  %>
+<% else %>
+  <% image_url = asset_path("wp2820152-mtg-wallpaper.jpg") %>
+<% end %>
 
-<div class="position-relative py-5 banner-hover-container" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= @campaign.banner.attached? ? url_for(@campaign.banner) : asset_path("wp2820152-mtg-wallpaper.jpg") %>'); min-height: 350px; background-size: cover; background-position: center;">
+<div class="position-relative py-5 banner-hover-container" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= image_url %>'); min-height: 350px; background-size: cover; background-position: center;">
 <div class="container d-flex flex-row justify-content-between text-white">
   <% if owner %>
     <%= form_with scope: :campaign, url: campaign_path(@campaign), method: :patch, id: "banner-upload-form" do |form| %>

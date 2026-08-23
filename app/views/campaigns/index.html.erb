@@ -28,6 +28,10 @@
           <div class="campaign-image">
             <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
           </div>
+        <% elsif campaign.banner.attached? %>
+          <div class="campaign-image">
+            <%= image_tag campaign.banner, style: "max-height: 550px;" %>
+          </div>
         <% else %>
           <div class="campaign-image">
             <%= image_tag "default-card-image.jpg", style: "max-height: 550px;" %>
