@@ -1,19 +1,16 @@
 <% if flash[:white_fade_in] %>
   <div class="page-fade-container"></div>
 <% end %>
+<script>
+  const fadeOutContainer = document.querySelector(".page-fade-container");
+    if (fadeOutContainer && !fadeOutContainer.classList.contains("hidden")){
 
-  <script>
-    const fadeOutContainer = document.querySelector(".page-fade-container");
-      if (fadeOutContainer && !fadeOutContainer.classList.contains("hidden")){
-
-        setTimeout(() => {
-          fadeOutContainer.classList.add("hidden");
-        }, 50);
-      }
-  </script>
-
-  <%# Keep flash and script on top %>
-
+      setTimeout(() => {
+        fadeOutContainer.classList.add("hidden");
+      }, 50);
+    }
+</script>
+<%# Keep flash and script on top %>
 <%
 =begin %>
 <div class="bricks-background">
@@ -29,158 +26,111 @@
   <div class="d-flex flex-column align-items-center">
     <!-- Portrait -->
     <div class="character-portrait-container d-flex flex-column align-items-center mt-4">
-
-<div class="page-container m-5 d-flex justify-content-center">
-  <div class="character-info-container d-flex align-items-start mt-3">
-    <div class="character-portrait-container d-flex flex-column align-items-center">
-      <div class="character-portrait torn-edges mb-3">
-        <% if @character.portrait.attached? %>
-          <%= image_tag @character.portrait,
+      <div class="page-container m-5 d-flex justify-content-center">
+        <div class="character-info-container d-flex align-items-start mt-3">
+          <div class="character-portrait-container d-flex flex-column align-items-center">
+            <div class="character-portrait torn-edges mb-3">
+              <% if @character.portrait.attached? %>
+                <%= image_tag @character.portrait,
               style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
-        <% else %>
-          <%= image_tag "default-portrait.jpg",
+              <% else %>
+                <%= image_tag "default-portrait.jpg",
               style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
-        <% end %>
-      </div>
-      <%= render "characters/form_portrait" %>
-      <% if policy(@character).show_campaign_link? %>
-        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
-      <% end %>
-    </div>
-    <div data-controller="sheet-toggle" class="character-show-description">
-      <!-- Character description -->
-      <div
+              <% end %>
+            </div>
+            <%= render "characters/form_portrait" %>
+            <% if policy(@character).show_campaign_link? %>
+              <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
+            <% end %>
+          </div>
+          <div data-controller="sheet-toggle" class="character-show-description">
+            <!-- Character description -->
+            <div
   class="parchment-container mb-5 character-description-clickable"
   data-action="click->sheet-toggle#open">
-        <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
-          <p><%= @character.stats_summary %></p>
-        </div>
-      </div>
-      <!-- CHARACTER SHEET MODAL -->
-      <div
+              <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
+                <p><%= @character.stats_summary %></p>
+              </div>
+            </div>
+            <!-- CHARACTER SHEET MODAL -->
+            <div
   data-sheet-toggle-target="modal"
   data-action="click->sheet-toggle#closeOutside"
-        class="character-sheet-modal d-none position-fixed top-0 start-0 w-100 h-100">
-        <div class="character-sheet-modal-content w-100 h-100 overflow-auto">
-          <!-- Close bottuton -->
-          <button
+              class="character-sheet-modal d-none position-fixed top-0 start-0 w-100 h-100">
+              <div class="character-sheet-modal-content w-100 h-100 overflow-auto">
+                <!-- Close bottuton -->
+                <button
       type="button"
       class="character-sheet-close"
       data-action="click->sheet-toggle#close">
-            &times;
-          </button>
-          <!-- Char sheet -->
-          <% if @character.document_upload.attached? %>
-            <% if @character.document_upload.content_type == "application/pdf" %>
-              <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
-              <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
-                Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
-              <% end %>
-            <% else %>
-              <%= image_tag @character.document_upload,
+                  &times;
+                </button>
+                <!-- Char sheet -->
+                <% if @character.document_upload.attached? %>
+                  <% if @character.document_upload.content_type == "application/pdf" %>
+                    <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+                    <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+                      Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
+                    <% end %>
+                  <% else %>
+                    <%= image_tag @character.document_upload,
               class: "character-sheet-image",
               data: {action: "click->sheet-toggle#zoom"},
               style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
-            <% end %>
-          <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-   </div>
   </div>
- </div>
-</div>
-<% if @character.document_upload.attached? %>
-      <% if @character.document_upload.content_type == "application/pdf" %>
-        <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
-        <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
-          Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
-        <% end %>
-      <% else %>
-        <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
+  <% if @character.document_upload.attached? %>
+    <% if @character.document_upload.content_type == "application/pdf" %>
+      <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+      <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+        Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
       <% end %>
+    <% else %>
+      <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
     <% end %>
-  </div>
-
-
-
-
+  <% end %>
+</div>
 <%= button_to character_path,
       method: :delete,
       params: { character_id: @character.id },
       class: "character-button",
       data: { turbo_confirm: "Are you sure?" } do %>
-    Delete Character
-  <% end %>
-
+  Delete Character
+<% end %>
 <%
-=end %>
+=end
 
 
-<div class="character-book">
-
+%>
+<div class="character-file">
   <!-- TAB 1: CHARACTER -->
   <div class="character-tab tab-one">
-
-
-     <div class="medieval-title char-sheet position-relative">
-      <h1><%= @character.name %></h1>
-      <%= link_to edit_character_path(@character),
-        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
-        <i class="fa-solid fa-pen"></i>
-      <% end %>
-    </div>
-
-    <div class="character-portrait">
-      <% if @character.portrait.attached? %>
-        <%= image_tag @character.portrait %>
-      <% else %>
-        <%= image_tag "default-portrait.jpg" %>
-      <% end %>
-    </div>
-
-  </div>
-
-
-  <!-- TAB 2: DESCRIPTION -->
-  <div class="character-tab tab-two">
-
-    <%= image_tag "char-sheet.png", class: "tab-background" %>
-
-    <div class="character-description">
-      <%= @character.stats_summary %>
-    </div>
-
-  </div>
-
-
-  <!-- TAB 3: CHARACTER SHEET -->
-  <div class="character-tab tab-three">
-
-    <%= image_tag "char-sheet.png", class: "tab-background" %>
-
-    <div class="character-sheet">
-
-      <% if @character.document_upload.attached? %>
-
-        <% if @character.document_upload.content_type == "application/pdf" %>
-
-          <iframe
-            src="<%= url_for(@character.document_upload) %>"
-            class="character-sheet-pdf">
-          </iframe>
-
-        <% else %>
-
-          <%= image_tag @character.document_upload,
-              class: "character-sheet-image" %>
-
+    <div class="char-sheet-top">
+      <div class="medieval-title">
+        <h1><%= @character.name %></h1>
+        <%= link_to edit_character_path(@character),
+        class: "edit-character" do %>
+          <i class="fa-solid fa-pen"></i>
         <% end %>
-
-      <% end %>
-
+      </div>
     </div>
-
+    <div class="char-sheet-tab"></div>
+    <div class="char-sheet-bottom">
+      <div class="character-portrait">
+        <% if @character.portrait.attached? %>
+          <%= image_tag @character.portrait %>
+        <% else %>
+          <%= image_tag "default-portrait.jpg" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="char-sheet-tab"></div>
   </div>
-
 </div>
