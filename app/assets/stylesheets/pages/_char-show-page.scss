@@ -24,7 +24,9 @@
   background-image: url("char-sheet-top-fixed.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-
+display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 2;
 }
 
@@ -39,7 +41,9 @@
   background-image: url("char-sheet-bottom-stretchy.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-
+display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
@@ -64,7 +68,6 @@
   position: absolute;
 
 
-
   background-image: url("medieval-title.png");
   background-size: 100% auto;
   background-position: center;
@@ -74,31 +77,26 @@
   z-index: 4;
 }
 
-// .medieval-title.char-sheet-bottom h1 {
-//   font-size: 3rem;
-//   margin: 0;
-// }
 
-// .character-portrait {
-//   position: relative;
-//   z-index: 2;
+.char-sheet-dropdown {
+    position: absolute;
+  top: 0%;
+  left: 5%;
 
-//   top: 20%;
-//   left: 42%;
-//   transform: translateX(-50%);
+  width: 10%;
+  height: auto;
 
-//   width: 200px;
-//   height: 250px;
-// }
-
-// .character-portrait img {
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
+  z-index: 5;
+}
 
 
 
+.character-portrait {
+  width: 55%;
+  height: auto;
+  align-items: center;
+
+}
 
 @media (max-width: 1000px) {
   .medieval-title {

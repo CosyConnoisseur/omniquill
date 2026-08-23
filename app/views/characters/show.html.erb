@@ -113,6 +113,7 @@
   <!-- TAB 1: CHARACTER -->
   <div class="character-tab tab-one">
     <div class="char-sheet-top">
+      <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
       <div class="medieval-title">
         <h1><%= @character.name %></h1>
         <%= link_to edit_character_path(@character),
