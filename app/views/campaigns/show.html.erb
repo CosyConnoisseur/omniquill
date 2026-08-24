@@ -130,9 +130,9 @@
         </p>
       </div>
 
-      <div id="synopsis-edit" style="display: none;">
+      <div id="synopsis-edit" style="display: none;" class="x-3 mx-md-5 pb-3 force_input">
         <%= form_with model: @campaign do |form| %>
-          <%= form.text_area :synopsis, class: "form-control w-100", rows: 8, style: "background-color: #dbd4a0" %>
+          <%= form.text_area :synopsis, class: "form-control w-100", rows: 8, style: "background-color: #dbd4a0", placeholder: "Tell everyone what this campaign is about!" %>
           <%= form.submit "Save", class: "btn btn-dark btn-sm rounded-3" %>
           <button
             type="button"
@@ -234,7 +234,7 @@
         </button>
       </div>
 
-      <div id="add-note-form" class="mx-3 mx-md-5 pb-3" style="display: none;">
+      <div id="add-note-form" class="mx-3 mx-md-5 pb-3 force_input" style="display: none;">
         <%=  form_with scope: :note, url: campaign_notes_path(@campaign) do |form| %>
           <%= form.text_area :entry,
               class: "form-control mb-2",
