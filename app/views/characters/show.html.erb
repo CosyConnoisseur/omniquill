@@ -12,17 +12,7 @@
       }
   </script>
 
-<div class="centering mt-5">
-   <div class="medieval-title position-relative">
-     <h1><%= @character.name %></h1>
-     <%= link_to edit_character_path(@character),
-       class: "position-absolute top-0 end-0 m-3 text-reset" do %>
-       <i class="fa-solid fa-pen"></i>
-     <% end %>
-   </div>
-
   <%# Keep flash and script on top %>
-
 
 <div class="bricks-background">
   <div class="centering">
@@ -38,7 +28,7 @@
 
 
 <% if policy(@character).show_campaign_link? %>
-        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-dark my-2" %>
+        <%= link_to "Back to Campaign", :back, class: "btn btn-dark my-2", data: { direction: "back"} %>
       <% end %>
 
     <!-- Portrait -->
