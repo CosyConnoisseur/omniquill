@@ -7,6 +7,7 @@ export default class extends Controller {
     "heading",
     "output",
     "transcript",
+    "progress",
     "timer"
   ]
 
@@ -15,6 +16,7 @@ export default class extends Controller {
   }
 
   connect() {
+    this.pollingTimeout = null
     console.log("Recording controller connected")
 
     this.isRecording = false
@@ -95,7 +97,13 @@ export default class extends Controller {
   }
 
   async uploadAudio(blob, filename = "recording.mp4") {
+    if (this.pollingTimeout) {
+      clearTimeout(this.pollingTimeout)
+      this.pollingTimeout = null
+    }
+
     this.outputTarget.classList.remove("d-none")
+    this.progressTarget.innerText = "Preparing to upload audio..."
     this.transcriptTarget.innerText = "Transcribing audio..."
 
     const formData = new FormData()
@@ -127,7 +135,7 @@ export default class extends Controller {
       if (response.ok) {
         // this.transcriptTarget.innerText = data.text
         // this.headingTarget.innerText = "Ready when you are!"
-        this.transcriptTarget.innerText = "Transcription is being processed..."
+        this.progressTarget.innerText = "Starting transcription..."
         this.headingTarget.innerText = "Processing..."
 
         this.pollTranscription(data.id)
@@ -150,7 +158,13 @@ export default class extends Controller {
 
     console.log("Polling:", id, data)
 
+    if (data.total_chunks > 0) {
+      this.progressTarget.innerText =
+        `Transcription progress: ${data.completed_chunks} / ${data.total_chunks} chunks completed`
+    }
+
     if (data.status == "completed") {
+      this.progressTarget.innerText = ""
       this.transcriptTarget.innerText = data.text
       this.headingTarget.innerText = "Ready when you are!"
       return
@@ -161,7 +175,10 @@ export default class extends Controller {
       return
     }
 
-    setTimeout(() => this.pollTranscription(id), 2000)
+    this.pollingTimeout = setTimeout(
+      () => this.pollTranscription(id),
+      2000
+    )
   }
 
   uploadAudioFile() {

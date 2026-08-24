@@ -7,8 +7,13 @@ class TranscriptionsController < ApplicationController
     return render json: { error: "No audio file received" }, status: :bad_request unless uploaded_file.present?
 
     chapter = Chapter.find(params[:chapter_id])
-    transcription = chapter.transcription || chapter.create_transcription!(
-      status: "processing"
+    transcription = chapter.transcription || chapter.create_transcription!
+
+    transcription.update!(
+      status: "processing",
+      text: nil,
+      total_chunks: 0,
+      completed_chunks: 0
     )
 
     transcription.audio.purge
@@ -36,7 +41,9 @@ class TranscriptionsController < ApplicationController
 
     render json: {
       status: transcription.status,
-      text: transcription.text
+      text: transcription.text,
+      completed_chunks: transcription.completed_chunks,
+      total_chunks: transcription.total_chunks
     }
   end
 

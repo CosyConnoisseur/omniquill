@@ -23,15 +23,38 @@ class TranscriptionJob < ApplicationJob
 
     raise "Audio conversion failed" unless success
 
-    chat = RubyLLM.chat(model: "gemini-3.1-flash-lite")
-
-    response = chat.ask(
-      "Transcribe this audio exactly.",
-      with: wav_path.to_s
+    # Chunk the WAV file into smaller segments for processing
+    chunks = AudioChunker.call(
+      wav_path.to_s,
+      chunk_duration: 300
     )
 
     transcription.update!(
-      text: response.content,
+      total_chunks: chunks.length,
+      completed_chunks: 0
+    )
+
+    # Debugging: Log the chunks and their durations
+    # chunks.each do |chunk|
+    #   Rails.logger.info "Processing chunk: #{chunk}"
+    # end
+
+    # Debugging: Log the duration of each chunk
+    # chunks.each_with_index do |path, index|
+    #   duration = `ffprobe -v error -show_entries format=duration -of csv=p=0 "#{path}"`.strip
+    #   puts "#{index}: #{duration}s"
+    # end
+
+    results = chunks.map do |chunk|
+      result = TranscriptionService.call(chunk)
+
+      transcription.increment!(:completed_chunks)
+
+      result
+    end
+
+    transcription.update!(
+      text: TranscriptionAssembler.call(results),
       status: "completed"
     )
   end
