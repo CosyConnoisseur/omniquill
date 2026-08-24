@@ -6,11 +6,9 @@
 <div class="centering">
   <div class="bookshelf-container">
     <% @campaigns.each do |campaign| %>
-
-        <div class="campaign-book" style="overflow: hidden;"> <%# something about this div was breaking the width of the page. %>
         <%= link_to campaign_path(campaign) do %>
           <% if campaign.card_image.attached? %>
-            <%= image_tag campaign.card_image, class: "card-img-top img-fluid", style: "max-height: 550px;" %>
+            <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>
           <% else %>
             <%= image_tag "default-card-image.jpg", class: "card-img-top",  style: "max-height: 550px;" %>
           <% end %>
