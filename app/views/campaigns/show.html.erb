@@ -85,7 +85,7 @@
                 </svg>
     </button>
 
-    <button class="nav-link text-dark" id="link2-tab" data-bs-toggle="tab" data-bs-target="#link2-pane" type="button" role="tab" aria-controls="link2-pane" aria-selected="false">
+    <button class="nav-link text-dark w-100" id="link2-tab" data-bs-toggle="tab" data-bs-target="#link2-pane" type="button" role="tab" aria-controls="link2-pane" aria-selected="false">
       Notes <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil-fill d-block mx-auto" viewBox="0 0 16 16">
               <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
             </svg>
@@ -101,7 +101,7 @@
       <% end %>
     <% end %>
 
-    <%= link_to campaign_chapters_path(@campaign), class: "nav-link text-dark", id: "link3-tab" do %>
+    <%= link_to campaign_chapters_path(@campaign), class: "nav-link text-dark w-100", id: "link3-tab" do %>
       Chapters
       <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list-ol d-block mx-auto" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5"/>
@@ -202,17 +202,17 @@
         <div class="container d-flex flex-column">
           <% @notes.each do |note| %>
             <div class="container d-flex flex-row gap-4 align-items-center" style="background-color: #dbd4a0; margin: 10px auto; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-              <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+              <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" style="min-width: 10px; height: auto;" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
                 <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
               </svg>
               <!-- Show Notes -->
-              <li class="flex-grow-1">
-                <h2><%= note.entry %></h2>
+              <li class="flex-grow-1" style="min-width: 0;">
+                <h2 style="word-break: break-word; overflow-wrap: break-word; margin: 0;"><%= note.entry %></h2>
               </li>
                 <%= button_to campaign_note_path(@campaign, note),
                     method: :delete,
-                    class: "btn",
+                    class: "btn ps-0 ms-0",
                     style: "color: red; font-size: 30px;",
                     data: { turbo_confirm: "Delete this note?" } do %>
                   &#x2715;
