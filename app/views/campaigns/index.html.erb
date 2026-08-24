@@ -6,6 +6,7 @@
 <div class="centering">
   <div class="bookshelf-container">
     <% @campaigns.each do |campaign| %>
+    <div class="campaign-book">
         <%= link_to campaign_path(campaign) do %>
           <% if campaign.card_image.attached? %>
             <%= image_tag campaign.card_image, class: "card-img-top", style: "max-height: 550px;" %>

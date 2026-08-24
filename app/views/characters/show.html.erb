@@ -11,7 +11,7 @@
         }, 50);
       }
   </script>
-  
+
 <div class="centering mt-5">
    <div class="medieval-title position-relative">
      <h1><%= @character.name %></h1>
@@ -52,7 +52,7 @@
       </div>
       <%= render "characters/form_portrait" %>
       <% if policy(@character).show_campaign_link? %>
-        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2", data: { direction: "back" } %>
+        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-primary my-2" %>
       <% end %>
     </div>
     <div data-controller="sheet-toggle" class="character-show-description">
