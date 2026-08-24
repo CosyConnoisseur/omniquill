@@ -132,11 +132,11 @@
 
       <div id="synopsis-edit" style="display: none;" class="x-3 mx-md-5 pb-3 force_input">
         <%= form_with model: @campaign do |form| %>
-          <%= form.text_area :synopsis, class: "form-control w-100", rows: 8, style: "background-color: #dbd4a0", placeholder: "Tell everyone what this campaign is about!" %>
-          <%= form.submit "Save", class: "btn btn-dark btn-sm rounded-3" %>
+          <%= form.text_area :synopsis, class: "form-control w-100 mb-2", rows: 8, style: "background-color: #dbd4a0", placeholder: "Tell everyone what this campaign is about!" %>
+          <%= form.submit "Save", class: "btn btn-dark btn-sm" %>
           <button
             type="button"
-            class="btn btn-secondary btn-sm rounded-3"
+            class="btn btn-secondary btn-sm"
             onclick="document.getElementById('synopsis-edit').style.display = 'none'; document.getElementById('synopsis-display').style.display = 'block';">
             Cancel
           </button>
