@@ -200,6 +200,7 @@
     <div class="tab-pane fade" id="link2-pane" role="tabpanel" aria-labelledby="link2-tab">
       <ul style="list-style-type: none; padding-left: 0;">
         <div class="container d-flex flex-column">
+          <p class="text-center">Only you can see these notes!</p>
           <% @notes.each do |note| %>
             <div class="container d-flex flex-row gap-4 align-items-center" style="background-color: #dbd4a0; margin: 10px auto; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
               <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" style="min-width: 10px; height: auto;" viewBox="0 0 16 16">
@@ -223,7 +224,7 @@
       </ul>
 
     <!-- Add a note -->
-    <% if current_user.id == @campaign.user_id %>
+
       <div id="add-note-button" style="display: flex; justify-content: center; margin-bottom: 20px;">
         <button
           type="button"
@@ -249,7 +250,7 @@
           </button>
         <% end %>
       </div>
-    <% end %>
+
     </div>
   </div>
 </div>`
