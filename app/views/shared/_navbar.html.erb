@@ -1,15 +1,18 @@
-<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
+
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "Omniquill-logo.png" %>
     <% end %>
 
-    <%= link_to root_path do %>
-      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "width: 100%" %>
+    <!-- Middle Logo (Using d-inline-block to keep it in the row flow) -->
+    <%= link_to root_path, class: "d-inline-block alignment-fix" do %>
+      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
     <% end %>
 
-    <div class="btn border-0 bg-transparent navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class=""><%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown", style: "width: 50px;"%></span>
+    <!-- Right Dropdown Toggler Button (Added d-inline-block) -->
+    <div class="btn border-0 bg-transparent navbar-toggler d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class=""><%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown", style: "width: 50px; vertical-align: middle;"%></span>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
