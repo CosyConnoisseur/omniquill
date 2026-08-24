@@ -1,5 +1,6 @@
 <% owner = current_user.id == @campaign.user_id %>
 
+<!-- record button -->
 <% if owner %>
   <%= link_to record_campaign_path(@campaign), class: "position-fixed", style: "bottom: 20px; right: -5px; z-index: 1050; width: 80px; height: 80px;" do %>
     <%= image_tag "Edit-icon.png", class: "", style: "width: 100%; height: 100%; object-fit: contain;"%>
@@ -16,56 +17,55 @@
 <% end %>
 
 <div class="position-relative py-5 banner-hover-container" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= image_url %>'); min-height: 350px; background-size: cover; background-position: center;">
-<div class="container d-flex flex-row justify-content-between text-white">
-  <% if owner %>
-    <%= form_with scope: :campaign, url: campaign_path(@campaign), method: :patch, id: "banner-upload-form" do |form| %>
-      <%= form.file_field :banner,
-          id: "banner-upload",
-          style: "display: none;",
-          accept: "image/*",
-          onchange: "document.getElementById('banner-upload-form').requestSubmit();" %>
-
-      <!-- no pointer events -->
-      <label for="banner-upload" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center m-0" style="cursor: default; pointer-events: none;">
-
-        <!--  this button area accepts mouse clicks -->
-        <span class="btn btn-dark opacity-0 banner-upload-btn shadow position-absolute" style="top: 4px; left: 10px; transition: all 0.2s ease-in-out; pointer-events: auto; cursor: pointer; background-color: rgba(0,0,0,0.8); border-color: rgba(255,255,255,0.5);">
-          Change Banner
-        </span>
-
-      </label>
-    <% end %>
-  <% end %>
-
-  <!-- title content container -->
-
-<div class="container d-flex flex-column align-items-center justify-content-center text-white position-absolute start-50 top-50 translate-middle w-md-100 col-md-8 col-lg-6">
+  <div class="container d-flex flex-row justify-content-between text-white">
     <% if owner %>
-      <div class="w-100">
-        <div id="title-display">
-          <h1 class="text-center m-0" style="cursor: pointer; font-family: 'Jersey 15'; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: 3px 3px 0px #000000; color: #ffffff;" onclick="document.getElementById('title-display').style.display = 'none'; document.getElementById('title-edit').style.display ='block';">
-            <%= @campaign.title %>
-          </h1>
-        </div>
-        <div id="title-edit" style="display: none;">
-          <%= form_with model: @campaign do |form| %>
-            <div class="d-flex align-items-center gap-2">
-              <%= form.text_field :title, class: "form-control" %>
-              <%= form.submit "Save", class: "btn btn-secondary"%>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% else %>
-    <div class="mt-auto">
-        <div id="title-display">
-      <h1 class="text-center" style="cursor: pointer; font-family: 'Jersey 15'; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: 3px 3px 0px #000000; color: #ffffff;"><%= @campaign.title %></h1>
-        </div>
-    </div>
+      <%= form_with scope: :campaign, url: campaign_path(@campaign), method: :patch, id: "banner-upload-form" do |form| %>
+        <%= form.file_field :banner,
+            id: "banner-upload",
+            style: "display: none;",
+            accept: "image/*",
+            onchange: "document.getElementById('banner-upload-form').requestSubmit();" %>
+
+        <!-- no pointer events -->
+        <label for="banner-upload" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center m-0" style="cursor: default; pointer-events: none;">
+
+          <!--  this button area accepts mouse clicks -->
+          <span class="btn btn-dark opacity-0 banner-upload-btn shadow position-absolute" style="top: 4px; left: 10px; transition: all 0.2s ease-in-out; pointer-events: auto; cursor: pointer; background-color: rgba(0,0,0,0.8); border-color: rgba(255,255,255,0.5);">
+            Change Banner
+          </span>
+
+        </label>
+      <% end %>
     <% end %>
+
+    <!-- title content container -->
+
+  <div class="container d-flex flex-column align-items-center justify-content-center text-white position-absolute start-50 top-50 translate-middle w-md-100 col-md-8 col-lg-6">
+      <% if owner %>
+        <div class="w-100">
+          <div id="title-display">
+            <h1 class="text-center m-0" style="cursor: pointer; font-family: 'Jersey 15'; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: 3px 3px 0px #000000; color: #ffffff;" onclick="document.getElementById('title-display').style.display = 'none'; document.getElementById('title-edit').style.display ='block';">
+              <%= @campaign.title %>
+            </h1>
+          </div>
+          <div id="title-edit" style="display: none;">
+            <%= form_with model: @campaign do |form| %>
+              <div class="d-flex align-items-center gap-2">
+                <%= form.text_field :title, class: "form-control" %>
+                <%= form.submit "Save", class: "btn btn-secondary"%>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+      <div class="mt-auto">
+          <div id="title-display">
+        <h1 class="text-center" style="cursor: pointer; font-family: 'Jersey 15'; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: 3px 3px 0px #000000; color: #ffffff;"><%= @campaign.title %></h1>
+          </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-</div>
-</div>
 </div>
 
 <!-- Tabs -->
