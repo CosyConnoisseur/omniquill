@@ -174,7 +174,7 @@
         <% else %>
           <%= image_tag @character.document_upload,
               class: "character-sheet-image",
-              data: {action: "click->sheet-toggle#zoom"},
+              data: {action: "click->sheet-toggle#open"},
               style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
         <% end %>
       <% end %>
