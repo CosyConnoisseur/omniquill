@@ -7,6 +7,7 @@ class ChaptersController < ApplicationController
 
   def show
     authorize @chapter
+    @sticky = Sticky.new
   end
 
   def edit
