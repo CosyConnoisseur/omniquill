@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
     resources :chapters, except: [ :destroy ] do
 
-      resources :stickies, only: [ :new, :create ]
+      resources :stickies, only: [ :new, :create, :destroy ]
     end
   end
   get "campaigns/:id/invite", to: "campaigns#invite", as: :invite_campaign

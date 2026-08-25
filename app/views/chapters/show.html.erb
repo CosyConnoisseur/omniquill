@@ -1,3 +1,19 @@
+<% @chapter.stickies.each do |sticky| %>
+  <% hue_shift = rand(360) %> <%# Need this to reverse the hue-rotate on the image tag (the 'x' button) %>
+  <div class="page-sticker" style="top: <%= rand(25..90) %>%; left: <%= rand(70) %>%; filter: hue-rotate(<%= hue_shift %>deg);">
+    <p><%= sticky.text %></p>
+    <% if current_user.stickies.exists?(sticky.id) || current_user.campaigns.exists?(id: @campaign.id) %>
+      <%= button_to campaign_chapter_sticky_path(@campaign, @chapter, sticky),
+      method: :delete,
+      params: { sticky_id: sticky.id },
+      class: "delete-sticky",
+      data: { turbo_confirm: "Are you sure?" } do %>
+        <%= image_tag "delete-icon.png", style: "filter: hue-rotate(#{-hue_shift}deg);" %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="centering mt-5">
   <div class="medieval-title">
     <h1><%= @chapter.title %></h1>
@@ -24,20 +40,30 @@
           <%= image_tag "back-icon.png", class: "animate-icon" %>
           <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
         <% end %>
+        <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
+          <a href="#" class="animate-button", data-bs-toggle="modal", data-bs-target="#stickies-modal">
+            <%= image_tag "create-sticky-icon.png", class: "animate-icon" %>
+            <%= image_tag "create-sticky-icon.gif",  class: "animate-move-icon" %>
+          </a>
+        <% end %>
       </div>
     </div>
+  </div>
+</div>
+<div class="modal fade" id="stickies-modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Put in a Sticky!</h2>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
+          <%= f.input :text, label: "Whatch'a wanna say?" %>
+          <%= f.button :submit, "Stick em'!", class: "btn btn-primary" %>
+        <% end %>
 
-    <div class="d-flex justify-content-between mx-5">
-      <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-        <%= link_to new_campaign_chapter_sticky_path(@campaign, @chapter) do %>
-          <button class="btn btn-info">Sticky!</button>
-        <% end %>
-      <% end %>
-      <ul>
-        <% @chapter.stickies.each do |sticky| %>
-          <li><%= sticky.text %></li>
-        <% end %>
-      </ul>
+        <button class="close" type="button" data-bs-dismiss="modal">nvm...</button>
+      </div>
     </div>
   </div>
 </div>
