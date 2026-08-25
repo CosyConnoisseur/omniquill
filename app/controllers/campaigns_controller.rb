@@ -61,7 +61,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     authorize @campaign, :invite?
     @qr_svg = RQRCode::QRCode.new(join_campaign_url(@campaign)).as_svg(
-      module_size: 7
+      module_size: 7, viewbox: true
     )
   end
 
