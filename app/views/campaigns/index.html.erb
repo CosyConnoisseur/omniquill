@@ -8,21 +8,23 @@
   <div class="bookshelf-container">
     <% @campaigns.sort_by { |camp| [camp.created_at, camp.updated_at].max }.reverse!.each do |campaign| %>
       <div class="campaign-book">
-        <nav class="navbar navbar-expand-sm navbar-book">
-          <div class="container-fluid">
-            <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to invite_campaign_path(campaign), class: "animate-button-dropdown dropdown-item" do %>
-                <%= image_tag "invite-player-icon.png", class: "animate-icon-dropdown" %>
-                <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon-dropdown" %>
-                <p id="invite-text">Invite Players</p>
-              <% end %>
-              <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
+        <% if current_user.id == campaign.user_id %>
+          <nav class="navbar navbar-expand-sm navbar-book">
+            <div class="container-fluid">
+              <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown" %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to invite_campaign_path(campaign), class: "animate-button-dropdown dropdown-item" do %>
+                  <%= image_tag "invite-player-icon.png", class: "animate-icon-dropdown" %>
+                  <%= image_tag "invite-player-icon.gif",  class: "animate-move-icon-dropdown" %>
+                  <p id="invite-text">Invite Players</p>
+                <% end %>
+                <%= render "form_card_image", campaign:campaign, class: "dropdown-item" %>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+          <% end %>
       <%= link_to campaign_path(campaign) do %>
         <% if campaign.card_image.attached? %>
           <div class="campaign-image">
