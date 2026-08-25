@@ -109,7 +109,7 @@
 
 
 %>
-<div class="character-file">
+<div class="character-file" data-controller="char-show-tabs">
   <!-- TAB 1 PROFILE -->
   <div class="character-tab tab-one" data-tab-content="character">
     <div class="char-sheet-top">
@@ -156,15 +156,18 @@
   <div class="character-tabs">
     <button class="char-sheet-tab tab-character"
         type="button"
-        data-tab="character">
+        data-tab="character"
+        data-action="click->char-show-tabs#show">
     </button>
     <button class="char-sheet-tab tab-description"
         type="button"
-        data-tab="description">
+        data-tab="description"
+        data-action="click->char-show-tabs#show">
     </button>
     <button class="char-sheet-tab tab-sheet"
         type="button"
-        data-tab="sheet">
+        data-tab="sheet"
+        data-action="click->char-show-tabs#show">
     </button>
   </div>
 </div>

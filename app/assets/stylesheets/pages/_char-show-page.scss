@@ -1,3 +1,4 @@
+/* ENTIRE FILE */
 .character-file {
   position: relative;
   width: 100%;
@@ -6,6 +7,17 @@
   margin: 0 auto;
   margin-top: 2%;
 }
+
+/* CHARACTER TABS */
+.character-tab {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+
 
 
 /* TOP SECTION */
@@ -51,7 +63,7 @@
 
   box-sizing: border-box;
 
-  z-index: 1;
+  z-index: 2;
 }
 
 
@@ -97,7 +109,7 @@
 }
 
 
-/* TABS */
+/* TABS DIV*/
 .character-tabs {
   position: absolute;
 
@@ -107,11 +119,11 @@
   display: flex;
   flex-direction: column;
 
-  z-index: 1;
+  z-index: 10;
 }
 
 
-/* INDIVIDUAL TAB */
+/* INDIVIDUAL TAB (small tab graphic)*/
 .char-sheet-tab {
   width: 80px;
   height: 150px;
@@ -122,6 +134,8 @@
   background-position: center;
   z-index: 2;
 }
+
+
 
 
 

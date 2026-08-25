@@ -20,4 +20,4 @@ import SheetToggleController from "./sheet_toggle_controller"
 application.register("sheet-toggle", SheetToggleController)
 
 import CharShowTabs from "./char_show_tabs_controller"
-application.register("sheet-toggle", CharShowTabs)
+application.register("char-show-tabs", CharShowTabs)
