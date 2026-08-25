@@ -1,45 +1,43 @@
-<div class="bricks-background">
-  <div class="centering mt-5">
-    <div class="medieval-title">
-      <h1><%= @chapter.title %></h1>
-    </div>
+<div class="centering mt-5">
+  <div class="medieval-title">
+    <h1><%= @chapter.title %></h1>
   </div>
-  <div class="centering">
-    <div class="parchment-container">
+</div>
+<div class="centering">
+  <div class="parchment-container-chap">
 
-      <div class="d-flex flex-column align-items-center text-center mx-5 p-3 font-insert">
-        <p><%= @chapter.summary %></p>
-        <ul>
-          <% @chapter.highlights.split(", ").each do |highlight| %>
-          <li><%= highlight %></li>
-          <% end %>
-        </ul>
-        <div class="d-flex justify-content-center">
-          <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-            <%= link_to edit_campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
-              <%= image_tag "Edit-icon.png", class: "animate-icon" %>
-              <%= image_tag "Edit-icon.gif",  class: "animate-move-icon" %>
-            <% end %>
-          <% end %>
-          <%= link_to campaign_chapters_path, class: "animate-button" do %>
-            <%= image_tag "back-icon.png", class: "animate-icon" %>
-            <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between mx-5">
+    <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
+      <p><%= @chapter.summary %></p>
+      <ul>
+        <% @chapter.highlights.split(", ").each do |highlight| %>
+        <li><%= highlight %></li>
+        <% end %>
+      </ul>
+      <div class="d-flex justify-content-center">
         <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <%= link_to new_campaign_chapter_sticky_path(@campaign, @chapter) do %>
-            <button class="btn btn-info">Sticky!</button>
+          <%= link_to edit_campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
+            <%= image_tag "Edit-icon.png", class: "animate-icon" %>
+            <%= image_tag "Edit-icon.gif",  class: "animate-move-icon" %>
           <% end %>
         <% end %>
-        <ul>
-          <% @chapter.stickies.each do |sticky| %>
-            <li><%= sticky.text %></li>
-          <% end %>
-        </ul>
+        <%= link_to campaign_chapters_path, class: "animate-button" do %>
+          <%= image_tag "back-icon.png", class: "animate-icon" %>
+          <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+        <% end %>
       </div>
+    </div>
+
+    <div class="d-flex justify-content-between mx-5">
+      <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
+        <%= link_to new_campaign_chapter_sticky_path(@campaign, @chapter) do %>
+          <button class="btn btn-info">Sticky!</button>
+        <% end %>
+      <% end %>
+      <ul>
+        <% @chapter.stickies.each do |sticky| %>
+          <li><%= sticky.text %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

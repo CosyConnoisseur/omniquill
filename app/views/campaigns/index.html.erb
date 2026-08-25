@@ -6,8 +6,7 @@
 
 <div class="centering">
   <div class="bookshelf-container">
-    <% @campaigns.each do |campaign| %>
-
+    <% @campaigns.sort_by { |camp| [camp.created_at, camp.updated_at].max }.reverse!.each do |campaign| %>
       <div class="campaign-book">
         <nav class="navbar navbar-expand-sm navbar-book">
           <div class="container-fluid">
@@ -28,6 +27,10 @@
         <% if campaign.card_image.attached? %>
           <div class="campaign-image">
             <%= image_tag campaign.card_image, style: "max-height: 550px;" %>
+          </div>
+        <% elsif campaign.banner.attached? %>
+          <div class="campaign-image">
+            <%= image_tag campaign.banner, style: "max-height: 550px;" %>
           </div>
         <% else %>
           <div class="campaign-image">

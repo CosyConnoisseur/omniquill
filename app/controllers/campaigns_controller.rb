@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     @characters = @campaign.characters
     @chapters = @campaign.chapters
-    @notes = @campaign.notes
+    @notes = @campaign.notes.where(user: current_user)
     authorize @campaign
   end
 
@@ -60,7 +60,9 @@ class CampaignsController < ApplicationController
   def invite
     @campaign = Campaign.find(params[:id])
     authorize @campaign, :invite?
-    @qr_svg = RQRCode::QRCode.new(join_campaign_url(@campaign)).as_svg
+    @qr_svg = RQRCode::QRCode.new(join_campaign_url(@campaign)).as_svg(
+      module_size: 7
+    )
   end
 
   def add_player

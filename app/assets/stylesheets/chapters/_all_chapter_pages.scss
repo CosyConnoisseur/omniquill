@@ -1,17 +1,31 @@
 .chap-card {
   text-align: center;
   align-items: center;
-  border: 0.5rem dotted rgb(46, 29, 19);
   margin: 1rem;
+  border-bottom: 2px dashed black;
 
   a {
     text-decoration: none;
   }
 
+  .chap-date {
+    font-size: 0.75rem;
+    margin: 0;
+    border-bottom: 2px solid black;
+    color: black;
+  }
+
+  .chap-title {
+    color: rgb(3, 153, 212);
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgb(164, 214, 255);
+    margin: 0.25rem;
+  }
+
   p {
-    font-family: $quill-font;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
+    color: $omni-ink;
   }
 }
 
@@ -19,33 +33,12 @@
 .font-insert {
 
   p {
-    font-family: $quill-font;
     font-size: 1.25rem;
     color: $omni-ink;
   }
 
   li {
-    font-family: $quill-font;
     font-size: 1.25rem;
     color: $omni-ink;
-  }
-}
-
-@media (max-width: 1000px) {
-  .medieval-title {
-    width: 70%;
-    h1{
-      font-size: 4rem;
-    }
-  }
-
-}
-
-@media (max-width: 600px) {
-  .medieval-title{
-    width: 85%;
-    h1{
-      font-size: 2.5rem;
-    }
   }
 }

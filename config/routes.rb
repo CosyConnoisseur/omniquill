@@ -49,5 +49,6 @@ Rails.application.routes.draw do
 
   resources :transcriptions, only: [:create]
   post "transcriptions/download", to: "transcriptions#download"
+  get "transcriptions/:id", to: "transcriptions#show"
 
 end

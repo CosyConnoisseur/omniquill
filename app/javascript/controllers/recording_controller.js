@@ -7,10 +7,16 @@ export default class extends Controller {
     "heading",
     "output",
     "transcript",
+    "progress",
     "timer"
   ]
 
+  static values = {
+    chapterId: Number
+  }
+
   connect() {
+    this.pollingTimeout = null
     console.log("Recording controller connected")
 
     this.isRecording = false
@@ -91,12 +97,22 @@ export default class extends Controller {
   }
 
   async uploadAudio(blob, filename = "recording.mp4") {
+    if (this.pollingTimeout) {
+      clearTimeout(this.pollingTimeout)
+      this.pollingTimeout = null
+    }
+
     this.outputTarget.classList.remove("d-none")
+    this.progressTarget.innerText = "Preparing to upload audio..."
     this.transcriptTarget.innerText = "Transcribing audio..."
 
     const formData = new FormData()
 
     formData.append("audio_file", blob, filename)
+    formData.append("chapter_id", this.chapterIdValue)
+
+
+    console.log("Chapter ID:", this.chapterIdValue)
 
     const csrfToken = document.querySelector(
       'meta[name="csrf-token"]'
@@ -117,8 +133,12 @@ export default class extends Controller {
       const data = await response.json()
 
       if (response.ok) {
-        this.transcriptTarget.innerText = data.text
-        this.headingTarget.innerText = "Ready when you are!"
+        // this.transcriptTarget.innerText = data.text
+        // this.headingTarget.innerText = "Ready when you are!"
+        this.progressTarget.innerText = "Starting transcription..."
+        this.headingTarget.innerText = "Processing..."
+
+        this.pollTranscription(data.id)
 
         this.resetRecording()
       } else {
@@ -130,6 +150,35 @@ export default class extends Controller {
       console.error(error)
       this.transcriptTarget.innerText = "Failed to upload audio"
     }
+  }
+
+  async pollTranscription(id) {
+    const response = await fetch(`/transcriptions/${id}`)
+    const data = await response.json()
+
+    console.log("Polling:", id, data)
+
+    if (data.total_chunks > 0) {
+      this.progressTarget.innerText =
+        `Transcription progress: ${data.completed_chunks} / ${data.total_chunks} chunks completed`
+    }
+
+    if (data.status == "completed") {
+      this.progressTarget.innerText = ""
+      this.transcriptTarget.innerText = data.text
+      this.headingTarget.innerText = "Ready when you are!"
+      return
+    }
+
+    if (data.status == "failed") {
+      this.transcriptTarget.innerText = "Transcription failed."
+      return
+    }
+
+    this.pollingTimeout = setTimeout(
+      () => this.pollTranscription(id),
+      2000
+    )
   }
 
   uploadAudioFile() {

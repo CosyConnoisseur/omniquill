@@ -37,7 +37,6 @@ body {
   text-align: center;
   align-content: center;
   width: auto;
-  height: 10rem;
   padding: 1rem 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -55,14 +54,79 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
 
   .medieval-title {
 
-    h1, h2, h3 {
-      font-size: 3rem;
+    width: 70%;
+
+    h1, h2, h3{
+      font-size: 4rem;
     }
-
   }
+}
 
+@media (max-width: 600px) {
+
+  .medieval-title{
+
+    width: 85%;
+
+    h1, h2, h3{
+      font-size: 1.75rem;
+    }
+  }
+}
+
+//quick fix for bookmark dropdown menu
+.same-hover2{
+  margin: 0;
+}
+
+.same-hover:hover > .same-hover2{
+  background-color: white;
+  z-index: -1000;
+  width: 100px;
+}
+
+//campaign banner hover
+
+.banner-hover-container:hover .banner-upload-btn {
+  opacity: 1 !important;
+  transform: scale(1.05);
+}
+
+//nav-tab colors
+.nav-tabs {
+  border-bottom: 1px solid #c1b77a !important;
+}
+
+
+.nav-tabs .nav-link:hover:not(.active) {
+  background-color: #c2ba8581 !important;
+  border-color: #f2d215 #f2d215 transparent !important;
+  color: #000000 !important;
+}
+
+
+.nav-tabs .nav-link.active {
+  background-color: #c1b77a!important;
+  border-color: #f2d215 #f2d215 transparent !important;
+  color: #000000 !important;
+}
+
+
+#character_name_input::placeholder {
+  color: #8c7662;
+  opacity: 0.7;
+}
+
+#character_stats_summary_input::placeholder {
+  color: #8c7662;
+  opacity: 0.7;
+}
+
+.force_input textarea::placeholder {
+  color: #8c7662;
+  opacity: 0.7;
 }

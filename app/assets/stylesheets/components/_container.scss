@@ -27,6 +27,40 @@
   padding: 0;
 }
 
+.parchment-container-chap {
+  height: auto;
+  width: 60%;
+  padding: 1.5rem;
+  border-image: asset_url("parchment-leather-border.png");
+  border-image-slice: 115 115 115 115 fill;
+  border-image-width: 30px 30px 30px 30px;
+  border-image-outset: 5px 5px 5px 5px;
+  border-image-repeat: round round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+}
+
+.book-page-container {
+  height: auto;
+  width: 60%;
+  min-height: 400px;
+  padding: 0 0.5rem;
+  border-image: asset_url("open-book-border.png");
+  border-image-slice: 80 80 90 80 fill;
+  border-image-width: 20px 20px 20px 20px;
+  border-image-outset: 5px;
+  border-image-repeat: stretch round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+
+    #no-chapters {
+    margin: 0;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $omni-ink;
+  }
+}
+
 // Media queries (responsive webpage) section
 
 @media (max-width: 1500px) {
@@ -36,7 +70,15 @@
   }
 
   .parchment-container {
-    width: 70%;
+    width: 75%;
+  }
+
+  .parchment-container-chap {
+    width: 75%;
+  }
+
+  .book-page-container {
+    width: 75%;
   }
 
 }
@@ -44,7 +86,17 @@
 @media (max-width: 600px) {
 
   .parchment-container {
-    width: 85%;
+    width: 90%;
+  }
+
+  .parchment-container-chap {
+    width: 90%;
+    padding: 1.5rem 0;
+  }
+
+  .book-page-container {
+    width: 90%;
+    min-height: 300px;
   }
 
 }
