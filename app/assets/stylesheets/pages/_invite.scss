@@ -1,7 +1,68 @@
+.qr-code {
+  position: relative;
+  width: 90vw;
+  max-width: 750px;
+  aspect-ratio: 1 / 1;
+  background-image:
+    url("qr-rune.png");
+    background-size:
+  contain,
+    cover;
+
+  background-position:
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    repeat;
+}
 
 .qr-code svg {
-  width: 90%;
+  width: 70%;
   height: auto;
   display: block;
   margin: 0 auto;
 }
+
+@media (max-width: 600px) {
+  .qr-code svg {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transform: translate(0%, 20%);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// svg, img {
+//   width: 70%;
+//   height: auto;
+//     object-fit: contain;
+// transform: translate(35%, 35%);
+// }
+
+// @media (max-width: 600px) {
+//  .qr-code svg {
+//     width: 100%;
+//     height: auto;
+
+
+//   transform: translate(20%, 20%);
+//   }
+
+//   svg {
+//     width: 70%;
+//     height: autio;
+
+//   }
+// }
