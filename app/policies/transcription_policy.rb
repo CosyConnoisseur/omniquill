@@ -9,6 +9,10 @@ class TranscriptionPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    true
+  end
+
   def download?
     true
   end
