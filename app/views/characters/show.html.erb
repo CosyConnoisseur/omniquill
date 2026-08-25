@@ -111,7 +111,7 @@
 %>
 <div class="character-file">
   <!-- TAB 1 PROFILE -->
-  <div class="character-tab tab-one">
+  <div class="character-tab tab-one" data-tab-content="character">
     <div class="char-sheet-top">
       <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
       <div class="medieval-title">
@@ -133,10 +133,38 @@
     </div>
   </div>
   <!-- TAB 2 DESC -->
-  <!-- ALL TABS -->
+  <div class="character-tab tab-two" data-tab-content="description">
+    <div class="char-sheet-top">
+      <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
+      <div class="medieval-title">
+        <h1><%= @character.name %></h1>
+        <%= link_to edit_character_path(@character),
+        class: "edit-character" do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="char-sheet-bottom">
+      <div class="parchment-container mb-5 character-description-clickable">
+        <div class="font-insert">
+          <p><%= @character.stats_summary %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  TAB BUTTONS -->
   <div class="character-tabs">
-    <div class="char-sheet-tab tab-character"></div>
-    <div class="char-sheet-tab tab-description"></div>
-    <div class="char-sheet-tab tab-sheet"></div>
+    <button class="char-sheet-tab tab-character"
+        type="button"
+        data-tab="character">
+    </button>
+    <button class="char-sheet-tab tab-description"
+        type="button"
+        data-tab="description">
+    </button>
+    <button class="char-sheet-tab tab-sheet"
+        type="button"
+        data-tab="sheet">
+    </button>
   </div>
 </div>
