@@ -48,6 +48,25 @@
   opacity: 0.2;
   transition: 0.2s ease-out;
 
+  .delete-sticky {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
   &:hover {
     opacity: 1;
     transform: scale(1);

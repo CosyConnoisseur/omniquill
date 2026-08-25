@@ -20,6 +20,14 @@ class StickiesController < ApplicationController
     end
   end
 
+  def destroy
+    @sticky = Sticky.find(params[:id])
+    authorize @sticky
+    @sticky.destroy
+
+    redirect_back fallback_location: root_path, notice: "Sticky was successfully deleted.", status: :see_other
+  end
+
   private
 
   def sticky_params

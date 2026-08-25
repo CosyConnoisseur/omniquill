@@ -1,5 +1,17 @@
 <% @chapter.stickies.each do |sticky| %>
-  <p class="page-sticker" style="top: <%= rand(85) %>%; left: <%= rand(70) %>%; filter: hue-rotate(<%= rand(360) %>deg);"><%= sticky.text %></p>
+  <% hue_shift = rand(360) %> <%# Need this to reverse the hue-rotate on the image tag (the 'x' button) %>
+  <div class="page-sticker" style="top: <%= rand(25..90) %>%; left: <%= rand(70) %>%; filter: hue-rotate(<%= hue_shift %>deg);">
+    <p><%= sticky.text %></p>
+    <% if current_user.stickies.exists?(sticky.id) || current_user.campaigns.exists?(id: @campaign.id) %>
+      <%= button_to campaign_chapter_sticky_path(@chapter, sticky),
+      method: :delete,
+      params: { sticky_id: sticky.id },
+      class: "delete-sticky",
+      data: { turbo_confirm: "Are you sure?" } do %>
+        <%= image_tag "delete-icon.png", style: "filter: hue-rotate(#{-hue_shift}deg);" %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
 
 <div class="centering mt-5">
