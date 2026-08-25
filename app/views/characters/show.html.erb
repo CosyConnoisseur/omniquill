@@ -110,7 +110,7 @@
 
 %>
 <div class="character-file">
-  <!-- TAB 1: CHARACTER -->
+  <!-- TAB 1 PROFILE -->
   <div class="character-tab tab-one">
     <div class="char-sheet-top">
       <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
@@ -122,7 +122,6 @@
         <% end %>
       </div>
     </div>
-    <div class="char-sheet-tab"></div>
     <div class="char-sheet-bottom">
       <div class="character-portrait">
         <% if @character.portrait.attached? %>
@@ -132,6 +131,12 @@
         <% end %>
       </div>
     </div>
-    <div class="char-sheet-tab"></div>
+  </div>
+  <!-- TAB 2 DESC -->
+  <!-- ALL TABS -->
+  <div class="character-tabs">
+    <div class="char-sheet-tab tab-character"></div>
+    <div class="char-sheet-tab tab-description"></div>
+    <div class="char-sheet-tab tab-sheet"></div>
   </div>
 </div>
