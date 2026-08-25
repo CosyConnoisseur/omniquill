@@ -24,20 +24,30 @@
               <%= image_tag "Home-icon.gif",  class: "move-icon-navbar" %>
             <% end %>
           </li>
-          <% if current_page?("") %>
+          <% if current_page?("") || controller_name == 'campaigns' && action_name == 'index' %>
             <li class="nav-item active mx-2">
               <%= link_to new_campaign_path, class: "button-navbar" do %>
                 <%= image_tag "campaign-creation-icon.png", class: "icon-navbar" %>
                 <%= image_tag "campaign-creation-icon.gif",  class: "move-icon-navbar" %>
               <% end %>
             </li>
-          <% end %>
+            <% end %>
+            <% if controller_name == 'campaigns' && action_name == 'show' %>
+              <% if current_user.id == @campaign.user_id %>
+              <li class="nav-item active mx-2">
+                <%= link_to record_campaign_path(@campaign), class: "button-navbar" do %>
+                  <%= image_tag "Edit-icon.png", class: "icon-navbar" %>
+                  <%= image_tag "Edit-icon.gif",  class: "move-icon-navbar" %>
+              <% end %>
+            <% end %>
+              </li>
+            <% end %>
           <li class="nav-item dropdown mx-2">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.profile_picture.attached? %>
               <%= image_tag current_user.profile_picture, class: "avatar", alt: "dropdown menu", style: "height: 50px; width: 50px; object-fit: cover" %>
             <% else %>
-              <%= image_tag "default-avatar.png", class: "avatar", alt: "dropdown menu" %>
+              <%= image_tag "default-avatar.png", class: "avatar", alt: "dropdown menu", style: "height: 50px; width: 50px; object-fit: cover" %>
             <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

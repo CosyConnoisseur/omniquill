@@ -3,8 +3,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["modal"]
 
-  open() {
-    this.modalTarget.classList.remove("d-none")
+  open(event) {
+    if (window.innerWidth <= 600) {
+      window.open(event.currentTarget.src, "_blank")
+    } else {
+      event.currentTarget.classList.toggle("zoomed")
+    }
   }
 
   close() {
@@ -16,8 +20,6 @@ export default class extends Controller {
       this.close()
     }
   }
-  zoom(event) {
-    event.currentTarget.classList.toggle("zoomed")
-  }
+
 
 }

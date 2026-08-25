@@ -1,0 +1,193 @@
+/* ENTIRE FILE */
+.character-file {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: calc(100dvh - 70px);
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
+/* CHARACTER TABS */
+.character-tab {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+
+
+
+/* TOP SECTION */
+.char-sheet-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 180px;
+
+  background-image: url("char-sheet-top-fixed.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2;
+}
+
+
+/* STRETCHY BOTTOM */
+.char-sheet-bottom {
+  position: absolute;
+  top: 180px;
+  left: 0;
+
+  width: 100%;
+
+  min-height: 300px;
+
+  background-image: url("char-sheet-bottom-stretchy.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5% 0;
+
+  box-sizing: border-box;
+
+  z-index: 2;
+}
+
+
+/* TITLE */
+.medieval-title {
+  position: absolute;
+
+  background-image: url("medieval-title.png");
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  text-align: center;
+
+  z-index: 4;
+}
+
+
+/* DROPDOWN */
+.char-sheet-dropdown {
+  position: absolute;
+
+  top: 0;
+  left: 5%;
+
+  width: 10%;
+  height: auto;
+
+  z-index: 5;
+}
+
+
+/* PORTRAIT */
+.character-portrait {
+  width: 55%;
+  height: auto;
+}
+
+.character-portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* TABS DIV*/
+.character-tabs {
+  position: absolute;
+
+  top: 190px;
+  right: -60px;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 1;
+}
+
+
+/* INDIVIDUAL TAB (small tab graphic)*/
+.char-sheet-tab {
+  width: 80px;
+  height: 150px;
+
+  background-image: url("char-sheet-tab.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+}
+
+
+
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+  .character-file {
+    position: relative;
+    width: 80%;
+    max-width: 700px;
+
+
+
+    margin: 80px auto 20px;
+
+    box-sizing: border-box;
+    min-height: 250px;
+    padding: 5% 0;
+  }
+
+  .character-tabs {
+    top: -10%;
+    right: 6%;
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .medieval-title {
+    width: 85%;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .character-portrait {
+    width: 70%;
+    position: relative;
+
+  }
+
+  .char-sheet-tab {
+    transform: rotate(270deg) scale(0.75);
+  }
+
+    .character-sheet-image {
+    width: 90%;
+    height: auto;
+    max-height: 90%;
+    object-fit: contain;
+  }
+
+}

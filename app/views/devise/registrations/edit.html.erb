@@ -27,7 +27,7 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 2.3rem;" %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
     <%= f.file_field :profile_picture,
                           accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                           class: " form-control",
@@ -35,13 +35,13 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", class:"btn btn-dark my-1" %>
   </div>
 <% end %>
+<%= link_to "Back", :back, class:"btn btn-secondary", data: { direction: "back" } %>
 
-<h3>Cancel my account</h3>
+<h3 class="mt-5">Cancel my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class:"btn btn-danger", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-<%= link_to "Back", :back %>
 </div>
