@@ -119,7 +119,7 @@
   display: flex;
   flex-direction: column;
 
-  z-index: 10;
+  z-index: 1;
 }
 
 
@@ -181,6 +181,13 @@
 
   .char-sheet-tab {
     transform: rotate(270deg) scale(0.75);
+  }
+
+    .character-sheet-image {
+    width: 90%;
+    height: auto;
+    max-height: 90%;
+    object-fit: contain;
   }
 
 }

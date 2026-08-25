@@ -109,7 +109,7 @@
 
 
 %>
-<div class="character-file" data-controller="char-show-tabs">
+<div class="character-file" data-controller="char-show-tabs sheet-toggle">
   <!-- TAB 1 PROFILE -->
   <div class="character-tab tab-one" data-tab-content="character">
     <div class="char-sheet-top">
@@ -150,6 +150,34 @@
           <p><%= @character.stats_summary %></p>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- TAB 3 CHARACTER SHEET MODAL-->
+  <div class="character-tab tab-three" data-tab-content="sheet">
+    <div class="char-sheet-top">
+      <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
+      <div class="medieval-title">
+        <h1><%= @character.name %></h1>
+        <%= link_to edit_character_path(@character),
+        class: "edit-character" do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="char-sheet-bottom">
+      <% if @character.document_upload.attached? %>
+        <% if @character.document_upload.content_type == "application/pdf" %>
+          <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+          <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+            Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
+          <% end %>
+        <% else %>
+          <%= image_tag @character.document_upload,
+              class: "character-sheet-image",
+              data: {action: "click->sheet-toggle#zoom"},
+              style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <!--  TAB BUTTONS -->
