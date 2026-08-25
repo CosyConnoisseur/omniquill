@@ -1,35 +1,37 @@
 <% if flash[:white_fade_in] %>
   <div class="page-fade-container"></div>
 <% end %>
+<script>
+  const fadeOutContainer = document.querySelector(".page-fade-container");
+    if (fadeOutContainer && !fadeOutContainer.classList.contains("hidden")){
 
-  <script>
-    const fadeOutContainer = document.querySelector(".page-fade-container");
-      if (fadeOutContainer && !fadeOutContainer.classList.contains("hidden")){
-
-        setTimeout(() => {
-          fadeOutContainer.classList.add("hidden");
-        }, 50);
-      }
-  </script>
-
-  <%# Keep flash and script on top %>
-
-
-<div class="bricks-background">
-  <div class="centering">
-    <div class="medieval-title position-relative">
-      <h1><%= @character.name %></h1>
-      <%= link_to edit_character_path(@character),
-        class: "position-absolute top-0 end-0 m-3 text-reset" do %>
-        <i class="fa-solid fa-pen"></i>
-      <% end %>
+      setTimeout(() => {
+        fadeOutContainer.classList.add("hidden");
+      }, 50);
+    }
+</script>
+<%# Keep flash and script on top %>
+<div class="character-file" data-controller="char-show-tabs sheet-toggle">
+  <!-- TAB 1 PROFILE -->
+  <div class="character-tab tab-one" data-tab-content="character">
+    <div class="char-sheet-top">
+      <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
+      <div class="medieval-title">
+        <h1><%= @character.name %></h1>
+        <%= link_to edit_character_path(@character),
+        class: "edit-character" do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
+      </div>
     </div>
+    <div class="char-sheet-bottom">
+      <div class="character-portrait">
   </div>
   <div class="d-flex flex-column align-items-center">
 
 
 <% if policy(@character).show_campaign_link? %>
-        <%= link_to "Back to Campaign", campaign_path(@character.campaign), class: "btn btn-dark my-2" %>
+        <%= link_to "Back to Campaign",  :back, class: "btn btn-dark my-2", data: { direction: "back" } %>
       <% end %>
 
     <!-- Portrait -->
@@ -39,13 +41,23 @@
     <div class="character-portrait-container d-flex flex-column align-items-center">
       <div class="character-portrait torn-edges mb-3">
         <% if @character.portrait.attached? %>
-          <%= image_tag @character.portrait,
-              style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
+          <%= image_tag @character.portrait %>
         <% else %>
-          <%= image_tag "default-portrait.jpg",
-              style: "max-height: 550px; max-width: 100%; border-radius: 8px;" %>
+          <%= image_tag "default-portrait.jpg" %>
         <% end %>
       </div>
+    </div>
+  </div>
+  <!-- TAB 2 DESC -->
+  <div class="character-tab tab-two" data-tab-content="description">
+    <div class="char-sheet-top">
+      <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
+      <div class="medieval-title">
+        <h1><%= @character.name %></h1>
+        <%= link_to edit_character_path(@character),
+        class: "edit-character" do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
 
   <div class="character-info-container d-flex mt-3">
     <div data-controller="sheet-toggle" class="character-show-description">
@@ -57,38 +69,39 @@
           <p style="white-space: pre-wrap;"><%= @character.stats_summary %></p>
         </div>
       </div>
-      <!-- CHARACTER SHEET MODAL -->
-      <div
-  data-sheet-toggle-target="modal"
-  data-action="click->sheet-toggle#closeOutside"
-        class="character-sheet-modal d-none position-fixed top-0 start-0 w-100 h-100">
-        <div class="character-sheet-modal-content w-100 h-100 overflow-auto">
-          <!-- Close bottuton -->
-          <button
-      type="button"
-      class="character-sheet-close"
-      data-action="click->sheet-toggle#close">
-            &times;
-          </button>
-          <!-- Char sheet -->
-          <% if @character.document_upload.attached? %>
-            <% if @character.document_upload.content_type == "application/pdf" %>
-              <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
-              <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
-                Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
-              <% end %>
-            <% else %>
-              <%= image_tag @character.document_upload,
-              class: "character-sheet-image",
-              data: {action: "click->sheet-toggle#zoom"},
-              style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
-            <% end %>
-          <% end %>
+    </div>
+    <div class="char-sheet-bottom">
+      <div class="parchment-container mb-5 character-description-clickable">
+        <div class="font-insert">
+          <p><%= @character.stats_summary %></p>
         </div>
       </div>
     </div>
-   </div>
   </div>
+  <!-- TAB 3 CHARACTER SHEET MODAL-->
+  <div class="character-tab tab-three" data-tab-content="sheet">
+    <div class="char-sheet-top">
+      <%= image_tag "dropdown-icon.png", class: "char-sheet-dropdown" %>
+      <div class="medieval-title">
+        <h1><%= @character.name %></h1>
+        <%= link_to edit_character_path(@character),
+        class: "edit-character" do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="char-sheet-bottom">
+      <% if @character.document_upload.attached? %>
+        <% if @character.document_upload.content_type == "application/pdf" %>
+          <iframe src=<%= url_for(@character.document_upload) %> class="" style="width: 100%; height: 600px; border: none; border-radius: 8px;"></iframe>
+          <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
+            Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
+          <% end %>
+        <% else %>
+          <%= image_tag @character.document_upload,
+              class: "character-sheet-image",
+              data: {action: "click->sheet-toggle#open"},
+              style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
  </div>
 </div>
 
@@ -100,16 +113,25 @@
         <%= link_to url_for(@character.document_upload), target: "_blank", class: "text-center" do %>
           Download PDF (<%= number_to_human_size(@character.document_upload.byte_size) %>)
         <% end %>
-      <% else %>
-        <%= image_tag @character.document_upload, style: "max-height: 550px; object-fit: contain; border-radius: 8px;" %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-
-<%= button_to character_path,
-      method: :delete,
-      params: { character_id: @character.id },
-      class: "character-button",
-      data: { turbo_confirm: "Are you sure?" } do %>
-    Delete Character
-  <% end %>
+  <!--  TAB BUTTONS -->
+  <div class="character-tabs">
+    <button class="char-sheet-tab tab-character"
+        type="button"
+        data-tab="character"
+        data-action="click->char-show-tabs#show">
+    </button>
+    <button class="char-sheet-tab tab-description"
+        type="button"
+        data-tab="description"
+        data-action="click->char-show-tabs#show">
+    </button>
+    <button class="char-sheet-tab tab-sheet"
+        type="button"
+        data-tab="sheet"
+        data-action="click->char-show-tabs#show">
+    </button>
+  </div>
+</div>

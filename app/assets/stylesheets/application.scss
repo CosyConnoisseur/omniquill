@@ -16,6 +16,7 @@
 @import "pages/characters";
 @import "pages/invite";
 @import "pages/char-sheet-modal";
+@import "pages/char-show-page";
 
 // Global CSS to be used
 
@@ -121,6 +122,11 @@ body {
 }
 
 #character_stats_summary_input::placeholder {
+  color: #8c7662;
+  opacity: 0.7;
+}
+
+.force_input textarea::placeholder {
   color: #8c7662;
   opacity: 0.7;
 }

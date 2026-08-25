@@ -18,3 +18,6 @@ application.register("invite-link", InviteLinkController)
 
 import SheetToggleController from "./sheet_toggle_controller"
 application.register("sheet-toggle", SheetToggleController)
+
+import CharShowTabs from "./char_show_tabs_controller"
+application.register("char-show-tabs", CharShowTabs)
