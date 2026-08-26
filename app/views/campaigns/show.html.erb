@@ -77,19 +77,19 @@
       data-campaign-show-tabs-campaign-id-value="<%= @campaign.id %>">
 <!-- Tab Navigation -->
   <nav class="nav nav-tabs justify-content-center nav-justified" id="myTab" role="tablist" data-action="shown.bs.tab->campaign-show-tabs#saveTab">
-    <button class="nav-link active text-dark campaign-tab tab-one" data-tab-content="synopsis" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-pane" type="button" role="tab" aria-controls="active-pane" aria-selected="true">
+    <button class="nav-link active text-dark campaign-tab tab-one" data-tab-content="synopsis" id="synopsis-tab" data-bs-toggle="tab" data-bs-target="#synopsis-pane" type="button" role="tab" aria-controls="synopsis-pane" aria-selected="true">
       Synopsis <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-text-fill d-block mx-auto" viewBox="0 0 16 16">
                 <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1"/>
               </svg>
       </button>
 
-    <button class="nav-link text-dark campaign-tab tab-two" data-tab-content="characters" id="link1-tab" data-bs-toggle="tab" data-bs-target="#link1-pane" type="button" role="tab" aria-controls="link1-pane" aria-selected="false">
+    <button class="nav-link text-dark campaign-tab tab-two" data-tab-content="characters" id="characters-tab" data-bs-toggle="tab" data-bs-target="#characters-pane" type="button" role="tab" aria-controls="characters-pane" aria-selected="false">
       Characters <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill d-block mx-auto" viewBox="0 0 16 16">
                   <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
                 </svg>
     </button>
 
-    <button class="nav-link text-dark w-100 campaign-tab tab-three" data-tab-content="notes" id="link2-tab" data-bs-toggle="tab" data-bs-target="#link2-pane" type="button" role="tab" aria-controls="link2-pane" aria-selected="false">
+    <button class="nav-link text-dark w-100 campaign-tab tab-three" data-tab-content="notes" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-pane" type="button" role="tab" aria-controls="notes-pane" aria-selected="false">
       Notes <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil-fill d-block mx-auto" viewBox="0 0 16 16">
               <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
             </svg>
@@ -117,7 +117,7 @@
 
   <!-- Content Panes -->
   <div class="tab-content mt-3" id="myTabContent">
-    <div class="tab-pane fade show active" id="active-pane" role="tabpanel" aria-labelledby="active-tab">
+    <div class="tab-pane fade show active" id="synopsis-pane" role="tabpanel" aria-labelledby="synopsis-tab">
 
     <!-- Synopsis -->
       <div id="synopsis-display">
@@ -150,7 +150,7 @@
 
     <!--Characters-->
     </div>
-    <div class="tab-pane fade" id="link1-pane" role="tabpanel" aria-labelledby="link1-tab">
+    <div class="tab-pane fade" id="characters-pane" role="tabpanel" aria-labelledby="characters-tab">
       <h2 class="text-center" style="font-family: 'Jersey 10'; font-size: 2.1rem;">Master of Ceremonies</h2>
       <div class="text-center">
         <% if @campaign.user.profile_picture&.attached? %>
@@ -202,7 +202,7 @@
     </div>
 
     <!--Notes-->
-    <div class="tab-pane fade" id="link2-pane" role="tabpanel" aria-labelledby="link2-tab">
+    <div class="tab-pane fade" id="notes-pane" role="tabpanel" aria-labelledby="notes-tab">
       <ul style="list-style-type: none; padding-left: 0;">
         <div class="container d-flex flex-column">
           <p class="text-center">Only you can see these notes!</p>

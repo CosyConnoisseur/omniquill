@@ -20,7 +20,7 @@ document.addEventListener("turbo:before-visit", (event) => {
   const destinationPath = destinationUrl.pathname;
 
   if (destinationPath === currentPath) {
-    event.preventDefault();
+    // event.preventDefault();
     clearTransitions();
     return
   }
