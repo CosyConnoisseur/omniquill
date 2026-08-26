@@ -53,15 +53,15 @@
 <div class="modal fade" id="stickies-modal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content stickies-styling">
+      <button class="close x-button" type="button" data-bs-dismiss="modal"></button>
       <div class="modal-header p-0 mt-4">
         <h2 class="modal-title" style="color: #200033;">Add a Sticky!</h2>
       </div>
       <div class="modal-body mb-4">
         <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
-          <%= f.input :text, label: "", label_html: { class: "d-none" } %>
-          <div class="d-flex justify-content-evenly">
-            <%= f.button :submit, "Stick em'!", class: "btn btn-primary" %>
-            <button class="close" type="button" data-bs-dismiss="modal">nvm...</button>
+          <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "sticky-input" } %>
+          <div class="d-flex justify-content-center">
+            <%= f.button :submit, "", class: "sticky-add-button" %>
           </div>
         <% end %>
 
