@@ -85,14 +85,6 @@
   border-image-repeat: round round;
   box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
 
-  .sticky-input {
-    border-image: asset_url("text-border.png");
-    border-image-slice: 70 70 70 70 fill;
-    border-image-width: 1.5rem;
-    border-image-outset: 0.6rem;
-    border-image-repeat: stretch stretch;
-  }
-
   .sticky-add-button {
     width: 5rem;
     height: 5rem;
@@ -115,6 +107,21 @@
     background-color: transparent;
     border: none;
   }
+}
+
+.text-border {
+  padding: 0.25rem;
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 0.6rem;
+  border-image-repeat: stretch stretch;
+  }
+
+.highlight {
+  border-bottom: 1px dashed $omni-ink;
+  border-top: 1px dashed $omni-ink;
+  margin: 0.1rem;
 }
 
 // This is just for now to make a text be this font. Can delete once everything is set-up better.
