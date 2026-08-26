@@ -7,7 +7,7 @@
       method: :delete,
       params: { sticky_id: sticky.id },
       class: "delete-sticky",
-      data: { turbo_confirm: "Are you sure?" } do %>
+      data: { turbo_confirm: "Delete Sticky?" } do %>
         <%= image_tag "delete-icon.png", style: "filter: hue-rotate(#{-hue_shift}deg);" %>
       <% end %>
     <% end %>
@@ -24,9 +24,9 @@
 
     <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
       <p><%= @chapter.summary %></p>
-      <ul>
+      <ul class="text-border" style="list-style-type: none;">
         <% @chapter.highlights.split(", ").each do |highlight| %>
-        <li><%= highlight %></li>
+        <li class="highlight"><%= highlight %></li>
         <% end %>
       </ul>
       <div class="d-flex justify-content-center">
@@ -52,17 +52,19 @@
 </div>
 <div class="modal fade" id="stickies-modal">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Put in a Sticky!</h2>
+    <div class="modal-content stickies-styling">
+      <button class="close x-button" type="button" data-bs-dismiss="modal"></button>
+      <div class="modal-header p-0 mt-4">
+        <h2 class="modal-title" style="color: #200033;">Add a Sticky!</h2>
       </div>
-      <div class="modal-body">
+      <div class="modal-body mb-4">
         <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
-          <%= f.input :text, label: "Whatch'a wanna say?" %>
-          <%= f.button :submit, "Stick em'!", class: "btn btn-primary" %>
+          <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "text-border" } %>
+          <div class="d-flex justify-content-center">
+            <%= f.button :submit, "", class: "sticky-add-button" %>
+          </div>
         <% end %>
 
-        <button class="close" type="button" data-bs-dismiss="modal">nvm...</button>
       </div>
     </div>
   </div>

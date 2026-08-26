@@ -73,6 +73,57 @@
   }
 }
 
+.stickies-styling {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-image: asset_url("parchment-leather-border.png");
+  border-image-slice: 115 115 115 115 fill;
+  border-image-width: 30px 30px 30px 30px;
+  border-image-outset: 5px 5px 5px 5px;
+  border-image-repeat: round round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+
+  .sticky-add-button {
+    width: 5rem;
+    height: 5rem;
+    background-image: asset_url("create-sticky-icon.png");
+    background-size: cover;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $omni-ink;
+    text-shadow: 1px 1px 6px rgb(44, 136, 255);
+  }
+
+  .x-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.65rem;
+    background-image: asset_url("delete-icon.png");
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.text-border {
+  padding: 0.25rem;
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 0.6rem;
+  border-image-repeat: stretch stretch;
+  }
+
+.highlight {
+  border-bottom: 1px dashed $omni-ink;
+  border-top: 1px dashed $omni-ink;
+  margin: 0.1rem;
+}
+
 // This is just for now to make a text be this font. Can delete once everything is set-up better.
 .font-insert {
 
