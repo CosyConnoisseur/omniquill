@@ -3,7 +3,7 @@ class Transcription < ApplicationRecord
   has_one_attached :audio
 
   enum :status, {
-    pending: "pending",
+    chunking: "chunking",
     processing: "processing",
     completed: "completed",
     failed: "failed"

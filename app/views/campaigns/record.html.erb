@@ -12,7 +12,7 @@
 
   <!-- Audio Recording and Transcription Controls -->
   <div class="centering">
-    <div class="parchment-container" data-controller="recording" data-recording-chapter-id-value="<%= @test_chapter.id %>">
+    <div class="parchment-container" data-controller="recording" data-recording-chapter-id-value="<%= @test_chapter.id %>" data-recording-campaign-id-value="<%= @campaign.id %>">
       <div class="recording-page">
         <h1 class="mb-4" data-recording-target="heading">
           Ready when you are!
@@ -80,14 +80,37 @@
               <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
             </svg>
           </div>
-          <div data-recording-target="progress" class="mb-2">
-            Waiting for transcription...
-          </div>
           <div data-recording-target="transcript">
             Waiting for speech...
           </div>
         </div>
       </div>
+
+      <div data-recording-target="processingAlert"
+            class="position-fixed bottom-0 start-0 m-4 p-3 bg-light border rounded shadow d-none"
+            style="z-index: 1050; width: 300px;">
+        <div data-recording-target="processingMessage">
+          Preparing...
+        </div>
+
+        <div data-recording-target="processingProgress" class="small mt-1">
+        </div>
+
+        <div data-recording-target="processingTimer" class="small mt-1">
+          00:00:00
+        </div>
+
+        <div class="mt-2">
+          <%= link_to "View Chapter",
+              campaign_chapter_path(@campaign, @test_chapter),
+              data: {
+                recording_target: "chapterLink"
+              },
+              class: "btn btn-sm btn-outline-secondary d-none"
+          %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

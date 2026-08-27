@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     end
 
     resources :chapters, except: [ :destroy ] do
+      member do
+        get :processing
+      end
 
       resources :stickies, only: [ :new, :create ]
     end

@@ -7,16 +7,25 @@ export default class extends Controller {
     "heading",
     "output",
     "transcript",
-    "progress",
-    "timer"
+    "timer",
+    "processingAlert",
+    "processingMessage",
+    "processingProgress",
+    "processingTimer",
+    "chapterLink"
   ]
 
   static values = {
-    chapterId: Number
+    chapterId: Number,
+    campaignId: Number
   }
 
   connect() {
     this.pollingTimeout = null
+    this.chapterPollingTimeout = null
+
+    this.processingTimerInterval = null
+    this.processingElapsedSeconds = 0
     console.log("Recording controller connected")
 
     this.isRecording = false
@@ -102,15 +111,19 @@ export default class extends Controller {
       this.pollingTimeout = null
     }
 
-    this.outputTarget.classList.remove("d-none")
-    this.progressTarget.innerText = "Preparing to upload audio..."
-    this.transcriptTarget.innerText = "Transcribing audio..."
+    this.startProcessingTimer()
+
+    // this.outputTarget.classList.remove("d-none")
+    // this.transcriptTarget.innerText = "Transcribing audio..."
+
+    this.processingAlertTarget.classList.remove("d-none")
+    this.processingMessageTarget.innerText = "Uploading audio file..."
+    this.processingProgressTarget.innerText = ""
 
     const formData = new FormData()
 
     formData.append("audio_file", blob, filename)
     formData.append("chapter_id", this.chapterIdValue)
-
 
     console.log("Chapter ID:", this.chapterIdValue)
 
@@ -127,17 +140,9 @@ export default class extends Controller {
         body: formData
       })
 
-      // const text = await response.text()
-      // console.log("Server response:", text)
-      // const data = JSON.parse(text)
       const data = await response.json()
 
       if (response.ok) {
-        // this.transcriptTarget.innerText = data.text
-        // this.headingTarget.innerText = "Ready when you are!"
-        this.progressTarget.innerText = "Starting transcription..."
-        this.headingTarget.innerText = "Processing..."
-
         this.pollTranscription(data.id)
 
         this.resetRecording()
@@ -158,20 +163,34 @@ export default class extends Controller {
 
     console.log("Polling:", id, data)
 
-    if (data.total_chunks > 0) {
-      this.progressTarget.innerText =
-        `Transcription progress: ${data.completed_chunks} / ${data.total_chunks} chunks completed`
+    if (data.status === "chunking") {
+      this.processingMessageTarget.innerText = "Chunking audio file..."
+      this.processingProgressTarget.innerText = ""
+    }
+
+    if (data.status === "processing") {
+      this.processingMessageTarget.innerText = "Processing audio file..."
+      this.processingProgressTarget.innerText =
+        `Processing ${data.completed_chunks} / ${data.total_chunks} chunks`
+    } else {
+      this.processingMessageTarget.innerText = "Chunking audio file..."
+      this.processingProgressTarget.innerText = ""
     }
 
     if (data.status == "completed") {
-      this.progressTarget.innerText = ""
+      this.processingProgressTarget.innerText = ""
       this.transcriptTarget.innerText = data.text
-      this.headingTarget.innerText = "Ready when you are!"
+
+      this.processingMessageTarget.innerText = "Generating summary..."
+      this.pollChapterProcessing()
+
       return
     }
 
     if (data.status == "failed") {
       this.transcriptTarget.innerText = "Transcription failed."
+      this.processingMessageTarget.innerText = "Transcription failed."
+      this.stopProcessingTimer()
       return
     }
 
@@ -291,5 +310,58 @@ export default class extends Controller {
     link.click()
 
     URL.revokeObjectURL(url)
+  }
+
+  async pollChapterProcessing() {
+    const response = await fetch(
+      `/campaigns/${this.campaignIdValue}/chapters/${this.chapterIdValue}/processing`
+    )
+
+    if (!response.ok) {
+      console.error("Chapter processing request failed:", response.status)
+      return
+    }
+
+    const data = await response.json()
+
+    console.log("Chapter processing:", data)
+
+    if (data.completed) {
+      this.processingMessageTarget.innerText = "Chapter ready!"
+      this.processingProgressTarget.innerText = ""
+
+      this.chapterLinkTarget.classList.remove("d-none")
+
+      this.stopProcessingTimer()
+
+      return
+    }
+
+    this.chapterPollingTimeout = setTimeout(
+      () => this.pollChapterProcessing(),
+      2000
+    )
+  }
+
+  startProcessingTimer() {
+    this.stopProcessingTimer()
+
+    this.processingElapsedSeconds = 0
+
+    this.processingTimerInterval = setInterval(() => {
+      this.processingElapsedSeconds++
+
+      const hours = Math.floor(this.processingElapsedSeconds / 3600)
+      const minutes = Math.floor((this.processingElapsedSeconds % 3600)/60)
+      const seconds = this.processingElapsedSeconds % 60
+
+      this.processingTimerTarget.innerText =
+        `${hours.toString().padStart(2, "0")}:` + `${minutes.toString().padStart(2, "0")}:` + `${seconds.toString().padStart(2, "0")}`
+    }, 1000)
+  }
+
+  stopProcessingTimer() {
+    clearInterval(this.processingTimerInterval)
+    this.processingTimerInterval = null
   }
 }

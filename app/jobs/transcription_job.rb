@@ -4,6 +4,8 @@ class TranscriptionJob < ApplicationJob
   def perform(transcription_id)
     transcription = Transcription.find(transcription_id)
 
+    transcription.update!(status: "chunking")
+
     # Convert the uploaded audio to WAV format
     input_path = Rails.root.join("tmp", "recoding-#{SecureRandom.uuid}.mp4")
     wav_path = Rails.root.join("tmp", "recording-#{SecureRandom.uuid}.wav")
@@ -30,20 +32,10 @@ class TranscriptionJob < ApplicationJob
     )
 
     transcription.update!(
+      status: "processing",
       total_chunks: chunks.length,
       completed_chunks: 0
     )
-
-    # Debugging: Log the chunks and their durations
-    # chunks.each do |chunk|
-    #   Rails.logger.info "Processing chunk: #{chunk}"
-    # end
-
-    # Debugging: Log the duration of each chunk
-    # chunks.each_with_index do |path, index|
-    #   duration = `ffprobe -v error -show_entries format=duration -of csv=p=0 "#{path}"`.strip
-    #   puts "#{index}: #{duration}s"
-    # end
 
     results = chunks.map do |chunk|
       result = TranscriptionService.call(chunk)
@@ -57,5 +49,7 @@ class TranscriptionJob < ApplicationJob
       text: TranscriptionAssembler.call(results),
       status: "completed"
     )
+
+    GenerateChapterJob.perform_later(transcription.id)
   end
 end
