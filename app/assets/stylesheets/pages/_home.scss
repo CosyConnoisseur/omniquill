@@ -288,6 +288,9 @@
 }
 
 .dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  right: 25% !important;
   padding: 1rem;
   background: none;
   border-image: asset_url("text-border.png");
@@ -314,7 +317,7 @@
 
       img {
         position: absolute;
-        top: -0.5rem;
+        top: -0.1rem;
         left: -6rem;
         width: 4rem;
         object-fit: cover;

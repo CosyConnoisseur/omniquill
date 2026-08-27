@@ -2,8 +2,8 @@
 
 <!-- record button -->
 <% if owner %>
-  <%= link_to record_campaign_path(@campaign), class: "position-fixed", style: "bottom: 20px; right: -5px; z-index: 1050; width: 80px; height: 80px;" do %>
-    <%= image_tag "Edit-icon.png", class: "", style: "width: 100%; height: 100%; object-fit: contain;"%>
+  <%= link_to record_campaign_path(@campaign), class: "position-fixed", style: "bottom: 20px; right: 0px; z-index: 1050; width: 80px; height: 80px;" do %>
+    <%= image_tag "recording-icon.gif", class: "", style: "width: 100%; height: 100%; object-fit: contain;"%>
   <% end %>
 <% end %>
 
@@ -254,11 +254,3 @@
     </div>
   </div>
 </div>`
-
-<% if owner %>
-  <div class="text-start ms-5 m-md-0 text-md-center mb-4">
-          <%= button_to campaign_path(@campaign), method: :delete, class: "text-reset clickable-icon", data: { turbo_confirm: "Delete this campaign?" }, style: "background: none; border: none; padding: 0;" do %>
-            <%= image_tag "campaign-delete-icon.gif", class: "", style: "width: 100%; height: 100px; object-fit: contain;"%>
-          <% end %>
-  </div>
-<% end %>
