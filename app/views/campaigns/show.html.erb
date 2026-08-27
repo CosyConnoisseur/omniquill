@@ -220,7 +220,8 @@
                     method: :delete,
                     class: "btn ps-0 ms-0",
                     style: "color: red; font-size: 30px;",
-                    data: { turbo_confirm: "Delete this note?" } do %>
+                    onclick: "return confirm('Delete this note?');",
+                    data: { turbo: false } do %>
                   &#x2715;
                 <% end %>
             </div>
@@ -240,7 +241,7 @@
       </div>
 
       <div id="add-note-form" class="mx-3 mx-md-5 pb-3 force_input" style="display: none;">
-        <%=  form_with scope: :note, url: campaign_notes_path(@campaign) do |form| %>
+        <%=  form_with scope: :note, url: campaign_notes_path(@campaign), data: { turbo: false } do |form| %>
           <%= form.text_area :entry,
               class: "form-control mb-2",
               rows: 4,
