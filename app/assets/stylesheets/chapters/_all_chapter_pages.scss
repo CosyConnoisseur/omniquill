@@ -124,6 +124,23 @@
   margin: 0.1rem;
 }
 
+// This is for the edit chapter form
+
+.chapter_title, .chapter_summary, .chapter_highlights {
+  text-align: center;
+}
+
+.edit-input-box {
+  background-color: rgb(221, 219, 206);
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70;
+  border-image-width: 1.5rem;
+  border-image-outset: 1rem;
+  border-image-repeat: stretch stretch;
+}
+
+// End of edit chapter form
+
 // This is just for now to make a text be this font. Can delete once everything is set-up better.
 .font-insert {
 

@@ -1,6 +1,12 @@
 <%= simple_form_for([campaign, chapter]) do |f| %>
-  <%= f.input :title, placeholder: chapter.title, input_html: {style: "background-color: #b09c71;"}, label_html: {style: "font-family: 'Marck Script'; font-size: 3rem; color: #00a2ff;"} %>
-  <%= f.input :summary, placeholder: chapter.summary, input_html: {style: "height: 300px; background-color: #b09c71;"}, label_html: {style: "font-family: 'Marck Script'; font-size: 3rem; color: #00a2ff;"} %>
-  <%= f.input :highlights, placeholder: chapter.highlights, input_html: {style: "background-color: #b09c71;"}, label_html: {style: "font-family: 'Marck Script'; font-size: 3rem; color: #00a2ff;"} %>
-  <%= f.button :submit, "", class: "edit-submit-button" %>
+  <%= f.input :title, placeholder: chapter.title, input_html: { class: "edit-input-box" }, label_html: {style: "font-size: 3rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);"} %>
+  <%= f.input :summary, placeholder: chapter.summary, input_html: { class: "edit-input-box", style: "height: 300px;" }, label_html: {style: "font-size: 3rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);"} %>
+  <%= f.input :highlights, placeholder: chapter.highlights, input_html: { class: "edit-input-box" }, label_html: {style: "font-size: 3rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);"} %>
+  <div class="centering">
+    <%= f.button :submit, "", class: "edit-submit-button" %>
+    <%= link_to campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
+      <%= image_tag "back-icon.png", class: "animate-icon" %>
+      <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+    <% end %>
+  </div>
 <% end %>
