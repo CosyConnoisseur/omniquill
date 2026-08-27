@@ -6,40 +6,39 @@ export default class extends Controller {
   connect() {
     console.log("connected to tabs")
 
-    // 1. Check if a hash is present in the URL (e.g., "#link1-tab" or "#active-tab")
     const hash = window.location.hash
     let targetTabId = null
 
+    //A use hash
     if (hash) {
-      // Clean up the hash to get the raw ID string
       const cleanHash = hash.replace("#", "")
 
-      // Safety check: verify an element with this exact ID exists inside our tabs container
+
       if (this.element.querySelector(`#${cleanHash}`)) {
         targetTabId = cleanHash
       }
     }
 
-    // 2. If no valid hash was used in the link, fall back to your working localStorage setup
+    //B use saved tab
     if (!targetTabId) {
       const storageKey = `campaign_tab_${this.campaignIdValue}`
       targetTabId = localStorage.getItem(storageKey)
     }
 
-    // 3. Fire Bootstrap manually to fully display and select the tab layout
+    //C go to tab but only run if it's not already active
     if (targetTabId) {
       const tabTriggerEl = this.element.querySelector(`#${targetTabId}`)
 
       if (tabTriggerEl && !tabTriggerEl.classList.contains("active") && typeof bootstrap !== "undefined" && bootstrap.Tab) {
-        // Wrap in a tiny delay to ensure the browser's native focus sequence finishes first
         setTimeout(() => {
           const tab = bootstrap.Tab.getOrCreateInstance(tabTriggerEl)
           tab.show()
-        }, 1)
+        }, 2)
       }
     }
   }
 
+  //save tab in localStorage
   saveTab(event) {
     const activeTabId = event.target.id
 
