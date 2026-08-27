@@ -1,15 +1,18 @@
-<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
+
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "Omniquill-logo.png" %>
     <% end %>
 
-    <%= link_to root_path do %>
-      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "width: 100%" %>
+    <!-- Ben Fix: Middle Logo (added d-inline-block to keep it in the row flow) -->
+    <%= link_to root_path, class: "d-inline-block alignment-fix" do %>
+      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
     <% end %>
 
-    <div class="btn border-0 bg-transparent navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class=""><%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown", style: "width: 50px;"%></span>
+    <!-- Ben Fix: Right Dropdown Toggler Button (added d-inline-block) -->
+    <div class="btn border-0 bg-transparent navbar-toggler d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class=""><%= image_tag "dropdown-icon", alt: "dropdown menu", id: "bookmark-dropdown", style: "width: 50px; vertical-align: middle;"%></span>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -17,14 +20,14 @@
         <% if user_signed_in? %>
           <li class="nav-item active mx-2">
             <%= link_to root_path, class: "button-navbar" do %>
-              <%= image_tag "Home-icon.png", class: "icon-navbar" %>
+              <%= image_tag "Home-icon.gif", class: "icon-navbar" %>
               <%= image_tag "Home-icon.gif",  class: "move-icon-navbar" %>
             <% end %>
           </li>
           <% if current_page?("") || controller_name == 'campaigns' && action_name == 'index' %>
             <li class="nav-item active mx-2">
               <%= link_to new_campaign_path, class: "button-navbar" do %>
-                <%= image_tag "campaign-creation-icon.png", class: "icon-navbar" %>
+                <%= image_tag "campaign-creation-icon.gif", class: "icon-navbar" %>
                 <%= image_tag "campaign-creation-icon.gif",  class: "move-icon-navbar" %>
               <% end %>
             </li>
@@ -33,10 +36,23 @@
               <% if current_user.id == @campaign.user_id %>
               <li class="nav-item active mx-2">
                 <%= link_to record_campaign_path(@campaign), class: "button-navbar" do %>
-                  <%= image_tag "Edit-icon.png", class: "icon-navbar" %>
-                  <%= image_tag "Edit-icon.gif",  class: "move-icon-navbar" %>
+                  <%= image_tag "recording-icon.gif", class: "icon-navbar" %>
+                  <%= image_tag "recording-icon.gif",  class: "move-icon-navbar" %>
+                <% end %>
               <% end %>
+              </li>
             <% end %>
+            <% if controller_name == 'campaigns' && action_name == 'show' %>
+              <% if current_user.id == @campaign.user_id %>
+              <li class="nav-item active mx-2">
+                <%= button_to campaign_path(@campaign),
+                method: :delete,
+                class: "text-reset clickable-icon",
+                data: { turbo_confirm: "Delete this campaign?" },
+                style: "background: none; border: none; padding: 0;" do %>
+                  <%= image_tag "campaign-delete-icon.gif", style: "width: 3rem; height: 3rem; object-fit: contain;"%>
+                <% end %>
+              <% end %>
               </li>
             <% end %>
           <li class="nav-item dropdown mx-2">
@@ -49,7 +65,6 @@
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Edit User", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

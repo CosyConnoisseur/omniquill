@@ -29,6 +29,118 @@
   }
 }
 
+.page-sticker {
+  position: absolute;
+  margin: 2rem;
+  padding: 0.5rem;
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+  align-content: center;
+  z-index: 10;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $omni-ink;
+  text-shadow: 1px 1px 6px rgb(44, 136, 255);
+  background-image: asset_url("sticky.png");
+  background-size: cover;
+  transform: scale(0.7);
+  opacity: 0.2;
+  transition: 0.2s ease-out;
+
+  .delete-sticky {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.stickies-styling {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-image: asset_url("parchment-leather-border.png");
+  border-image-slice: 115 115 115 115 fill;
+  border-image-width: 30px 30px 30px 30px;
+  border-image-outset: 5px 5px 5px 5px;
+  border-image-repeat: round round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+
+  .sticky-add-button {
+    width: 5rem;
+    height: 5rem;
+    background-image: asset_url("create-sticky-icon.png");
+    background-size: cover;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $omni-ink;
+    text-shadow: 1px 1px 6px rgb(44, 136, 255);
+  }
+
+  .x-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.65rem;
+    background-image: asset_url("delete-icon.png");
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.text-border {
+  padding: 0.25rem;
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 0.6rem;
+  border-image-repeat: stretch stretch;
+  }
+
+.highlight {
+  border-bottom: 1px dashed $omni-ink;
+  border-top: 1px dashed $omni-ink;
+  margin: 0.1rem;
+}
+
+// This is for the edit chapter form
+
+.chapter_title, .chapter_summary, .chapter_highlights {
+  text-align: center;
+}
+
+.edit-input-box {
+  background-color: rgb(221, 219, 206);
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70;
+  border-image-width: 1.5rem;
+  border-image-outset: 1rem;
+  border-image-repeat: stretch stretch;
+}
+
+// End of edit chapter form
+
 // This is just for now to make a text be this font. Can delete once everything is set-up better.
 .font-insert {
 

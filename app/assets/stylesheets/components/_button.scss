@@ -31,8 +31,10 @@
 }
 
 .animate-button-dropdown {
-  width: 5rem;
+  width: 3.5rem;
   position: relative;
+  padding: 0;
+  margin-left: 0.5rem;
 
   img {
     width: 100%;
@@ -41,23 +43,8 @@
   #invite-text {
     position: absolute;
     top: 20%;
-    left: 100%;
+    left: 120%;
     font-size: 1.25rem;
-  }
-
-  .animate-move-icon-dropdown {
-    display: none;
-  }
-
-  &:hover {
-
-    .animate-icon-dropdown {
-      display: none;
-    }
-
-    .animate-move-icon-dropdown {
-      display: inline;
-    }
   }
 }
 
