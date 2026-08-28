@@ -89,7 +89,7 @@
 .back-button {
   width: 6rem;
   height: 6rem;
-  margin: 0 1em;
+  margin: 0 0.5em;
   padding: 0;
   background-color: transparent;
   border: none;
@@ -101,6 +101,51 @@
   }
 }
 
+.upload-audio-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("upload-audio-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("upload-audio-icon.gif");
+  }
+}
+
+.create-chapter-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-chapter-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-chapter-icon.gif");
+  }
+}
+
+.finish-recording-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("recording-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("recording-icon.gif");
+  }
+}
+
 // End of general button animations ---------------------------------
 
 
@@ -108,8 +153,24 @@
 
 @media (max-width: 1000px) {
 
+  .edit-submit-button {
+    background-image: asset_url("Edit-icon-long.gif");
+  }
+
   .back-button {
     background-image: asset_url("back-icon-long.gif");
+  }
+
+  .upload-audio-button {
+    background-image: asset_url("upload-audio-icon-long.gif");
+  }
+
+  .create-chapter-button {
+    background-image: asset_url("create-chapter-icon-long.gif");
+  }
+
+  .finish-recording-button {
+    background-image: asset_url("recording-icon-long.gif");
   }
 
 }
@@ -117,6 +178,21 @@
 @media (max-width: 600px) {
 
   .back-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .upload-audio-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .create-chapter-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .finish-recording-button {
     width: 4rem;
     height: 4rem;
   }
