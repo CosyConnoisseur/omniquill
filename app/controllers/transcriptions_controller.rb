@@ -30,15 +30,16 @@ class TranscriptionsController < ApplicationController
     transcription&.update(status: "failed")
     Rails.logger.error e.full_message
     render json: { error: e.message }, status: :internal_server_error
-  # way_path is defined in the TranscriptionJob, we can delete it
-  ensure
-    File.delete(wav_path) if defined?(wav_path) && File.exist?(wav_path)
   end
 
   def show
     authorize :transcription
 
     transcription = Transcription.find(params[:id])
+
+    if transcription.processing? && transcription.updated_at < 1.minutes.ago
+      transcription.update!(status: "failed")
+    end
 
     render json: {
       status: transcription.status,
@@ -68,6 +69,35 @@ class TranscriptionsController < ApplicationController
     render json: {
       completed: chapter.title.present? && chapter.summary.present? && chapter.highlights.present?,
       chapter_id: chapter.id
+    }
+  end
+
+  def cancel
+    authorize :transcription
+
+    transcription = Transcription.find(params[:id])
+
+    return render json: {
+      success: true,
+      status: transcription.status
+    } if transcription.canceled?
+
+    transcription.update!(status: "canceled")
+
+    render json: {
+      success: true,
+      status: transcription.status
+    }
+  end
+
+  def current
+    transcription = current_user.transcriptions
+                                .where(status: %w[processing chunking transcribing summarizing])
+                                .order(create_at: :desc)
+                                .first
+    render json: {
+      id: transcription&.id,
+      status: transcription&.status
     }
   end
 end

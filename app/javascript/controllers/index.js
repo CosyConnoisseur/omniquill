@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import RecordingController from "./recording_controller"
 application.register("recording", RecordingController)
 
+import ProcessingController from "./processing_controller"
+application.register("processing", ProcessingController)
+
 import InviteLinkController from "./invite_link_controller"
 application.register("invite-link", InviteLinkController)
 

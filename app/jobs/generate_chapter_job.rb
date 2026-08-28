@@ -3,17 +3,25 @@ class GenerateChapterJob < ApplicationJob
 
   def perform(transcription_id)
     transcription = Transcription.find(transcription_id)
+
+    return if transcription.reload.canceled?
+
+    transcription.update!(status: "summarizing")
+
     current_chapter = transcription.chapter
-    campaign = current_chapter.campaign
 
     result = ChapterGenerationService.call(transcription.text)
 
-    new_chapter = campaign.chapters.create!(
+    return if transcription.reload.canceled?
+
+    current_chapter.update!(
       title: result["title"],
       summary: result["summary"],
       highlights: result["highlights"]
     )
 
-    Rails.logger.info "Generated Chapter ##{new_chapter.id} for Campaign ##{campaign.id}"
+    transcription.update!(status: "completed")
+
+    Rails.logger.info "Generated Chapter ##{current_chapter.id}"
   end
 end
