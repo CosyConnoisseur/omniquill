@@ -73,6 +73,8 @@
   }
 }
 
+// Start of general button animations ------------------------------
+
 .edit-submit-button {
   width: 6rem;
   height: 6rem;
@@ -84,13 +86,41 @@
   }
 }
 
-.edit-back-button {
+.back-button {
   width: 6rem;
   height: 6rem;
-  background-image: asset_url("Home-icon.png");
+  margin: 0 1em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("back-icon.png");
   background-size: cover;
 
   &:hover {
-    background-image: asset_url("Home-icon.gif");
+    background-image: asset_url("back-icon.gif");
   }
 }
+
+// End of general button animations ---------------------------------
+
+
+// Start of general button animations' @media ------------------------------
+
+@media (max-width: 1000px) {
+
+  .back-button {
+    background-image: asset_url("back-icon-long.gif");
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .back-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+}
+
+// End of general button animations' @media ------------------------------

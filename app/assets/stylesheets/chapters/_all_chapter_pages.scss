@@ -162,6 +162,26 @@
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+
+  .rec-page-icon {
+
+  }
 }
 
 // End of 'Record chapter' page
+
+@media (max-width: 1000px) {
+
+  .text-border {
+    width: 80%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .text-border {
+    width: 90%;
+  }
+
+}
