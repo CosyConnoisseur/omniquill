@@ -110,6 +110,7 @@
 }
 
 .text-border {
+  width: 60%;
   padding: 0.25rem;
   border-image: asset_url("text-border.png");
   border-image-slice: 70 70 70 70 fill;
@@ -154,3 +155,13 @@
     color: $omni-ink;
   }
 }
+
+// Beginning of 'Record chapter' page
+
+.recording-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+// End of 'Record chapter' page
