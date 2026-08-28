@@ -19,25 +19,22 @@
       <ul class="navbar-nav me-auto horizontal-items">
         <% if user_signed_in? %>
           <li class="nav-item active mx-2">
-            <%= link_to root_path, class: "button-navbar" do %>
-              <%= image_tag "Home-icon.gif", class: "icon-navbar" %>
-              <%= image_tag "Home-icon.gif",  class: "move-icon-navbar" %>
+            <%= link_to root_path do %>
+              <button class="navbar-home-button"></button>
             <% end %>
           </li>
           <% if current_page?("") || controller_name == 'campaigns' && action_name == 'index' %>
             <li class="nav-item active mx-2">
-              <%= link_to new_campaign_path, class: "button-navbar" do %>
-                <%= image_tag "campaign-creation-icon.gif", class: "icon-navbar" %>
-                <%= image_tag "campaign-creation-icon.gif",  class: "move-icon-navbar" %>
+              <%= link_to new_campaign_path do %>
+                <button class="navbar-create-campaign-button"></button>
               <% end %>
             </li>
             <% end %>
             <% if controller_name == 'campaigns' && action_name == 'show' %>
               <% if current_user.id == @campaign.user_id %>
               <li class="nav-item active mx-2">
-                <%= link_to record_campaign_path(@campaign), class: "button-navbar" do %>
-                  <%= image_tag "create-chapter-icon.gif", class: "icon-navbar" %>
-                  <%= image_tag "create-chapter-icon.gif",  class: "move-icon-navbar" %>
+                <%= link_to record_campaign_path(@campaign) do %>
+                  <button class="navbar-create-chapter-button"></button>
                 <% end %>
               <% end %>
               </li>
@@ -47,11 +44,9 @@
               <li class="nav-item active mx-2">
                 <%= button_to campaign_path(@campaign),
                 method: :delete,
-                class: "text-reset clickable-icon",
-                data: { turbo_confirm: "Delete this campaign?" },
-                style: "background: none; border: none; padding: 0;" do %>
-                  <%= image_tag "campaign-delete-icon.gif", style: "width: 3rem; height: 3rem; object-fit: contain;"%>
-                <% end %>
+                class: "navbar-delete-campaign-button",
+                data: { turbo_confirm: "Delete this campaign?" } do %>
+                <% end %> <%# This might be empty, but it's needed to actually make the icon appear. DON'T delete this 'do/end' %>
               <% end %>
               </li>
             <% end %>

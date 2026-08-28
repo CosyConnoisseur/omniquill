@@ -73,6 +73,22 @@
   }
 }
 
+.bottom-fix-button {
+  display: none;
+  position: fixed;
+  bottom: 3%;
+  right: 5%;
+  z-index: 1050;
+}
+
+@media (max-width: 575px) {
+
+  .bottom-fix-button {
+    display: block;
+  }
+
+}
+
 // Start of general button animations ------------------------------
 
 .edit-submit-button {
@@ -146,6 +162,81 @@
   }
 }
 
+.create-campaign-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("campaign-creation-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("campaign-creation-icon.gif");
+  }
+}
+
+.navbar-home-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("Home-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("Home-icon.gif");
+  }
+}
+
+.navbar-create-campaign-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("campaign-creation-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("campaign-creation-icon.gif");
+  }
+}
+
+.navbar-create-chapter-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-chapter-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-chapter-icon.gif");
+  }
+}
+
+.navbar-delete-campaign-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("campaign-delete-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("campaign-delete-icon.gif");
+  }
+}
+
 // End of general button animations ---------------------------------
 
 
@@ -171,6 +262,26 @@
 
   .finish-recording-button {
     background-image: asset_url("recording-icon-long.gif");
+  }
+
+  .create-campaign-button {
+    background-image: asset_url("campaign-creation-icon-long.gif");
+  }
+
+  .navbar-home-button {
+    background-image: asset_url("Home-icon-long.gif");
+  }
+
+  .navbar-create-campaign-button {
+    background-image: asset_url("campaign-creation-icon-long.gif");
+  }
+
+  .navbar-create-chapter-button {
+    background-image: asset_url("create-chapter-icon-long.gif");
+  }
+
+  .navbar-delete-campaign-button {
+    background-image: asset_url("campaign-delete-icon-long.gif");
   }
 
 }
