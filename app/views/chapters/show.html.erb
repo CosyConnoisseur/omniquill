@@ -29,21 +29,18 @@
         <li class="highlight"><%= highlight %></li>
         <% end %>
       </ul>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center align-items-center">
         <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <%= link_to edit_campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
-            <%= image_tag "Edit-icon.png", class: "animate-icon" %>
-            <%= image_tag "Edit-icon.gif",  class: "animate-move-icon" %>
+          <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
+            <button class="edit-submit-button"></button>
           <% end %>
         <% end %>
-        <%= link_to campaign_chapters_path, class: "animate-button" do %>
-          <%= image_tag "back-icon.png", class: "animate-icon" %>
-          <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+        <%= link_to campaign_chapters_path do %>
+          <button class="back-button"></button>
         <% end %>
         <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <a href="#" class="animate-button", data-bs-toggle="modal", data-bs-target="#stickies-modal">
-            <%= image_tag "create-sticky-icon.png", class: "animate-icon" %>
-            <%= image_tag "create-sticky-icon.gif",  class: "animate-move-icon" %>
+          <a href="#", data-bs-toggle="modal", data-bs-target="#stickies-modal">
+            <button class="create-stickies-button"></button>
           </a>
         <% end %>
       </div>
@@ -61,7 +58,8 @@
         <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
           <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "text-border" } %>
           <div class="d-flex justify-content-center">
-            <%= f.button :submit, "", class: "sticky-add-button" %>
+            <%= f.button :submit, "", class: "create-stickies-button" do %>
+            <% end %>
           </div>
         <% end %>
 
