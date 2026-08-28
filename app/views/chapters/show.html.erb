@@ -36,7 +36,7 @@
           <% end %>
         <% end %>
         <%= link_to campaign_chapters_path do %>
-          <button class="back-button"></button>
+          <button class="back-button" style="width: 5rem; height: 5rem;"></button>
         <% end %>
         <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
           <a href="#", data-bs-toggle="modal", data-bs-target="#stickies-modal">
