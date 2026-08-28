@@ -92,13 +92,31 @@
 // Start of general button animations ------------------------------
 
 .edit-submit-button {
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
+  margin-top: 0.5rem;
+  background-color: transparent;
+  border: none;
   background-image: asset_url("Edit-icon.png");
   background-size: cover;
 
   &:hover {
     background-image: asset_url("Edit-icon.gif");
+  }
+}
+
+.edit-cancel-button {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("delete-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-image: asset_url("delete-icon.gif");
   }
 }
 
@@ -174,6 +192,36 @@
 
   &:hover {
     background-image: asset_url("campaign-creation-icon.gif");
+  }
+}
+
+.create-character-button {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-character-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-character-icon.gif");
+  }
+}
+
+.create-chapter-fixed-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-chapter-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-chapter-icon.gif");
   }
 }
 
@@ -266,6 +314,14 @@
 
   .create-campaign-button {
     background-image: asset_url("campaign-creation-icon-long.gif");
+  }
+
+  .create-character-button {
+    background-image: asset_url("create-character-icon-long.gif");
+  }
+
+  .create-chapter-fixed-button {
+    background-image: asset_url("create-chapter-icon-long.gif");
   }
 
   .navbar-home-button {
