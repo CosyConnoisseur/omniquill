@@ -7,17 +7,16 @@ export default class extends Controller {
     console.log("connected to tabs")
     this.decideTab()
 
-    // Listen for Turbo renders so it runs on subsequent updates/morphs
+    // listen for turbo renders so it runs on every note updates
     document.addEventListener("turbo:render", this.handleTurboRender)
   }
 
   disconnect() {
     console.log("disconnecting")
-    // Clean up event listener when navigating away completely
     document.removeEventListener("turbo:render", this.handleTurboRender)
   }
 
-  // Arrow function binds 'this' correctly for the event listener
+  // arrow function locks in 'this'
   handleTurboRender = () => {
     this.decideTab()
   }
@@ -31,56 +30,51 @@ export default class extends Controller {
     if (hash) {
       const cleanHash = hash.replace("#", "")
 
-
       if (this.element.querySelector(`#${cleanHash}`)) {
         targetTabId = cleanHash
       }
     }
 
-    // B: Fallback to localStorage
+    // B use saved tab
     if (!targetTabId) {
       const storageKey = `campaign_tab_${this.campaignIdValue}`
       targetTabId = localStorage.getItem(storageKey)
     }
 
-    // C: Trigger Bootstrap tab show
+    //C go to tab but only run if it's not already active / Keep scroll position
     if (targetTabId) {
       const tabTriggerEl = this.element.querySelector(`#${targetTabId}`)
 
-      if (tabTriggerEl && typeof bootstrap !== "undefined" && bootstrap.Tab) {
+      if (tabTriggerEl && !tabTriggerEl.classList.contains("active") && typeof bootstrap !== "undefined" && bootstrap.Tab) {
 
-        // Check if the URL contains our custom redirect flag
         const urlParams = new URLSearchParams(window.location.search)
         const shouldPreserveScroll = urlParams.get('scroll') === 'preserve'
 
         if (shouldPreserveScroll) {
-          // 1. Lock scroll position ONLY for your controller redirects
           const scrollX = window.scrollX
           const scrollY = window.scrollY
 
-          setTimeout(() => {
+          requestAnimationFrame(() => {
             const tab = bootstrap.Tab.getOrCreateInstance(tabTriggerEl)
             tab.show()
-            window.scrollTo(scrollX, scrollY)
+            window.scrollTo(scrollX, scrollY) // immediately go to scroll position
 
-            // Clean up the URL: Optional step to remove "?scroll=preserve"
-            // so a manual page refresh afterwards behaves normally again.
+            // Scrub the URL bar
             const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash
             window.history.replaceState({ path: cleanUrl }, '', cleanUrl)
-          }, 10)
+          })
 
         } else {
-          // 2. Standard Behavior: Let Bootstrap show the tab and allow native scrolling
-          setTimeout(() => {
+          requestAnimationFrame(() => {
             const tab = bootstrap.Tab.getOrCreateInstance(tabTriggerEl)
             tab.show()
-          }, 10)
-        }
+            })
+          }
       }
     }
   }
 
-  // Save tab in localStorage (Keep this bound to your click events via data-action)
+  //save tab in localStorage
   saveTab(event) {
     console.log("saving tab")
     const activeTabId = event.target.id
@@ -90,61 +84,3 @@ export default class extends Controller {
     }
   }
 }
-
-
-
-
-
-
-
-
-// import { Controller } from "@hotwired/stimulus"
-
-// export default class extends Controller {
-//   static values = { campaignId: Number }
-
-//   connect() {
-//     console.log("connected to tabs")
-
-//     const hash = window.location.hash
-//     let targetTabId = null
-
-//     //A use hash
-//     if (hash) {
-//       const cleanHash = hash.replace("#", "")
-
-
-//       if (this.element.querySelector(`#${cleanHash}`)) {
-//         targetTabId = cleanHash
-//       }
-//     }
-
-//     //B use saved tab
-//     if (!targetTabId) {
-//       const storageKey = `campaign_tab_${this.campaignIdValue}`
-//       targetTabId = localStorage.getItem(storageKey)
-//     }
-
-//     //C go to tab but only run if it's not already active
-//     if (targetTabId) {
-//       const tabTriggerEl = this.element.querySelector(`#${targetTabId}`)
-
-//       if (tabTriggerEl && !tabTriggerEl.classList.contains("active") && typeof bootstrap !== "undefined" && bootstrap.Tab) {
-//         setTimeout(() => {
-//           const tab = bootstrap.Tab.getOrCreateInstance(tabTriggerEl)
-//           tab.show()
-//         }, 2)
-//       }
-//     }
-//   }
-
-//   //save tab in localStorage
-//   saveTab(event) {
-//     const activeTabId = event.target.id
-
-//     if (activeTabId) {
-//       const storageKey = `campaign_tab_${this.campaignIdValue}`
-//       localStorage.setItem(storageKey, activeTabId)
-//     }
-//   }
-// }

@@ -130,7 +130,8 @@
                 type="button"
                 class="text-center btn btn-link text-dark"
                 onclick="document.getElementById('synopsis-edit').style.display = 'block';
-                document.getElementById('synopsis-display').style.display = 'none';">
+                document.getElementById('synopsis-display').style.display = 'none';
+                document.getElementById('synopsis-text-area').focus();">
                 Edit
               </button>
             <% end %>
@@ -204,9 +205,7 @@
     </div>
 
     <!--Notes-->
-    <div id="notes-list-container">
       <%= render "notes_tab" %>
-    </div>
 
   </div>
 </div>`
