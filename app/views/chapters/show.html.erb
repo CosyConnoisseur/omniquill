@@ -1,49 +1,36 @@
-<% @chapter.stickies.each do |sticky| %>
-  <% hue_shift = rand(360) %> <%# Need this to reverse the hue-rotate on the image tag (the 'x' button) %>
-  <div class="page-sticker" style="top: <%= rand(25..90) %>%; left: <%= rand(70) %>%; filter: hue-rotate(<%= hue_shift %>deg);">
-    <p><%= sticky.text %></p>
-    <% if current_user.stickies.exists?(sticky.id) || current_user.campaigns.exists?(id: @campaign.id) %>
-      <%= button_to campaign_chapter_sticky_path(@campaign, @chapter, sticky),
-      method: :delete,
-      params: { sticky_id: sticky.id },
-      class: "delete-sticky",
-      data: { turbo_confirm: "Delete Sticky?" } do %>
-        <%= image_tag "delete-icon.png", style: "filter: hue-rotate(#{-hue_shift}deg);" %>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
-
 <div class="centering mt-5">
   <div class="medieval-title">
     <h1><%= @chapter.title %></h1>
   </div>
 </div>
+
+<div class="centering">
+  <div class="d-flex justify-content-center align-items-center mb-3 text-border"  style="width: 60%;">
+    <%= link_to campaign_chapters_path do %>
+      <button class="back-button" style="width: 5rem; height: 5rem;" data-direction="back"></button>
+    <% end %>
+    <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
+      <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
+        <button class="edit-submit-button"></button>
+      <% end %>
+    <% end %>
+    <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
+      <a href="#", data-bs-toggle="modal", data-bs-target="#stickies-modal">
+        <button class="create-stickies-button"></button>
+      </a>
+    <% end %>
+  </div>
+</div>
+
 <div class="centering">
   <div class="parchment-container-chap">
-
-    <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
-      <p><%= @chapter.summary %></p>
-      <ul class="text-border" style="list-style-type: none;">
+    <div class="d-flex flex-column align-items-center text-center mx-4 font-insert">
+      <ul class="text-border my-2" style="list-style-type: none; width: 100%;">
         <% @chapter.highlights.split(", ").each do |highlight| %>
         <li class="highlight"><%= highlight %></li>
         <% end %>
       </ul>
-      <div class="d-flex justify-content-center align-items-center">
-        <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
-            <button class="edit-submit-button"></button>
-          <% end %>
-        <% end %>
-        <%= link_to campaign_chapters_path do %>
-          <button class="back-button" style="width: 5rem; height: 5rem;" data-direction="back"></button>
-        <% end %>
-        <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <a href="#", data-bs-toggle="modal", data-bs-target="#stickies-modal">
-            <button class="create-stickies-button"></button>
-          </a>
-        <% end %>
-      </div>
+      <p><%= @chapter.summary %></p>
     </div>
   </div>
 </div>
@@ -51,19 +38,39 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content stickies-styling">
       <button class="close x-button" type="button" data-bs-dismiss="modal"></button>
-      <div class="modal-header p-0 mt-4">
+      <div class="modal-header p-0 mt-4 d-flex flex-column justify-content-center">
         <h2 class="modal-title" style="color: #200033;">Add a Sticky!</h2>
+        <p style="font-size: 0.75rem;">*Between 3 and 20 characters</p>
       </div>
       <div class="modal-body mb-4">
-        <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
-          <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "text-border" } %>
-          <div class="d-flex justify-content-center">
-            <%= f.button :submit, "", class: "create-stickies-button" do %>
-            <% end %>
-          </div>
-        <% end %>
-
+          <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
+            <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "text-border", style: "margin: 0 auto;" } %>
+            <div class="d-flex justify-content-center">
+              <%= f.button :submit, "", class: "create-stickies-button" do %>
+              <% end %>
+            </div>
+          <% end %>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="centering">
+  <div class="stickies-container">
+    <% @chapter.stickies.each do |sticky| %>
+      <% hue_shift = rand(360) %> <%# Need this to reverse the hue-rotate on the image tag (the 'x' button) %>
+      <div class="sticker" style="filter: hue-rotate(<%= hue_shift %>deg);">
+        <p><%= sticky.text %></p>
+        <% if current_user.stickies.exists?(sticky.id) || current_user.campaigns.exists?(id: @campaign.id) %>
+          <%= button_to campaign_chapter_sticky_path(@campaign, @chapter, sticky),
+          method: :delete,
+          params: { sticky_id: sticky.id },
+          class: "delete-sticky",
+          data: { turbo_confirm: "Delete Sticky?" } do %>
+            <%= image_tag "delete-icon.png", style: "filter: hue-rotate(#{-hue_shift}deg);" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
