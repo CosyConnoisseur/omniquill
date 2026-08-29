@@ -378,15 +378,59 @@
 
 
 
-//consider tablet later
-@media (min-width: 780px){
+//consider tablet now
+@media (min-width: 800px){
+
   .preview-left-margin {
   position: absolute !important;
   top: 0 !important;
   left: -50% !important;
   height: max-content;
-  max-width: 200px;
-  //flex grow and stuff
+  max-width: 180px;
+
+}
+
+  .preview-left-image{
+    min-height: 100px;
+    max-height: 200px;
+    border: 30px solid transparent;
+    border-image-source:  url("text-border.png");
+    border-image-slice: 60;
+    border-image-repeat: round;
+}
+
+
+  .preview-right-margin {
+    position: absolute !important;
+    top: 300px !important;
+    right: -50% !important;
+    height: max-content;
+    max-width: 180px;
+}
+
+  .preview-right-image{
+    min-height: 100px;
+    max-height: 200px;
+    border: 30px solid transparent;
+    border-image-source:  url("image-border.png");
+    border-image-slice: 70;
+    border-image-repeat: round;
+}
+
+
+}
+
+
+//bigger than tablet
+@media (min-width: 1800px){
+
+  .preview-left-margin {
+  position: absolute !important;
+  top: 0 !important;
+  left: -50% !important;
+  height: max-content;
+  max-width: 400px;
+
 }
 
   .preview-left-image{
@@ -404,7 +448,7 @@
     top: 0 !important;
     right: -50% !important;
     height: max-content;
-    max-width: 200px;
+    max-width: 400px;
 }
 
   .preview-right-image{
@@ -419,7 +463,9 @@
 
 }
 
-@media (max-width: 780px){
+
+//phone
+@media (max-width: 800px){
 
   .preview-left-margin {
   top: -125px !important;
