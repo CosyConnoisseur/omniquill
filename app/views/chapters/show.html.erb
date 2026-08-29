@@ -19,31 +19,34 @@
     <h1><%= @chapter.title %></h1>
   </div>
 </div>
+
+<div class="centering">
+  <div class="d-flex justify-content-center align-items-center mb-3 text-border"  style="width: 60%;">
+    <%= link_to campaign_chapters_path do %>
+      <button class="back-button" style="width: 5rem; height: 5rem;"></button>
+    <% end %>
+    <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
+      <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
+        <button class="edit-submit-button"></button>
+      <% end %>
+    <% end %>
+    <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
+      <a href="#", data-bs-toggle="modal", data-bs-target="#stickies-modal">
+        <button class="create-stickies-button"></button>
+      </a>
+    <% end %>
+  </div>
+</div>
+
 <div class="centering">
   <div class="parchment-container-chap">
-
-    <div class="d-flex flex-column align-items-center text-center mx-5 font-insert">
-      <p><%= @chapter.summary %></p>
-      <ul class="text-border" style="list-style-type: none;">
+    <div class="d-flex flex-column align-items-center text-center mx-4 font-insert">
+      <ul class="text-border my-2" style="list-style-type: none; width: 100%;">
         <% @chapter.highlights.split(", ").each do |highlight| %>
         <li class="highlight"><%= highlight %></li>
         <% end %>
       </ul>
-      <div class="d-flex justify-content-center align-items-center">
-        <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
-            <button class="edit-submit-button"></button>
-          <% end %>
-        <% end %>
-        <%= link_to campaign_chapters_path do %>
-          <button class="back-button" style="width: 5rem; height: 5rem;"></button>
-        <% end %>
-        <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-          <a href="#", data-bs-toggle="modal", data-bs-target="#stickies-modal">
-            <button class="create-stickies-button"></button>
-          </a>
-        <% end %>
-      </div>
+      <p><%= @chapter.summary %></p>
     </div>
   </div>
 </div>
