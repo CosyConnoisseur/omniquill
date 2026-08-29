@@ -4,13 +4,15 @@
   "short_name": "OmniQuillShort",
   "start_url": "/",
   "icons": [
-  <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
-    {
-      "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
-      "sizes": "<%= dim %>",
-      "type": "image/png"
-    }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
-  <% end %>
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
   ],
   "theme_color": "#000000",
   "background_color": "#FFFFFF",

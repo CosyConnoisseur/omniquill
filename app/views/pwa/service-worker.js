@@ -24,14 +24,17 @@
 //     })
 //   )
 // })
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .catch(() => {
-          // Only return cached offline page if the network fails completely
-          return caches.match('/offline.html');
-        })
-    );
-  }
-});
+
+
+
+// self.addEventListener('fetch', (event) => {
+//   if (event.request.mode === 'navigate') {
+//     event.respondWith(
+//       fetch(event.request)
+//         .catch(() => {
+//           // Only return cached offline page if the network fails completely
+//           return caches.match('/offline.html');
+//         })
+//     );
+//   }
+// });
