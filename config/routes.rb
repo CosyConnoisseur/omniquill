@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     end
 
     resources :chapters, except: [ :destroy ] do
+      member do
+        get :processing
+      end
 
       resources :stickies, only: [ :new, :create, :destroy ]
     end
@@ -47,8 +50,12 @@ Rails.application.routes.draw do
   post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
 
-  resources :transcriptions, only: [:create]
+  resources :transcriptions, only: [:create, :show] do
+    member do
+      post :cancel
+    end
+  end
+  get "transcriptions/current", to: "transcriptions#current"
   post "transcriptions/download", to: "transcriptions#download"
-  get "transcriptions/:id", to: "transcriptions#show"
 
 end

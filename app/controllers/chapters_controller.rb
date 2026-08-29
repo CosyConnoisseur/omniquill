@@ -1,6 +1,6 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: %i[show edit update]
-  before_action :set_campaign, only: %i[index show edit update]
+  before_action :set_chapter, only: %i[show edit update processing]
+  before_action :set_campaign, only: %i[index show edit update processing]
   def index
     @chapters = policy_scope(@campaign.chapters)
   end
@@ -18,6 +18,15 @@ class ChaptersController < ApplicationController
     authorize @chapter
     @chapter.update(chapter_params)
     redirect_to campaign_chapter_path(@campaign, @chapter)
+  end
+
+  def processing
+    authorize @chapter, :show?
+
+    render json: {
+      completed: @chapter.title.present? && @chapter.summary.present? && @chapter.highlights.present?,
+      chapter_id: @chapter.id
+    }
   end
 
   private
