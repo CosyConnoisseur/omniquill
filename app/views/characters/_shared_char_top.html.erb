@@ -1,0 +1,41 @@
+<div class="char-sheet-top">
+  <!-- DROPDOWN -->
+  <a href="#"
+     data-bs-toggle="dropdown"
+     aria-expanded="false">
+    <%= image_tag "dropdown-icon.png",
+        alt: "dropdown menu",
+        class: "char-sheet-dropdown" %>
+  </a>
+  <div class="dropdown-menu">
+    <% if policy(@character).update? %>
+      <%= link_to "Edit",
+        edit_character_path(@character),
+        class: "dropdown-item" %>
+    <% end %>
+    <% if policy(@character).destroy? %>
+      <%= link_to "Delete",
+        character_path(@character),
+        class: "dropdown-item text-danger",
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure you want to delete this character?"
+        } %>
+    <% end %>
+  </div>
+  <!-- TITLE -->
+  <div class="medieval-title">
+    <h1><%= @character.name %></h1>
+  </div>
+  <!-- SAVE BUTTON (only on edit pg) -->
+  <% if local_assigns[:editing] %>
+    <!--Rails hash containing the local variables that were passed into partial-->
+    <div class="save-btn">
+      <%= f.button type: "submit",
+          class: "character-save-button",
+          title: "Save changes" do %>
+        <i class="fa-solid fa-check"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
