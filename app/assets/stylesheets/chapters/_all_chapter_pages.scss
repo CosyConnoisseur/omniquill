@@ -29,23 +29,33 @@
   }
 }
 
-.page-sticker {
-  position: absolute;
-  margin: 2rem;
+.stickies-container {
+  display: flex;
+  justify-content: center;
+  width: 70%;
   padding: 0.5rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  border-image: asset_url("image-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 1.5rem;
+  border-image-repeat: stretch stretch;
+}
+
+.sticker {
   width: 6rem;
   height: 6rem;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
   text-align: center;
   align-content: center;
-  z-index: 10;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: $omni-ink;
   text-shadow: 1px 1px 6px rgb(44, 136, 255);
   background-image: asset_url("sticky.png");
   background-size: cover;
-  transform: scale(0.7);
-  opacity: 0.2;
   transition: 0.2s ease-out;
 
   .delete-sticky {
@@ -178,12 +188,20 @@
     width: 80%;
   }
 
+  .stickies-container {
+    width: 85%;
+  }
+
 }
 
 @media (max-width: 600px) {
 
   .text-border {
     width: 100%;
+  }
+
+  .stickies-container {
+    width: 90%;
   }
 
 }
