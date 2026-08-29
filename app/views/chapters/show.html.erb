@@ -54,18 +54,18 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content stickies-styling">
       <button class="close x-button" type="button" data-bs-dismiss="modal"></button>
-      <div class="modal-header p-0 mt-4">
+      <div class="modal-header p-0 mt-4 d-flex flex-column justify-content-center">
         <h2 class="modal-title" style="color: #200033;">Add a Sticky!</h2>
+        <p style="font-size: 0.75rem;">*Between 3 and 20 characters</p>
       </div>
       <div class="modal-body mb-4">
-        <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
-          <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "text-border" } %>
-          <div class="d-flex justify-content-center">
-            <%= f.button :submit, "", class: "create-stickies-button" do %>
-            <% end %>
-          </div>
-        <% end %>
-
+          <%= simple_form_for ([@campaign, @chapter, @sticky]) do |f| %>
+            <%= f.input :text, label: "", label_html: { class: "d-none" }, input_html: { class: "text-border", style: "margin: 0 auto;" } %>
+            <div class="d-flex justify-content-center">
+              <%= f.button :submit, "", class: "create-stickies-button" do %>
+              <% end %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>
