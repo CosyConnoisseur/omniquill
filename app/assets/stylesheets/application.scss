@@ -183,3 +183,9 @@ body {
 }
 
 }
+html[data-turbo-preview] *,
+html[data-turbo-preview] *::before,
+html[data-turbo-preview] *::after {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}

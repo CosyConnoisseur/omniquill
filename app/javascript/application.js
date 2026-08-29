@@ -83,3 +83,5 @@ document.addEventListener("turbo:before-render", (event) => {
     });
   }
 });
+
+Turbo.config.drive.transition = true
