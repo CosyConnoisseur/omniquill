@@ -31,9 +31,58 @@
     <%= javascript_importmap_tags %>
   </head>
 
+
+
   <body><%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
 
     <%= yield %>
+    <div
+      id="processing-box"
+      data-controller="processing"
+      data-turbo-permanent
+      data-processing-target="alert"
+      class="position-fixed bottom-0 start-0 m-4 p-3 bg-light border rounded shadow d-none"
+      style="z-index: 1050; width: 260px; max-width: calc(100vw - 2rem);"
+    >
+      <div data-processing-target="message">
+        Preparing...
+      </div>
+
+      <div data-processing-target="progress" class="small mt-1">
+      </div>
+
+      <div data-processing-target="timer" class="small mt-1">
+        00:00:00
+      </div>
+
+      <div class="mt-2">
+        <%= link_to "View Chapter",
+            "#",
+            data: {
+              processing_target: "chapterLink",
+              action: "click->processing#viewChapter"
+            },
+            class: "btn btn-sm btn-outline-secondary d-none"
+        %>
+      </div>
+
+      <button
+        type="button"
+        data-processing-target="cancelButton"
+        data-action="click->processing#cancel"
+        class="btn btn-sm btn-outline-danger"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        data-processing-target="closeButton"
+        data-action="click->processing#close"
+        class="btn-close position-absolute top-0 end-0 m-2"
+        aria-label="Close"
+      ></button>
+    </div>
   </body>
 </html>

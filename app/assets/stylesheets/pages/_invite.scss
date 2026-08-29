@@ -6,21 +6,86 @@
   background-image:
     url("qr-rune.png");
     background-size:
-    cover;
-
-
+    contain;
+      background-repeat: no-repeat;
 }
 
 .qr-code svg {
-width: 100%;
-padding: 6rem;
+width: 80%;
+height: auto;
+padding: 7rem;
+transform: translate(15%, 6%);
 }
+
 
 @media (max-width: 600px) {
   .qr-code svg {
-    width: 100%;
+    width: 110%;
     height: auto;
+
     margin: 0 auto;
-    transform: translate(0%, 20%);
+    transform: translate(-3%, -9%);
   }
+}
+
+
+//floaty candles
+.invite-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.floating-candles {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.candle {
+  position: absolute;
+  font-size: 3rem;
+  width: 30%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(255, 190, 70, 0.8));
+  animation: float-candle 4s ease-in-out infinite;
+}
+
+.candle-1 {
+
+  top: 25%;
+  left: 5%;
+}
+
+
+
+.candle-3 {
+  top: 25%;
+  right: 5%;
+  animation-delay: 2s;
+}
+
+
+
+@keyframes float-candle {
+  0%, 100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-10px)
+  }
+}
+@media (max-width: 600px) {
+  .candle-1 {
+    top: 10%;
+    left: 5%;
+  }
+
+
+
+  .candle-3 {
+    top: 10%;
+    right: 5%;
+  }
+
 }
