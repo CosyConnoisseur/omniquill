@@ -72,6 +72,8 @@
 <div class="parchment-container mb-5" style="min-height: 1000px; width:100%;">
   <% content_for :head do %>
   <meta name="turbo-cache-control" content="no-cache">
+  <meta name="turbo-refresh-method" content="morph">
+  <meta name="turbo-refresh-scroll" content="preserve">
 <% end %>
 <div class="campaign-file" data-controller="campaign-show-tabs"
       data-campaign-show-tabs-campaign-id-value="<%= @campaign.id %>">
@@ -124,11 +126,11 @@
         <p class="mt-auto mx-2 text-center">
           <%= @campaign.synopsis %>
             <% if owner %>
-              <br>
               <button
                 type="button"
                 class="text-center btn btn-link text-dark"
-                onclick="document.getElementById('synopsis-edit').style.display = 'block'; document.getElementById('synopsis-display').style.display = 'none';">
+                onclick="document.getElementById('synopsis-edit').style.display = 'block';
+                document.getElementById('synopsis-display').style.display = 'none';">
                 Edit
               </button>
             <% end %>
@@ -137,7 +139,7 @@
 
       <div id="synopsis-edit" style="display: none;" class="x-3 mx-md-5 pb-3 force_input">
         <%= form_with model: @campaign do |form| %>
-          <%= form.text_area :synopsis, class: "form-control w-100 mb-2", rows: 8, style: "background-color: #dbd4a0", placeholder: "Tell everyone what this campaign is about!" %>
+          <%= form.text_area :synopsis, id: "synopsis-text-area", class: "form-control w-100 mb-2", rows: 8, style: "background-color: #dbd4a0", placeholder: "Tell everyone what this campaign is about!" %>
           <%= form.submit "Save", class: "btn btn-dark btn-sm" %>
           <button
             type="button"
@@ -202,62 +204,10 @@
     </div>
 
     <!--Notes-->
-    <div class="tab-pane fade" id="notes-pane" role="tabpanel" aria-labelledby="notes-tab">
-      <ul style="list-style-type: none; padding-left: 0;">
-        <div class="container d-flex flex-column">
-          <p class="text-center">Only you can see these notes!</p>
-          <% @notes.each do |note| %>
-            <div class="container d-flex flex-row gap-4 align-items-center" style="background-color: #dbd4a0; margin: 10px auto; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-              <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" style="min-width: 10px; height: auto;" viewBox="0 0 16 16">
-                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-                <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
-              </svg>
-              <!-- Show Notes -->
-              <li class="flex-grow-1" style="min-width: 0;">
-                <h2 style="word-break: break-word; overflow-wrap: break-word; margin: 0;"><%= note.entry %></h2>
-              </li>
-                <%= button_to campaign_note_path(@campaign, note),
-                    method: :delete,
-                    class: "btn ps-0 ms-0",
-                    style: "color: red; font-size: 30px;",
-                    onclick: "return confirm('Delete this note?');",
-                    data: { turbo: false } do %>
-                  &#x2715;
-                <% end %>
-            </div>
-          <% end %>
-        </div>
-      </ul>
-
-    <!-- Add a note -->
-
-      <div id="add-note-button" style="display: flex; justify-content: center; margin-bottom: 20px;">
-        <button
-          type="button"
-          class="btn btn-dark"
-          onclick="document.getElementById('add-note-form').style.display = 'block'; document.getElementById('add-note-button').style.display = 'none';">
-          + Add note
-        </button>
-      </div>
-
-      <div id="add-note-form" class="mx-3 mx-md-5 pb-3 force_input" style="display: none;">
-        <%=  form_with scope: :note, url: campaign_notes_path(@campaign), data: { turbo: false } do |form| %>
-          <%= form.text_area :entry,
-              class: "form-control mb-2",
-              rows: 4,
-              placeholder: "Write a note...",
-              style: "background-color: #dbd4a0" %>
-          <%= form.submit "Save", class: "btn btn-dark" %>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="document.getElementById('add-note-form').style.display = 'none'; document.getElementById('add-note-button').style.display = 'flex';">
-            Cancel
-          </button>
-        <% end %>
-      </div>
-
+    <div id="notes-list-container">
+      <%= render "notes_tab" %>
     </div>
+
   </div>
 </div>`
 

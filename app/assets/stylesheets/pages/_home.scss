@@ -384,8 +384,9 @@
   position: absolute !important;
   top: 0 !important;
   left: -50% !important;
-  height: 250px !important;
-  width: max-content;
+  height: max-content;
+  max-width: 200px;
+  //flex grow and stuff
 }
 
   .preview-left-image{
@@ -402,8 +403,8 @@
     position: absolute !important;
     top: 0 !important;
     right: -50% !important;
-    height: 250px !important;
-    width: max-content;
+    height: max-content;
+    max-width: 200px;
 }
 
   .preview-right-image{
