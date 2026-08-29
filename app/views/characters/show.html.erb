@@ -11,12 +11,16 @@
     }
 </script>
 <%# Keep flash and script on top %>
+<% if policy(@character).show_campaign_link? %>
+  <%= link_to "Back to Campaign",  campaign_path(@character.participation.campaign, anchor: "characters-tab"), class: "btn btn-dark my-2 d-flex justify-content-center mx-5", data: { direction: "back" } %>
+<% end %>
 <div class="character-file" data-controller="char-show-tabs sheet-toggle">
   <!--char sheet top section shared with all tabs-->
   <%= render "shared_char_top" %>
   <!-- TAB 1 PROFILE -->
   <div class="character-tab tab-one" data-tab-content="character">
     <div class="char-sheet-bottom">
+
       <div class="page-container d-flex justify-content-center">
         <div class="character-portrait-container d-flex flex-column align-items-center">
           <div class="character-portrait torn-edges mb-3">
@@ -30,6 +34,7 @@
       </div>
     </div>
   </div>
+
   <!-- TAB 2 DESC -->
   <div class="character-tab tab-two" data-tab-content="description">
     <div class="char-sheet-bottom">

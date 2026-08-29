@@ -106,10 +106,16 @@
     background-size: cover;
     background-color: transparent;
     border: none;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
 .text-border {
+  width: 60%;
   padding: 0.25rem;
   border-image: asset_url("text-border.png");
   border-image-slice: 70 70 70 70 fill;
@@ -153,4 +159,30 @@
     font-size: 1.25rem;
     color: $omni-ink;
   }
+}
+
+// Beginning of 'Record chapter' page
+
+.recording-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+// End of 'Record chapter' page
+
+@media (max-width: 1000px) {
+
+  .text-border {
+    width: 80%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .text-border {
+    width: 100%;
+  }
+
 }

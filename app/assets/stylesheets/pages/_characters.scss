@@ -1,0 +1,116 @@
+// For the char show page and char edit page
+
+// show page
+.character-show-portrait,
+.character-show-description {
+  margin:auto;
+}
+
+.character-show-description {
+  display: flex;
+  justify-content: center;
+  margin:auto;
+}
+
+.character-description-input {
+  width: 100%;
+  min-height: 300px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  font-family: $quill-font;
+  font-size: 1.25rem;
+  color: $omni-ink;
+  resize: vertical;
+}
+.character-edit-form {
+  width: 60%;
+    margin: 0 auto;
+
+}
+
+// edit page
+
+.character-edit-form .edit-parchment {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem;
+}
+
+.character-edit-form .character-description-input {
+  display: block;
+  width: 100%;
+  min-height: 300px;
+  box-sizing: border-box;
+// box sizing = total size (width + padding)
+
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  font-family: $quill-font;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: $omni-ink;
+
+  resize: vertical;
+}
+
+// zoom on character sheet modal css
+.character-sheet-image {
+  max-height: 550px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: zoom-in;
+  // shows magnifying glass cursor with + /- on hover
+  transition: transform 0.3s ease;
+}
+
+.character-sheet-image.zoomed {
+  transform: scale(2.0);
+  cursor: zoom-out;
+}
+
+.character-sheet-modal-content {
+  overflow-y: auto
+}
+
+.card-body {
+  width: 90%;
+  margin: 1rem auto;
+  border-image: asset_url("image-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 1.5rem;
+  border-image-repeat: stretch stretch;
+}
+
+
+@media (max-width: 1000px) {
+  .character-show-portrait,
+  .character-show-description {
+    width: 85%;
+  }
+
+  .character-show-description .parchment-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .character-edit-form {
+    width: 70%;
+  }
+}
+
+@media (max-width: 600px) {
+  .character-edit-form {
+    width: 85%;
+  }
+}
