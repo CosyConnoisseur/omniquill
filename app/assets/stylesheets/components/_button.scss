@@ -94,7 +94,7 @@
 .edit-submit-button {
   width: 5rem;
   height: 5rem;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   background-color: transparent;
   border: none;
   background-image: asset_url("Edit-icon.png");
@@ -225,6 +225,21 @@
   }
 }
 
+.create-note-button {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-note-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-note-icon.gif");
+  }
+}
+
 .create-chapter-fixed-button {
   width: 6rem;
   height: 6rem;
@@ -337,6 +352,10 @@
 
   .create-stickies-button {
     background-image: asset_url("create-sticky-icon-long.gif");
+  }
+
+  .create-note-button {
+    background-image: asset_url("create-note-icon-long.gif");
   }
 
   .create-chapter-fixed-button {
