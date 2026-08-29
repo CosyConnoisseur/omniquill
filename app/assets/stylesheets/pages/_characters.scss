@@ -82,7 +82,8 @@
 }
 
 .card-body {
-  margin: 1rem 0;
+  width: 90%;
+  margin: 1rem auto;
   border-image: asset_url("image-border.png");
   border-image-slice: 70 70 70 70 fill;
   border-image-width: 1.5rem;
