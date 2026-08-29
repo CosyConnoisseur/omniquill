@@ -80,7 +80,11 @@ class CampaignsController < ApplicationController
 
   def record
     @campaign = Campaign.find(params[:id])
-    @test_chapter = @campaign.chapters.last
+    @test_chapter = @campaign.chapters.create!(
+      title: "New Chapter",
+      summary: "",
+      highlights: ""
+    )
     authorize @campaign
   end
 

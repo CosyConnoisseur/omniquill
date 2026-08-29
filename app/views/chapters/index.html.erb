@@ -20,7 +20,7 @@
           <%= link_to campaign_chapter_path(@campaign, chapter) do %>
             <p class="chap-title"><%= chapter.title %></p>
           <% preview = [] %>
-          <% chapter.summary.split(" ").each_with_index do |word, index| %>
+          <% chapter.summary.to_s.split(" ").each_with_index do |word, index| %>
             <% if index == 16 %>
               <% break %>
             <% else %>
