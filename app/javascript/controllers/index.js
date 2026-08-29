@@ -4,20 +4,23 @@
 
 import { application } from "./application"
 
+import CampaignShowTabsController from "./campaign_show_tabs_controller"
+application.register("campaign-show-tabs", CampaignShowTabsController)
+
+import CharShowTabsController from "./char_show_tabs_controller"
+application.register("char-show-tabs", CharShowTabsController)
+
 import FormTypewriterController from "./form_typewriter_controller"
 application.register("form-typewriter", FormTypewriterController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import RecordingController from "./recording_controller"
-application.register("recording", RecordingController)
-
 import InviteLinkController from "./invite_link_controller"
 application.register("invite-link", InviteLinkController)
 
+import RecordingController from "./recording_controller"
+application.register("recording", RecordingController)
+
 import SheetToggleController from "./sheet_toggle_controller"
 application.register("sheet-toggle", SheetToggleController)
-
-import CharShowTabs from "./char_show_tabs_controller"
-application.register("char-show-tabs", CharShowTabs)
