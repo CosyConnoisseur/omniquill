@@ -56,6 +56,7 @@ gem "pry-byebug"
 gem "pry-rails"
 gem "solid_cable"
 gem 'rqrcode'
+gem "serviceworker-rails"
 
 group :development, :test do
   gem "dotenv-rails"

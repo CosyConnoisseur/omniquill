@@ -64,3 +64,22 @@ function setBackTransition() {
 function clearTransitions() {
   document.documentElement.classList.remove("transition-back", "transition-forward");
 }
+
+
+// Manually register the PWA service worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/serviceworker.js");
+  });
+}
+
+// Force Turbo to wait for your mobile slide animations to complete
+document.addEventListener("turbo:before-render", (event) => {
+  if (document.startViewTransition) {
+    event.preventDefault(); // Stop Turbo from rendering instantly
+
+    document.startViewTransition(() => {
+      event.detail.resume(); // Render the new page inside the native transition
+    });
+  }
+});

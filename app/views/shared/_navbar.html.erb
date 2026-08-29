@@ -1,12 +1,12 @@
 <nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
 
-    <%= link_to root_path, class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand", data: {direction: "back"} do %>
       <%= image_tag "Omniquill-logo.png" %>
     <% end %>
 
     <!-- Ben Fix: Middle Logo (added d-inline-block to keep it in the row flow) -->
-    <%= link_to root_path, class: "d-inline-block alignment-fix" do %>
+    <%= link_to root_path, class: "d-inline-block alignment-fix", data: {direction: "back"} do %>
       <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
     <% end %>
 
@@ -20,7 +20,7 @@
         <% if user_signed_in? %>
           <li class="nav-item active mx-2">
             <%= link_to root_path do %>
-              <button class="navbar-home-button"></button>
+              <button class="navbar-home-button" data-direction="back"></button>
             <% end %>
           </li>
           <% if current_page?("") || controller_name == 'campaigns' && action_name == 'index' %>
