@@ -33,15 +33,6 @@
             <% if controller_name == 'campaigns' && action_name == 'show' %>
               <% if current_user.id == @campaign.user_id %>
               <li class="nav-item active mx-2">
-                <%= link_to record_campaign_path(@campaign) do %>
-                  <button class="navbar-create-chapter-button"></button>
-                <% end %>
-              <% end %>
-              </li>
-            <% end %>
-            <% if controller_name == 'campaigns' && action_name == 'show' %>
-              <% if current_user.id == @campaign.user_id %>
-              <li class="nav-item active mx-2">
                 <%= button_to campaign_path(@campaign),
                 method: :delete,
                 class: "navbar-delete-campaign-button",
