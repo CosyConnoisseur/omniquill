@@ -28,7 +28,7 @@
 }
 
 .parchment-container-chap {
-  height: auto;
+  min-height: 10rem;
   width: 60%;
   padding: 1.5rem;
   border-image: asset_url("parchment-leather-border.png");
