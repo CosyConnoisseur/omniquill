@@ -129,6 +129,10 @@ body {
 }
 
 
+@view-transition {
+  navigation: auto;
+}
+
 // fixes navbar
 .nev {
   view-transition-name: navbar;
@@ -145,11 +149,12 @@ body {
 /* Mobile Slide-In Effect */
 
 @media (max-width: 835px) {
-  .transition-forward::view-transition-old(root) {
+
+  html[data-turbo-visit-direction="forward"]::view-transition-old(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-left;
   }
 
-  .transition-forward::view-transition-new(root) {
+  html[data-turbo-visit-direction="forward"]::view-transition-new(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
   }
 
@@ -162,11 +167,10 @@ body {
   }
 
 
-  .transition-back::view-transition-old(root) {
+html[data-turbo-visit-direction="back"]::view-transition-old(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-right;
   }
-
-  .transition-back::view-transition-new(root) {
+  html[data-turbo-visit-direction="back"]::view-transition-new(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
   }
 
@@ -177,9 +181,27 @@ body {
   @keyframes slide-from-left {
     from { transform: translateX(-100%); }
   }
-.force_input textarea::placeholder {
-  color: #8c7662;
-  opacity: 0.7;
-}
 
 }
+
+
+
+// .nev {
+//   view-transition-name: navbar;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 9998;
+//   width: 100vw;
+//   box-sizing: border-box;
+// }
+
+/* Target both the old snapshot and the new incoming state of the navbar */
+// ::view-transition-old(navbar),
+// ::view-transition-new(navbar) {
+//   /* Instantly snap the navbar in place with zero movement or fading */
+//   animation: none;
+//   mix-blend-mode: normal;
+//   z-index: 9000;
+// }
