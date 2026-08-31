@@ -6,61 +6,23 @@ import "bootstrap"
 
 
 
-
-
+Turbo.config.drive.transition = true
 
 
 //Adding mobile style swiping page transitions
 
-let currentHistoryIndex = window.history.state?.turbo?.restorationIndex || 0;
 
-document.addEventListener("turbo:before-visit", (event) => {
-  const currentPath = window.location.pathname;
-  const destinationUrl = new URL(event.detail.url);
-  const destinationPath = destinationUrl.pathname;
-
-  if (destinationPath === currentPath) {
-    // event.preventDefault();
-    clearTransitions();
-    return
-  }
-
-
-  const clickedElement = document.activeElement;
-  const isBackElement = clickedElement?.closest('[data-direction="back"]');
-
-  if (isBackElement || (destinationPath === "/" && currentPath !== "/")) {
-    setBackTransition();
-  }
-
-
-  else {
-    setForwardTransition();
+document.addEventListener("turbo:click", (event) => {
+  const isBack = event.target.closest('[data-direction="back"]');
+  if (isBack) {
+    window.forcedTurboDirection = "back";
   }
 });
 
 
-window.addEventListener("popstate", () => {
-  let nextHistoryIndex = currentHistoryIndex-1
-
-  if (nextHistoryIndex < currentHistoryIndex) {
-    setBackTransition();
-  }
-  else {
-    setForwardTransition();
+document.addEventListener("turbo:visit", () => {
+  if (window.forcedTurboDirection) {
+    document.documentElement.dataset.turboVisitDirection = window.forcedTurboDirection;
+    window.forcedTurboDirection = null;
   }
 });
-
-function setForwardTransition() {
-  document.documentElement.classList.add("transition-forward");
-  document.documentElement.classList.remove("transition-back");
-}
-
-function setBackTransition() {
-  document.documentElement.classList.add("transition-back");
-  document.documentElement.classList.remove("transition-forward");
-}
-
-function clearTransitions() {
-  document.documentElement.classList.remove("transition-back", "transition-forward");
-}

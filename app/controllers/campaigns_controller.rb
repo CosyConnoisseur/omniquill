@@ -94,7 +94,7 @@ class CampaignsController < ApplicationController
 
     @campaign.destroy
 
-    redirect_to campaigns_path, notice: "Campaign was successfully deleted.", status: :see_other
+    redirect_to root_path, data: {direction:"back"}, notice: "Campaign was successfully deleted.", status: :see_other
   end
 
   private
