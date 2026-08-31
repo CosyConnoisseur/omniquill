@@ -24,11 +24,11 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    authorize @campaign
     @campaign.user = current_user # assigning the current logged in user to the campaign
+    authorize @campaign
 
     if @campaign.save
-      redirect_to campaigns_path
+      redirect_to campaigns_path, notice: "Campaign created successfully!", status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
@@ -94,7 +94,7 @@ class CampaignsController < ApplicationController
 
     @campaign.destroy
 
-    redirect_to root_path, data: {direction:"back"}, notice: "Campaign was successfully deleted.", status: :see_other
+    redirect_to root_path, notice: "Campaign was successfully deleted.", status: :see_other
   end
 
   private
