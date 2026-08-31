@@ -30,8 +30,7 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def destroy?
-    # user == record.participation.user
-    true
+    record.user == user
   end
 
   def update?
@@ -47,19 +46,18 @@ class CharacterPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-    #   scope.all
+      #   scope.all
 
-    scope.where(user: user)
+      scope.where(user: user)
 
-    # for later when we want to be stricter about showing characters
+      # for later when we want to be stricter about showing characters
       # Characters -> Participation -> Campaign -> Filter by GM
-        # scope.joins(participation: :campaign)
-        #      .where(campaigns: { user_id: user.id })
+      # scope.joins(participation: :campaign)
+      #      .where(campaigns: { user_id: user.id })
 
       # Characters -> Participation -> Filter by Player
-        # scope.joins(participation)
-        #      .where(participations: { user_id: user.id })
-
+      # scope.joins(participation)
+      #      .where(participations: { user_id: user.id })
     end
   end
 end

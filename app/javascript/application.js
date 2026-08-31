@@ -16,7 +16,15 @@ let currentHistoryIndex = window.history.state?.turbo?.restorationIndex || 0;
 
 document.addEventListener("turbo:before-visit", (event) => {
   const currentPath = window.location.pathname;
-  const destinationPath = new URL(event.detail.url).pathname;
+  const destinationUrl = new URL(event.detail.url);
+  const destinationPath = destinationUrl.pathname;
+
+  if (destinationPath === currentPath) {
+    // event.preventDefault();
+    clearTransitions();
+    return
+  }
+
 
   const clickedElement = document.activeElement;
   const isBackElement = clickedElement?.closest('[data-direction="back"]');
@@ -25,9 +33,7 @@ document.addEventListener("turbo:before-visit", (event) => {
     setBackTransition();
   }
 
-  else if (destinationPath === currentPath) {
-    clearTransitions();
-  }
+
   else {
     setForwardTransition();
   }

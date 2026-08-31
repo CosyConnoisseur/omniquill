@@ -1,20 +1,9 @@
 <div class="character-file" data-controller="char-show-tabs">
   <%= form_with model: @character, class: "character-edit-form" do |f| %>
+    <!-- SHARED TOP -->
+    <%= render "shared_char_top", f: f, editing: true %>
     <!-- TAB 1: PROFILE -->
     <div class="character-tab tab-one" data-tab-content="character">
-      <div class="char-sheet-top">
-        <%= image_tag "dropdown-icon.png",
-            class: "char-sheet-dropdown" %>
-        <div class="medieval-title">
-          <h1><%= @character.name %></h1>
-          <!-- SAVE -->
-          <%= f.button type: "submit",
-              class: "character-save-button",
-              title: "Save changes" do %>
-            <i class="fa-solid fa-check"></i>
-          <% end %>
-        </div>
-      </div>
       <div class="char-sheet-bottom">
         <div class="character-portrait">
           <%= f.label :portrait, class: "clickable-portrait" do %>
@@ -32,13 +21,6 @@
     </div>
     <!-- TAB 2: DESCRIPTION -->
     <div class="character-tab tab-two" data-tab-content="description">
-      <div class="char-sheet-top">
-        <%= image_tag "dropdown-icon.png",
-            class: "char-sheet-dropdown" %>
-        <div class="medieval-title">
-          <h1><%= @character.name %></h1>
-        </div>
-      </div>
       <div class="char-sheet-bottom">
         <div class="parchment-container edit-parchment">
           <%= f.text_area :stats_summary,
@@ -49,13 +31,6 @@
     </div>
     <!-- TAB 3: CHARACTER SHEET -->
     <div class="character-tab tab-three" data-tab-content="sheet">
-      <div class="char-sheet-top">
-        <%= image_tag "dropdown-icon.png",
-            class: "char-sheet-dropdown" %>
-        <div class="medieval-title">
-          <h1><%= @character.name %></h1>
-        </div>
-      </div>
       <div class="char-sheet-bottom">
         <% if @character.document_upload.attached? %>
           <% if @character.document_upload.content_type == "application/pdf" %>

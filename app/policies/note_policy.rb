@@ -10,7 +10,7 @@ class NotePolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.id == record.campaign.user_id
+    true
   end
 
   class Scope < ApplicationPolicy::Scope

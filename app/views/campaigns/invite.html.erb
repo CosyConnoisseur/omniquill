@@ -1,13 +1,20 @@
-<div class="d-flex flex-column align-items-center justify-content-center">
-  <h1 class="text-center mt-3">Summon a New Adventurer to Your Party</h1>
-  <div class="qr-code mt-3 mb-4">
-    <%= raw @qr_svg %>
+<div class="invite-page">
+  <!-- FLOATY CANDLES -->
+  <div class="floating-candles">
+    <%= image_tag "floaty-candle.png", class: "candle candle-1" %>
+    <%= image_tag "floaty-candle.png", class: "candle candle-3" %>
   </div>
-  <button class="mt-4"
-    type="button"
-    data-controller="invite-link"
-    data-invite-link-url-value="<%= join_campaign_url(@campaign) %>"
-    data-action="click->invite-link#copy">
-    🔗 Copy Invite Link
-  </button>
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <h1 class="text-center mt-3">Rune of Summoning</h1>
+    <div class="qr-code mt-3 mb-4">
+      <%= raw @qr_svg %>
+    </div>
+    <button class="mt-4"
+      type="button"
+      data-controller="invite-link"
+      data-invite-link-url-value="<%= join_campaign_url(@campaign) %>"
+      data-action="click->invite-link#copy">
+      🔗 Copy Invite Link
+    </button>
+  </div>
 </div>

@@ -4,9 +4,8 @@
   <%= f.input :highlights, placeholder: chapter.highlights, input_html: { class: "edit-input-box" }, label_html: {style: "font-size: 3rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);"} %>
   <div class="centering">
     <%= f.button :submit, "", class: "edit-submit-button" %>
-    <%= link_to campaign_chapter_path(@campaign, @chapter), class: "animate-button" do %>
-      <%= image_tag "back-icon.png", class: "animate-icon" %>
-      <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+    <%= link_to campaign_chapter_path(@campaign, @chapter) do %>
+      <button class="back-button" style="width: 5rem; height: 5rem;" data-direction="back"></button>
     <% end %>
   </div>
 <% end %>

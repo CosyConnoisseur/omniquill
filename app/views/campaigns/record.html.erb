@@ -1,12 +1,9 @@
-<div class="container py-5 text-center">
+<div class="container py-3 text-center">
 
   <!-- Character Sheets -->
   <div class="centering mb-4">
-    <div class="parchment-container">
-      <h1 class="mb-4">Omniquill</h1>
-      <div class="mb-5">
-        <%= link_to "Character Sheets", root_path, class: "btn btn-outline-secondary" %>
-      </div>
+    <div class="campaign-book" style="width: 12rem; height: 13rem;">
+      <%= image_tag "Quill-logo.gif", style: "width: 10rem; height: 10rem; object-fit: contain;" %>
     </div>
   </div>
 
@@ -14,18 +11,16 @@
   <div class="centering">
     <div class="parchment-container" data-controller="recording" data-recording-chapter-id-value="<%= @test_chapter.id %>" data-recording-campaign-id-value="<%= @campaign.id %>">
       <div class="recording-page">
-        <h1 class="mb-4" data-recording-target="heading">
-          Ready when you are!
-        </h1>
+        <p class="mb-4 fs-5" data-recording-target="heading">
+          Quill at the ready
+        </p>
         <div id="record-button" class="mt-auto text-reset clickable-icon" style="cursor: point;">
-          <svg data-recording-target="recordIcon" data-action="click->recording#toggle" class="bi bi-record-circle icon-record" width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+          <%# --------------------------Need to start again from here. Only have one icon. Doesn't seem to work in general.  ------------------------------%>
+          <svg data-recording-target="recordIcon" data-action="click->recording#toggle" style="background-image: url(<%= asset_url("recording-icon.png") %>); background-size: cover;" width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
             <title>Start recording</title>
-            <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
           </svg>
           <svg data-recording-target="pauseIcon" data-action="click->recording#pause" class="bi bi-pause-circle icon-pause" width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" style="display: none;">
             <title>Pause recording</title>
-            <path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8m0 1A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
-            <path d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0"/>
           </svg>
         </div>
         <div class="timer mt-4">
@@ -36,7 +31,7 @@
         <div class="recording-controls d-flex justify-content-center align-items-center gap-5 mt-4">
 
           <!-- return to campaign's page -->
-          <%= link_to campaign_path(@campaign), class: "text-reset clickable-icon", style: "background: none; border: none; padding: 0;" do %>
+          <%= link_to campaign_path(@campaign), class: "text-reset clickable-icon", style: "background: none; border: none; padding: 0;", data: { direction: "back" } do %>
             <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
               <title>Back to the campaign's page</title>
               <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
@@ -86,6 +81,36 @@
         </div>
       </div>
 
+    </div>
+
+  </div>
+  <!-- Recording Controls -->
+  <div class="centering">
+    <div class="text-border mt-5">
+      <div class="recording-controls">
+
+        <!-- return to campaign's page -->
+        <%= link_to campaign_path(@campaign) do %>
+          <button class="back-button" data-direction="back"></button>
+        <% end %>
+
+        <!-- upload an audio file -->
+        <div class="upload-audio-button">
+          <input type="file" id="audio-file" accept="audio/*" class="d-none" data-action="change->recording#uploadAudioFile">
+          <label for="audio-file" title="Upload audio file" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;">
+          </label>
+        </div>
+
+        <!-- Generate Transcription -->
+        <div data-action="click->recording#generateTranscript">
+          <button class="finish-recording-button" ></button>
+        </div>
+
+        <!-- finish recording and generate summary -->
+        <%= link_to campaign_chapter_path(@campaign, @test_chapter) do %>
+          <button class="create-chapter-button"></button>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
