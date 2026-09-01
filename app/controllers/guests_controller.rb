@@ -95,6 +95,24 @@ end
     note2.user = @guest
     note2.save
 
+    chapter1 = @campaign.chapters.build(title: "The Beginning...",
+                                        summary: "4 noobs decide to build an entire app about helping table top players cut to the chase.",
+                                        highlights: "Shane did x, Jared did y, Sammy did z, Ben did abcd",
+                                        created_at:Time.zone.parse("August 1, 2026"))
+    chapter1.save
+
+    chapter2 = @campaign.chapters.build(title: "The Release...",
+                                        summary: "4 heroes release OmniQuill unto the world and get decent jobs",
+                                        highlights: "Shane did x, Jared did y, Sammy did z, Ben did abcd",
+                                        created_at:Time.zone.parse("Sepetember 5, 2026"))
+    chapter2.save
+
+    chapter3 = @campaign.chapters.build(title: "You Joined OmniQuill",
+                                        summary: "This is probably the most important part of the entire journey. You have graced us with your presence and we are super grateful. Thank you once again for trying out OmniQuill!",
+                                        highlights: "You tried the app, Everyone liked that, Today is better than yesterday",
+                                        created_at: 1.minute.ago)
+    chapter3.save
+
 
     p2_seat = @campaign.participations.create!(user_id: 8) #
     p3_char = @campaign.participations.create!(user_id: 9) #
