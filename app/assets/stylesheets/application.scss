@@ -148,7 +148,7 @@ body {
 
 /* Mobile Slide-In Effect */
 
-@media (max-width: 835px) {
+@media (max-width: 1024px) {
 
   html[data-turbo-visit-direction="forward"]::view-transition-old(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-left;
