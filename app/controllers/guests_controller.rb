@@ -17,7 +17,7 @@ class GuestsController < ApplicationController
       password: SecureRandom.alphanumeric(16), # Devise requires a valid password
       guest: true # Mark them as a guest!
     )
-    host_user = User.find(7)
+    host_user = User.find(199)
     # shared_blob = "eyJfcmFpbHMiOnsiZGF0YSI6MTUyLCJwdXIiOiJibG9iX2lkIn19--87d07c070109dc449db2d76d30321bd1ef350012"
 
     card_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
@@ -114,13 +114,13 @@ end
     chapter3.save
 
 
-    p2_seat = @campaign.participations.create!(user_id: 8) #
-    p3_char = @campaign.participations.create!(user_id: 9) #
-    p4_char = @campaign.participations.create!(user_id: 10) #
+    p2_seat = @campaign.participations.create!(user_id: 202) #
+    p3_char = @campaign.participations.create!(user_id: 201) #
+    p4_char = @campaign.participations.create!(user_id: 200) #
 
     p2_character = Character.create!(
       name: "Jared, the Summoner", #
-      stats_summary: "hello I'm a stats summary", #
+      stats_summary: "hello I'm a stats summary about Jared", #
       # portrait: "",
       # campaign participation?
       participation: p2_seat
@@ -129,7 +129,7 @@ end
 
     p3_character = Character.create!(
       name: "Sammy, the Speaker", #
-      stats_summary: "hello I'm a stats summary", #
+      stats_summary: "hello I'm a stats summary about Sammy", #
       # portrait: "",
       # campaign participation?
       participation: p3_char
@@ -138,7 +138,7 @@ end
 
     p4_character = Character.create!(
       name: "Ben, the Recorder", #
-      stats_summary: "hello I'm a stats summary", #
+      stats_summary: "hello I'm a stats summary about Ben", #
       # portrait: "",
       # campaign participation?
       participation: p4_char
