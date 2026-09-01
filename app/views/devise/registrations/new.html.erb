@@ -1,36 +1,52 @@
 <div class="parchment-container mt-3 mx-auto headings">
 <h2><%= current_user&.guest? ? "Complete Your Registration" : "Sign Up" %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <!-- Pre-fill with blank if they are a guest, so they don't see the random guest email -->
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (current_user&.guest? ? "" : resource.email) %>
-  </div>
+  <div class="form-inputs">
+  <%= f.input  :email,
+                required: true,
+                autofocus: true,
+                autocomplete: "email", value: (current_user&.guest? ? "" : resource.email) %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <%= f.input :username,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "username" }%>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+
+
+
+    <%= f.input :password_confirmation, autocomplete: "new-password" %>
+    <br>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+    <%= f.file_field :profile_picture,
+                          accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
+                          class: " form-control",
+                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
   </div>
 
   <div class="actions">
-    <%= f.submit current_user&.guest? ? "Create Account & Save My Progress" : "Sign Up" %>
+    <%= f.submit current_user&.guest? ? "Create Account & Save My Progress" : "Sign Up", class:"btn btn-dark my-3" %>
   </div>
 <% end %>
+<% unless current_user&.guest? %>
 <p class="mt-5 mb-0">Already a user?</p>
 <%= render "devise/shared/links" %>
-</div>
 <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
   <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
 </div>
-<%= button_to "Continue as Guest", create_guest_session_path, method: :post, class: "btn-guest" %>
+  <%= button_to "Continue as Guest", create_guest_session_path, method: :post, class: "btn btn-success btn-guest" %>
+<% end %>
+
+<div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
+  <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
+</div>
+</div>

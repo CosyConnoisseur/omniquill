@@ -65,9 +65,9 @@
     </div>
   </div>
 </nav>
-  <% if current_user&.guest? %>
-  <div id="delayed-signup-prompt" class="text-center w-100" style="background-color: white; position: fixed; z-index: 9997; display: none;">
-    Enjoying OmniQuill?
+  <% if current_user&.guest? && !current_page?("/users/sign_up") %>
+  <div id="delayed-signup-prompt" class="text-center nuv" style="background-color: white; z-index: 9997; display: none;">
+    Enjoying OmniQuill? See more features!
     <%= link_to "Complete Sign Up!", new_user_registration_path, class: "btn btn-dark m-1" %>
   </div>
 

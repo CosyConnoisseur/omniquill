@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     if current_user&.guest?
       build_resource(sign_up_params)
-      permitted_params = params.require(:user).permit(:email, :password, :password_confirmation)
+      permitted_params = params.require(:user).permit(:email, :password, :password_confirmation, :username, :profile_picture)
 
       current_user.assign_attributes(permitted_params)
       current_user.guest = false # They are officially a real user now!

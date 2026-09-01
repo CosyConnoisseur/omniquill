@@ -144,6 +144,15 @@ body {
   width: 100vw;
   box-sizing: border-box;
 }
+.nuv{
+  view-transition-name: nuvbar;
+  width: 100vw;
+  box-sizing: border-box;
+  position: fixed;
+  top: 79px;
+  left: 0;
+  right: 0;
+}
 
 // processing alert box
 .processing-alert {

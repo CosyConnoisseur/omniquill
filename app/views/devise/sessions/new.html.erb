@@ -19,5 +19,5 @@
 <% end %>
 <p class="mt-5 mb-0">New user?</p>
 <%= render "devise/shared/links", class: "" %>
+  <%= button_to "Continue as Guest", create_guest_session_path, method: :post, class: "btn btn-success btn-guest" %>
 </div>
-<%= button_to "Continue as Guest", create_guest_session_path, method: :post, class: "btn-guest" %>
