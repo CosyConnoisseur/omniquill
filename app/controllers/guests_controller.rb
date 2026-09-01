@@ -18,6 +18,8 @@ class GuestsController < ApplicationController
       guest: true # Mark them as a guest!
     )
     host_user = User.find(199)
+    #local
+    # host_user = User.find(10)
     # shared_blob = "eyJfcmFpbHMiOnsiZGF0YSI6MTUyLCJwdXIiOiJibG9iX2lkIn19--87d07c070109dc449db2d76d30321bd1ef350012"
 
     card_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
@@ -113,10 +115,15 @@ end
                                         created_at: 1.minute.ago)
     chapter3.save
 
-
+    #heroku
     p2_seat = @campaign.participations.create!(user_id: 202) #
     p3_char = @campaign.participations.create!(user_id: 201) #
     p4_char = @campaign.participations.create!(user_id: 200) #
+
+    #local
+    # p2_seat = @campaign.participations.create!(user_id: 7) #
+    # p3_char = @campaign.participations.create!(user_id: 8) #
+    # p4_char = @campaign.participations.create!(user_id: 9) #
 
     p2_character = Character.create!(
       name: "Jared, the Summoner", #

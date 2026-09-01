@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
       resources :stickies, only: [ :new, :create, :destroy ]
     end
+    delete "participation", to: "participations#destroy", as: :participation
   end
   get "campaigns/:id/invite", to: "campaigns#invite", as: :invite_campaign
   get "campaigns/:id/join", to: "campaigns#join", as: :join_campaign
