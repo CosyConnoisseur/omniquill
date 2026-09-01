@@ -18,7 +18,19 @@ class GuestsController < ApplicationController
       guest: true # Mark them as a guest!
     )
     host_user = User.find(7)
-    shared_blob = "eyJfcmFpbHMiOnsiZGF0YSI6MTUyLCJwdXIiOiJibG9iX2lkIn19--87d07c070109dc449db2d76d30321bd1ef350012"
+    # shared_blob = "eyJfcmFpbHMiOnsiZGF0YSI6MTUyLCJwdXIiOiJibG9iX2lkIn19--87d07c070109dc449db2d76d30321bd1ef350012"
+
+    card_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
+    card_cloud_image = ActiveStorage::Blob.find_by(key: card_image_key)
+    if card_cloud_image.nil?
+      card_cloud_image = ActiveStorage::Blob.create!(
+        key:          card_image_key,
+        filename:     "sandbox_placeholder.jpg",
+        content_type: "image/jpeg",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
 
 
 p2_cloud_key = "vaxdr8xpd7eije2xth9rohzxfuf8" #
