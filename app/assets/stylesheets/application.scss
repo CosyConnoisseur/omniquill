@@ -129,6 +129,10 @@ body {
 }
 
 
+@view-transition {
+  navigation: auto;
+}
+
 // fixes navbar
 .nev {
   view-transition-name: navbar;
@@ -152,12 +156,13 @@ body {
 
 /* Mobile Slide-In Effect */
 
-@media (max-width: 835px) {
-  .transition-forward::view-transition-old(root) {
+@media (max-width: 1024px) {
+
+  html[data-turbo-visit-direction="forward"]::view-transition-old(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-left;
   }
 
-  .transition-forward::view-transition-new(root) {
+  html[data-turbo-visit-direction="forward"]::view-transition-new(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
   }
 
@@ -170,11 +175,10 @@ body {
   }
 
 
-  .transition-back::view-transition-old(root) {
+html[data-turbo-visit-direction="back"]::view-transition-old(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-right;
   }
-
-  .transition-back::view-transition-new(root) {
+  html[data-turbo-visit-direction="back"]::view-transition-new(root) {
     animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
   }
 
@@ -185,9 +189,5 @@ body {
   @keyframes slide-from-left {
     from { transform: translateX(-100%); }
   }
-.force_input textarea::placeholder {
-  color: #8c7662;
-  opacity: 0.7;
-}
 
 }
