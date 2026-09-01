@@ -40,6 +40,14 @@
                 class: "navbar-delete-campaign-button",
                 data: { turbo_confirm: "Delete this campaign?" } do %>
                 <% end %> <%# This might be empty, but it's needed to actually make the icon appear. DON'T delete this 'do/end' %>
+
+                <% else %>
+                <%= button_to campaign_participation_path(@campaign),
+                method: :delete,
+                class: "navbar-delete-campaign-button",
+                data: { turbo_confirm: "Are you sure you want to leave this campaign? Your active character sheet will be deleted." } do %>
+                <% end %>
+
               <% end %>
               </li>
             <% end %>

@@ -220,11 +220,3 @@
     </div>
   </div>
 </div>
-
-<% if @campaign.user != current_user %>
-  <%= button_to "Leave Campaign",
-                campaign_participation_path(@campaign),
-                method: :delete,
-                data: { turbo_confirm: "Are you sure you want to leave this campaign? Your active character sheet will be unlinked." },
-                class: "btn-leave-campaign" %>
-<% end %>
