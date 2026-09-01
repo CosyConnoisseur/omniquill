@@ -1,25 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["modal"]
 
   open(event) {
     if (window.innerWidth <= 600) {
       window.open(event.currentTarget.src, "_blank")
-    } else {
-      event.currentTarget.classList.toggle("zoomed")
+      return
     }
-  }
 
-  close() {
-    this.modalTarget.classList.add("d-none")
-  }
+    const image = event.currentTarget
 
-  closeOutside(event) {
-    if (event.target === this.modalTarget) {
-      this.close()
+    if (image.classList.contains("zoomed")) {
+      image.classList.remove("zoomed")
+      return
     }
+
+    image.classList.add("zoomed")
   }
-
-
 }

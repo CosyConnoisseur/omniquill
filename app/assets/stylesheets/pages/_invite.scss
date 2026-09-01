@@ -1,3 +1,87 @@
+/* SUMMONING DISPLAY */
+
+.summoning-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* SIGN */
+
+.summoning-sign {
+  position: relative;
+  width: 400px;
+  max-width: 60vw;
+}
+
+.summoning-sign-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.summoning-sign span {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 80%;
+
+  text-align: center;
+
+  font-family: $quill-font;
+  font-size: 2rem;
+  color: $omni-ink;
+
+  white-space: nowrap;
+}
+
+/* CANDLES */
+
+.candle {
+  width: 150px;
+  height: auto;
+
+  filter: drop-shadow(0 0 8px rgba(255, 190, 70, 0.8));
+
+  animation: float-candle 4s ease-in-out infinite;
+}
+
+.candle-left {
+  left: 25%;
+}
+
+.candle-right {
+  right: 25%;
+  animation-delay: 2s;
+}
+
+@keyframes float-candle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-candle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .qr-code {
   position: relative;
   width: 90vw;
@@ -6,21 +90,53 @@
   background-image:
     url("qr-rune.png");
     background-size:
-    cover;
-
-
+    contain;
+      background-repeat: no-repeat;
 }
 
 .qr-code svg {
-width: 100%;
-padding: 6rem;
+width: 80%;
+height: auto;
+padding: 7rem;
+transform: translate(15%, 6%);
 }
+
 
 @media (max-width: 600px) {
   .qr-code svg {
-    width: 100%;
+    width: 110%;
     height: auto;
+
     margin: 0 auto;
-    transform: translate(0%, 20%);
+    transform: translate(-3%, -9%);
   }
+}
+
+
+
+
+
+
+@keyframes float-candle {
+  0%, 100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-10px)
+  }
+}
+@media (max-width: 600px) {
+  .candle-1 {
+    top: 10%;
+    left: 5%;
+  }
+
+
+
+  .candle-3 {
+    top: 10%;
+    right: 5%;
+  }
+
 }

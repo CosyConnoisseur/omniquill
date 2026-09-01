@@ -1,0 +1,53 @@
+<div class="tab-pane fade" id="notes-pane" role="tabpanel" aria-labelledby="notes-tab">
+  <ul style="list-style-type: none; padding-left: 0;">
+    <div class="container d-flex flex-column">
+      <p class="text-center fs-3" style="color: #200033;">Only you can see these notes!</p>
+      <% @notes.each do |note| %>
+        <div id="note-container">
+          <%= image_tag "note-icon.png", class: "note-icon" %>
+          <!-- Show Notes -->
+          <li class="flex-grow-1" style="min-width: 0;">
+            <p style="word-break: break-word; overflow-wrap: break-word; margin: 0;"><%= note.entry %></p>
+          </li>
+            <%= button_to campaign_note_path(@campaign, note),
+                method: :delete,
+                class: "edit-cancel-button",
+                onclick: "return confirm('Delete this note?');" do %>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+
+<!-- Add a note -->
+
+  <div id="add-note-button" style="display: flex; justify-content: center; margin-bottom: 20px;">
+    <button
+      type="button"
+      class="create-note-button"
+      onclick="document.getElementById('add-note-form').style.display = 'block';
+      document.getElementById('add-note-button').style.display = 'none';
+      document.getElementById('note-text-area').focus();">
+    </button>
+  </div>
+
+  <div id="add-note-form" class="mx-3 mx-md-5 pb-3 force_input" style="display: none;">
+    <%=  form_with scope: :note, url: campaign_notes_path(@campaign), data: { turbo_action: "replace" } do |form| %>
+      <div class="centering align-items-center">
+        <%= form.submit "", class: "create-note-button" %>
+        <button
+          type="button"
+          class="edit-cancel-button"
+          onclick="document.getElementById('add-note-form').style.display = 'none'; document.getElementById('add-note-button').style.display = 'flex';">
+        </button>
+      </div>
+      <%= form.text_area :entry,
+          id: "note-text-area",
+          class: "form-control mb-2",
+          rows: 4,
+          placeholder: "Write a note...",
+          style: "background-color: #dbd4a0" %>
+    <% end %>
+  </div>
+
+</div>

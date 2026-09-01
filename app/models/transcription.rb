@@ -1,11 +1,15 @@
 class Transcription < ApplicationRecord
   belongs_to :chapter
+
   has_one_attached :audio
 
   enum :status, {
-    pending: "pending",
+    chunking: "chunking",
     processing: "processing",
+    transcribing: "transcribing",
+    summarizing: "summarizing",
     completed: "completed",
-    failed: "failed"
+    failed: "failed",
+    canceled: "canceled"
   }
 end

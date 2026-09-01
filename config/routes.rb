@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
   root "campaigns#index"
@@ -41,6 +41,9 @@ Rails.application.routes.draw do
     end
 
     resources :chapters, except: [ :destroy ] do
+      member do
+        get :processing
+      end
 
       resources :stickies, only: [ :new, :create, :destroy ]
     end
@@ -50,8 +53,12 @@ Rails.application.routes.draw do
   post "campaigns/:id/join", to: "campaigns#add_player", as: :add_player
   # Will likely need to change the routes for chapters, since campaign show page will likely have all the chapters in it.
 
-  resources :transcriptions, only: [:create]
+  resources :transcriptions, only: [:create, :show] do
+    member do
+      post :cancel
+    end
+  end
+  get "transcriptions/current", to: "transcriptions#current"
   post "transcriptions/download", to: "transcriptions#download"
-  get "transcriptions/:id", to: "transcriptions#show"
 
 end

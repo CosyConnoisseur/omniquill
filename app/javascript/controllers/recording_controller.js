@@ -7,16 +7,18 @@ export default class extends Controller {
     "heading",
     "output",
     "transcript",
-    "progress",
-    "timer"
+    "timer",
   ]
 
   static values = {
-    chapterId: Number
+    chapterId: Number,
+    campaignId: Number
   }
 
   connect() {
     this.pollingTimeout = null
+    this.chapterPollingTimeout = null
+
     console.log("Recording controller connected")
 
     this.isRecording = false
@@ -27,6 +29,11 @@ export default class extends Controller {
 
     this.timerInterval = null
     this.elapsedSeconds = 0
+  }
+
+  disconnect() {
+    clearTimeout(this.pollingTimeout)
+    clearInterval(this.timerInterval)
   }
 
   async toggle() {
@@ -47,12 +54,44 @@ export default class extends Controller {
   }
 
   async startRecording() {
+    if (!window.isSecureContext) {
+      console.error("Microphone requires a secure context")
+      this.headingTarget.innerText =
+        "Microphone requires HTTPS"
+      return
+    }
+
+    if (!window.MediaRecorder) {
+      console.error("MediaRecorder is not supported")
+      this.headingTarget.innerText =
+        "Audio recording is not supported on this browser"
+      return
+    }
+
     try {
       this.mediaStream = await navigator.mediaDevices.getUserMedia({
         audio: true
       })
 
-      const mimeType = "audio/mp4"
+      const supportedMimeTypes = [
+        "audio/mp4",
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/ogg;codecs=opus"
+      ]
+
+      const mimeType = supportedMimeTypes.find(type =>
+        MediaRecorder.isTypeSupported(type)
+      )
+
+      if (!mimeType) {
+        console.error("No supported audio recording format found")
+        this.headingTarget.innerText = "Audio recording is not supported"
+        this.mediaStream.getTracks().forEach(track => track.stop())
+        return
+      }
+
+      console.log("Using recording format:", mimeType)
 
       this.mediaRecorder = new MediaRecorder(
         this.mediaStream,
@@ -77,7 +116,21 @@ export default class extends Controller {
 
       this.startTimer()
     } catch (error) {
-      console.error("Microphone access denied:", error)
+      console.error("Microphone access failed:", error)
+
+      if (error.name === "NotAllowedError") {
+        this.headingTarget.innerText =
+          "Microphone permission is required"
+      } else if (error.name === "NotFoundError") {
+        this.headingTarget.innerText =
+          "No microphone was found"
+      } else if (error.name === "NotReadableError") {
+        this.headingTarget.innerText =
+          "Microphone is already in use"
+      } else {
+        this.headingTarget.innerText =
+          "Unable to access the microphone"
+      }
     }
   }
 
@@ -91,26 +144,16 @@ export default class extends Controller {
     this.pauseIconTarget.style.display = "none"
     this.recordIconTarget.style.display = "block"
 
-    this.headingTarget.innerText = "Ready when you are!"
+    this.headingTarget.innerText = "Quill at the ready"
 
     this.stopTimer()
   }
 
   async uploadAudio(blob, filename = "recording.mp4") {
-    if (this.pollingTimeout) {
-      clearTimeout(this.pollingTimeout)
-      this.pollingTimeout = null
-    }
-
-    this.outputTarget.classList.remove("d-none")
-    this.progressTarget.innerText = "Preparing to upload audio..."
-    this.transcriptTarget.innerText = "Transcribing audio..."
-
     const formData = new FormData()
 
     formData.append("audio_file", blob, filename)
     formData.append("chapter_id", this.chapterIdValue)
-
 
     console.log("Chapter ID:", this.chapterIdValue)
 
@@ -127,18 +170,20 @@ export default class extends Controller {
         body: formData
       })
 
-      // const text = await response.text()
-      // console.log("Server response:", text)
-      // const data = JSON.parse(text)
       const data = await response.json()
 
       if (response.ok) {
-        // this.transcriptTarget.innerText = data.text
-        // this.headingTarget.innerText = "Ready when you are!"
-        this.progressTarget.innerText = "Starting transcription..."
-        this.headingTarget.innerText = "Processing..."
+        localStorage.setItem(
+          "omniquill_processing",
+          JSON.stringify({
+            transcriptionId: data.id,
+            chapterId: this.chapterIdValue,
+            campaignId: this.campaignIdValue,
+            startedAt: Date.now()
+          })
+        )
 
-        this.pollTranscription(data.id)
+        window.dispatchEvent(new CustomEvent("processing-started"))
 
         this.resetRecording()
       } else {
@@ -150,35 +195,6 @@ export default class extends Controller {
       console.error(error)
       this.transcriptTarget.innerText = "Failed to upload audio"
     }
-  }
-
-  async pollTranscription(id) {
-    const response = await fetch(`/transcriptions/${id}`)
-    const data = await response.json()
-
-    console.log("Polling:", id, data)
-
-    if (data.total_chunks > 0) {
-      this.progressTarget.innerText =
-        `Transcription progress: ${data.completed_chunks} / ${data.total_chunks} chunks completed`
-    }
-
-    if (data.status == "completed") {
-      this.progressTarget.innerText = ""
-      this.transcriptTarget.innerText = data.text
-      this.headingTarget.innerText = "Ready when you are!"
-      return
-    }
-
-    if (data.status == "failed") {
-      this.transcriptTarget.innerText = "Transcription failed."
-      return
-    }
-
-    this.pollingTimeout = setTimeout(
-      () => this.pollTranscription(id),
-      2000
-    )
   }
 
   uploadAudioFile() {
@@ -224,7 +240,7 @@ export default class extends Controller {
     this.recordIconTarget.style.display = "block"
     this.pauseIconTarget.style.display = "none"
 
-    this.headingTarget.innerText = "Ready when you are!"
+    this.headingTarget.innerText = "Quill at the ready"
 
     this.resetTimer()
   }
@@ -291,5 +307,11 @@ export default class extends Controller {
     link.click()
 
     URL.revokeObjectURL(url)
+  }
+
+  showCancelledState() {
+    this.cancelButtonTarget.remove()
+
+    this.statusTarget.textContent = "Transcription cancelled"
   }
 }

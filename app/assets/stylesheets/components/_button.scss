@@ -73,9 +73,30 @@
   }
 }
 
+.bottom-fix-button {
+  display: none;
+  position: fixed;
+  bottom: 3%;
+  right: 5%;
+  z-index: 1050;
+}
+
+@media (max-width: 575px) {
+
+  .bottom-fix-button {
+    display: block;
+  }
+
+}
+
+// Start of general button animations ------------------------------
+
 .edit-submit-button {
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  border: none;
   background-image: asset_url("Edit-icon.png");
   background-size: cover;
 
@@ -84,9 +105,163 @@
   }
 }
 
-.edit-back-button {
+.edit-cancel-button {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("delete-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-image: asset_url("delete-icon.gif");
+  }
+}
+
+.back-button {
   width: 6rem;
   height: 6rem;
+  margin: 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("back-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("back-icon.gif");
+  }
+}
+
+.upload-audio-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("upload-audio-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("upload-audio-icon.gif");
+  }
+}
+
+.create-chapter-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-chapter-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-chapter-icon.gif");
+  }
+}
+
+.finish-recording-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("recording-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("recording-icon.gif");
+  }
+}
+
+.create-campaign-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("campaign-creation-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("campaign-creation-icon.gif");
+  }
+}
+
+.create-character-button {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-character-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-character-icon.gif");
+  }
+}
+
+.create-stickies-button {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-sticky-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-sticky-icon.gif");
+  }
+}
+
+.create-note-button {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-note-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-note-icon.gif");
+  }
+}
+
+.create-chapter-fixed-button {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-chapter-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-chapter-icon.gif");
+  }
+}
+
+.navbar-home-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
   background-image: asset_url("Home-icon.png");
   background-size: cover;
 
@@ -94,3 +269,144 @@
     background-image: asset_url("Home-icon.gif");
   }
 }
+
+.navbar-create-campaign-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("campaign-creation-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("campaign-creation-icon.gif");
+  }
+}
+
+.navbar-create-chapter-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("create-chapter-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("create-chapter-icon.gif");
+  }
+}
+
+.navbar-delete-campaign-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.5em;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-image: asset_url("campaign-delete-icon.png");
+  background-size: cover;
+
+  &:hover {
+    background-image: asset_url("campaign-delete-icon.gif");
+  }
+}
+
+// End of general button animations ---------------------------------
+
+
+// Start of general button animations' @media ------------------------------
+
+@media (max-width: 1000px) {
+
+  .edit-submit-button {
+    background-image: asset_url("Edit-icon-long.gif");
+  }
+
+  .back-button {
+    background-image: asset_url("back-icon-long.gif");
+  }
+
+  .upload-audio-button {
+    background-image: asset_url("upload-audio-icon-long.gif");
+  }
+
+  .create-chapter-button {
+    background-image: asset_url("create-chapter-icon-long.gif");
+  }
+
+  .finish-recording-button {
+    background-image: asset_url("recording-icon-long.gif");
+  }
+
+  .create-campaign-button {
+    background-image: asset_url("campaign-creation-icon-long.gif");
+  }
+
+  .create-character-button {
+    background-image: asset_url("create-character-icon-long.gif");
+  }
+
+  .create-stickies-button {
+    background-image: asset_url("create-sticky-icon-long.gif");
+  }
+
+  .create-note-button {
+    background-image: asset_url("create-note-icon-long.gif");
+  }
+
+  .create-chapter-fixed-button {
+    background-image: asset_url("create-chapter-icon-long.gif");
+  }
+
+  .navbar-home-button {
+    background-image: asset_url("Home-icon-long.gif");
+  }
+
+  .navbar-create-campaign-button {
+    background-image: asset_url("campaign-creation-icon-long.gif");
+  }
+
+  .navbar-create-chapter-button {
+    background-image: asset_url("create-chapter-icon-long.gif");
+  }
+
+  .navbar-delete-campaign-button {
+    background-image: asset_url("campaign-delete-icon-long.gif");
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .back-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .upload-audio-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .create-chapter-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .finish-recording-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .edit-cancel-button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+}
+
+// End of general button animations' @media ------------------------------

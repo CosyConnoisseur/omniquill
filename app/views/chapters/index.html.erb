@@ -10,33 +10,34 @@
       <p id="no-chapters">No adventures...yet</p>
     <% else %>
       <% @chapters.reverse.each do |chapter| %>
-        <div class="chap-card">
-          <div class="d-flex justify-content-end">
-            <p class="chap-date">
-              <%= chapter.created_at.strftime("%B %d, %Y") %> |
-              <%= time_ago_in_words(chapter.created_at) %> ago
-            </p>
-          </div>
-          <%= link_to campaign_chapter_path(@campaign, chapter) do %>
-            <p class="chap-title"><%= chapter.title %></p>
-          <% preview = [] %>
-          <% chapter.summary.to_s.split(" ").each_with_index do |word, index| %>
-            <% if index == 16 %>
-              <% break %>
-            <% else %>
-              <% preview << word %>
+        <% if chapter.title != "New Chapter" %>
+          <div class="chap-card">
+            <div class="d-flex justify-content-end">
+              <p class="chap-date">
+                <%= chapter.created_at.strftime("%B %d, %Y") %> |
+                <%= time_ago_in_words(chapter.created_at) %> ago
+              </p>
+            </div>
+            <%= link_to campaign_chapter_path(@campaign, chapter) do %>
+              <p class="chap-title"><%= chapter.title %></p>
+            <% preview = [] %>
+            <% chapter.summary.to_s.split(" ").each_with_index do |word, index| %>
+              <% if index == 16 %>
+                <% break %>
+              <% else %>
+                <% preview << word %>
+              <% end %>
             <% end %>
-          <% end %>
-          <p><%= preview.join(" ") %>...</p>
-          <% end %>
-        </div>
+            <p><%= preview.join(" ") %>...</p>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
       <% end %>
     </div>
   </div>
   <div class="d-flex justify-content-center my-4">
-    <%= link_to campaign_path(@campaign), class: "animate-button", data: { direction: "back"} do %>
-      <%= image_tag "back-icon.png", class: "animate-icon" %>
-      <%= image_tag "back-icon.gif",  class: "animate-move-icon" %>
+    <%= link_to campaign_path(@campaign), data: { direction: "back"} do %>
+      <button class="back-button" style="width: 5rem; height: 5rem;"></button>
     <% end %>
   </div>

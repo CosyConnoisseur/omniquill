@@ -24,11 +24,11 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    authorize @campaign
     @campaign.user = current_user # assigning the current logged in user to the campaign
+    authorize @campaign
 
     if @campaign.save
-      redirect_to campaigns_path
+      redirect_to campaigns_path, notice: "Campaign created successfully!", status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
@@ -46,7 +46,7 @@ class CampaignsController < ApplicationController
     if @campaign.update(campaign_params)
       redirect_back fallback_location: root_path, notice: "Campaign updated successfully!", status: :see_other
     else
-      redirect_back fallback_location: root_path, alert: "Failed to update campaign.", status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: "Failed to update campaign.", status: :see_other
     end
     # @campaign.update!(campaign_params)
   end
@@ -94,7 +94,7 @@ class CampaignsController < ApplicationController
 
     @campaign.destroy
 
-    redirect_to campaigns_path, notice: "Campaign was successfully deleted.", status: :see_other
+    redirect_to root_path, notice: "Campaign was successfully deleted.", status: :see_other
   end
 
   private

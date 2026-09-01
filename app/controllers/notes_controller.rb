@@ -7,19 +7,20 @@ class NotesController < ApplicationController
     authorize @note
 
     if @note.save
-      redirect_to @campaign, notice: "Note added successfully!", status: :see_other
+      redirect_to campaign_path(@campaign, anchor: "notes-tab", scroll: "preserve"), notice: "Note added!", status: :see_other
     else
       redirect_to @campaign, alert: "Failed to add note."
     end
   end
 
   def destroy
+    @campaign = Campaign.find(params[:campaign_id])
     @note = Note.find(params[:id])
     authorize @note
 
     @note.destroy
 
-    redirect_back fallback_location: root_path,
+    redirect_to campaign_path(@campaign, anchor: "notes-tab", scroll: "preserve"),
                   notice: "Note deleted successfully!",
                   status: :see_other
   end

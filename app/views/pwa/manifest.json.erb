@@ -1,22 +1,24 @@
 {
-  "name": "Omniquill",
+  "name": "Omniquill.ink",
+  "short_name": "OmniQuill",
   "icons": [
     {
-      "src": "/icon.png",
+      "src": "<%= asset_path "web-app-manifest-192x192.png" %>",
+      "sizes": "192x192",
       "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any"
     },
     {
-      "src": "/icon.png",
-      "type": "image/png",
+      "src": "<%= asset_path "web-app-manifest-512x512.png" %>",
       "sizes": "512x512",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "start_url": "/",
+  "theme_color": "#5dadad",
+  "background_color": "#decaa1",
   "display": "standalone",
+  "start_url": "/",
   "scope": "/",
-  "description": "Omniquill.",
-  "theme_color": "red",
-  "background_color": "red"
+  "description": "Omniquill is super cool"
 }
