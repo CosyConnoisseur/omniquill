@@ -1,11 +1,17 @@
 <div class="invite-page">
-  <!-- FLOATY CANDLES -->
-  <div class="floating-candles">
-    <%= image_tag "floaty-candle.png", class: "candle candle-1" %>
-    <%= image_tag "floaty-candle.png", class: "candle candle-3" %>
+  <div class="summoning-display">
+    <!-- LEFT CANDLE -->
+    <%= image_tag "floaty-candle.png", class: "candle candle-left" %>
+    <!-- SIGN -->
+    <div class="summoning-sign">
+      <%= image_tag "rune-of-summoning-floaty-sign.png",
+          class: "summoning-sign-image" %>
+      <span>Rune of Summoning</span>
+    </div>
+    <!-- RIGHT CANDLE -->
+    <%= image_tag "floaty-candle.png", class: "candle candle-right" %>
   </div>
   <div class="d-flex flex-column align-items-center justify-content-center">
-    <h1 class="text-center mt-3">Rune of Summoning</h1>
     <div class="qr-code mt-3 mb-4">
       <%= raw @qr_svg %>
     </div>

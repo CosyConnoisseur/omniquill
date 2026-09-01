@@ -144,7 +144,7 @@ export default class extends Controller {
     this.pauseIconTarget.style.display = "none"
     this.recordIconTarget.style.display = "block"
 
-    this.headingTarget.innerText = "Ready when you are!"
+    this.headingTarget.innerText = "Quill at the ready"
 
     this.stopTimer()
   }
@@ -240,7 +240,7 @@ export default class extends Controller {
     this.recordIconTarget.style.display = "block"
     this.pauseIconTarget.style.display = "none"
 
-    this.headingTarget.innerText = "Ready when you are!"
+    this.headingTarget.innerText = "Quill at the ready"
 
     this.resetTimer()
   }

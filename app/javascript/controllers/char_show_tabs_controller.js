@@ -1,3 +1,4 @@
+
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -32,6 +33,17 @@ export default class extends Controller {
 
     if (content) {
       content.style.display = "block"
+    }
+
+    // Change folder colour
+    this.element.classList.remove("brown", "green", "blue")
+
+    if (tabName === "character") {
+      this.element.classList.add("brown")
+    } else if (tabName === "description") {
+      this.element.classList.add("green")
+    } else if (tabName === "sheet") {
+      this.element.classList.add("blue")
     }
   }
 }

@@ -9,50 +9,21 @@
 
   <!-- Audio Recording and Transcription Controls -->
   <div class="centering">
-    <div class="parchment-container" data-controller="recording" data-recording-chapter-id-value="<%= @test_chapter.id %>" data-recording-campaign-id-value="<%= @campaign.id %>">
+    <div class="book-page-container" data-controller="recording" data-recording-chapter-id-value="<%= @test_chapter.id %>" data-recording-campaign-id-value="<%= @campaign.id %>">
       <div class="recording-page">
-        <p class="mb-4 fs-5" data-recording-target="heading">
+        <p class="mb-4 fs-3" style="color: rgb(3, 153, 212); text-shadow: 1px 1px 3px rgb(164, 214, 255);" data-recording-target="heading">
           Quill at the ready
         </p>
         <div id="record-button" class="mt-auto text-reset clickable-icon" style="cursor: point;">
-          <%# --------------------------Need to start again from here. Only have one icon. Doesn't seem to work in general.  ------------------------------%>
-          <svg data-recording-target="recordIcon" data-action="click->recording#toggle" style="background-image: url(<%= asset_url("recording-icon.png") %>); background-size: cover;" width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+          <svg data-recording-target="recordIcon" data-action="click->recording#toggle" style="background-image: url(<%= asset_url("recording-paused-icon.gif") %>); background-size: cover;" width="96" height="96" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
             <title>Start recording</title>
           </svg>
-          <svg data-recording-target="pauseIcon" data-action="click->recording#pause" class="bi bi-pause-circle icon-pause" width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" style="display: none;">
+          <svg data-recording-target="pauseIcon" data-action="click->recording#pause" class="bi bi-pause-circle icon-pause" width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" style="display: none; background-image: url(<%= asset_url("recording-icon.gif") %>); background-size: cover;">
             <title>Pause recording</title>
           </svg>
         </div>
         <div class="timer mt-4 mb-4">
           <h2 data-recording-target="timer">00:00:00</h2>
-        </div>
-
-        <!-- Recording Controls -->
-        <div class="text-border">
-        <div class="recording-controls d-flex justify-content-center align-items-center gap-3">
-
-          <!-- return to campaign's page -->
-          <%= link_to campaign_path(@campaign) do %>
-            <button class="back-button" data-direction="back"></button>
-          <% end %>
-
-          <!-- upload an audio file -->
-          <div class="upload-audio-button">
-            <input type="file" id="audio-file" class="d-none" data-action="change->recording#uploadAudioFile">
-            <label for="audio-file" title="Upload audio file" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;">
-            </label>
-          </div>
-
-          <!-- Generate Transcription -->
-          <div data-action="click->recording#generateTranscript">
-            <button class="finish-recording-button" ></button>
-          </div>
-
-          <!-- finish recording and generate summary -->
-          <%= link_to campaign_chapter_path(@campaign, @test_chapter) do %>
-            <button class="create-chapter-button"></button>
-          <% end %>
-        </div>
         </div>
 
         <!-- Generated Transcript -->
@@ -67,6 +38,37 @@
             Waiting for speech...
           </div>
         </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Recording Controls -->
+  <div class="centering">
+    <div class="text-border mt-5">
+      <div class="recording-controls">
+
+        <!-- return to campaign's page -->
+        <%= link_to campaign_path(@campaign) do %>
+          <button class="back-button" data-direction="back"></button>
+        <% end %>
+
+        <!-- upload an audio file -->
+        <div class="upload-audio-button">
+          <input type="file" id="audio-file" class="d-none" data-action="change->recording#uploadAudioFile">
+          <label for="audio-file" title="Upload audio file" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;">
+          </label>
+        </div>
+
+        <!-- Generate Transcription -->
+        <div data-action="click->recording#generateTranscript">
+          <button class="finish-recording-button" ></button>
+        </div>
+
+        <!-- finish recording and generate summary -->
+        <%= link_to campaign_chapter_path(@campaign, @test_chapter) do %>
+          <button class="create-chapter-button"></button>
+        <% end %>
       </div>
     </div>
   </div>

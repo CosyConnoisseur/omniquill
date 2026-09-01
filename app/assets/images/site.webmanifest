@@ -1,5 +1,5 @@
 {
-  "name": "Omniquill",
+  "name": "Omniquill.ink",
   "short_name": "Omniquill",
   "icons": [
     {
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#339ba5",
-  "background_color": "#decea2",
+  "theme_color": "#5dadad",
+  "background_color": "#decaa1",
   "display": "standalone"
 }
