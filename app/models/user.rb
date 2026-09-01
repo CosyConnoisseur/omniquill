@@ -12,4 +12,8 @@ class User < ApplicationRecord
   has_many :characters, through: :participations
 
   has_one_attached :profile_picture
+
+  def guest?
+    guest == true
+  end
 end

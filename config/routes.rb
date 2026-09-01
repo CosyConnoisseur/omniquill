@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "characters/edit"
   get "characters/update"
   get "characters/destroy"
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   root "campaigns#index"
 
   # Defines the campaign routes
+
+  post 'guests/create', to: 'guests#create', as: :create_guest_session
+
 
   # get "campaigns/:id", to: "campaigns#show", as: :campaign
   # get "campaigns/show"
