@@ -46,7 +46,7 @@ class CampaignsController < ApplicationController
     if @campaign.update(campaign_params)
       redirect_back fallback_location: root_path, notice: "Campaign updated successfully!", status: :see_other
     else
-      redirect_back fallback_location: root_path, alert: "Failed to update campaign.", status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: "Failed to update campaign.", status: :see_other
     end
     # @campaign.update!(campaign_params)
   end

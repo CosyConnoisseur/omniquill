@@ -32,7 +32,7 @@
   </div>
 
   <div id="add-note-form" class="mx-3 mx-md-5 pb-3 force_input" style="display: none;">
-    <%=  form_with scope: :note, url: campaign_notes_path(@campaign) do |form| %>
+    <%=  form_with scope: :note, url: campaign_notes_path(@campaign), data: { turbo_action: "replace" } do |form| %>
       <div class="centering align-items-center">
         <%= form.submit "", class: "create-note-button" %>
         <button
