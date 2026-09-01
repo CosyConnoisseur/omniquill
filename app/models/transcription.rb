@@ -6,6 +6,7 @@ class Transcription < ApplicationRecord
   enum :status, {
     chunking: "chunking",
     processing: "processing",
+    transcribing: "transcribing",
     summarizing: "summarizing",
     completed: "completed",
     failed: "failed",
