@@ -48,11 +48,22 @@
               <%= @campaign.title %>
             </h1>
           </div>
-          <div id="title-edit" style="display: none;">
+          <div id="title-edit" style="display: <%= @campaign.errors.any? ? 'block' : 'none' %>;">
             <%= form_with model: @campaign do |form| %>
+              <% if @campaign.errors.any? %>
+                <div class="alert alert-danger p-2 mb-2" style="font-size: 0.9rem; border-radius: 4px;">
+                  <ul class="m-0 pl-3">
+                    <% @campaign.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
               <div class="d-flex align-items-center gap-2">
-                <%= form.text_field :title, class: "form-control" %>
-                <%= form.submit "Save", class: "btn btn-secondary"%>
+                <%= form.text_field :title, class: "form-control", minlength: 6 %>
+                <%= form.submit "Save", class: "btn btn-dark"%>
+                <button type="button" class="btn btn-secondary text-muted" onclick="document.getElementById('title-edit').style.display = 'none'; document.getElementById('title-display').style.display ='block';">Cancel</button>
               </div>
             <% end %>
           </div>
