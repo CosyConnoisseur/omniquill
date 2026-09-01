@@ -12,7 +12,11 @@
 </script>
 <%# Keep flash and script on top %>
 <% if policy(@character).show_campaign_link? %>
-  <%= link_to "Back to Campaign",  campaign_path(@character.participation.campaign, anchor: "characters-tab"), class: "btn btn-dark my-2 d-flex justify-content-center mx-5", data: { direction: "back" } %>
+  <%= link_to campaign_path(@character.participation.campaign, anchor: "characters-tab"),
+      class: "character-back-button",
+      data: { direction: "back" } do %>
+    <%= image_tag "back-icon.gif", class: "animate-move-icon" %>
+  <% end %>
 <% end %>
 <div class="character-file" data-controller="char-show-tabs sheet-toggle">
   <!--char sheet top section shared with all tabs-->
@@ -20,7 +24,6 @@
   <!-- TAB 1 PROFILE -->
   <div class="character-tab tab-one" data-tab-content="character">
     <div class="char-sheet-bottom">
-
       <div class="page-container d-flex justify-content-center">
         <div class="character-portrait-container d-flex flex-column align-items-center">
           <div class="character-portrait torn-edges mb-3">
@@ -34,19 +37,15 @@
       </div>
     </div>
   </div>
-
   <!-- TAB 2 DESC -->
   <div class="character-tab tab-two" data-tab-content="description">
     <div class="char-sheet-bottom">
       <div class="character-info-container d-flex mt-3">
-        <div data-controller="sheet-toggle" class="character-show-description">
+        <div data-controller="sheet-toggle" class="character-show-description character-description-clickable"
+           data-action="click->sheet-toggle#open">
           <!-- Character description -->
-          <div
-  class="parchment-container mb-5 character-description-clickable"
-  data-action="click->sheet-toggle#open">
-            <div class="d-flex flex-column font-insert">
-              <p style="white-space: pre-wrap;"><%= @character.stats_summary %></p>
-            </div>
+          <div class="d-flex flex-column font-insert">
+            <p style="white-space: pre-wrap;"><%= @character.stats_summary %></p>
           </div>
         </div>
       </div>
@@ -88,11 +87,4 @@
         data-action="click->char-show-tabs#show">
     </button>
   </div>
-</div>
-<!-- BACK BUTTON -->
-<div class="back-button-container">
-  <%= link_to :back, class: "animate-button", data: { direction: "back" } do %>
-    <%= image_tag "back-icon.png", class: "animate-icon" %>
-    <%= image_tag "back-icon.gif", class: "animate-move-icon" %>
-  <% end %>
 </div>
