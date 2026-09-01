@@ -326,6 +326,7 @@
 
 // cards on hp
 .card-body {
+  margin: 0.75rem 0.25rem;
   border-image: asset_url("image-border.png");
   border-image-slice: 70 70 70 70 fill;
   border-image-width: 1.5rem;
