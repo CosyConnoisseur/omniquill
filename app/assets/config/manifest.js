@@ -4,3 +4,5 @@
 //= link_tree ../../../vendor/javascript .js
 //= link popper.js
 //= link bootstrap.min.js
+//= link desktop-view.png
+//= link mobile-view.png
