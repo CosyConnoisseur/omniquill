@@ -34,8 +34,8 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def update?
-    true
-    # user == record.participation.user
+    # true
+    user == record.user
     # user == record.participation.user #figure out character ownership
   end
 

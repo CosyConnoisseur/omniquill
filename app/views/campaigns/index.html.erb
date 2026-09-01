@@ -1,8 +1,10 @@
-<div class="centering my-3">
-  <%= link_to new_campaign_path, class: "bottom-fix-button", style: "bottom: 3%; right: 3%;" do %>
-    <button class="create-campaign-button"></button>
-  <% end %>
-</div>
+<% unless current_user&.guest? %>
+  <div class="centering my-3">
+    <%= link_to new_campaign_path, class: "bottom-fix-button", style: "bottom: 3%; right: 3%;" do %>
+      <button class="create-campaign-button"></button>
+    <% end %>
+  </div>
+<% end %>
 
 <div class="centering">
   <div class="medieval-title">
