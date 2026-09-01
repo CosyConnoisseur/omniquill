@@ -31,7 +31,6 @@
   width: 100%;
   height: 180px;
 
-  background-image: url("char-sheet-top-fixed.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
@@ -54,7 +53,6 @@
 
   min-height: 600px;
 
-  background-image: url("char-sheet-bottom-stretchy.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
@@ -69,6 +67,76 @@
   z-index: 2;
 }
 
+/* ALL TABS (small tab graphic)*/
+.char-sheet-tab {
+  width: 80px;
+  height: 150px;
+  background-color: transparent;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  border: none;
+  outline: none;
+  z-index: 2;
+}
+
+/* TAB 1 BROWN PIC */
+.char-sheet-tab.tab-character {
+  background-image:
+    url("default-avatar.png"),
+    url("char-sheet-tab-brown.png");
+
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 60% auto, contain;
+}
+
+
+/* TAB 2 GREEN DESC */
+.char-sheet-tab.tab-description {
+  background-image: url("char-sheet-tab-green.png");
+}
+
+
+/* TAB 3 BLUE CHAR SHEET */
+.char-sheet-tab.tab-sheet {
+  background-image: url("char-sheet-tab-blue.png");
+}
+
+
+/* FOLDER COLOURS */
+
+/* TAB 1 PIC BROWN */
+.character-file.brown .char-sheet-top {
+  background-image: url("char-sheet-top-fixed-brown.png");
+}
+
+.character-file.brown .char-sheet-bottom {
+  background-image: url("char-sheet-bottom-stretchy-brown.png");
+}
+
+
+/* TAB 2 DESCRIPTION GREEN */
+.character-file.green .char-sheet-top {
+  background-image: url("char-sheet-top-fixed-green.png");
+}
+
+.character-file.green .char-sheet-bottom {
+  background-image: url("char-sheet-bottom-stretchy-green.png");
+}
+
+
+/* TAB 3 — CHARACTER SHEET BLUE */
+.character-file.blue .char-sheet-top {
+  background-image: url("char-sheet-top-fixed-blue.png");
+  z-index: 1;
+}
+
+.character-file.blue .char-sheet-bottom {
+  background-image: url("char-sheet-bottom-stretchy-blue.png");
+}
 
 /* TITLE */
 .character-file .medieval-title {
@@ -89,7 +157,7 @@
 .char-sheet-dropdown {
   position: absolute;
 
-  top: 0;
+  top:-5px;
   left: 5%;
 
   width: 10%;
@@ -133,35 +201,25 @@
 }
 
 
-/* INDIVIDUAL TAB (small tab graphic)*/
-.char-sheet-tab {
-  width: 80px;
-  height: 150px;
-  background-color: transparent;
 
-  background-image: url("char-sheet-tab.png");
-  background-repeat: no-repeat;
-  background-position: center;
-      background-size: contain;
-  border: none;
-  outline: none;
-  z-index: 2;
-}
 
 /*Back btn*/
-.back-button-container {
-  position: absolute;
-  z-index: 10;
+.character-back-button {
+  display: block;
+  width: 70px;
+  height: 70px;
 
-  left: 0;
-  width: 100%;
+  margin: 10px auto 0;
 
-  display: flex;
-  justify-content: center;
-
-  bottom: -80px;
+  position: relative;
+  z-index: 5000;
 }
 
+.character-back-button .animate-move-icon {
+  display: block;
+  width: 70px;
+  height: 70px;
+}
 /*save edits btn*/
 .save-btn {
   position: absolute;
@@ -176,25 +234,30 @@
 }
 
 // show page portrait, desc
-.character-show-portrait,
-.character-show-description {
-  margin:auto;
+
+.character-show-portrait {
+  margin: auto;
 }
 
 .character-show-description {
   display: flex;
-  justify-content: center;
+  justify-content: center; // horizontal
+  align-items: flex-start; // top
   width: 100%;
-  margin: auto;
-}
-
-.character-show-description .parchment-container {
-  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 5%;
   box-sizing: border-box;
 }
 
 .character-info-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.character-show-description .font-insert {
+  width: 100%;
+  text-align: center;
 }
 
 .character-description-input {
@@ -211,20 +274,16 @@
   font-family: $quill-font;
   font-size: 1.25rem;
   color: $omni-ink;
+  line-height: 1.4;
   resize: vertical;
-}
-.character-edit-form {
-  width: 60%;
-    margin: 0 auto;
-
 }
 
 // edit page
 
-.character-edit-form .edit-parchment {
+.character-edit-form .edit-description {
   width: 100%;
   box-sizing: border-box;
-  padding: 1.5rem;
+  padding: 1.5rem 5%;
 }
 
 .character-edit-form .character-description-input {
@@ -232,7 +291,6 @@
   width: 100%;
   min-height: 300px;
   box-sizing: border-box;
-// box sizing = total size (width + padding)
 
   background: transparent;
   border: none;
@@ -241,8 +299,10 @@
 
   font-family: $quill-font;
   font-size: 1.25rem;
-  line-height: 1.6;
+  font-weight: normal;
   color: $omni-ink;
+  text-align: center;
+  line-height: 1.4;
 
   resize: vertical;
 }
@@ -253,18 +313,16 @@
   object-fit: contain;
   border-radius: 8px;
   cursor: zoom-in;
-  // shows magnifying glass cursor with + /- on hover
+
   transition: transform 0.3s ease;
 }
 
 .character-sheet-image.zoomed {
-  transform: scale(2.0);
+  transform: scale(1.5);
   cursor: zoom-out;
 }
 
-.character-sheet-modal-content {
-  overflow-y: auto
-}
+
 
 // cards on hp
 .card-body {
@@ -274,6 +332,8 @@
   border-image-outset: 1.5rem;
   border-image-repeat: stretch stretch;
 }
+
+
 
 
 /* MOBILE */
@@ -294,13 +354,21 @@
   }
 
   .character-tabs {
-    top: -10%;
-    right: 6%;
+    top: -12%;
+    right: 12%;
 
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    margin-left: -15px;
+
   }
+
+  /* TAB */
+  .char-sheet-tab {
+    position: relative;
+    transform: rotate(270deg) scale(0.75);
+  }
+
 
   .medieval-title {
     width: 85%;
