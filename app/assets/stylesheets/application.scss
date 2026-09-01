@@ -141,6 +141,14 @@ body {
   box-sizing: border-box;
 }
 
+// processing alert box
+.processing-alert {
+  position: relative;
+  z-index: 1050;
+  width: 260px;
+  max-width: calc(100vw - 2rem);
+  margin: 16px auto !important;
+}
 
 /* Mobile Slide-In Effect */
 

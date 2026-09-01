@@ -48,7 +48,7 @@ export default class extends Controller {
 
     this.processing = processing
 
-    this.processingStartedAt = processing.startedAt || Data.now()
+    this.processingStartedAt = processing.startedAt || Date.now()
 
     processing.startedAt = this.processingStartedAt
     localStorage.setItem(

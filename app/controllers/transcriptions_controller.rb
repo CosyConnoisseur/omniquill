@@ -93,7 +93,7 @@ class TranscriptionsController < ApplicationController
   def current
     transcription = current_user.transcriptions
                                 .where(status: %w[processing chunking transcribing summarizing])
-                                .order(create_at: :desc)
+                                .order(created_at: :desc)
                                 .first
     render json: {
       id: transcription&.id,

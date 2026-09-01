@@ -37,16 +37,12 @@
 
 
   <body><%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
-
-    <%= yield %>
     <div
       id="processing-box"
       data-controller="processing"
       data-turbo-permanent
       data-processing-target="alert"
-      class="position-fixed bottom-0 start-0 m-4 p-3 bg-light border rounded shadow d-none"
-      style="z-index: 1050; width: 260px; max-width: calc(100vw - 2rem);"
+      class="processing-alert m-4 p-3 bg-light border rounded shadow d-none"
     >
       <div data-processing-target="message">
         Preparing...
@@ -87,5 +83,8 @@
         aria-label="Close"
       ></button>
     </div>
+    <%= render "shared/flashes" %>
+
+    <%= yield %>
   </body>
 </html>
