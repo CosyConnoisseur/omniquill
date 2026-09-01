@@ -84,8 +84,17 @@ end
       # participation: @guest
       # guest participation?
     )
-    @campaign.card_image.attach(shared_blob)
+    @campaign.card_image.attach(card_cloud_image)
     @campaign.participations.create!(user: @guest)
+
+    note = @campaign.notes.build(entry: "Notes are good for remembering things!")
+    note.user = @guest
+    note.save
+
+    note2 = @campaign.notes.build(entry: "Note to self: Check out the Chapters tab!")
+    note2.user = @guest
+    note2.save
+
 
     p2_seat = @campaign.participations.create!(user_id: 8) #
     p3_char = @campaign.participations.create!(user_id: 9) #
