@@ -58,7 +58,7 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   padding: 5% 5%;
 
@@ -141,6 +141,7 @@
 /* TITLE */
 .character-file .medieval-title {
   position: absolute;
+  top: 30px;
 
   background-image: url("medieval-title.png");
   background-size: 100% auto;
@@ -181,9 +182,10 @@
 }
 
 .character-portrait img {
-  width: 100%;
+  width: 120%;
   height: auto;
   display: block;
+  align-items: center;
 }
 
 
@@ -241,13 +243,14 @@
 
 .character-show-description {
   display: flex;
-  justify-content: center; // horizontal
-  align-items: flex-start; // top
+  // justify-content: center;
+  align-items: flex-start;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 5%;
+  padding: 0 5%;
   box-sizing: border-box;
 }
+
 
 .character-info-container {
   width: 100%;
@@ -264,14 +267,13 @@
   width: 100%;
   min-height: 300px;
   padding: 1.5rem;
-  box-sizing: border-box;
 
   background: transparent;
   border: none;
   outline: none;
   box-shadow: none;
 
-  font-family: $quill-font;
+
   font-size: 1.25rem;
   color: $omni-ink;
   line-height: 1.4;
@@ -297,7 +299,7 @@
   outline: none;
   box-shadow: none;
 
-  font-family: $quill-font;
+
   font-size: 1.25rem;
   font-weight: normal;
   color: $omni-ink;
@@ -318,7 +320,7 @@
 }
 
 .character-sheet-image.zoomed {
-  transform: scale(1.5);
+  transform: scale(1.8);
   cursor: zoom-out;
 }
 
@@ -372,6 +374,7 @@
 
   .medieval-title {
     width: 85%;
+
 
     h1 {
       font-size: 2.5rem;

@@ -1,9 +1,10 @@
+```erb
 <div class="invite-page">
   <div class="summoning-display">
     <!-- LEFT CANDLE -->
     <%= image_tag "floaty-candle.png", class: "candle candle-left" %>
     <!-- SIGN -->
-    <div class="summoning-sign">
+    <div class="summoning-sign mb-3">
       <%= image_tag "rune-of-summoning-floaty-sign.png",
           class: "summoning-sign-image" %>
       <span>Rune of Summoning</span>
@@ -12,15 +13,21 @@
     <%= image_tag "floaty-candle.png", class: "candle candle-right" %>
   </div>
   <div class="d-flex flex-column align-items-center justify-content-center">
-    <div class="qr-code mt-3 mb-4">
+    <div class="qr-code mt-3">
       <%= raw @qr_svg %>
+      <div class="invite-link-container">
+        <button
+          type="button"
+          class="invite-pidge-button"
+          data-controller="invite-link"
+          data-invite-link-url-value="<%= join_campaign_url(@campaign) %>"
+          data-action="click->invite-link#copy">
+          <span class="invite-pidge-caption" data-invite-link-target="caption">
+            Copy Link
+          </span>
+        </button>
+      </div>
     </div>
-    <button class="mt-4"
-      type="button"
-      data-controller="invite-link"
-      data-invite-link-url-value="<%= join_campaign_url(@campaign) %>"
-      data-action="click->invite-link#copy">
-      🔗 Copy Invite Link
-    </button>
   </div>
 </div>
+```

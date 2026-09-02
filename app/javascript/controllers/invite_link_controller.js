@@ -3,15 +3,25 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="invite-link"
 export default class extends Controller {
 
-static values = {
+  static values = {
     url: String
   }
 
-  async copy() {
+  static targets = ["caption", "sign"]
 
+  async copy() {
     await navigator.clipboard.writeText(this.urlValue)
-// copies value stored in this.urlValue
-// https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText
-    this.element.textContent = "Copied!"
+
+    this.captionTarget.textContent = "Copied!"
+  }
+
+  sign(event) {
+    event.preventDefault()
+
+    this.signTarget.src = "/assets/signed.png"
+
+    setTimeout(() => {
+      this.element.submit()
+    }, 1500)
   }
 }

@@ -15,6 +15,8 @@
   position: relative;
   width: 400px;
   max-width: 60vw;
+    animation: float-candle 6s ease-in-out infinite;
+
 }
 
 .summoning-sign-image {
@@ -25,61 +27,23 @@
 
 .summoning-sign span {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
 
   width: 80%;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
+  line-height: 1;
 
-  font-family: $quill-font;
-  font-size: 2rem;
+  font-family: $pixel-font;
+  font-size: 4rem;
   color: $omni-ink;
-
-  white-space: nowrap;
-}
-
-/* CANDLES */
-
-.candle {
-  width: 150px;
-  height: auto;
-
-  filter: drop-shadow(0 0 8px rgba(255, 190, 70, 0.8));
-
-  animation: float-candle 4s ease-in-out infinite;
-}
-
-.candle-left {
-  left: 25%;
-}
-
-.candle-right {
-  right: 25%;
-  animation-delay: 2s;
-}
-
-@keyframes float-candle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes float-candle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+  white-space: normal;
 }
 
 .qr-code {
@@ -92,51 +56,151 @@
     background-size:
     contain;
       background-repeat: no-repeat;
+      scale: (1.4);
+      transform: translateY(7rem);
 }
 
 .qr-code svg {
-width: 80%;
+width: 60%;
 height: auto;
-padding: 7rem;
-transform: translate(15%, 6%);
+padding: 6rem;
+transform: translate(33%, 24%);
 }
 
+.invite-link-container {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 10;
 
-@media (max-width: 600px) {
-  .qr-code svg {
-    width: 110%;
-    height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    animation: float-letter 3s ease-in-out infinite;
 
-    margin: 0 auto;
-    transform: translate(-3%, -9%);
-  }
 }
 
+.invite-pidge-button {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  background-image: url("invite-pidge.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-162%, -20%);
+
+}
+
+.invite-pidge-caption {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform:
+  translate(-50%, -10%);
+  font-family: $pixel-font;
+  font-size: 2rem;
+  color: rgb(228, 188, 9);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none; }
 
 
+/* CANDLES */
 
+.candle {
+  width: 150px;
+  height: auto;
 
+  filter: drop-shadow(0 0 8px rgba(255, 190, 70, 0.8));
+
+  animation: float-candle 6s ease-in-out infinite;
+}
+
+.candle-left {
+  left: 25%;
+}
+
+.candle-right {
+  right: 25%;
+}
 
 @keyframes float-candle {
   0%, 100% {
-    transform: translateY(0)
+    transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-10px)
+    transform: translateY(-5px);
   }
 }
+
+@keyframes float-candle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+@keyframes float-letter {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+
 @media (max-width: 600px) {
-  .candle-1 {
-    top: 10%;
-    left: 5%;
+
+  .summoning-sign {
+    width: 70vw;
+    max-width: none;
+
   }
 
 
+ .summoning-sign span {
+        font-size: 2.9rem;
 
-  .candle-3 {
-    top: 10%;
-    right: 5%;
+ }
+
+  .candle {
+    width: 80px;
   }
+
+  .qr-code svg {
+    width: 80%;
+    height: auto;
+    scale: (1.1);
+    margin: 0 auto;
+    transform: translate(11%, 5%);
+  }
+
+  .qr-code {
+          transform: translateY(6rem);
+
+    scale: (1.6);
+  }
+
+   .invite-pidge-button {
+    transform: translate(-90%, -60%);
+    scale: (0.75);
+  }
+
 
 }
