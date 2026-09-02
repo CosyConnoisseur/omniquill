@@ -138,12 +138,12 @@ class GenerateGuestCampaign
 
 
     #heroku
-    p2_seat = @campaign.participations.create!(user_id: 202) #
+    p2_char = @campaign.participations.create!(user_id: 202) #
     p3_char = @campaign.participations.create!(user_id: 201) #
     p4_char = @campaign.participations.create!(user_id: 200) #
 
     # for locally testing
-    # p2_seat = @campaign.participations.create!(user_id: 7) #
+    # p2_char = @campaign.participations.create!(user_id: 7) #
     # p3_char = @campaign.participations.create!(user_id: 8) #
     # p4_char = @campaign.participations.create!(user_id: 9) #
 
@@ -191,7 +191,7 @@ class GenerateGuestCampaign
     p2_character = Character.create!(
       name: "Jared, the Summoner", #
       stats_summary: "hello I'm a stats summary about Jared", #
-      participation: p2_seat
+      participation: p2_char
     )
     p2_character.portrait.attach(p2_cloud_image)
 
