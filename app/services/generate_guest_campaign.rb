@@ -2,10 +2,10 @@ class GenerateGuestCampaign
   def self.call(guest_user)
 
     # heroku
-    # host_user = User.find(199)
+    host_user = User.find(199)
 
-    #locally testing
-    host_user = User.find(10)
+    # for locally testing
+    # host_user = User.find(10)
 
     # --- campaign card image/banner ---
     card_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
@@ -124,14 +124,14 @@ class GenerateGuestCampaign
 
 
     #heroku
-    # p2_seat = @campaign.participations.create!(user_id: 202) #
-    # p3_char = @campaign.participations.create!(user_id: 201) #
-    # p4_char = @campaign.participations.create!(user_id: 200) #
+    p2_seat = @campaign.participations.create!(user_id: 202) #
+    p3_char = @campaign.participations.create!(user_id: 201) #
+    p4_char = @campaign.participations.create!(user_id: 200) #
 
-    #locally testing
-    p2_seat = @campaign.participations.create!(user_id: 7) #
-    p3_char = @campaign.participations.create!(user_id: 8) #
-    p4_char = @campaign.participations.create!(user_id: 9) #
+    # for locally testing
+    # p2_seat = @campaign.participations.create!(user_id: 7) #
+    # p3_char = @campaign.participations.create!(user_id: 8) #
+    # p4_char = @campaign.participations.create!(user_id: 9) #
 
     # --- character portraits ---
     p2_cloud_key = "vaxdr8xpd7eije2xth9rohzxfuf8" #

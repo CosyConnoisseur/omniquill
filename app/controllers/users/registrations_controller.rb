@@ -5,6 +5,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_action :redirect_logged_in_members, only: [:new, :create]
 
+  def new
+    if params[:user_feature] == "true"
+      flash.now[:notice] = "You need to sign up to use that feature!"
+    end
+    super
+  end
+
   def create
     if current_user&.guest?
       build_resource(sign_up_params)

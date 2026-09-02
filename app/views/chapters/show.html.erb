@@ -10,8 +10,13 @@
       <button class="back-button" style="width: 5rem; height: 5rem;" data-direction="back"></button>
     <% end %>
     <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
-      <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
-        <button class="edit-submit-button"></button>
+      <% if current_user&.guest? %>
+        <%= link_to new_user_registration_path(user_feature: true), class: "edit-submit-button" do %>
+  <% end %>
+      <% else %>
+        <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
+          <button class="edit-submit-button"></button>
+        <% end %>
       <% end %>
     <% end %>
     <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
