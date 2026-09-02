@@ -8,17 +8,30 @@ class GenerateGuestCampaign
     # host_user = User.find(10)
 
     # --- campaign card image/banner ---
-    card_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
+    card_image_key = "4os3rejprxjhpjktuv3lno0w5ior"
     card_cloud_image = ActiveStorage::Blob.find_by(key: card_image_key)
     if card_cloud_image.nil?
       card_cloud_image = ActiveStorage::Blob.create!(
         key:          card_image_key,
+        filename:     "sandbox_placeholder.gif",
+        content_type: "image/webp",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
+
+    banner_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
+    banner_cloud_image = ActiveStorage::Blob.find_by(key: banner_image_key)
+    if banner_cloud_image.nil?
+      banner_cloud_image = ActiveStorage::Blob.create!(
+        key:          banner_image_key,
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
         checksum:     "0"
       )
     end
+
 
     # --- Welcome campaign ---
     @campaign = Campaign.create!(
@@ -31,6 +44,7 @@ class GenerateGuestCampaign
       user: host_user,
     )
     @campaign.card_image.attach(card_cloud_image)
+    @campaign.banner.attach(banner_cloud_image)
     @campaign.participations.create!(user: guest_user)
 
     # Given notes
