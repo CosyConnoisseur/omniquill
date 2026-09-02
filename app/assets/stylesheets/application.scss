@@ -201,3 +201,47 @@ html[data-turbo-visit-direction="back"]::view-transition-old(root) {
   }
 
 }
+
+.guest-button {
+
+  background: linear-gradient(
+    135deg,
+    #fffdfd 0%,
+    #fff4f8 35%,
+    #ffeaf4 70%,
+    #fff8fb 100%
+  );
+
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  // border-radius: 1.5rem;
+
+  box-shadow:
+    0 10px 25px rgba(255, 192, 203, 0.276),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+
+  text-align: center;
+
+  animation: float 3s ease-in-out infinite;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 0 15px rgba(255, 192, 203, 0.4),
+      0 0 30px rgba(255, 182, 193, 0.3),
+      0 12px 24px rgba(255, 192, 203, 0.2);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # 1. Clear Devise's check ONLY if a user is an active guest.
-  # If they are a full user or not logged in at all, let Devise behave normally.
   skip_before_action :require_no_authentication, only: [:new, :create], if: -> { current_user&.guest? }
 
-  # 2. Add an extra security layer: If a fully registered user somehow forces their way here,
-  # boot them out to the root page immediately.
   before_action :redirect_logged_in_members, only: [:new, :create]
 
   def create
@@ -15,11 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       permitted_params = params.require(:user).permit(:email, :password, :password_confirmation, :username, :profile_picture)
 
       current_user.assign_attributes(permitted_params)
-      current_user.guest = false # They are officially a real user now!
+      current_user.guest = false
 
       if current_user.save
         set_flash_message! :notice, :signed_up
-        sign_in(resource_name, current_user, bypass: true)
+        bypass_sign_in(current_user)
         respond_with current_user, location: after_sign_up_path_for(current_user)
       else
         clean_up_passwords current_user
@@ -43,9 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  # 3. Security Guard Method
   def redirect_logged_in_members
-    # If a user is present, but they are NOT a guest, they are a real member!
     if current_user.present? && !current_user.guest?
       flash[:alert] = "You are already signed in."
       redirect_to root_path and return

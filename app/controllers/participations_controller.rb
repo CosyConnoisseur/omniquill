@@ -8,7 +8,6 @@ class ParticipationsController < ApplicationController
 
     authorize @participation
 
-    # Destroying the participation row handles character decoupling automatically!
     @participation.destroy
 
     redirect_to campaigns_path, notice: "You have successfully left #{@campaign.title}."

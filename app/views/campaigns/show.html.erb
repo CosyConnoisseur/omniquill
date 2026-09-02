@@ -146,7 +146,9 @@
               </button>
               <br>
               <% end %>
-            <%= @campaign.synopsis %>
+              <div class="text-center">
+              <%= simple_format(@campaign.synopsis) %>
+              </div>
           </p>
         </div>
 
