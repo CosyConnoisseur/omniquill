@@ -58,9 +58,9 @@ class GenerateGuestCampaign
 
     # --- Chapters ---
     chapter1 = @campaign.chapters.build(title: "The Beginning...",
-                                        summary: "4 noobs decide to build an entire app about helping table top players cut to the chase.\n
-                                        The road was long and the difficulty was high but htey knew they had what it takes.\n
-                                        More words about the developement.",
+                                        summary: "4 new developers decide to build an entire app about helping table top players cut to the chase.\n
+                                        The road was long and the difficulty was high but they knew they had what it took.\n
+                                        Through ups and downs they persevered, sometimes staying up till 3am to get things finished!",
                                         highlights: "Shane developed the character creator. Nice transitions!, Jared did x, Sammy did y, Ben did z",
                                         created_at:Time.zone.parse("August 1, 2026"),
                                         updated_at:Time.zone.parse("August 1, 2026"))
@@ -76,7 +76,7 @@ class GenerateGuestCampaign
     chapter2.save
 
     chapter3 = @campaign.chapters.build(title: "You Joined OmniQuill",
-                                        summary: "This is probably the most important part of the entire journey.
+                                        summary: "This is probably the most important part of the entire journey!
                                         You have graced us with your presence and we are super grateful.\n
                                         Thank you once again for trying out OmniQuill!",
                                         highlights: "You tried the app, Everyone liked that, Today is better than yesterday",
