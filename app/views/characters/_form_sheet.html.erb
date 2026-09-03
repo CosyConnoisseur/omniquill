@@ -1,67 +1,72 @@
-  <div class="col-md-6 position-relative">
-    <%= form_with model: @character, url: campaign_characters_path(@campaign.id), id: "character-form", method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
-      <%= hidden_field_tag :stream_id, @stream_id %>
+<div class="col-md-6 position-relative">
+  <%= form_with model: @character, url: campaign_characters_path(@campaign.id), id: "character-form", method: :post, local: true, data: { turbo: true, action: "submit->form-typewriter#showLoading" } do |f| %>
+    <%= hidden_field_tag :stream_id, @stream_id %>
 
-      <div class="mb-3">
-        <%= f.label :document_upload, "Upload Character Sheet(PDF/Image)", class:"d-block text-center", style: "font-family: 'Jersey 15'; font-size: 1.1rem;" %>
-        <div class="input-group">
-        <%= f.file_field :document_upload,
-                          accept: 'image/png, image/jpeg, image/jpg, image/webp, image/gif, application/pdf',
-                          class: "form-control custom-file-input",
-                          data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton change->form-typewriter#previewSheetFile"},
-                          required: false %>
-
-        <button class="btn btn-outline-danger d-none"
-                type="button"
-                data-form-typewriter-target="clearFileButton"
-                data-action="click->form-typewriter#clearFile">&times;</button>
-      </div>
-        <h2 class="text-center" style="font-family: 'Jersey 15'; font-size: 1.2rem;">or Enter Character Details</h2>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :name, "Character Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 0.8;"  %>
-        <%= f.text_field :name,
-                          id: "character_name_input",
-                          maxlength: 20,
-                          class: "form-control custom-file-input",
-                          style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
-                          data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" },
-                          placeholder: "What do you call them?" %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :stats_summary, "Character Description *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 0.8;" %>
-        <%= f.text_area :stats_summary,
-                        id: "character_stats_summary_input",
-                        class: "form-control custom-file-input",
-                        style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
-                        rows: 6,
-                        data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" },
-                        placeholder: "Their background, strengths and weaknesses" %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :portrait, "Upload Character Portrait", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+    <div class="mb-3">
+      <%= f.label :document_upload, "Upload Character Sheet(PDF/Image)", class:"d-block text-center", style: "font-family: 'Jersey 15'; font-size: 1.1rem;" %>
       <div class="input-group">
-        <%= f.file_field :portrait,
-                          accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
-                          class: " form-control custom-file-input",
-                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
+      <%= f.file_field :document_upload,
+                        accept: 'image/png, image/jpeg, image/jpg, image/webp, image/gif, application/pdf',
+                        class: "form-control custom-file-input",
+                        data: { form_typewriter_target: "fileField", action: "change->form-typewriter#updateButton change->form-typewriter#previewSheetFile"},
+                        required: false %>
 
-        <button class="btn btn-outline-danger d-none"
-                type="button"
-                data-form-typewriter-target="clearPortraitButton"
-                data-action="click->form-typewriter#clearPortraitFile">&times;</button>
-      </div>
-      </div>
+      <button class="btn btn-outline-danger d-none"
+              type="button"
+              data-form-typewriter-target="clearFileButton"
+              data-action="click->form-typewriter#clearFile">&times;</button>
+    </div>
 
-      <!-- Submit -->
+    <h2 class="text-center mt-3 pt-2" style="font-family: 'Jersey 15'; font-size: 1.2rem; border-top: 1px solid #645a1a;">or Enter Character Details</h2>
+
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :name, "Character Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;"  %>
+      <%= f.text_field :name,
+                        id: "character_name_input",
+                        maxlength: 20,
+                        class: "form-control edit-input-box",
+                        style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
+                        data: { form_typewriter_target: "nameInput", action: "input->form-typewriter#updateButton" },
+                        placeholder: "What do you call them?" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :stats_summary, "Character Description *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block;  line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;" %>
+      <%= f.text_area :stats_summary,
+                      id: "character_stats_summary_input",
+                      class: "form-control edit-input-box",
+                      style: "background-color:  #ffeec0; color: #292320; border-color: brown;",
+                      rows: 6,
+                      data: { form_typewriter_target: "descriptionInput", action: "input->form-typewriter#updateButton" },
+                      placeholder: "Their background, strengths and weaknesses" %>
+    </div>
+
+    <div class="mb-3 text-center">
+      <%= f.label :portrait, "Upload Character Portrait", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+    <div class="input-group">
+      <%= f.file_field :portrait,
+                        accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
+                        class: " form-control custom-file-input",
+                        data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
+
+      <button class="btn btn-outline-danger d-none"
+              type="button"
+              data-form-typewriter-target="clearPortraitButton"
+              data-action="click->form-typewriter#clearPortraitFile">&times;</button>
+    </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="centering">
       <%= f.submit "Create Character",
                     class: "btn btn-custom w-70",
                     data: { form_typewriter_target: "submitButton"} %>
+    </div>
 
-      <!-- AI button -->
+    <!-- AI button -->
+    <div class="centering">
       <button type="submit"
               class="btn btn-ai-custom w-md-70 d-none position-relative" style="min-width: 240px; max-width: 300px;"
               data-form-typewriter-target="aiButton">
@@ -69,34 +74,35 @@
               <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:-25px; left:215px;" %>
               <%= image_tag "sparkle2.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top: 10px ; left:-25px; transform: rotate(-25deg);" %>
       </button>
-
-      <!-- Loading -->
-      <button type="button"
-          class="btn btn-secondary w-75 d-none" style="min-width: 240px; max-width: 300px;"
-          disabled
-          data-form-typewriter-target="loadingButton">
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      Summoning...
-      </button>
-
-      <!-- Clear Text -->
-      <button type="button"
-              class="btn btn-warning flex-shrink-0 d-none"
-              title="Clear text"
-              data-form-typewriter-target="clearTextButton"
-              data-action="click->form-typewriter#clearText">
-      Clear Text
-      </button>
-    <% end %>
-    * Required
-    <div class="margin-margin">
-<div data-form-typewriter-target="previewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-left-margin" style="overflow: hidden;">
-  <img data-form-typewriter-target="imagePreview" src="" class="fade-effect preview-left-image" style="height: 100%; width: 100%; object-fit: contain;">
-  <iframe data-form-typewriter-target="pdfPreview" src="" class="fade-effect preview-left-image" style="height: 100%; width: 100%;"></iframe>
-</div>
     </div>
 
-<div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
-  <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
-</div>
+    <!-- Loading -->
+    <button type="button"
+        class="btn btn-secondary w-75 d-none" style="min-width: 240px; max-width: 300px;"
+        disabled
+        data-form-typewriter-target="loadingButton">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Summoning...
+    </button>
+
+    <!-- Clear Text -->
+    <button type="button"
+            class="btn btn-warning flex-shrink-0 d-none"
+            title="Clear text"
+            data-form-typewriter-target="clearTextButton"
+            data-action="click->form-typewriter#clearText">
+    Clear Text
+    </button>
+  <% end %>
+  <p style="color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); font-weight: 600; text-align: center;">* Required</p>
+  <div class="margin-margin">
+    <div data-form-typewriter-target="previewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-left-margin" style="overflow: hidden;">
+      <img data-form-typewriter-target="imagePreview" src="" class="fade-effect preview-left-image" style="height: 100%; width: 100%; object-fit: contain;">
+      <iframe data-form-typewriter-target="pdfPreview" src="" class="fade-effect preview-left-image" style="height: 100%; width: 100%;"></iframe>
+    </div>
   </div>
+
+  <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
+    <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
+  </div>
+</div>
