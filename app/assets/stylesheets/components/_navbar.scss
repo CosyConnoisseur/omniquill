@@ -1,5 +1,4 @@
 .navbar-lewagon {
-  justify-content: space-between;
   background-image: asset_url("parchment-leather-border.png");
   background-size: 105%;
   background-position: center;
@@ -22,25 +21,34 @@
 
 .navbar-lewagon .navbar-logo {
   height: 3rem;
-  transform: scale(1.5);
+  transform: scale(1.5) translateX(4.5rem);
 }
 
 .horizontal-items {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  transform: translateX(-4.5rem);
+}
+
+@media (max-width: 1000px) {
+
+  .navbar-lewagon .navbar-logo {
+    height: 2.4rem;
+    transform: scale(1.4) translateX(2rem);
+  }
+
+  .horizontal-items {
+    transform: translateX(-1.5rem);
+  }
+
 }
 
 @media (max-width: 600px) {
 
   .navbar-lewagon .navbar-logo {
+    height: 2.4rem;
     transform: scale(1);
-    height: 3.5rem;
   }
 
-
-  .navbar-lewagon .navbar-logo {
-  height: 2.4rem;
-  transform: scale(0.9);
-}
 }

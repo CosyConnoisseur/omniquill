@@ -1,12 +1,8 @@
 <nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
 
-    <%= link_to root_path, class: "navbar-brand", data: home_button_data do %>
-      <%= image_tag "Omniquill-logo.png" %>
-    <% end %>
-
     <!-- Ben Fix: Middle Logo (added d-inline-block to keep it in the row flow) -->
-    <%= link_to root_path, class: "d-inline-block alignment-fix", data: home_button_data do %>
+    <%= link_to root_path, data: home_button_data do %>
       <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
     <% end %>
 
@@ -34,20 +30,19 @@
           <% end %>
             <% if controller_name == 'campaigns' && action_name == 'show' %>
               <% if current_user.id == @campaign.user_id %>
-              <li class="nav-item active mx-2">
+                <li class="nav-item active mx-2">
                 <%= button_to campaign_path(@campaign),
                 method: :delete,
                 class: "navbar-delete-campaign-button",
                 data: { turbo_confirm: "Delete this campaign?" } do %>
                 <% end %> <%# This might be empty, but it's needed to actually make the icon appear. DON'T delete this 'do/end' %>
 
-                <% else %>
+              <% else %>
                 <%= button_to campaign_participation_path(@campaign),
                 method: :delete,
                 class: "navbar-delete-campaign-button",
                 data: { turbo_confirm: "Are you sure you want to leave this campaign? Your active character sheets will be deleted." } do %>
                 <% end %>
-
               <% end %>
               </li>
             <% end %>
