@@ -194,7 +194,7 @@ class GenerateGuestCampaign
       )
     end
 
-    p5_cloud_key = "xpzzv0coizxv14619hhneic46ypd" #
+    p5_cloud_key = "8v9gbr8dejqvlza5z17x58x0awh9" #
     p5_cloud_image = ActiveStorage::Blob.find_by(key: p5_cloud_key)
 
     if p5_cloud_image.nil?
@@ -248,7 +248,7 @@ class GenerateGuestCampaign
       )
     end
 
-    p5_cloud_sheet_key = "bt99gx32hki92fyiqpjbde940250" #
+    p5_cloud_sheet_key = "xgpskoh27khdlsoke7azajx1t0ry" #
     p5_cloud_sheet = ActiveStorage::Blob.find_by(key: p5_cloud_sheet_key)
 
     if p5_cloud_sheet.nil?
@@ -293,8 +293,15 @@ class GenerateGuestCampaign
     p4_character.document_upload.attach(p4_cloud_sheet)
 
     p5_character = Character.create!(
-      name: "Shane, the Warrior", #
-      stats_summary: "hello I'm a stats summary about Shane", #
+      name: "Shane", #
+      stats_summary: "A master of systems and logic,
+                      Shane Haddock possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
+                      Deeply curious and highly adaptable, he excels at weaving complex code into functional, intuitive experiences.
+                      His expertise lies in bridging the gap between abstract concepts and real-world application,
+                      whether he is leading a team through a high-stakes development sprint or crafting immersive tools for TTRPG adventurers.
+                      Patient and collaborative, he draws on his background in education to simplify the complex,
+                      acting as both a supportive party member and a visionary architect. Dedicated to the constant pursuit of knowledge,
+                      he is always integrating new technologies to refine his craft.", #
       participation: p5_char
     )
     p5_character.portrait.attach(p5_cloud_image)
