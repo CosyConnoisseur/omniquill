@@ -255,7 +255,7 @@ html[data-turbo-visit-direction="back"]::view-transition-old(root) {
 
   left: 50vw;
   transform: translateX(-50%);
-  z-index: 10000;
+  z-index: 9999;
 
 }
 
