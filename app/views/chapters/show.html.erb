@@ -40,7 +40,8 @@
       <% if @chapter.summary.empty? %>
         <p style="font-weight: 600;">Awaiting adventure...</p>
       <% else %>
-        <p><%= @chapter.summary %></p>
+      <%= simple_format(@chapter.summary) %>
+        <p><%#= @chapter.summary %></p>
       <% end %>
     </div>
   </div>

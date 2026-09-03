@@ -100,6 +100,11 @@ class GenerateGuestCampaign
     sticky1_3.chapter_id = chapter1.id
     sticky1_3.save
 
+    sticky1_4 = chapter1.stickies.build(text: "What's DnD?")
+    sticky1_4.user_id = host_user.id
+    sticky1_4.chapter_id = chapter1.id
+    sticky1_4.save
+
     sticky2_1 = chapter2.stickies.build(text: "Finally done!")
     sticky2_1.user_id = host_user.id
     sticky2_1.chapter_id = chapter2.id
