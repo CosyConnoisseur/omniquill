@@ -1,4 +1,4 @@
-<div class="container py-3 text-center">
+<div class="container py-3 text-center" data-controller="recording">
 
   <!-- Character Sheets -->
   <div class="centering mb-4">
@@ -9,7 +9,7 @@
 
   <!-- Audio Recording and Transcription Controls -->
   <div class="centering">
-    <div class="book-page-container" data-controller="recording" data-recording-chapter-id-value="<%= @test_chapter.id %>" data-recording-campaign-id-value="<%= @campaign.id %>">
+    <div class="book-page-container" data-recording-chapter-id-value="<%= @test_chapter.id %>" data-recording-campaign-id-value="<%= @campaign.id %>">
       <div class="recording-page">
         <p class="mb-4 fs-3" style="color: rgb(3, 153, 212); text-shadow: 1px 1px 3px rgb(164, 214, 255);" data-recording-target="heading">
           Quill at the ready
