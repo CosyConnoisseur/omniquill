@@ -12,7 +12,7 @@
     <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
       <% if current_user&.guest? %>
         <%= link_to new_user_registration_path(user_feature: true), class: "edit-submit-button" do %>
-  <% end %>
+        <% end %>
       <% else %>
         <%= link_to edit_campaign_chapter_path(@campaign, @chapter) do %>
           <button class="edit-submit-button"></button>
@@ -40,8 +40,7 @@
       <% if @chapter.summary.empty? %>
         <p style="font-weight: 600;">Awaiting adventure...</p>
       <% else %>
-      <%= simple_format(@chapter.summary) %>
-        <p><%#= @chapter.summary %></p>
+      <%= simple_format(@chapter.summary, class: "px-3") %>
       <% end %>
     </div>
   </div>
