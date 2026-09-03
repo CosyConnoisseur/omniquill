@@ -209,7 +209,7 @@ class GenerateGuestCampaign
 
     # --- character sheets ---
 
-    p2_cloud_sheet_key = "0v6evgqq18rqzwkullec9jvuj7mr" #
+    p2_cloud_sheet_key = "4blwbza0cte5euvarjh8ab4z38s1" #
     p2_cloud_sheet = ActiveStorage::Blob.find_by(key: p2_cloud_sheet_key)
 
     if p2_cloud_sheet.nil?
@@ -264,8 +264,13 @@ class GenerateGuestCampaign
 
     # --- characters and their images ---
     p2_character = Character.create!(
-      name: "Jared, the Summoner", #
-      stats_summary: "hello I'm a stats summary about Jared", #
+      name: "Jared", #
+      stats_summary: "A meticulous and patient polyglot, Jared functions as a master of logic and architecture.
+                      Drawing from his background in education and rhetoric, he approaches complex problems with the precision of a scholar.
+                      Whether orchestrating classroom events or weaving intricate code for RPG systems, he excels at managing diverse variables under tight deadlines.
+                      His mind is a library of languages, both spoken and digital, allowing him to bridge communication gaps seamlessly.
+                      As a dedicated builder of virtual worlds and interactive systems, he is driven by a deep-seated need for structure,
+                      efficiency, and thoroughness, ensuring that every project he undertakes is as functional as it is creative.", #
       participation: p2_char
     )
     p2_character.portrait.attach(p2_cloud_image)
