@@ -4,7 +4,7 @@
 <%# <div class="parchment-container my-5">  search -> tabs -> character show again -> index -> campaign show [phone phone phone] transitions %>
 
 
-<div class="centering">
+<div class="centering" <%= current_user&.guest? ? 'style="margin-top: 50px;"'.html_safe : "" %>>
   <div class="parchment-container my-3 mx-0">
     <h1 class="text-center" style="font-family: 'Jersey 15'; font-size: 1.4rem;  text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">Create a New Character</h1>
       <h2 class="text-center" style="font-family: 'Jersey 15'; font-size: 1.4rem;  text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">

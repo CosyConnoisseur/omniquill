@@ -194,7 +194,7 @@ class GenerateGuestCampaign
       )
     end
 
-    p5_cloud_key = "y5r9acggowuw9p3j4rtwa1cx3hiz" #
+    p5_cloud_key = "sqe3ri600g25dls0dn2x8vqi604d" #
     p5_cloud_image = ActiveStorage::Blob.find_by(key: p5_cloud_key)
 
     if p5_cloud_image.nil?
@@ -295,7 +295,7 @@ class GenerateGuestCampaign
     p5_character = Character.create!(
       name: "Shane", #
       stats_summary: "A master of systems and logic,
-                      Shane Haddock possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
+                      Shane possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
                       Deeply curious and highly adaptable, he excels at weaving complex code into functional, intuitive experiences.
                       His expertise lies in bridging the gap between abstract concepts and real-world application,
                       whether he is leading a team through a high-stakes development sprint or crafting immersive tools for TTRPG adventurers.

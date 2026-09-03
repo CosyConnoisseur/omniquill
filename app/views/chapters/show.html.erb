@@ -1,4 +1,4 @@
-<div class="centering mt-5">
+<div class="centering mt-5" <%= current_user&.guest? ? 'style="margin-top: 50px;"'.html_safe : "" %>>
   <div class="medieval-title">
     <h1><%= @chapter.title %></h1>
   </div>
