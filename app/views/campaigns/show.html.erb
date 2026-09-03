@@ -145,8 +145,10 @@
                 document.getElementById('synopsis-text-area').focus();">
               </button>
               <br>
-            <%= @campaign.synopsis %>
               <% end %>
+              <div class="text-center px-4">
+              <%= simple_format(@campaign.synopsis) %>
+              </div>
           </p>
         </div>
 

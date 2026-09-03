@@ -1,39 +1,58 @@
 <div class="parchment-container mt-3 mx-auto headings">
-<h2>Sign up</h2>
+  <h2><%= current_user&.guest? ? "Complete Your Registration" : "Sign Up" %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-inputs">
+    <div class="form-inputs">
     <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                  required: true,
+                  autofocus: true,
+                  autocomplete: "email", value: (current_user&.guest? ? "" : resource.email) %>
     <%= f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "username" }%>
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "username" }%>
     <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation, autocomplete: "new-password" %>
+    <br>
     <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
     <%= f.file_field :profile_picture,
                           accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                           class: " form-control",
                           data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
-  </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class:"btn btn-dark my-1" %>
+    <div class="actions">
+      <%= f.submit current_user&.guest? ? "Create Account & Save My Progress" : "Sign Up", class:"btn btn-dark my-3" %>
+    </div>
+  <% end %>
+
+  <% unless current_user&.guest? %>
+    <p class="mt-5 mb-0">Already a user?</p>
+    <%= render "devise/shared/links" %>
+    <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
+      <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
+    </div>
+    <div class="text-center">
+      No time?
+      <br>
+      <br>
+        <%= button_to create_guest_session_path, method: :post, class: "guest-button rounded-3" do %>
+        <span style="font-family: 'Jersey 15';font-size: 2.5rem;">Explore as</span>
+        <span class="magic-text position-relative ms-3", style="font-family: 'Jersey 15';font-size: 2.5rem; -webkit-text-stroke: 1px black;">
+              <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:15px; left:60px; transform: rotate(25deg);" %>
+              <%= image_tag "sparkle2.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%;top:-5px; left:-25px;" %>
+              Guest
+              </span>
+        <% end %>
+    </div>
+  <% end %>
+
+  <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
+    <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
   </div>
-<% end %>
-<p class="mt-5 mb-0">Already a user?</p>
-<%= render "devise/shared/links" %>
-</div>
-<div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
-  <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
 </div>

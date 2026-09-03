@@ -1,5 +1,6 @@
 <div class="char-sheet-top">
   <!-- DROPDOWN -->
+  <% if policy(@character).update? %>
   <a href="#"
      data-bs-toggle="dropdown"
      aria-expanded="false">
@@ -7,6 +8,7 @@
         alt: "dropdown menu",
         class: "char-sheet-dropdown" %>
   </a>
+  <% end %>
   <div class="dropdown-menu">
     <% if policy(@character).update? %>
       <%= link_to "Edit",

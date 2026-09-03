@@ -18,6 +18,9 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    if current_user&.guest?
+      redirect_to new_user_registration_path(user_feature: true)
+    end
     @campaign = Campaign.new
     authorize @campaign
   end
