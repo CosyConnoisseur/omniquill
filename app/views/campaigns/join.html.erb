@@ -1,14 +1,28 @@
-<div class="parchment-container mx-auto mt-2">
-<h1 class="text-center"><%= @campaign.title %></h1>
-<% if @already_joined %>
-  <p>Thou hast already assumed thy place amongst our bretheren.</p>
-<% else %>
-  <p>By the gods’ solemn decree, thou art summoned on a fateful journey.
-    Fortune and glory await beyond an arduous journey paved with uncertainty, danger, and peril at the hands of your somewhat questionable decisions.
-    Thy fate shall entwine thee with wanderers of all walks of life.
-    Bringeth they friendship or folly remain shrouded in mystery as you take your first step on a new adventure.
-    Wilt thou heed the call?
-  </p>
-  <%= button_to "Join Campaign", add_player_path(@campaign), method: :post %>
-<% end %>
+<div class="join-container mx-auto mt-2">
+  <div class="join-text">
+    <h1 class="text-center"><%= @campaign.title %></h1>
+    <% if @already_joined %>
+      <p>Thou hast already assumed thy place amongst our bretheren.</p>
+    <% else %>
+      <p>
+        By the gods’ solemn decree, thou art summoned on a fateful journey.
+        Fortune and glory await beyond an arduous journey paved with uncertainty,
+        danger, and peril at the hands of your somewhat questionable decisions.
+        Thy fate shall entwine with wanderers of all walks of life.
+        Bringeth they friendship or folly remain shrouded in mystery as you take
+        your first step on a new adventure. Wilt thou heed the call?
+      </p>
+      <%= button_to add_player_path(@campaign),
+    method: :post,
+    class: "sign-here-button",
+    data: {
+      controller: "invite-link",
+      action: "click->invite-link#sign"
+    } do %>
+        <%= image_tag "sign-here.png",
+      class: "sign-here",
+      data: { invite_link_target: "sign" } %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

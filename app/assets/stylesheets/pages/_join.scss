@@ -1,0 +1,87 @@
+.join-container {
+    position: relative;
+
+  background-image: url("/assets/join-invitation.png");
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+ width: 90%;
+  max-width: 700px;
+  min-height: 700px;
+
+  margin: 0 auto;
+
+}
+
+.join-text {
+  width: 60%;
+  max-width: 500px;
+  margin-left: 23%;
+  padding-top: 4rem;
+}
+
+.join-container h1 {
+  font-family: $pixel-font;
+
+  font-size: clamp(2rem, 8vw, 4rem);
+  line-height: 0.7;
+  text-align: center;
+}
+
+.join-container p {
+  font-family: $pixel-font;
+  font-size: 1.7rem;
+    text-align: center;
+    line-height: 0.7;
+
+
+}
+
+.sign-here-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+    position: absolute;
+
+  bottom: 9.5rem;
+right: 58%;
+}
+
+.sign-here {
+  width: 180px;
+  height: auto;
+
+}
+
+@media (max-width: 600px) {
+  .join-text {
+    width: 75%;
+margin-left: 14%;
+    padding-top: 1rem;
+  }
+
+  .join-container h1 {
+    font-size: 2rem;
+
+
+  }
+
+  .join-container p {
+    font-size: 1.1rem;
+    line-height: 0.8;
+margin-left: 9%;
+  }
+
+
+  .sign-here-button {
+bottom: 57%;
+left: 18%;
+  }
+
+  .sign-here {
+  width: 120px;
+  height: auto;
+
+}
+}
