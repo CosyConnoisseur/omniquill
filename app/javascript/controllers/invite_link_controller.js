@@ -21,7 +21,8 @@ export default class extends Controller {
     this.signTarget.src = "/assets/signed.png"
 
     setTimeout(() => {
-      this.element.submit()
+      this.element.closest("form").submit()
+       //finds the button_to form and submits it
     }, 1500)
   }
 }

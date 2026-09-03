@@ -13,15 +13,15 @@
         your first step on a new adventure. Wilt thou heed the call?
       </p>
       <%= button_to add_player_path(@campaign),
-          method: :post,
-          class: "sign-here-button",
-          data: {
-            controller: "invite-link",
-            action: "submit->invite-link#sign"
-          } do %>
+    method: :post,
+    class: "sign-here-button",
+    data: {
+      controller: "invite-link",
+      action: "click->invite-link#sign"
+    } do %>
         <%= image_tag "sign-here.png",
-            class: "sign-here",
-            data: { invite_link_target: "sign" } %>
+      class: "sign-here",
+      data: { invite_link_target: "sign" } %>
       <% end %>
     <% end %>
   </div>
