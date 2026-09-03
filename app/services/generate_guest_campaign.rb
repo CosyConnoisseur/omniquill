@@ -143,10 +143,10 @@ class GenerateGuestCampaign
 
 
     #heroku
-    p2_char = @campaign.participations.create!(user_id: 202) #
-    p3_char = @campaign.participations.create!(user_id: 201) #
-    p4_char = @campaign.participations.create!(user_id: 200) #
-    p5_char = @campaign.participations.create!(user_id: 199) #
+    p2_char = @campaign.participations.create!(user_id: 202) # Jared
+    p3_char = @campaign.participations.create!(user_id: 201) # Sammy
+    p4_char = @campaign.participations.create!(user_id: 200) # Ben
+    p5_char = @campaign.participations.create!(user_id: 199) # Shane
 
     # for locally testing
     # p2_char = @campaign.participations.create!(user_id: 7) #
@@ -155,7 +155,7 @@ class GenerateGuestCampaign
     # p5_char = @campaign.participations.create!(user_id: 10) #
 
     # --- character portraits ---
-    p2_cloud_key = "vaxdr8xpd7eije2xth9rohzxfuf8" #
+    p2_cloud_key = "om762q2qdvl7lkdp30pmhf78id7j" #
     p2_cloud_image = ActiveStorage::Blob.find_by(key: p2_cloud_key)
 
     if p2_cloud_image.nil?
@@ -209,7 +209,7 @@ class GenerateGuestCampaign
 
     # --- character sheets ---
 
-    p2_cloud_sheet_key = "he1x7fu4suiey19tmqrwn235fmva" #
+    p2_cloud_sheet_key = "0v6evgqq18rqzwkullec9jvuj7mr" #
     p2_cloud_sheet = ActiveStorage::Blob.find_by(key: p2_cloud_sheet_key)
 
     if p2_cloud_sheet.nil?
