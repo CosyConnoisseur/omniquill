@@ -61,7 +61,7 @@ class GenerateGuestCampaign
                                         summary: "4 new developers decide to build an entire app about helping table top players cut to the chase.\n
                                         The road was long and the difficulty was high but they knew they had what it took.\n
                                         Through ups and downs they persevered, sometimes staying up till 3am to get things finished!",
-                                        highlights: "Shane developed the character creator. Nice transitions!, Jared did x, Sammy did y, Ben did z",
+                                        highlights: "Shane developed the Character Creator. Nice transitions!, Jared did the art and handled chapters, Sammy did y, Ben did z",
                                         created_at:Time.zone.parse("August 1, 2026"),
                                         updated_at:Time.zone.parse("August 1, 2026"))
     chapter1.save
@@ -70,7 +70,7 @@ class GenerateGuestCampaign
                                         summary: "4 heroes release OmniQuill unto the world.\n
                                         With many lessons and skills developed, they were prepared for the world of software development.\n
                                         The journey continues...",
-                                        highlights: "Shane designed the campaign page and AI integration. , Lots of things broke but were fixed in time. , Jared did x, Sammy did y, Ben did z",
+                                        highlights: "Shane designed the Campaign Page and AI integration. , Lots of things broke but were fixed in time. , Jared made this whole page! Chapters and Stickies , Sammy did y, Ben did z",
                                         created_at:Time.zone.parse("September 5, 2026"),
                                         updated_at:Time.zone.parse("September 5, 2026"))
     chapter2.save
