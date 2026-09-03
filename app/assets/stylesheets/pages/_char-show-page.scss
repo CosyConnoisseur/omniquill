@@ -58,7 +58,7 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   padding: 5% 5%;
 
@@ -85,7 +85,7 @@
 /* TAB 1 BROWN PIC */
 .char-sheet-tab.tab-character {
   background-image:
-    url("default-avatar.png"),
+    url("avatar-icon.png"),
     url("char-sheet-tab-brown.png");
 
   background-repeat: no-repeat, no-repeat;
@@ -96,13 +96,24 @@
 
 /* TAB 2 GREEN DESC */
 .char-sheet-tab.tab-description {
-  background-image: url("char-sheet-tab-green.png");
+  background-image:
+  url("desc-icon.png"),
+  url("char-sheet-tab-green.png");
+    background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 47%  auto, contain;
 }
 
 
 /* TAB 3 BLUE CHAR SHEET */
 .char-sheet-tab.tab-sheet {
-  background-image: url("char-sheet-tab-blue.png");
+  background-image:
+  url("char-sheet-icon-simple.png"),
+  url("char-sheet-tab-blue.png");
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 45% auto, contain;
+
 }
 
 
@@ -141,6 +152,7 @@
 /* TITLE */
 .character-file .medieval-title {
   position: absolute;
+  top: 30px;
 
   background-image: url("medieval-title.png");
   background-size: 100% auto;
@@ -181,9 +193,10 @@
 }
 
 .character-portrait img {
-  width: 100%;
+  width: 120%;
   height: auto;
   display: block;
+  align-items: center;
 }
 
 
@@ -241,13 +254,14 @@
 
 .character-show-description {
   display: flex;
-  justify-content: center; // horizontal
-  align-items: flex-start; // top
+  // justify-content: center;
+  align-items: flex-start;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 5%;
+  padding: 0 5%;
   box-sizing: border-box;
 }
+
 
 .character-info-container {
   width: 100%;
@@ -264,14 +278,13 @@
   width: 100%;
   min-height: 300px;
   padding: 1.5rem;
-  box-sizing: border-box;
 
   background: transparent;
   border: none;
   outline: none;
   box-shadow: none;
 
-  font-family: $quill-font;
+
   font-size: 1.25rem;
   color: $omni-ink;
   line-height: 1.4;
@@ -297,7 +310,7 @@
   outline: none;
   box-shadow: none;
 
-  font-family: $quill-font;
+
   font-size: 1.25rem;
   font-weight: normal;
   color: $omni-ink;
@@ -318,7 +331,7 @@
 }
 
 .character-sheet-image.zoomed {
-  transform: scale(1.5);
+  transform: scale(1.8);
   cursor: zoom-out;
 }
 
@@ -342,37 +355,29 @@
 
   .character-file {
     position: relative;
-    width: 80%;
+    width: 76%;
     max-width: 700px;
+    margin: 0 auto;
 
 
 
-    margin: 80px auto 20px;
+
 
     box-sizing: border-box;
     min-height: 250px;
     padding: 5% 0;
   }
 
-  .character-tabs {
-    top: -12%;
-    right: 12%;
+.char-sheet-dropdown {
+width: 15%;
+}
 
-    display: flex;
-    flex-direction: row;
-    margin-left: -15px;
 
-  }
-
-  /* TAB */
-  .char-sheet-tab {
-    position: relative;
-    transform: rotate(270deg) scale(0.75);
-  }
 
 
   .medieval-title {
-    width: 85%;
+    width: 80%;
+
 
     h1 {
       font-size: 2.5rem;
@@ -380,14 +385,12 @@
   }
 
   .character-portrait {
-    width: 70%;
+    width: 80%;
     position: relative;
 
   }
 
-  .char-sheet-tab {
-    transform: rotate(270deg) scale(0.75);
-  }
+
 
     .character-sheet-image {
     width: 90%;
@@ -395,6 +398,7 @@
     max-height: 90%;
     object-fit: contain;
   }
+
 
 }
 
