@@ -12,7 +12,8 @@
             <%= button_to campaign_note_path(@campaign, note),
                 method: :delete,
                 class: "edit-cancel-button",
-                onclick: "return confirm('Delete this note?');" do %>
+                onclick: "return confirm('Delete this note?');",
+                data: { turbo_action: "replace" } do %>
             <% end %>
         </div>
       <% end %>
