@@ -141,11 +141,13 @@ class GenerateGuestCampaign
     p2_char = @campaign.participations.create!(user_id: 202) #
     p3_char = @campaign.participations.create!(user_id: 201) #
     p4_char = @campaign.participations.create!(user_id: 200) #
+    p5_char = @campaign.participations.create!(user_id: 199) #
 
     # for locally testing
     # p2_char = @campaign.participations.create!(user_id: 7) #
     # p3_char = @campaign.participations.create!(user_id: 8) #
     # p4_char = @campaign.participations.create!(user_id: 9) #
+    # p5_char = @campaign.participations.create!(user_id: 10) #
 
     # --- character portraits ---
     p2_cloud_key = "vaxdr8xpd7eije2xth9rohzxfuf8" #
@@ -187,6 +189,74 @@ class GenerateGuestCampaign
       )
     end
 
+    p5_cloud_key = "xpzzv0coizxv14619hhneic46ypd" #
+    p5_cloud_image = ActiveStorage::Blob.find_by(key: p5_cloud_key)
+
+    if p5_cloud_image.nil?
+      p5_cloud_image = ActiveStorage::Blob.create!(
+        key:          p5_cloud_key,
+        filename:     "sandbox_placeholder.jpg",
+        content_type: "image/jpeg",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
+
+    # --- character sheets ---
+
+    p2_cloud_sheet_key = "he1x7fu4suiey19tmqrwn235fmva" #
+    p2_cloud_sheet = ActiveStorage::Blob.find_by(key: p2_cloud_sheet_key)
+
+    if p2_cloud_sheet.nil?
+      p2_cloud_sheet = ActiveStorage::Blob.create!(
+        key:          p2_cloud_sheet_key,
+        filename:     "sandbox_placeholder.jpg",
+        content_type: "image/jpeg",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
+
+    p3_cloud_sheet_key = "sk45ahek9gageo9imo7qppsa8gmk" #
+    p3_cloud_sheet = ActiveStorage::Blob.find_by(key: p3_cloud_sheet_key)
+
+    if p3_cloud_sheet.nil?
+      p3_cloud_sheet = ActiveStorage::Blob.create!(
+        key:          p3_cloud_sheet_key,
+        filename:     "sandbox_placeholder.jpg",
+        content_type: "image/jpeg",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
+
+    p4_cloud_sheet_key = "vzabasyp9qju72q86wg0c26i012d" #
+    p4_cloud_sheet = ActiveStorage::Blob.find_by(key: p4_cloud_sheet_key)
+
+    if p4_cloud_sheet.nil?
+      p4_cloud_sheet = ActiveStorage::Blob.create!(
+        key:          p4_cloud_sheet_key,
+        filename:     "sandbox_placeholder.jpg",
+        content_type: "image/jpeg",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
+
+    p5_cloud_sheet_key = "bt99gx32hki92fyiqpjbde940250" #
+    p5_cloud_sheet = ActiveStorage::Blob.find_by(key: p5_cloud_sheet_key)
+
+    if p5_cloud_sheet.nil?
+      p5_cloud_sheet = ActiveStorage::Blob.create!(
+        key:          p5_cloud_sheet_key,
+        filename:     "sandbox_placeholder.jpg",
+        content_type: "image/jpeg",
+        byte_size:    0,
+        checksum:     "0"
+      )
+    end
+
+
     # --- characters and their images ---
     p2_character = Character.create!(
       name: "Jared, the Summoner", #
@@ -194,6 +264,7 @@ class GenerateGuestCampaign
       participation: p2_char
     )
     p2_character.portrait.attach(p2_cloud_image)
+    p2_character.document_upload.attach(p2_cloud_sheet)
 
     p3_character = Character.create!(
       name: "Sammy, the Speaker", #
@@ -201,6 +272,7 @@ class GenerateGuestCampaign
       participation: p3_char
     )
     p3_character.portrait.attach(p3_cloud_image)
+    p3_character.document_upload.attach(p3_cloud_sheet)
 
     p4_character = Character.create!(
       name: "Ben, the Recorder", #
@@ -208,5 +280,15 @@ class GenerateGuestCampaign
       participation: p4_char
     )
     p4_character.portrait.attach(p4_cloud_image)
+    p4_character.document_upload.attach(p4_cloud_sheet)
+
+    p5_character = Character.create!(
+      name: "Shane, the Warrior", #
+      stats_summary: "hello I'm a stats summary about Shane", #
+      participation: p5_char
+    )
+    p5_character.portrait.attach(p5_cloud_image)
+    p5_character.document_upload.attach(p5_cloud_sheet)
+
   end
 end
