@@ -194,7 +194,7 @@ class GenerateGuestCampaign
       )
     end
 
-    p5_cloud_key = "8v9gbr8dejqvlza5z17x58x0awh9" #
+    p5_cloud_key = "y5r9acggowuw9p3j4rtwa1cx3hiz" #
     p5_cloud_image = ActiveStorage::Blob.find_by(key: p5_cloud_key)
 
     if p5_cloud_image.nil?
@@ -295,13 +295,15 @@ class GenerateGuestCampaign
     p5_character = Character.create!(
       name: "Shane", #
       stats_summary: "A master of systems and logic,
-                      Shane Haddock possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
-                      Deeply curious and highly adaptable, he excels at weaving complex code into functional, intuitive experiences.
-                      His expertise lies in bridging the gap between abstract concepts and real-world application,
-                      whether he is leading a team through a high-stakes development sprint or crafting immersive tools for TTRPG adventurers.
-                      Patient and collaborative, he draws on his background in education to simplify the complex,
-                      acting as both a supportive party member and a visionary architect. Dedicated to the constant pursuit of knowledge,
-                      he is always integrating new technologies to refine his craft.", #
+                    this scholarly wizard possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
+                    Deeply curious and highly adaptable, he approaches both technology and the mystical arts with the logical mindset of a software developer.
+                    He excels at weaving complex code into intuitive experiences, whether crafting immersive tools for TTRPG adventurers or
+                    leading a team through a high-stakes development sprint.\n
+
+                    His background in education makes him patient and skilled at simplifying even the most complex ideas.
+                    Driven by a relentless cycle of 'Code, Commit, Conquer,' he remains perpetually caffeinated in pursuit of arcane and technological perfection,
+                    balancing his role as a supportive party member and visionary architect with the humble, often ignored quest for a decent nights sleep.\n
+                    Dedicated to the constant pursuit of knowledge, he is forever integrating new technologies, spells, and ideas to refine his craft.", #
       participation: p5_char
     )
     p5_character.portrait.attach(p5_cloud_image)
