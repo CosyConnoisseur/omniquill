@@ -16,8 +16,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.gif",
         content_type: "image/webp",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     banner_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
@@ -28,8 +33,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
 
@@ -164,8 +174,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p3_cloud_key = "yjrswrq5lei9hf0kur6lph9ujxup" #
@@ -177,8 +192,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p4_cloud_key = "wye8g7l7gqpljgf4k91i6r4i4pop" #
@@ -190,8 +210,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p5_cloud_key = "sqe3ri600g25dls0dn2x8vqi604d" #
@@ -203,8 +228,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     # --- character sheets ---
@@ -218,8 +248,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p3_cloud_sheet_key = "sk45ahek9gageo9imo7qppsa8gmk" #
@@ -231,8 +266,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p4_cloud_sheet_key = "vzabasyp9qju72q86wg0c26i012d" #
@@ -244,8 +284,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p5_cloud_sheet_key = "xgpskoh27khdlsoke7azajx1t0ry" #
@@ -257,8 +302,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
 
