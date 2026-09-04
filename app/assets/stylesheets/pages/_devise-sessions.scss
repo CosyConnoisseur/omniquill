@@ -1,0 +1,164 @@
+.signing-parchment-container {
+  height: auto;
+  width: 40%;
+  padding: 2rem;
+  border-image: asset_url("parchment-leather-border.png");
+  border-image-slice: 115 115 115 115 fill;
+  border-image-width: 30px 30px 30px 30px;
+  border-image-outset: 5px 5px 5px 5px;
+  border-image-repeat: round round;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.75);
+}
+
+.scroll-button {
+  width: 7rem;
+  height: 3.5rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  text-align: center;
+  vertical-align: middle;
+  background-image: asset_url("rune-of-summoning-floaty-sign.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
+  border: none;
+  transition: 0.2s ease-out;
+  color: $omni-ink;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.top-scroll-text {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font-weight: 600;
+  color: $omni-ink;
+}
+
+.scroll-create-button {
+  width: 14rem;
+  height: 7rem;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  background-image: asset_url("rune-of-summoning-floaty-sign.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
+  border: none;
+  transition: 0.2s ease-out;
+  color: $omni-ink;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.guest-button {
+
+  background: linear-gradient(
+    135deg,
+    #18bacf 0%,
+    #168cdb 35%,
+    #1638cf 70%,
+    #5f17e4 100%
+  );
+
+  .explore-text {
+    font-family: "Jersey 15";
+    font-size: 2.5rem;
+  }
+
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  // border-radius: 1.5rem;
+
+  box-shadow:
+    0 10px 25px rgba(255, 192, 203, 0.276),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+
+  text-align: center;
+
+  animation: float 3s ease-in-out infinite;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 0 15px rgba(255, 192, 203, 0.4),
+      0 0 30px rgba(255, 182, 193, 0.3),
+      0 12px 24px rgba(255, 192, 203, 0.2);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#delete-account-button {
+  width: 13rem;
+  height: 3rem;
+  padding: 0.25rem;
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 0.6rem;
+  border-image-repeat: stretch stretch;
+  font-weight: 600;
+  filter: hue-rotate(-60deg) saturate(500%);
+  transition: 0.2s ease-out;
+
+  &:hover {
+    filter: hue-rotate(-60deg) saturate(700%);
+    transform: translateY(-6px);
+  }
+}
+
+
+// --------------Media queries------------------ //
+
+@media (max-width: 1500px) {
+
+  .signing-parchment-container {
+    width: 50%;
+  }
+
+}
+
+@media (max-width: 1000px) {
+
+  .signing-parchment-container {
+    width: 70%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .signing-parchment-container {
+    width: 90%;
+  }
+
+  .guest-button {
+
+    .explore-text {
+      font-size: 2rem;
+    }
+
+  }
+
+}

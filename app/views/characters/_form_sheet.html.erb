@@ -17,12 +17,12 @@
               data-action="click->form-typewriter#clearFile">&times;</button>
     </div>
 
-    <h2 class="text-center mt-3 pt-2" style="font-family: 'Jersey 15'; font-size: 1.2rem; border-top: 1px solid #645a1a;">or Enter Character Details</h2>
+    <h2 class="text-center mt-3 pt-2" style="font-family: 'Jersey 15'; font-size: 1.2rem; border-top: 1px solid #645a1a;">or enter character details</h2>
 
     </div>
 
     <div class="mb-3">
-      <%= f.label :name, "Character Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;"  %>
+      <%= f.label :name, "Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 2; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;"  %>
       <%= f.text_field :name,
                         id: "character_name_input",
                         maxlength: 20,
@@ -33,7 +33,7 @@
     </div>
 
     <div class="mb-3">
-      <%= f.label :stats_summary, "Character Description *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block;  line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;" %>
+      <%= f.label :stats_summary, "Description *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block;  line-height: 2; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;" %>
       <%= f.text_area :stats_summary,
                       id: "character_stats_summary_input",
                       class: "form-control edit-input-box",
@@ -44,7 +44,7 @@
     </div>
 
     <div class="mb-3 text-center">
-      <%= f.label :portrait, "Upload Character Portrait", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+      <%= f.label :portrait, "Upload Portrait", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
     <div class="input-group">
       <%= f.file_field :portrait,
                         accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
@@ -61,8 +61,18 @@
     <!-- Submit -->
     <div class="centering">
       <%= f.submit "Create Character",
-                    class: "btn btn-custom w-70",
+                    style: "min-width: 240px",
+                    class: "btn btn-custom w-md-70",
                     data: { form_typewriter_target: "submitButton"} %>
+
+    <!-- Clear Text -->
+    <button type="button"
+            class="btn btn-warning flex-shrink-0 d-none ms-1"
+            title="Clear text"
+            data-form-typewriter-target="clearTextButton"
+            data-action="click->form-typewriter#clearText">
+    Clear Text
+    </button>
     </div>
 
     <!-- AI button -->
@@ -77,6 +87,7 @@
     </div>
 
     <!-- Loading -->
+    <div class="centering">
     <button type="button"
         class="btn btn-secondary w-75 d-none" style="min-width: 240px; max-width: 300px;"
         disabled
@@ -84,17 +95,11 @@
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Summoning...
     </button>
+    </div>
 
-    <!-- Clear Text -->
-    <button type="button"
-            class="btn btn-warning flex-shrink-0 d-none"
-            title="Clear text"
-            data-form-typewriter-target="clearTextButton"
-            data-action="click->form-typewriter#clearText">
-    Clear Text
-    </button>
+
   <% end %>
-  <p style="color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); font-weight: 600; text-align: center;">* Required</p>
+  <p style="color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255); font-weight: 600; text-align: center;">* Required</p>
   <div class="margin-margin">
     <div data-form-typewriter-target="previewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-left-margin" style="overflow: hidden;">
       <img data-form-typewriter-target="imagePreview" src="" class="fade-effect preview-left-image" style="height: 100%; width: 100%; object-fit: contain;">

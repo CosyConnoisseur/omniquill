@@ -1,6 +1,5 @@
 class GenerateGuestCampaign
   def self.call(guest_user)
-
     # heroku
     host_user = User.find(199)
 
@@ -12,12 +11,12 @@ class GenerateGuestCampaign
     card_cloud_image = ActiveStorage::Blob.find_by(key: card_image_key)
     if card_cloud_image.nil?
       card_cloud_image = ActiveStorage::Blob.create!(
-        key:          card_image_key,
-        filename:     "sandbox_placeholder.gif",
+        key: card_image_key,
+        filename: "sandbox_placeholder.gif",
         content_type: "image/webp",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -29,19 +28,18 @@ class GenerateGuestCampaign
     banner_cloud_image = ActiveStorage::Blob.find_by(key: banner_image_key)
     if banner_cloud_image.nil?
       banner_cloud_image = ActiveStorage::Blob.create!(
-        key:          banner_image_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: banner_image_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
         card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
       end
     end
-
 
     # --- Welcome campaign ---
     @campaign = Campaign.create!(
@@ -51,7 +49,7 @@ class GenerateGuestCampaign
                 It features AI integrated character and session tracking. Go ahead and check it out!\n
                 First, have a look at the Characters tab and maybe create a character!\n
                 Please enjoy!",
-      user: host_user,
+      user: host_user
     )
     @campaign.card_image.attach(card_cloud_image)
     @campaign.banner.attach(banner_cloud_image)
@@ -150,9 +148,7 @@ class GenerateGuestCampaign
     sticky3_4.chapter_id = chapter3.id
     sticky3_4.save
 
-
-
-    #heroku
+    # heroku
     p2_char = @campaign.participations.create!(user_id: 202) # Jared
     p3_char = @campaign.participations.create!(user_id: 201) # Sammy
     p4_char = @campaign.participations.create!(user_id: 200) # Ben
@@ -170,12 +166,12 @@ class GenerateGuestCampaign
 
     if p2_cloud_image.nil?
       p2_cloud_image = ActiveStorage::Blob.create!(
-        key:          p2_cloud_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p2_cloud_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -188,12 +184,12 @@ class GenerateGuestCampaign
 
     if p3_cloud_image.nil?
       p3_cloud_image = ActiveStorage::Blob.create!(
-        key:          p3_cloud_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p3_cloud_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -206,12 +202,12 @@ class GenerateGuestCampaign
 
     if p4_cloud_image.nil?
       p4_cloud_image = ActiveStorage::Blob.create!(
-        key:          p4_cloud_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p4_cloud_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -224,12 +220,12 @@ class GenerateGuestCampaign
 
     if p5_cloud_image.nil?
       p5_cloud_image = ActiveStorage::Blob.create!(
-        key:          p5_cloud_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p5_cloud_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -244,12 +240,12 @@ class GenerateGuestCampaign
 
     if p2_cloud_sheet.nil?
       p2_cloud_sheet = ActiveStorage::Blob.create!(
-        key:          p2_cloud_sheet_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p2_cloud_sheet_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -262,12 +258,12 @@ class GenerateGuestCampaign
 
     if p3_cloud_sheet.nil?
       p3_cloud_sheet = ActiveStorage::Blob.create!(
-        key:          p3_cloud_sheet_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p3_cloud_sheet_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -280,12 +276,12 @@ class GenerateGuestCampaign
 
     if p4_cloud_sheet.nil?
       p4_cloud_sheet = ActiveStorage::Blob.create!(
-        key:          p4_cloud_sheet_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p4_cloud_sheet_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
@@ -298,19 +294,18 @@ class GenerateGuestCampaign
 
     if p5_cloud_sheet.nil?
       p5_cloud_sheet = ActiveStorage::Blob.create!(
-        key:          p5_cloud_sheet_key,
-        filename:     "sandbox_placeholder.jpg",
+        key: p5_cloud_sheet_key,
+        filename: "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
-        byte_size:    0,
-        checksum:     "0",
-        metadata:     { analyzed: true }
+        byte_size: 0,
+        checksum: "0",
+        metadata: { analyzed: true }
       )
     else
       unless card_cloud_image.metadata["analyzed"]
         card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
       end
     end
-
 
     # --- characters and their images ---
     p2_character = Character.create!(
@@ -359,6 +354,5 @@ class GenerateGuestCampaign
     )
     p5_character.portrait.attach(p5_cloud_image)
     p5_character.document_upload.attach(p5_cloud_sheet)
-
   end
 end

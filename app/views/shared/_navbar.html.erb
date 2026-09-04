@@ -1,3 +1,4 @@
+    <%= render "shared/navbar_logo" %>
 <nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
 
@@ -6,9 +7,6 @@
     <% end %>
 
     <!-- Ben Fix: Middle Logo (added d-inline-block to keep it in the row flow) -->
-    <%= link_to root_path, class: "d-inline-block alignment-fix", data: home_button_data do %>
-      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
-    <% end %>
 
     <!-- Ben Fix: Right Dropdown Toggler Button (added d-inline-block) -->
     <div class="btn border-0 bg-transparent navbar-toggler d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +78,8 @@
 </nav>
   <% if current_user&.guest? && !current_page?("/users/sign_up") %>
   <div id="delayed-signup-prompt" class="text-center nuv" style="background-color: white; z-index: 9997; display: none;">
-    Enjoying OmniQuill? See more features!
+  <% prompts = ["See more features!", "Want to create your own Campaign?", "There are more cool features!", "Create sessions and highlights!", "Check out cool AI features!", "Connect with your friends!", "It's time to play!", "Become a member!", "Gather your party!", "OmniQuill enjoys you!" ] %>
+  <%= "Enjoying OmniQuill? "+prompts.sample %>
     <%= link_to "Complete Sign Up!", new_user_registration_path, class: "btn btn-dark m-1" %>
   </div>
 
