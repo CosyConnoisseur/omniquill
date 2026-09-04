@@ -3,7 +3,7 @@
     <%= hidden_field_tag :stream_id, @stream_id %>
 
     <div class="mb-3">
-      <%= f.label :document_upload, "Upload Character Sheet(PDF/Image)", class:"d-block text-center", style: "font-family: 'Jersey 15'; font-size: 1.1rem;" %>
+      <%= f.label :document_upload, "Upload (PDF/Image)", class:"d-block text-center", style: "font-family: 'Jersey 15'; font-size: 1.1rem;" %>
       <div class="input-group">
       <%= f.file_field :document_upload,
                         accept: 'image/png, image/jpeg, image/jpg, image/webp, image/gif, application/pdf',
@@ -17,12 +17,12 @@
               data-action="click->form-typewriter#clearFile">&times;</button>
     </div>
 
-    <h2 class="text-center mt-3 pt-2" style="font-family: 'Jersey 15'; font-size: 1.2rem; border-top: 1px solid #645a1a;">or Enter Character Details</h2>
+    <h2 class="text-center mt-3 pt-2" style="font-family: 'Jersey 15'; font-size: 1.2rem; border-top: 1px solid #645a1a;">or enter character details</h2>
 
     </div>
 
     <div class="mb-3">
-      <%= f.label :name, "Character Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;"  %>
+      <%= f.label :name, "Name *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block; line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;"  %>
       <%= f.text_field :name,
                         id: "character_name_input",
                         maxlength: 20,
@@ -33,7 +33,7 @@
     </div>
 
     <div class="mb-3">
-      <%= f.label :stats_summary, "Character Description *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block;  line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;" %>
+      <%= f.label :stats_summary, "Description *", style: "font-family: 'Jersey 15'; font-size: 1.7rem; margin-bottom: 0; display: block;  line-height: 2; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); text-align: center;" %>
       <%= f.text_area :stats_summary,
                       id: "character_stats_summary_input",
                       class: "form-control edit-input-box",
@@ -44,7 +44,7 @@
     </div>
 
     <div class="mb-3 text-center">
-      <%= f.label :portrait, "Upload Character Portrait", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+      <%= f.label :portrait, "Upload Portrait", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
     <div class="input-group">
       <%= f.file_field :portrait,
                         accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
@@ -60,7 +60,7 @@
 
     <!-- Submit -->
     <div class="centering">
-      <%= f.submit "Create Character",
+      <%= f.submit "Create",
                     style: "min-width: 240px",
                     class: "btn btn-custom w-md-70",
                     data: { form_typewriter_target: "submitButton"} %>
