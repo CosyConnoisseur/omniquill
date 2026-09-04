@@ -328,7 +328,9 @@ class GenerateGuestCampaign
 
     p3_character = Character.create!(
       name: "Sammy, the Speaker", #
-      stats_summary: "hello I'm a stats summary about Sammy", #
+      stats_summary: "Sammy originally pitched the app. It was popular enough to gain the following of Shane, Jared and Ben.
+                      She served as team designer on the project. She was also the main face of the app. From that first pitch to the final presentation on Demo Day,
+                      She stepped up to the podium and showed the app in its best light.", #
       participation: p3_char
     )
     p3_character.portrait.attach(p3_cloud_image)
@@ -336,7 +338,8 @@ class GenerateGuestCampaign
 
     p4_character = Character.create!(
       name: "Ben, the Recorder", #
-      stats_summary: "hello I'm a stats summary about Ben", #
+      stats_summary: "Ben came back from Space to lend his hand in creating OmniQuill. He toiled away building while also studying for tests in the background.
+                      Summoning endless workers to handle the recording and transcription. Soon he will launch another app to the stars...", #
       participation: p4_char
     )
     p4_character.portrait.attach(p4_cloud_image)
