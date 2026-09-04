@@ -11,11 +11,11 @@
                   required: false,
                   autofocus: true,
                   input_html: { autocomplete: "email", class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
       <%= f.input :password,
                   required: false,
                   input_html: { autocomplete: "current-password", class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" }%>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" }%>
       <%= f.input :remember_me, label_html: { style: "font-weight: 600; color: #200033;" }, as: :boolean if devise_mapping.rememberable? %>
     </div>
 

@@ -177,7 +177,7 @@
               <%= image_tag "default-avatar.png", class: "align-center", style: "max-height: 100px; width: 100px; object-fit: cover; border-radius: 8px;" %>
             <% end %>
             <br>
-            <p style="font-size: 2rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);"><%= @campaign.user.username ? @campaign.user.username : @campaign.user.email  %></p>
+            <p style="font-size: 2rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);"><%= @campaign.user.username ? @campaign.user.username : @campaign.user.email  %></p>
           </div>
           <br>
           <h2 class="text-center border-top pt-2 mx-3" style="font-family: 'Jersey 10'; font-size: 2rem; border-top-color: #c1b77a !important;">Characters</h2>
@@ -192,7 +192,7 @@
                 <%= link_to character_path(character), class: "text-decoration-none" do %>
                   <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                      <p style="font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);">
+                      <p style="font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);">
                         <%= character.name %>
                       </p>
                       <% if character.portrait.attached? %>
