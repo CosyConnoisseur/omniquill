@@ -22,5 +22,7 @@ class GuestsController < ApplicationController
 
     flash[:notice] = "Welcome! You are browsing as a temporary guest."
     redirect_to root_path
+  rescue ActiveRecord::RecordInvalid
+    redirect_to root_path, alert: "Something went wrong creating your guest session."
   end
 end
