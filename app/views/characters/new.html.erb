@@ -19,7 +19,7 @@
         one from a Character Sheet
       </h2>
 
-    <div data-controller="form-typewriter" class="container border-top pt-1 pb-5" style="border-top-color: #645a1a !important;">
+    <div data-controller="form-typewriter" class="container border-top pt-1 pb-1" style="border-top-color: #645a1a !important;">
     <%= turbo_stream_from "character_generation_#{@stream_id}" %>
       <div class="row justify-content-center">
         <%= render "form_sheet", character: @character, stream_id: @stream_id %>
@@ -30,10 +30,11 @@
         </div>
       </div>
     </div>
-<%= link_to campaign_path(params[:campaign_id], anchor: "characters-tab"),
-                                class: "character-back-button mb-2",
-                                data: { direction: "back" } do %>
-          <%= image_tag "back-icon.gif", class: "animate-move-icon" %>
+      <div class="centering">
+        <%= link_to campaign_path(params[:campaign_id], anchor: "characters-tab"),
+                                  data: { direction: "back" } do %>
+          <button class="back-button" style="width: 5rem; height: 5rem;"></button>
         <% end %>
+      </div>
   </div>
 </div>

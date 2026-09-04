@@ -1,35 +1,44 @@
-<div class="parchment-container mt-3 mb-5 mx-auto headings">
-  <h2>Log in</h2>
+<div class="signing-parchment-container mt-3 mx-auto headings">
+  <div class="centering">
+    <div class="medieval-title">
+      <h2>Log in</h2>
+    </div>
+  </div>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-inputs">
       <%= f.input :email,
                   required: false,
                   autofocus: true,
-                  input_html: { autocomplete: "email" } %>
+                  input_html: { autocomplete: "email", class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
       <%= f.input :password,
                   required: false,
-                  input_html: { autocomplete: "current-password" } %>
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                  input_html: { autocomplete: "current-password", class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" }%>
+      <%= f.input :remember_me, label_html: { style: "font-weight: 600; color: #200033;" }, as: :boolean if devise_mapping.rememberable? %>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Log in", class: "btn btn-dark" %>
+    <div class="form-actions d-flex justify-content-between align-items-center my-4" style="position: relative;">
+      <%= f.button :submit, "Log in", class: "scroll-button" %>
+      <div class="d-flex flex-column justify-content-center">
+        <p class="top-scroll-text">No account yet?</p>
+        <%= render "devise/shared/links", class: "" %>
+      </div>
     </div>
   <% end %>
-  <p class="mt-5 mb-0">New user?</p>
-  <%= render "devise/shared/links", class: "" %>
-  <div class="text-center">
-  No time?
-  <br>
-  <br>
-  <%= button_to create_guest_session_path, method: :post, class: "guest-button rounded-3" do %>
-    <span style="font-family: 'Jersey 15';font-size: 2.5rem;">Explore as</span>
-    <span class="magic-text position-relative ms-3", style="font-family: 'Jersey 15';font-size: 2.5rem; -webkit-text-stroke: 1px black;">
-      <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:15px; left:60px; transform: rotate(25deg);" %>
-      <%= image_tag "sparkle2.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%;top:-5px; left:-25px;" %>
-      Guest
-    </span>
-  <% end %>
+
+  <div class="text-center" style="font-weight: 600; color: #200033;">
+    Just want to visit?
+    <br>
+    <br>
+    <%= button_to create_guest_session_path, method: :post, class: "guest-button rounded-3" do %>
+      <span class="explore-text">Explore as</span>
+      <span class="magic-text position-relative ms-3", style="font-family: 'Jersey 15';font-size: 2.5rem; -webkit-text-stroke: 1px black;">
+        <%= image_tag "sparkle.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%; top:15px; left:60px; transform: rotate(25deg);" %>
+        <%= image_tag "sparkle2.webp", class: "position-absolute top-40", style: "max-height: 50px; max-width: 100%;top:-5px; left:-25px;" %>
+        Guest
+      </span>
+    <% end %>
   </div>
 </div>

@@ -13,11 +13,12 @@
 <%# Keep flash and script on top %>
 <% if policy(@character).show_campaign_link? %>
 <div <%= current_user&.guest? ? 'style="margin-top: 50px;"'.html_safe : "" %>>
-  <%= link_to campaign_path(@character.participation.campaign, anchor: "characters-tab"),
-      class: "character-back-button",
-      data: { direction: "back" } do %>
-    <%= image_tag "back-icon.gif", class: "animate-move-icon" %>
-  <% end %>
+  <div class="centering">
+    <%= link_to campaign_path(@character.participation.campaign, anchor: "characters-tab"),
+        data: { direction: "back" } do %>
+      <button class="back-button" style="width: 5rem; height: 5rem;"></button>
+    <% end %>
+  </div>
 </div>
 <% end %>
 <div class="character-file" data-controller="char-show-tabs sheet-toggle">
