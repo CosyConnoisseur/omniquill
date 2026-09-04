@@ -16,8 +16,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.gif",
         content_type: "image/webp",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     banner_image_key = "750ruin9i2ipdk9ujjod8185j8r4"
@@ -28,8 +33,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
 
@@ -61,7 +71,7 @@ class GenerateGuestCampaign
                                         summary: "4 new developers decide to build an entire app about helping table top players cut to the chase.\n
                                         The road was long and the difficulty was high but they knew they had what it took.\n
                                         Through ups and downs they persevered, sometimes staying up till 3am to get things finished!",
-                                        highlights: "Shane developed the character creator. Nice transitions!, Jared did x, Sammy did y, Ben did z",
+                                        highlights: "Shane developed the Character Creator. Nice transitions!, Jared did the art and handled chapters, Sammy did y, Ben did z",
                                         created_at:Time.zone.parse("August 1, 2026"),
                                         updated_at:Time.zone.parse("August 1, 2026"))
     chapter1.save
@@ -70,7 +80,7 @@ class GenerateGuestCampaign
                                         summary: "4 heroes release OmniQuill unto the world.\n
                                         With many lessons and skills developed, they were prepared for the world of software development.\n
                                         The journey continues...",
-                                        highlights: "Shane designed the campaign page and AI integration. , Lots of things broke but were fixed in time. , Jared did x, Sammy did y, Ben did z",
+                                        highlights: "Shane designed the Campaign Page and AI integration. , Lots of things broke but were fixed in time. , Jared made this whole page! Chapters and Stickies , Sammy did y, Ben did z",
                                         created_at:Time.zone.parse("September 5, 2026"),
                                         updated_at:Time.zone.parse("September 5, 2026"))
     chapter2.save
@@ -164,8 +174,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p3_cloud_key = "yjrswrq5lei9hf0kur6lph9ujxup" #
@@ -177,8 +192,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p4_cloud_key = "wye8g7l7gqpljgf4k91i6r4i4pop" #
@@ -190,11 +210,16 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
-    p5_cloud_key = "xpzzv0coizxv14619hhneic46ypd" #
+    p5_cloud_key = "sqe3ri600g25dls0dn2x8vqi604d" #
     p5_cloud_image = ActiveStorage::Blob.find_by(key: p5_cloud_key)
 
     if p5_cloud_image.nil?
@@ -203,8 +228,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     # --- character sheets ---
@@ -218,8 +248,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p3_cloud_sheet_key = "sk45ahek9gageo9imo7qppsa8gmk" #
@@ -231,8 +266,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
     p4_cloud_sheet_key = "vzabasyp9qju72q86wg0c26i012d" #
@@ -244,11 +284,16 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
-    p5_cloud_sheet_key = "bt99gx32hki92fyiqpjbde940250" #
+    p5_cloud_sheet_key = "xgpskoh27khdlsoke7azajx1t0ry" #
     p5_cloud_sheet = ActiveStorage::Blob.find_by(key: p5_cloud_sheet_key)
 
     if p5_cloud_sheet.nil?
@@ -257,8 +302,13 @@ class GenerateGuestCampaign
         filename:     "sandbox_placeholder.jpg",
         content_type: "image/jpeg",
         byte_size:    0,
-        checksum:     "0"
+        checksum:     "0",
+        metadata:     { analyzed: true }
       )
+    else
+      unless card_cloud_image.metadata["analyzed"]
+        card_cloud_image.update!(metadata: card_cloud_image.metadata.merge(analyzed: true))
+      end
     end
 
 
@@ -293,8 +343,15 @@ class GenerateGuestCampaign
     p4_character.document_upload.attach(p4_cloud_sheet)
 
     p5_character = Character.create!(
-      name: "Shane, the Warrior", #
-      stats_summary: "hello I'm a stats summary about Shane", #
+      name: "Shane", #
+      stats_summary: "A master of systems and logic,
+                      Shane possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
+                      Deeply curious and highly adaptable, he excels at weaving complex code into functional, intuitive experiences.
+                      His expertise lies in bridging the gap between abstract concepts and real-world application,
+                      whether he is leading a team through a high-stakes development sprint or crafting immersive tools for TTRPG adventurers.
+                      Patient and collaborative, he draws on his background in education to simplify the complex,
+                      acting as both a supportive party member and a visionary architect. Dedicated to the constant pursuit of knowledge,
+                      he is always integrating new technologies to refine his craft.", #
       participation: p5_char
     )
     p5_character.portrait.attach(p5_cloud_image)

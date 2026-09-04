@@ -203,3 +203,43 @@ html[data-turbo-visit-direction="back"]::view-transition-old(root) {
   }
 
 }
+
+.naav{
+  view-transition-name: naav;
+
+  top: 15px;
+
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+}
+
+@media (max-width: 700px) {
+  .naav {
+    left: 50vw;
+    translate: 0 0;
+    transition: left 0.1s ease-out;
+  }
+}
+@media (max-width: 661px) {
+  .naav {
+    left: 50vw;
+    translate: 0 0;
+    transition: left 0.1s ease-out;
+  }
+}
+@media (max-width: 660px) {
+  .naav {
+    left: 45vw;
+    translate: 0 0;
+    transition: left 0.1s ease-out;
+  }
+}
+@media (max-width: 575px) {
+  .naav {
+    left: 50vw;
+    translate: 0 0;
+    // transition: left 0.1s ease-out;
+  }
+}
