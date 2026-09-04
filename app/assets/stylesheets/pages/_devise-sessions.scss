@@ -31,6 +31,14 @@
   }
 }
 
+.top-scroll-text {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font-weight: 600;
+  color: $omni-ink;
+}
+
 .scroll-create-button {
   width: 14rem;
   height: 7rem;

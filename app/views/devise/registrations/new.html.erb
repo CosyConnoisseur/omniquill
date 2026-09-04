@@ -40,9 +40,12 @@
 
 
     <% unless current_user&.guest? %>
-      <div class="form-actions d-flex justify-content-between my-4">
+      <div class="form-actions d-flex justify-content-between mt-5 mb-4" style="position: relative;">
         <%= f.submit "Sign Up", class:"scroll-button" %>
-        <%= render "devise/shared/links" %>
+        <div class="d-flex flex-column justify-content-center">
+          <p class="top-scroll-text">Have an account?</p>
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
     <% else %>
       <div class="centering my-4">
