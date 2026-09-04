@@ -30,10 +30,11 @@
         </div>
       </div>
     </div>
-<%= link_to campaign_path(params[:campaign_id], anchor: "characters-tab"),
-                                class: "character-back-button mb-2",
-                                data: { direction: "back" } do %>
-          <%= image_tag "back-icon.gif", class: "animate-move-icon" %>
+      <div class="centering">
+        <%= link_to campaign_path(params[:campaign_id], anchor: "characters-tab"),
+                                  data: { direction: "back" } do %>
+          <button class="back-button" style="width: 5rem; height: 5rem;"></button>
         <% end %>
+      </div>
   </div>
 </div>
