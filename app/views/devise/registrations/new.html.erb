@@ -14,23 +14,23 @@
                   autofocus: true,
                   autocomplete: "email", value: (current_user&.guest? ? "" : resource.email),
                   input_html: { class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :username,
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "username", class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                   input_html: { autocomplete: "new-password", class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :password_confirmation,
                   autocomplete: "new-password",
                   input_html: { class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <br>
-    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" %>
     <%= f.file_field :profile_picture,
                         accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                         class: "form-control",
@@ -40,9 +40,12 @@
 
 
     <% unless current_user&.guest? %>
-      <div class="form-actions d-flex justify-content-between my-4">
+      <div class="form-actions d-flex justify-content-between mt-5 mb-4" style="position: relative;">
         <%= f.submit "Sign Up", class:"scroll-button" %>
-        <%= render "devise/shared/links" %>
+        <div class="d-flex flex-column justify-content-center">
+          <p class="top-scroll-text">Have an account?</p>
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
     <% else %>
       <div class="centering my-4">

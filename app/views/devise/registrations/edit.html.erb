@@ -13,7 +13,7 @@
                   required: true,
                   autofocus: true,
                   input_html: { class: "edit-input-box" },
-                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                  label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -24,22 +24,22 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "username", class: "edit-input-box" },
-                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" }%>
+                label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" }%>
     <%= f.input :password,
                 hint: "Leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-password", class: "edit-input-box mb-3" },
-                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password", class: "edit-input-box" },
-                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+                label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :current_password,
                 hint: "We need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password", class: "edit-input-box mb-3" },
-                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
-    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" %>
+                label_html: { style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-size: 1.5rem; color: #006caa; text-shadow: 1px 1px 3px rgb(164, 214, 255);" %>
     <%= f.file_field :profile_picture,
                           accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                           class: " form-control",
