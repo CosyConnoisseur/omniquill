@@ -61,8 +61,17 @@
     <!-- Submit -->
     <div class="centering">
       <%= f.submit "Create Character",
-                    class: "btn btn-custom w-70",
+                    class: "btn btn-custom w-70 me-1",
                     data: { form_typewriter_target: "submitButton"} %>
+
+    <!-- Clear Text -->
+    <button type="button"
+            class="btn btn-warning flex-shrink-0 d-none"
+            title="Clear text"
+            data-form-typewriter-target="clearTextButton"
+            data-action="click->form-typewriter#clearText">
+    Clear Text
+    </button>
     </div>
 
     <!-- AI button -->
@@ -85,14 +94,7 @@
     Summoning...
     </button>
 
-    <!-- Clear Text -->
-    <button type="button"
-            class="btn btn-warning flex-shrink-0 d-none"
-            title="Clear text"
-            data-form-typewriter-target="clearTextButton"
-            data-action="click->form-typewriter#clearText">
-    Clear Text
-    </button>
+
   <% end %>
   <p style="color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255); font-weight: 600; text-align: center;">* Required</p>
   <div class="margin-margin">
