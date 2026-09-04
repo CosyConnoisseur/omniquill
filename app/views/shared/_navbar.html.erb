@@ -1,3 +1,4 @@
+    <%= render "shared/navbar_logo" %>
 <nav class="navbar nev navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
 
@@ -6,9 +7,6 @@
     <% end %>
 
     <!-- Ben Fix: Middle Logo (added d-inline-block to keep it in the row flow) -->
-    <%= link_to root_path, class: "d-inline-block alignment-fix", data: home_button_data do %>
-      <%= image_tag "Full-logo.png", class: "navbar-logo", style: "max-width: 40vw; max-height: 40px; width: auto; object-fit: contain; vertical-align: middle;" %>
-    <% end %>
 
     <!-- Ben Fix: Right Dropdown Toggler Button (added d-inline-block) -->
     <div class="btn border-0 bg-transparent navbar-toggler d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -6,7 +6,7 @@
   </div>
 <% end %>
 
-<div class="centering">
+<div class="centering" <%= current_user&.guest? ? 'style="margin-top: 50px;"'.html_safe : "" %>>
   <div class="medieval-title">
     <h1>Campaigns</h1>
   </div>
