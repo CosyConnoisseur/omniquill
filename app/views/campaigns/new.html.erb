@@ -1,24 +1,28 @@
-<div class="campaign-book" style="max-width: 500px; margin: 40px auto; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+<div class="campaign-book" style="max-width: 600px; margin: 40px auto; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
   <div style="text-align: center;">
     <h1 class="book-title">New Campaign</h1>
   </div>
 
   <%= form_with model: @campaign, local: true, style: "width: 100%" do |f| %>
 
-    <div class="form-group" style="width: 100%; margin-top: 20px;">
-      <div style="margin-bottom: 8px;"><h5><strong><%= f.label :title %></strong></h5></div>
-      <div><%= f.text_field :title, minlength: 6, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter campaign name" %></div>
-      <small class="form-text text-muted">At least 6 characters</small>
+    <div class="form-group" style="width: 100%; margin-top: 0.5rem;">
+      <div class="centering">
+        <p style="font-size: 2.5rem; color: #0295eb; text-shadow: 1px 1px 3px rgb(164, 214, 255);"><strong><%= f.label :title %></strong></p>
+      </div>
+      <div><%= f.text_field :title, minlength: 6, style: "width: 100%; height: 3rem; box-sizing: border-box; margin-bottom: 0.75rem;", class: "form-input edit-input-box", placeholder: "Enter campaign name" %></div>
+      <small class="form-text text-muted">*At least 6 characters</small>
     </div>
 
-    <div class="form-group" style="width: 100%; margin-top: 20px;">
-      <div style="margin-bottom: 8px;"><h5><strong><%= f.label :synopsis %></strong></h5></div>
-      <div><%= f.text_area :synopsis, style: "width: 100%; box-sizing: border-box;", class: "form-input", placeholder: "Enter a brief summary (optional)" %></div>
+    <div class="form-group" style="width: 100%; margin-top: 0.5rem;">
+      <div class="centering">
+        <p style="font-size: 2.5rem; color: #0295eb; text-shadow: 1px 1px 3px rgb(164, 214, 255);"><strong><%= f.label :synopsis %></strong></p>
+      </div>
+      <div><%= f.text_area :synopsis, style: "width: 100%; height: 6rem; box-sizing: border-box;", class: "form-input edit-input-box", placeholder: "Enter a brief summary (optional)" %></div>
     </div>
 
     <div class="form-actions" style="width: 100%; margin-top: 15px;">
       <div style="text-align: center;">
-        <%= f.submit "Create", class: "btn btn-secondary rounded-3" %>
+        <%= f.submit "", class: "create-campaign-button" %>
       </div>
     </div>
 
