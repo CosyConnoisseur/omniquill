@@ -189,11 +189,12 @@
 
 /* PORTRAIT */
 .character-portrait {
-
+  width: 80%;
+  height: auto;
 }
 
 .character-portrait img {
-  width: 250%;
+  width: 120%;
   height: auto;
   display: block;
   align-items: center;
