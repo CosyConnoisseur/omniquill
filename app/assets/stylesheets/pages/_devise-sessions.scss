@@ -101,6 +101,25 @@
   }
 }
 
+#delete-account-button {
+  width: 13rem;
+  height: 3rem;
+  padding: 0.25rem;
+  border-image: asset_url("text-border.png");
+  border-image-slice: 70 70 70 70 fill;
+  border-image-width: 1.5rem;
+  border-image-outset: 0.6rem;
+  border-image-repeat: stretch stretch;
+  font-weight: 600;
+  filter: hue-rotate(-60deg) saturate(500%);
+  transition: 0.2s ease-out;
+
+  &:hover {
+    filter: hue-rotate(-60deg) saturate(700%);
+    transform: translateY(-6px);
+  }
+}
+
 
 // --------------Media queries------------------ //
 

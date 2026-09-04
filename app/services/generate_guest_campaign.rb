@@ -1,10 +1,10 @@
 class GenerateGuestCampaign
   def self.call(guest_user)
     # heroku
-    # host_user = User.find(199)
+    host_user = User.find(199)
 
     # for locally testing
-    host_user = User.find(10)
+    # host_user = User.find(10)
 
     # --- campaign card image/banner ---
     card_image_key = "4os3rejprxjhpjktuv3lno0w5ior"
@@ -149,16 +149,16 @@ class GenerateGuestCampaign
     sticky3_4.save
 
     # heroku
-    # p2_char = @campaign.participations.create!(user_id: 202) # Jared
-    # p3_char = @campaign.participations.create!(user_id: 201) # Sammy
-    # p4_char = @campaign.participations.create!(user_id: 200) # Ben
-    # p5_char = @campaign.participations.create!(user_id: 199) # Shane
+    p2_char = @campaign.participations.create!(user_id: 202) # Jared
+    p3_char = @campaign.participations.create!(user_id: 201) # Sammy
+    p4_char = @campaign.participations.create!(user_id: 200) # Ben
+    p5_char = @campaign.participations.create!(user_id: 199) # Shane
 
     # for locally testing
-    p2_char = @campaign.participations.create!(user_id: 7) #
-    p3_char = @campaign.participations.create!(user_id: 8) #
-    p4_char = @campaign.participations.create!(user_id: 9) #
-    p5_char = @campaign.participations.create!(user_id: 10) #
+    # p2_char = @campaign.participations.create!(user_id: 7) #
+    # p3_char = @campaign.participations.create!(user_id: 8) #
+    # p4_char = @campaign.participations.create!(user_id: 9) #
+    # p5_char = @campaign.participations.create!(user_id: 10) #
 
     # --- character portraits ---
     p2_cloud_key = "om762q2qdvl7lkdp30pmhf78id7j" #
