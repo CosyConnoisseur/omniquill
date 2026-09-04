@@ -69,18 +69,18 @@ class GenerateGuestCampaign
                                         summary: "4 new developers decide to build an entire app about helping table top players cut to the chase.\n
                                         The road was long and the difficulty was high but they knew they had what it took.\n
                                         Through ups and downs they persevered, sometimes staying up till 3am to get things finished!",
-                                        highlights: "Shane developed the Character Creator. Nice transitions!, Jared did the art and handled chapters, Sammy did y, Ben did z",
-                                        created_at: Time.zone.parse("August 1, 2026"),
-                                        updated_at: Time.zone.parse("August 1, 2026"))
+                                        highlights: "Shane developed the Character Creator. Nice transitions!, Jared did the art and handled chapters, Sammy came up with the idea, Ben brought notes",
+                                        created_at:Time.zone.parse("August 1, 2026"),
+                                        updated_at:Time.zone.parse("August 1, 2026"))
     chapter1.save
 
     chapter2 = @campaign.chapters.build(title: "The Release...",
                                         summary: "4 heroes release OmniQuill unto the world.\n
                                         With many lessons and skills developed, they were prepared for the world of software development.\n
                                         The journey continues...",
-                                        highlights: "Shane designed the Campaign Page and AI integration. , Lots of things broke but were fixed in time. , Jared made this whole page! Chapters and Stickies , Sammy did y, Ben did z",
-                                        created_at: Time.zone.parse("September 5, 2026"),
-                                        updated_at: Time.zone.parse("September 5, 2026"))
+                                        highlights: "Shane designed the Campaign Page and AI integration. , Lots of things broke but were fixed in time. , Jared made this whole page! Chapters and Stickies , Sammy gave the presentation, Ben handled clicking and recording",
+                                        created_at:Time.zone.parse("September 5, 2026"),
+                                        updated_at:Time.zone.parse("September 5, 2026"))
     chapter2.save
 
     chapter3 = @campaign.chapters.build(title: "You Joined OmniQuill",
@@ -197,7 +197,7 @@ class GenerateGuestCampaign
       end
     end
 
-    p4_cloud_key = "wye8g7l7gqpljgf4k91i6r4i4pop" #
+    p4_cloud_key = "0ig1yy14j1jkrpg63p4lcptjpajx" #
     p4_cloud_image = ActiveStorage::Blob.find_by(key: p4_cloud_key)
 
     if p4_cloud_image.nil?
@@ -323,7 +323,9 @@ class GenerateGuestCampaign
 
     p3_character = Character.create!(
       name: "Sammy, the Speaker", #
-      stats_summary: "hello I'm a stats summary about Sammy", #
+      stats_summary: "Sammy originally pitched the app. It was popular enough to gain the following of Shane, Jared and Ben.
+                      She served as team designer on the project. She was also the main face of the app. From that first pitch to the final presentation on Demo Day,
+                      She stepped up to the podium and showed the app in its best light.", #
       participation: p3_char
     )
     p3_character.portrait.attach(p3_cloud_image)
@@ -331,7 +333,8 @@ class GenerateGuestCampaign
 
     p4_character = Character.create!(
       name: "Ben, the Recorder", #
-      stats_summary: "hello I'm a stats summary about Ben", #
+      stats_summary: "Ben came back from Space to lend his hand in creating OmniQuill. He toiled away building while also studying for tests in the background.
+                      Summoning endless workers to handle the recording and transcription. Soon he will launch another app to the stars...", #
       participation: p4_char
     )
     p4_character.portrait.attach(p4_cloud_image)
