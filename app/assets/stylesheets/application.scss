@@ -243,3 +243,17 @@ html[data-turbo-visit-direction="back"]::view-transition-old(root) {
     // transition: left 0.1s ease-out;
   }
 }
+
+
+.gren {
+  background: radial-gradient(
+    ellipse closest-corner,
+    rgba(254, 255, 193, 0.6) 0%,
+    rgba(254, 255, 193, 0.53) 15%,
+    rgba(254, 255, 193, 0.23) 40%,
+    rgba(254, 255, 193, 0.0) 65%,
+    rgba(254, 255, 193, 0) 100%
+  );
+
+  padding: 50px;
+}
