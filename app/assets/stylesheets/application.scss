@@ -156,6 +156,14 @@ body {
   right: 0;
 }
 
+@media (max-width: 603px) {
+  .nuv{
+    font-size: 0.55rem;
+  }
+  .nuvbtn{
+    font-size: 0.5rem;
+  }
+}
 
 // processing alert box
 .processing-alert {
