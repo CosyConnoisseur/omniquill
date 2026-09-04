@@ -22,6 +22,7 @@
   background-repeat: no-repeat;
   border: none;
   transition: 0.2s ease-out;
+  color: $omni-ink;
 
   &:hover {
     transform: translateY(-6px);
@@ -35,11 +36,14 @@
   font-size: 1.25rem;
   text-align: center;
   vertical-align: middle;
-  background-image: asset_url("invite-pidge.png");
+  background-image: asset_url("rune-of-summoning-floaty-sign.png");
   background-size: contain;
   background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
   border: none;
   transition: 0.2s ease-out;
+  color: $omni-ink;
 
   &:hover {
     transform: translateY(-6px);

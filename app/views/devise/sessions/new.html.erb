@@ -19,7 +19,7 @@
       <%= f.input :remember_me, label_html: { style: "font-weight: 600; color: #200033;" }, as: :boolean if devise_mapping.rememberable? %>
     </div>
 
-    <div class="form-actions d-flex justify-content-between">
+    <div class="form-actions d-flex justify-content-between my-4">
       <%= f.button :submit, "Log in", class: "scroll-button" %>
       <%= render "devise/shared/links", class: "" %>
     </div>
