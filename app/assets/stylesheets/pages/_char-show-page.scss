@@ -151,8 +151,9 @@
 
 /* TITLE */
 .character-file .medieval-title {
-  position: absolute;
+  // position: absolute;
   top: 30px;
+  margin-top: 80px;
 
   background-image: url("medieval-title.png");
   background-size: 100% auto;
