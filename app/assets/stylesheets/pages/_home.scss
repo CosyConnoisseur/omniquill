@@ -260,6 +260,21 @@
   }
 }
 
+.campaign-book-create {
+  height: auto;
+  width: 50%;
+  padding: 1.5rem;
+  margin: 1rem 1rem ;
+  border-image: asset_url("book-border.png");
+  border-image-slice: 85 60 85 60 fill;
+  border-image-width: 20px 20px 20px 20px;
+  border-image-outset: 5px;
+  border-image-repeat: stretch stretch;
+  border-radius: 1.5rem;
+  box-shadow: 15px 15px 8px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+
 .navbar-book {
   position: absolute;
   top: -1rem;
@@ -516,6 +531,17 @@
     }
   }
 
+  .campaign-book-create {
+    width: 55%;
+  }
+
+}
+
+@media (max-width: 1000px) {
+
+  .campaign-book-create {
+    width: 65%;
+  }
 
 }
 
@@ -529,5 +555,8 @@
     }
   }
 
+  .campaign-book-create {
+    width: 90%;
+  }
 
 }
