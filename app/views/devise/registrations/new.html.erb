@@ -1,5 +1,9 @@
-<div class="parchment-container mt-3 mx-auto headings">
-  <h2><%= current_user&.guest? ? "Complete Your Registration" : "Sign Up" %></h2>
+<div class="signing-parchment-container mt-3 mx-auto headings">
+  <div class="centering">
+    <div class="medieval-title">
+      <h2><%= current_user&.guest? ? "Complete Your Registration" : "Sign Up" %></h2>
+    </div>
+  </div>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -8,37 +12,51 @@
     <%= f.input :email,
                   required: true,
                   autofocus: true,
-                  autocomplete: "email", value: (current_user&.guest? ? "" : resource.email) %>
+                  autocomplete: "email", value: (current_user&.guest? ? "" : resource.email),
+                  input_html: { class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :username,
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "username" }%>
+                  input_html: { autocomplete: "username", class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, autocomplete: "new-password" %>
+                  input_html: { autocomplete: "new-password", class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+    <%= f.input :password_confirmation,
+                  autocomplete: "new-password",
+                  input_html: { class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <br>
-    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" %>
     <%= f.file_field :profile_picture,
-                          accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
-                          class: " form-control",
-                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
+                        accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
+                        class: "form-control",
+                        data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile" },
+                        style: "color: #645a1a; background-color: #d8d3ba;" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit current_user&.guest? ? "Create Account & Save My Progress" : "Sign Up", class:"btn btn-dark my-3" %>
-    </div>
+
+    <% unless current_user&.guest? %>
+      <div class="form-actions d-flex justify-content-between my-4">
+        <%= f.submit "Sign Up", class:"scroll-button" %>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% else %>
+      <div class="centering my-4">
+        <%= f.submit "Create Account", class:"scroll-create-button" %>
+      </div>
+    <% end %>
   <% end %>
 
   <% unless current_user&.guest? %>
-    <p class="mt-5 mb-0">Already a user?</p>
-    <%= render "devise/shared/links" %>
     <div data-form-typewriter-target="portraitPreviewContainer" class="d-none position-absolute position-md-absolute top-md-0 preview-right-margin" style="overflow: hidden;">
       <img data-form-typewriter-target="portraitPreview" src="" class="fade-effect preview-right-image" style="height: 100%; width: 100%; object-fit: contain;">
     </div>
-    <div class="text-center">
-      No time?
+    <div class="text-center" style="font-weight: 600; color: #200033;">
+      Just want to visit?
       <br>
       <br>
         <%= button_to create_guest_session_path, method: :post, class: "guest-button rounded-3" do %>

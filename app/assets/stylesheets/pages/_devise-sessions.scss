@@ -20,6 +20,8 @@
   background-image: asset_url("rune-of-summoning-floaty-sign.png");
   background-size: contain;
   background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
   border: none;
   transition: 0.2s ease-out;
   color: $omni-ink;
@@ -29,11 +31,11 @@
   }
 }
 
-.sign-up-button {
-  width: 7rem;
-  height: 3.5rem;
+.scroll-create-button {
+  width: 14rem;
+  height: 7rem;
   padding: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   text-align: center;
   vertical-align: middle;
   background-image: asset_url("rune-of-summoning-floaty-sign.png");
