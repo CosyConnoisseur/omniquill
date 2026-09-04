@@ -68,11 +68,15 @@ export default class extends Controller {
     if (!this.aiButtonTarget.classList.contains("d-none")){
       this.aiButtonTarget.classList.add("d-none")
       this.loadingButtonTarget.classList.remove("d-none")
+      this.clearTextButtonTarget.classList.add("d-none")
     } else if (!this.submitButtonTarget.classList.contains("d-none")){
 
       event.preventDefault()
 
       this.submitButtonTarget.classList.add("d-none")
+      console.log("trying to remove clear text")
+      this.clearTextButtonTarget.classList.add("d-none")
+
       this.loadingButtonTarget.classList.remove("d-none")
       const characterForm = document.querySelector("#character-form")
       const fadeOutContainer = document.querySelector(".page-fade-container")
