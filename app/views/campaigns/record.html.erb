@@ -49,8 +49,8 @@
       <div class="recording-controls">
 
         <!-- return to campaign's page -->
-        <%= link_to campaign_path(@campaign) do %>
-          <button class="back-button" data-direction="back"></button>
+        <%= link_to campaign_path(@campaign), data: { direction: "back" } do %>
+          <button class="back-button"></button>
         <% end %>
 
         <!-- upload an audio file -->

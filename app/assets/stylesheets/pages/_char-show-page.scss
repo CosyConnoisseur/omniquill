@@ -151,8 +151,9 @@
 
 /* TITLE */
 .character-file .medieval-title {
-  position: absolute;
+  // position: absolute;
   top: 30px;
+  margin-top: 80px;
 
   background-image: url("medieval-title.png");
   background-size: 100% auto;
@@ -213,26 +214,6 @@
   z-index: 1;
 }
 
-
-
-
-/*Back btn*/
-.character-back-button {
-  display: block;
-  width: 70px;
-  height: 70px;
-
-  margin: 10px auto 0;
-
-  position: relative;
-  z-index: 5000;
-}
-
-.character-back-button .animate-move-icon {
-  display: block;
-  width: 70px;
-  height: 70px;
-}
 /*save edits btn*/
 .save-btn {
   position: absolute;
