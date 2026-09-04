@@ -18,9 +18,7 @@ class CampaignsController < ApplicationController
   end
 
   def new
-    if current_user&.guest?
-      redirect_to new_user_registration_path(user_feature: true)
-    end
+    redirect_to new_user_registration_path(user_feature: true) if current_user&.guest?
     @campaign = Campaign.new
     authorize @campaign
   end
@@ -33,7 +31,7 @@ class CampaignsController < ApplicationController
     if @campaign.save
       redirect_to campaigns_path, notice: "Campaign created successfully!", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_campaign_path, alert: "Title needs at least 6 characters."
     end
   end
 
