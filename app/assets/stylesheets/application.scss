@@ -301,3 +301,17 @@ html[data-turbo-visit-direction="back"]::view-transition-old(root) {
 
   padding: 50px;
 }
+
+@media (max-width: 442px) {
+.phone-squish {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+
+  .phone-squish .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
