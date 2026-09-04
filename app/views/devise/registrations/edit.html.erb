@@ -1,11 +1,19 @@
-<div class="parchment-container mt-3 mx-auto headings">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="signing-parchment-container mt-3 mx-auto headings">
+  <div class="centering">
+    <div class="medieval-title">
+      <h2>Edit Profile</h2>
+    </div>
+  </div>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: "edit-input-box" },
+                  label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -15,33 +23,40 @@
                 value: current_user.username,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "username" }%>
+                input_html: { autocomplete: "username", class: "edit-input-box" },
+                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" }%>
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                hint: "Leave it blank if you don't want to change it",
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", class: "edit-input-box mb-3" },
+                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", class: "edit-input-box" },
+                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                hint: "We need your current password to confirm your changes",
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-family: 'Jersey 15'; font-size: 1.2rem;" %>
+                input_html: { autocomplete: "current-password", class: "edit-input-box mb-3" },
+                label_html: { style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" } %>
+    <%= f.label :profile_picture, "Upload Profile Picture (Optional)", style: "font-size: 1.5rem; color: #00a2ff; text-shadow: 1px 1px 3px rgb(164, 214, 255);" %>
     <%= f.file_field :profile_picture,
                           accept: "image/png, image/jpeg, image/jpg, image/webp, image/gif",
                           class: " form-control",
-                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"}%>
+                          data: { form_typewriter_target: "portraitField", action: "change->form-typewriter#previewPortraitFile"},
+                          style: "color: #645a1a; background-color: #d8d3ba;" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update", class:"btn btn-dark my-1" %>
+  <div class="form-actions d-flex justify-content-between my-4">
+    <%= f.button :submit, "Update", class:"scroll-button" %>
+    <%= link_to :back, data: { direction: "back" } do %>
+      <button class="scroll-button">Back</button>
+    <% end %>
   </div>
 <% end %>
-<%= link_to "Back", :back, class:"btn btn-secondary", data: { direction: "back" } %>
 
-<h3 class="mt-5">Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class:"btn btn-danger", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div class="centering">
+  <%= button_to "Delete my account", registration_path(resource_name), id:"delete-account-button", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+</div>
 
 </div>
