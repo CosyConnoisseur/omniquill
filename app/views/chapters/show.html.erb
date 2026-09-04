@@ -6,8 +6,8 @@
 
 <div class="centering">
   <div class="d-flex justify-content-center align-items-center mb-3 text-border">
-    <%= link_to campaign_chapters_path do %>
-      <button class="back-button" style="width: 5rem; height: 5rem;" data-direction="back"></button>
+    <%= link_to campaign_chapters_path, data: { direction: "back" } do %>
+      <button class="back-button" style="width: 5rem; height: 5rem;"></button>
     <% end %>
     <% if current_user.participations.where(campaign_id: @campaign.id).present? || current_user.campaigns.exists?(id: @campaign.id) %>
       <% if current_user&.guest? %>

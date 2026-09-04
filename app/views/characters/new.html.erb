@@ -24,11 +24,16 @@
       <div class="row justify-content-center">
         <%= render "form_sheet", character: @character, stream_id: @stream_id %>
 
+
         <!-- The controller targets this to stream text -->
         <div id="live_typewriter_output" data-form-typewriter-target="buffer" class="bg-dark text-light d-none">
         </div>
       </div>
     </div>
-
+<%= link_to campaign_path(params[:campaign_id], anchor: "characters-tab"),
+                                class: "character-back-button mb-2",
+                                data: { direction: "back" } do %>
+          <%= image_tag "back-icon.gif", class: "animate-move-icon" %>
+        <% end %>
   </div>
 </div>
