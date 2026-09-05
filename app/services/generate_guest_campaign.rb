@@ -309,13 +309,13 @@ class GenerateGuestCampaign
 
     # --- characters and their images ---
     p2_character = Character.create!(
-      name: "Jared", #
+      name: "Jared, the Patient Monk", #
       stats_summary: "A meticulous and patient polyglot, Jared functions as a master of logic and architecture.
                       Drawing from his background in education and rhetoric, he approaches complex problems with the precision of a scholar.
                       Whether orchestrating classroom events or weaving intricate code for RPG systems, he excels at managing diverse variables under tight deadlines.
                       His mind is a library of languages, both spoken and digital, allowing him to bridge communication gaps seamlessly.
                       As a dedicated builder of virtual worlds and interactive systems, he is driven by a deep-seated need for structure,
-                      efficiency, and thoroughness, ensuring that every project he undertakes is as functional as it is creative.", #
+                      efficiency, and thoroughness, ensuring that every project he undertakes is as functional as it is creative.\n[Generated from Resume]", #
       participation: p2_char
     )
     p2_character.portrait.attach(p2_cloud_image)
@@ -341,7 +341,7 @@ class GenerateGuestCampaign
     p4_character.document_upload.attach(p4_cloud_sheet)
 
     p5_character = Character.create!(
-      name: "Shane", #
+      name: "Shane, the Forge Master", #
       stats_summary: "A master of systems and logic,
                       Shane possesses the analytical mind of a Philosopher combined with the technical prowess of an Artificer.
                       Deeply curious and highly adaptable, he excels at weaving complex code into functional, intuitive experiences.
@@ -349,7 +349,7 @@ class GenerateGuestCampaign
                       whether he is leading a team through a high-stakes development sprint or crafting immersive tools for TTRPG adventurers.
                       Patient and collaborative, he draws on his background in education to simplify the complex,
                       acting as both a supportive party member and a visionary architect. Dedicated to the constant pursuit of knowledge,
-                      he is always integrating new technologies to refine his craft.", #
+                      he is always integrating new technologies to refine his craft.\n[Generated from Resume]", #
       participation: p5_char
     )
     p5_character.portrait.attach(p5_cloud_image)
